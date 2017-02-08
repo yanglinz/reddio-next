@@ -1,4 +1,4 @@
-(ns reddio-next.core
+(ns reddio-frontend.core
   (:require [reagent.core :as reagent :refer [atom]]))
 
 (enable-console-print!)

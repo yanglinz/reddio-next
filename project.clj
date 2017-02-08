@@ -26,14 +26,14 @@
                 ;; the presence of a :figwheel configuration here
                 ;; will cause figwheel to inject the figwheel client
                 ;; into your build
-                :figwheel {:on-jsload "reddio-next.core/on-js-reload"
+                :figwheel {:on-jsload "reddio-frontend.core/on-js-reload"
                            ;; :open-urls will pop open your application
                            ;; in the default browser once Figwheel has
                            ;; started and complied your application.
                            ;; Comment this out once it no longer serves you.
                            :open-urls ["http://localhost:3449/index.html"]}
 
-                :compiler {:main reddio-next.core
+                :compiler {:main reddio-frontend.core
                            :asset-path "js/compiled/out"
                            :output-to "resources/public/js/compiled/reddio_next.js"
                            :output-dir "resources/public/js/compiled/out"
@@ -47,7 +47,7 @@
                {:id "min"
                 :source-paths ["src"]
                 :compiler {:output-to "resources/public/js/compiled/reddio_next.js"
-                           :main reddio-next.core
+                           :main reddio-frontend.core
                            :optimizations :advanced
                            :pretty-print false}}]}
 
