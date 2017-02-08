@@ -1,0 +1,26 @@
+{
+  "name": "reddio-next",
+  "version": "0.1.0",
+  "description": "Reddit powered radio",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack -p --progress",
+    "watch": "webpack --watch",
+    "test": "true"
+  },
+  "author": "Yanglin Zhao",
+  "license": "MIT",
+  "dependencies": {
+    "normalize.css": "^5.0.0",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-dom": "^15.4.2"
+  },
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.10.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^2.2.1"
+  }
+}

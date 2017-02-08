@@ -1,5 +1,10 @@
+.PHONY: setup
+setup:
+	yarn install
+
 .PHONY: build
 build:
+	npm run build
 	lein cljsbuild once min
 
 .PHONY: run
