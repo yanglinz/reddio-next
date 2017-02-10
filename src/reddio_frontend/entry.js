@@ -1,7 +1,5 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
-
-require('normalize.css');
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 window.React = React;
 window.ReactDOM = ReactDOM;
