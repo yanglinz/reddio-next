@@ -9,8 +9,15 @@
 
 (defonce app-state (atom {:text "Hello world!"}))
 
+(def root-provider (aget js/window "modules" "RootProvider"))
+(def example-data (aget js/window "modules" "ExampleData"))
+
 (defn hello-world []
-  [:h1 (:text @app-state)])
+  [:div
+   [:h1 (:text @app-state)]
+   [:h2 "Another one!"]
+   [:> root-provider
+    [:> example-data]]])
 
 (reagent/render-component [hello-world]
                           (. js/document (getElementById "app")))
