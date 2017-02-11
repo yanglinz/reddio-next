@@ -7,7 +7,7 @@ setup:
 
 .PHONY: build
 build:
-	npm run build
+	npm run frontend:build
 	lein cljsbuild once min
 
 .PHONY: format

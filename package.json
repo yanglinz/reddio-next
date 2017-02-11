@@ -7,9 +7,9 @@
     "node" : ">=6.0.0"
   },
   "scripts": {
-    "build": "webpack -p --progress",
-    "watch": "webpack --watch",
-    "test": "true"
+    "frontend:build": "webpack -p --progress",
+    "frontend:watch": "webpack --watch",
+    "frontend:test": "true"
   },
   "author": "Yanglin Zhao",
   "license": "MIT",
