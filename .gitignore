@@ -1,4 +1,4 @@
-/resources/public/js/compiled/**
+# clojure
 figwheel_server.log
 pom.xml
 *jar
@@ -11,6 +11,13 @@ pom.xml
 .lein-plugins/
 .repl
 .nrepl-port
+
+# npm
+/node_modules/
+
+# builds
+/resources/public/js/compiled/**
+
+# editors
 /.idea/
 *.iml
-/node_modules/
