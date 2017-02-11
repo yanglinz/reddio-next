@@ -2,6 +2,7 @@ const hapi = require('hapi');
 const { graphqlHapi, graphiqlHapi } = require('graphql-server-hapi');
 
 const rootSchema = require('./graphql/schema');
+const dataLoaders = require('./graphql/data');
 
 const server = new hapi.Server();
 
@@ -18,7 +19,8 @@ server.register({
   options: {
     path: '/graphql',
     graphqlOptions: {
-      schema: rootSchema
+      schema: rootSchema,
+      context: { dataLoaders }
     },
     route: {
       cors: true
