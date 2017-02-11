@@ -13,6 +13,7 @@ pom.xml
 .nrepl-port
 
 # npm
+npm-debug.log
 /node_modules/
 
 # builds
