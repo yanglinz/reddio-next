@@ -4,7 +4,7 @@
   "description": "Reddit powered radio",
   "main": "index.js",
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=6.9.0"
   },
   "scripts": {
     "frontend:build": "webpack -p --progress",
