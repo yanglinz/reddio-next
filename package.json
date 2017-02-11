@@ -4,12 +4,13 @@
   "description": "Reddit powered radio",
   "main": "index.js",
   "engines": {
-    "node" : ">=6.0.0"
+    "node": ">=6.0.0"
   },
   "scripts": {
     "frontend:build": "webpack -p --progress",
     "frontend:watch": "webpack --watch",
-    "frontend:test": "true"
+    "frontend:test": "true",
+    "server:watch": "nodemon src/reddio_server/index.js"
   },
   "author": "Yanglin Zhao",
   "license": "MIT",
@@ -19,16 +20,21 @@
     "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.22.0",
     "babel-preset-react": "^6.22.0",
+    "graphql": "^0.9.1",
+    "graphql-server-hapi": "^0.6.0",
     "graphql-tag": "^1.2.4",
+    "hapi": "^16.1.0",
     "normalize.css": "^5.0.0",
     "react": "^15.4.2",
     "react-addons-css-transition-group": "^15.4.2",
     "react-apollo": "^0.10.0",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "css-loader": "^0.26.1",
     "file-loader": "^0.10.0",
+    "nodemon": "^1.11.0",
     "prettier": "^0.16.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
