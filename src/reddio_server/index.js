@@ -1,5 +1,7 @@
-import hapi from 'hapi';
-import { graphqlHapi } from 'graphql-server-hapi';
+const hapi = require('hapi');
+const { graphqlHapi, graphiqlHapi } = require('graphql-server-hapi');
+
+const rootSchema = require('./graphql/schema');
 
 const server = new hapi.Server();
 
@@ -8,7 +10,7 @@ const PORT = 3000;
 
 server.connection({
   host: HOST,
-  port: PORT,
+  port: PORT
 });
 
 server.register({
@@ -16,15 +18,25 @@ server.register({
   options: {
     path: '/graphql',
     graphqlOptions: {
-      schema: myGraphQLSchema,
+      schema: rootSchema,
     },
     route: {
       cors: true
     }
-  },
+  }
 });
 
-server.start((err) => {
+server.register({
+  register: graphiqlHapi,
+  options: {
+    path: '/graphiql',
+    graphiqlOptions: {
+      endpointURL: '/graphql'
+    }
+  }
+});
+
+server.start(err => {
   if (err) {
     throw err;
   }
