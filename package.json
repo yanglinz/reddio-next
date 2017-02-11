@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Reddit powered radio",
   "main": "index.js",
+  "engines": {
+    "node" : ">=6.0.0"
+  },
   "scripts": {
     "build": "webpack -p --progress",
     "watch": "webpack --watch",
