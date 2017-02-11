@@ -12,4 +12,5 @@ pom.xml
 .repl
 .nrepl-port
 /.idea/
+*.iml
 /node_modules/
