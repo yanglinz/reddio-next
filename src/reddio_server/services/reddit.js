@@ -1,11 +1,11 @@
 const SUBREDDITS = [
   {
-    'id': '/r/listentothis',
-    'slug': 'listentothis',
-    'name': 'listentothis',
-    'url': 'https://www.reddit.com/r/listentothis/'
+    id: '/r/listentothis',
+    slug: 'listentothis',
+    name: 'listentothis',
+    url: 'https://www.reddit.com/r/listentothis/'
   }
-]
+];
 
 function getTopSubreddits() {
   return SUBREDDITS;

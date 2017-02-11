@@ -18,7 +18,7 @@ server.register({
   options: {
     path: '/graphql',
     graphqlOptions: {
-      schema: rootSchema,
+      schema: rootSchema
     },
     route: {
       cors: true

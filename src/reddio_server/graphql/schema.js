@@ -17,7 +17,7 @@ const Subreddit = new GraphQLObjectType({
     id: { type: GraphQLID },
     slug: { type: GraphQLString },
     name: { type: GraphQLString },
-    url: { type: GraphQLString },
+    url: { type: GraphQLString }
   }
 });
 
