@@ -2,7 +2,7 @@ const path = require('path');
 
 const webpack = require('webpack');
 
-const entry = path.resolve(__dirname, 'src/reddio_frontend/entry');
+const entry = path.resolve(__dirname, 'src/reddio_frontend/index');
 const outputPath = path.resolve(__dirname, 'resources/public/js/compiled');
 const outputName = 'bundle.js';
 
