@@ -21,4 +21,5 @@ run:
 
 .PHONY: clean
 clean:
+	lein clean
 	rm -rf resources/public/js/compiled
