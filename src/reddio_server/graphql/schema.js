@@ -48,12 +48,23 @@ const Post = new GraphQLObjectType({
 
 const SUBREDDIT_TYPE = 'SubredditType';
 
+const SUBREDDIT_FIELDS = {
+  title: 'title',
+  publicDescription: 'public_description',
+  subscriberCount: 'subscribers'
+};
+
+function parseSubredditFields(resp) {
+  return _.mapValues(SUBREDDIT_FIELDS, value => resp.data[value]);
+}
+
 function subredditFieldResolver(field) {
   return (source, args, context, info) => {
     const urlPath = source.urlPath;
     return context.dataLoaders.subredditInfo
       .load(urlPath)
-      .then(resp => resp.data[field]);
+      .then(parseSubredditFields)
+      .then(data => data[field]);
   };
 }
 
@@ -86,11 +97,11 @@ const Subreddit = new GraphQLObjectType({
     },
     publicDescription: {
       type: GraphQLString,
-      resolve: subredditFieldResolver('public_description')
+      resolve: subredditFieldResolver('publicDescription')
     },
     subscriberCount: {
       type: GraphQLInt,
-      resolve: subredditFieldResolver('subscribers')
+      resolve: subredditFieldResolver('subscriberCount')
     },
     posts: {
       type: new GraphQLList(Post),
