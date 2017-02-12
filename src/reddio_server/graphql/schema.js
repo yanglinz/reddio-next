@@ -13,6 +13,22 @@ const { getTopSubreddits } = require('../services/reddit');
 
 const POST_TYPE = 'PostType';
 
+const POST_FIELDS = {
+  id: 'id',
+  url: 'url',
+  author: 'author',
+  title: 'title',
+  score: 'score',
+  ups: 'ups',
+  numComments: 'num_comments',
+  thumbnail: 'thumbnail',
+  subreddit: 'subreddit'
+};
+
+function parsePostFields(resp) {
+  return _.mapValues(POST_FIELDS, value => resp.data[value]);
+}
+
 const Post = new GraphQLObjectType({
   name: POST_TYPE,
   fields: {
@@ -34,7 +50,7 @@ const Post = new GraphQLObjectType({
     ups: {
       type: GraphQLInt
     },
-    num_comments: {
+    numComments: {
       type: GraphQLInt
     },
     thumbnail: {
@@ -73,7 +89,7 @@ function resolveSubredditPosts(source, args, context, info) {
   return context.dataLoaders.subredditPosts
     .load(urlPath)
     .then(resp => resp.data.children)
-    .then(posts => _.map(posts, post => post.data));
+    .then(posts => _.map(posts, parsePostFields));
 }
 
 const Subreddit = new GraphQLObjectType({
