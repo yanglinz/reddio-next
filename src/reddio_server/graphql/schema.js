@@ -84,11 +84,17 @@ function subredditFieldResolver(field) {
   };
 }
 
+const defaultSubredditPostsArgs = {
+  limit: 25
+};
+
 function resolveSubredditPosts(source, args, context, info) {
+  const { limit } = _.defaults(args, defaultSubredditPostsArgs);
   const urlPath = source.urlPath;
   return context.dataLoaders.subredditPosts
     .load(urlPath)
     .then(resp => resp.data.children)
+    .then(posts => _.take(posts, limit))
     .then(posts => _.map(posts, parsePostFields));
 }
 
@@ -121,6 +127,9 @@ const Subreddit = new GraphQLObjectType({
     },
     posts: {
       type: new GraphQLList(Post),
+      args: {
+        limit: { type: GraphQLInt }
+      },
       resolve: resolveSubredditPosts
     }
   }
