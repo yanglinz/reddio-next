@@ -51,7 +51,7 @@ const SUBREDDIT_TYPE = 'SubredditType';
 const SUBREDDIT_FIELDS = {
   title: 'title',
   publicDescription: 'public_description',
-  subscriberCount: 'subscribers'
+  subscribers: 'subscribers'
 };
 
 function parseSubredditFields(resp) {
@@ -99,9 +99,9 @@ const Subreddit = new GraphQLObjectType({
       type: GraphQLString,
       resolve: subredditFieldResolver('publicDescription')
     },
-    subscriberCount: {
+    subscribers: {
       type: GraphQLInt,
-      resolve: subredditFieldResolver('subscriberCount')
+      resolve: subredditFieldResolver('subscribers')
     },
     posts: {
       type: new GraphQLList(Post),
