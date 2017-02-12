@@ -17,8 +17,17 @@ function getSubredditInfo(urlPath) {
   return fetch(url).then(resp => resp.json());
 }
 
+function getSubredditPosts(urlPath) {
+  const url = Url.resolve(
+    'https://www.reddit.com',
+    Path.join(urlPath, '.json')
+  );
+  return fetch(url).then(resp => resp.json());
+}
+
 module.exports = {
   SUBREDDITS,
   getTopSubreddits,
-  getSubredditInfo
+  getSubredditInfo,
+  getSubredditPosts
 };

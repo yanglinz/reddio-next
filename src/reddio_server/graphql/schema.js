@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const {
   graphql,
   GraphQLSchema,
@@ -10,6 +11,41 @@ const {
 
 const { getTopSubreddits } = require('../services/reddit');
 
+const POST_TYPE = 'PostType';
+
+const Post = new GraphQLObjectType({
+  name: POST_TYPE,
+  fields: {
+    id: {
+      type: GraphQLID
+    },
+    url: {
+      type: GraphQLString
+    },
+    author: {
+      type: GraphQLString
+    },
+    title: {
+      type: GraphQLString
+    },
+    score: {
+      type: GraphQLInt
+    },
+    ups: {
+      type: GraphQLInt
+    },
+    num_comments: {
+      type: GraphQLInt
+    },
+    thumbnail: {
+      type: GraphQLString
+    },
+    subreddit: {
+      type: GraphQLString
+    }
+  }
+});
+
 const SUBREDDIT_TYPE = 'SubredditType';
 
 function subredditFieldResolver(field) {
@@ -18,7 +54,15 @@ function subredditFieldResolver(field) {
     return context.dataLoaders.subredditInfo
       .load(urlPath)
       .then(resp => resp.data[field]);
-  }
+  };
+}
+
+function resolveSubredditPosts(source, args, context, info) {
+  const urlPath = source.urlPath;
+  return context.dataLoaders.subredditPosts
+    .load(urlPath)
+    .then(resp => resp.data.children)
+    .then(posts => _.map(posts, post => post.data));
 }
 
 const Subreddit = new GraphQLObjectType({
@@ -47,6 +91,10 @@ const Subreddit = new GraphQLObjectType({
     subscriberCount: {
       type: GraphQLInt,
       resolve: subredditFieldResolver('subscribers')
+    },
+    posts: {
+      type: new GraphQLList(Post),
+      resolve: resolveSubredditPosts
     }
   }
 });
