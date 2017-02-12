@@ -4,6 +4,7 @@ const {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLID,
+  GraphQLBoolean,
   GraphQLList,
   GraphQLInt,
   GraphQLString
@@ -85,15 +86,21 @@ function subredditFieldResolver(field) {
 }
 
 const defaultSubredditPostsArgs = {
-  limit: 25
+  limit: 25,
+  includeStickied: false
 };
 
 function resolveSubredditPosts(source, args, context, info) {
-  const { limit } = _.defaults(args, defaultSubredditPostsArgs);
+  const { limit, includeStickied } = _.defaults(
+    args,
+    defaultSubredditPostsArgs
+  );
   const urlPath = source.urlPath;
   return context.dataLoaders.subredditPosts
     .load(urlPath)
     .then(resp => resp.data.children)
+    .then(posts =>
+      _.filter(posts, post => includeStickied || !post.data.stickied))
     .then(posts => _.take(posts, limit))
     .then(posts => _.map(posts, parsePostFields));
 }
@@ -125,7 +132,12 @@ const Subreddit = new GraphQLObjectType({
     posts: {
       type: new GraphQLList(Post),
       args: {
-        limit: { type: GraphQLInt }
+        limit: {
+          type: GraphQLInt
+        },
+        includeStickied: {
+          type: GraphQLBoolean
+        }
       },
       resolve: resolveSubredditPosts
     }
