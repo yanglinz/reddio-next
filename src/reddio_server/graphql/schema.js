@@ -4,6 +4,7 @@ const {
   GraphQLObjectType,
   GraphQLID,
   GraphQLList,
+  GraphQLInt,
   GraphQLString
 } = require('graphql');
 
@@ -11,13 +12,54 @@ const { getTopSubreddits } = require('../services/reddit');
 
 const SUBREDDIT_TYPE = 'SubredditType';
 
+function resolveSubredditTitle(source, args, context, info) {
+  const urlPath = source.urlPath;
+  return context.dataLoaders.subredditInfo
+    .load(urlPath)
+    .then(resp => resp.data.title);
+}
+
+function resolveSubredditPublicDescription(source, args, context, info) {
+  const urlPath = source.urlPath;
+  return context.dataLoaders.subredditInfo
+    .load(urlPath)
+    .then(resp => resp.data.public_description);
+}
+
+function resolveSubredditSubscriberCount(source, args, context, info) {
+  const urlPath = source.urlPath;
+  return context.dataLoaders.subredditInfo
+    .load(urlPath)
+    .then(resp => resp.data.subscribers);
+}
+
 const Subreddit = new GraphQLObjectType({
   name: SUBREDDIT_TYPE,
   fields: {
-    id: { type: GraphQLID },
-    slug: { type: GraphQLString },
-    name: { type: GraphQLString },
-    url: { type: GraphQLString }
+    id: {
+      type: GraphQLID
+    },
+    displayName: {
+      type: GraphQLString
+    },
+    urlPath: {
+      type: GraphQLString
+    },
+    url: {
+      type: GraphQLString
+    },
+    title: {
+      type: GraphQLString,
+      resolve: resolveSubredditTitle
+    },
+    publicDescription: {
+      type: GraphQLString,
+      resolve: resolveSubredditPublicDescription
+    },
+    subscriberCount: {
+      type: GraphQLInt,
+      resolve: resolveSubredditSubscriberCount
+    }
   }
 });
 
