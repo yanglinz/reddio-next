@@ -12,25 +12,13 @@ const { getTopSubreddits } = require('../services/reddit');
 
 const SUBREDDIT_TYPE = 'SubredditType';
 
-function resolveSubredditTitle(source, args, context, info) {
-  const urlPath = source.urlPath;
-  return context.dataLoaders.subredditInfo
-    .load(urlPath)
-    .then(resp => resp.data.title);
-}
-
-function resolveSubredditPublicDescription(source, args, context, info) {
-  const urlPath = source.urlPath;
-  return context.dataLoaders.subredditInfo
-    .load(urlPath)
-    .then(resp => resp.data.public_description);
-}
-
-function resolveSubredditSubscriberCount(source, args, context, info) {
-  const urlPath = source.urlPath;
-  return context.dataLoaders.subredditInfo
-    .load(urlPath)
-    .then(resp => resp.data.subscribers);
+function subredditFieldResolver(field) {
+  return (source, args, context, info) => {
+    const urlPath = source.urlPath;
+    return context.dataLoaders.subredditInfo
+      .load(urlPath)
+      .then(resp => resp.data[field]);
+  }
 }
 
 const Subreddit = new GraphQLObjectType({
@@ -50,15 +38,15 @@ const Subreddit = new GraphQLObjectType({
     },
     title: {
       type: GraphQLString,
-      resolve: resolveSubredditTitle
+      resolve: subredditFieldResolver('title')
     },
     publicDescription: {
       type: GraphQLString,
-      resolve: resolveSubredditPublicDescription
+      resolve: subredditFieldResolver('public_description')
     },
     subscriberCount: {
       type: GraphQLInt,
-      resolve: resolveSubredditSubscriberCount
+      resolve: subredditFieldResolver('subscribers')
     }
   }
 });
