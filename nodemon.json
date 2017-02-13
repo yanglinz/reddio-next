@@ -1,5 +1,8 @@
 {
   "verbose": false,
+  "watch": [
+    "src/reddio_server"
+  ],
   "ignore": [
     "*.test.js"
   ]
