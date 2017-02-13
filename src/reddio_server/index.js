@@ -15,7 +15,7 @@ server.connection({
 server.register({
   register: graphqlHapi,
   options: {
-    path: '/graphql',
+    path: '/graphql/',
     graphqlOptions: {
       schema: rootSchema,
       context: { dataLoaders }
@@ -29,9 +29,9 @@ server.register({
 server.register({
   register: graphiqlHapi,
   options: {
-    path: '/graphiql',
+    path: '/graphiql/',
     graphiqlOptions: {
-      endpointURL: '/graphql'
+      endpointURL: '/graphql/'
     }
   }
 });
