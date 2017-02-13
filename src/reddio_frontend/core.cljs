@@ -1,5 +1,6 @@
 (ns reddio-frontend.core
-  (:require [reagent.core :as reagent :refer [atom]]))
+  (:require [reagent.core :as reagent :refer [atom]]
+            [reddio-frontend.bridge :as bridge]))
 
 (enable-console-print!)
 
@@ -9,15 +10,12 @@
 
 (defonce app-state (atom {:text "Hello world!"}))
 
-(def root-provider (aget js/window "modules" "RootProvider"))
-(def home-top-subreddits(aget js/window "modules" "HomeTopSubreddits"))
-
 (defn hello-world []
   [:div
    [:h1 (:text @app-state)]
    [:h2 "Another one!"]
-   [:> root-provider
-    [:> home-top-subreddits]]])
+   [:> bridge/root-provider
+    [:> bridge/home-top-subreddits]]])
 
 (reagent/render-component [hello-world]
                           (. js/document (getElementById "app")))
