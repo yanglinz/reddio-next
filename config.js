@@ -4,14 +4,23 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 const {
-  PORT,
-  HOST
+  NODE_ENV,
+  PROTOCOL,
+  HOST,
+  PORT
 } = _.defaults(process.env, {
-  PORT: '4000',
-  HOST: 'localhost'
+  PROTOCOL: 'http',
+  HOST: 'localhost',
+  PORT: '4000'
 });
 
+const IS_PROD = NODE_ENV === 'production';
+const IS_DEV = !IS_PROD;
+
 module.exports = {
-  PORT,
-  HOST
+  IS_PROD,
+  IS_DEV,
+  PROTOCOL,
+  HOST,
+  PORT
 };

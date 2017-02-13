@@ -2,6 +2,8 @@ const path = require('path');
 
 const webpack = require('webpack');
 
+const config = require('./config');
+
 const entry = path.resolve(__dirname, 'src/reddio_frontend/index');
 const outputPath = path.resolve(__dirname, 'resources/public/js/compiled');
 const outputName = 'bundle.js';
@@ -20,5 +22,11 @@ module.exports = {
         use: 'babel-loader'
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      __DEFINE__: JSON.stringify(config)
+    })
+  ]
 };
