@@ -18,6 +18,7 @@ npm-debug.log
 
 # builds
 /resources/public/js/compiled/**
+.env
 
 # editors
 /.idea/

@@ -3,15 +3,13 @@ const { graphqlHapi, graphiqlHapi } = require('graphql-server-hapi');
 
 const rootSchema = require('./graphql/schema');
 const dataLoaders = require('./graphql/data');
+const config = require('../../config');
 
 const server = new hapi.Server();
 
-const HOST = 'localhost';
-const PORT = 3000;
-
 server.connection({
-  host: HOST,
-  port: PORT
+  host: config.HOST,
+  port: config.PORT
 });
 
 server.register({
