@@ -1,7 +1,7 @@
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
 import { ApolloProvider } from 'react-apollo';
 
-import settings from './settings';
+import settings from '../settings';
 
 const graphQLUrl = settings.IS_PROD
   ? `${settings.PROTOCOL}://${settings.HOST}/graphql/`

@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
-const EXAMPLE_QUERY = gql`
+const HOME_TOP_SUBREDDITS_QUERY = gql`
   query {
     topSubreddits {
       posts(limit: 5) {
@@ -12,13 +12,15 @@ const EXAMPLE_QUERY = gql`
   }
 `;
 
-function ExampleData(props) {
+function HomeTopSubreddits(props) {
   const { loading, data } = props;
   return (
     <div>
-      <h1>Example Data!</h1>
+      <h1>Home: Top Subreddits</h1>
     </div>
   );
 }
 
-export default graphql(EXAMPLE_QUERY)(ExampleData);
+const enhancer = graphql(HOME_TOP_SUBREDDITS_QUERY);
+
+export default enhancer(HomeTopSubreddits);
