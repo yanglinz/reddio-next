@@ -4,8 +4,10 @@ import gql from 'graphql-tag';
 
 const EXAMPLE_QUERY = gql`
   query {
-    person {
-      name
+    topSubreddits {
+      posts(limit: 5) {
+        id
+      }
     }
   }
 `;
