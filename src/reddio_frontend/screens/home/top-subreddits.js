@@ -12,15 +12,6 @@ const HOME_TOP_SUBREDDITS_QUERY = gql`
   }
 `;
 
-function HomeTopSubreddits(props) {
-  const { loading, data } = props;
-  return (
-    <div>
-      <h1>Home: Top Subreddits</h1>
-    </div>
-  );
-}
+const enhanceHomeTopSubredditQuery = graphql(HOME_TOP_SUBREDDITS_QUERY);
 
-const enhancer = graphql(HOME_TOP_SUBREDDITS_QUERY);
-
-export default enhancer(HomeTopSubreddits);
+export default enhanceHomeTopSubredditQuery;

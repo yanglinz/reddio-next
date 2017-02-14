@@ -1,4 +1,5 @@
-(ns reddio-frontend.bridge)
+(ns reddio-frontend.bridge
+  (:require [reagent.core :as r]))
 
 (def root-provider (aget js/window "modules" "RootProvider"))
-(def home-top-subreddits (aget js/window "modules" "HomeTopSubreddits"))
+(def enhance-home-top-subreddits-query (aget js/window "modules" "enhanceHomeTopSubredditQuery"))
