@@ -13,7 +13,8 @@
                  [reagent "0.6.0"
                   :exclusions [cljsjs/react
                                cljsjs/react-dom
-                               cljsjs/react-dom-server]]]
+                               cljsjs/react-dom-server]]
+                 [camel-snake-kebab "0.4.0"]]
 
   :plugins [[lein-figwheel "0.5.9"]
             [lein-cljfmt "0.5.6"]
