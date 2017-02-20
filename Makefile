@@ -4,6 +4,7 @@ PRETTIER := $(BIN)/prettier
 .PHONY: setup
 setup:
 	yarn install
+	lein deps
 
 .PHONY: build
 build:
