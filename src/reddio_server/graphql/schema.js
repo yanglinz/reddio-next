@@ -63,6 +63,20 @@ const Post = new GraphQLObjectType({
   }
 });
 
+function resolvePosts(source, args, context, info) {
+  const { urlPath, limit, includeStickied } = _.defaults(args, {
+    limit: 25,
+    includeStickied: false
+  });
+  return context.dataLoaders.subredditPosts
+    .load(urlPath)
+    .then(resp => resp.data.children)
+    .then(posts =>
+      _.filter(posts, post => includeStickied || !post.data.stickied))
+    .then(posts => _.take(posts, limit))
+    .then(posts => _.map(posts, parsePostFields));
+}
+
 const SUBREDDIT_TYPE = 'SubredditType';
 
 const SUBREDDIT_FIELDS = {
@@ -85,16 +99,11 @@ function subredditFieldResolver(field) {
   };
 }
 
-const defaultSubredditPostsArgs = {
-  limit: 25,
-  includeStickied: false
-};
-
 function resolveSubredditPosts(source, args, context, info) {
-  const { limit, includeStickied } = _.defaults(
-    args,
-    defaultSubredditPostsArgs
-  );
+  const { limit, includeStickied } = _.defaults(args, {
+    limit: 25,
+    includeStickied: false
+  });
   const urlPath = source.urlPath;
   return context.dataLoaders.subredditPosts
     .load(urlPath)
@@ -157,6 +166,15 @@ const RootQuery = new GraphQLObjectType({
     topSubreddits: {
       type: new GraphQLList(Subreddit),
       resolve: resolveTopSubreddits
+    },
+    posts: {
+      type: new GraphQLList(Post),
+      args: {
+        urlPath: {
+          type: GraphQLString
+        }
+      },
+      resolve: resolvePosts
     }
   }
 });
