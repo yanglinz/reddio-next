@@ -25,11 +25,9 @@
   [:> bridge/root-provider
    [listings/listings {:url-path "/r/listentothis"}]])
 
-(defn init! []
+(defn ^:export run []
   (hook-history!)
   (r/render-component [app]
                       (. js/document (getElementById "app"))))
-
-(init!)
 
 (defn on-js-reload [])
