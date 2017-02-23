@@ -1,4 +1,4 @@
-(ns reddio-frontend.screens.home
+(ns reddio-frontend.screens.home.top-subreddit
   (:require [reagent.core :as r]
             [reddio-frontend.utilities.core :as u]
             [reddio-frontend.bridge :as bridge]))

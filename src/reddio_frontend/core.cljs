@@ -4,8 +4,7 @@
             [secretary.core :as secretary]
             [pushy.core :as pushy]
             [reddio-frontend.bridge :as bridge]
-            [reddio-frontend.screens.home :as home]
-            [reddio-frontend.screens.listings :as listings]))
+            [reddio-frontend.screens.listings.listings :as listings]))
 
 (def history (pushy/pushy
               secretary/dispatch!

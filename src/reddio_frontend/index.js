@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import './bridge';
+import './bridge-provider';
 
 window.React = React;
 window.ReactDOM = ReactDOM;

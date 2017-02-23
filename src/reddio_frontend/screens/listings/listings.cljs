@@ -1,4 +1,4 @@
-(ns reddio-frontend.screens.listings
+(ns reddio-frontend.screens.listings.listings
   (:require [reagent.core :as r]
             [reddio-frontend.utilities.core :as u]
             [reddio-frontend.bridge :as bridge]))
