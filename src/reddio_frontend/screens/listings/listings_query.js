@@ -26,13 +26,20 @@ function updateQuery(previousResult, { fetchMoreResult }) {
   };
 }
 
+function getPostsAfterCursor(posts) {
+  const lastPost = posts && posts[posts.length - 1];
+  const afterCursor = lastPost && lastPost.id;
+  return afterCursor;
+}
+
 function mapPropsToProps(props) {
   const { data } = props;
-  const { variables, fetchMore } = data;
+  const { posts, variables, fetchMore } = data;
+  const after = getPostsAfterCursor(posts);
 
   const fetchMorePosts = () => fetchMore({
     query: LISTINGS_QUERY,
-    variables,
+    variables: Object.assign({}, variables, { after }),
     updateQuery
   });
 
