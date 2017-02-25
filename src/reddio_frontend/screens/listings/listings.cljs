@@ -9,15 +9,14 @@
    [:p (:title post)]])
 
 (defn listings-posts [data]
-  (js/console.log "data" data)
   (let [posts (:posts data)
-        fetch-more (:fetch-more data)]
+        fetch-more-posts (:fetch-more-posts data)]
     [:div.listings-posts
      [:h2 "Posts"]
      [:ul
-      (for [post posts]
+      (for [post (:posts data)]
         ^{:key (:id post)} [listing-post data post])]
-     [:button {:on-click #(fetch-more)}
+     [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))
 
 (defn listings-pure [data]
