@@ -3,8 +3,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const LISTINGS_QUERY = gql`
-  query ($urlPath: String) {
-    posts(urlPath: $urlPath) {
+  query ($urlPath: String, $after: String) {
+    posts(urlPath: $urlPath, after: $after) {
       id
       title
     }
