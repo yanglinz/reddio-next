@@ -19,7 +19,7 @@
      [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))
 
-(defn listings-pure [data]
+(defn listings [data]
   [:div.listings
    [:h1 "Listings"]
    (if (:loading data)
@@ -29,8 +29,8 @@
 (defn listings-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))
         data (:data props)]
-    [listings-pure data]))
+    [listings data]))
 
-(def listings (-> (r/reactify-component listings-container)
-                  (bridge/enhance-listings-query)
-                  (r/adapt-react-class)))
+(def main (-> (r/reactify-component listings-container)
+              (bridge/enhance-listings-query)
+              (r/adapt-react-class)))
