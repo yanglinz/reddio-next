@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 const LISTINGS_QUERY = gql`
   query ($urlPath: String, $after: String) {
     posts(urlPath: $urlPath, after: $after) {
-      id
+      name
       title
     }
   }
@@ -22,13 +22,13 @@ function updateQuery(previousResult, { fetchMoreResult }) {
   const previousPosts = previousResult.posts;
   const newPosts = fetchMoreResult.data.posts;
   return {
-    posts: [].concat(previousPosts)
+    posts: [].concat(previousPosts).concat(newPosts)
   };
 }
 
 function getPostsAfterCursor(posts) {
   const lastPost = posts && posts[posts.length - 1];
-  const afterCursor = lastPost && lastPost.id;
+  const afterCursor = lastPost && lastPost.name;
   return afterCursor;
 }
 

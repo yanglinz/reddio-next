@@ -15,7 +15,7 @@ const { getTopSubreddits } = require('../services/reddit');
 const POST_TYPE = 'PostType';
 
 const POST_FIELDS = {
-  id: 'id',
+  name: 'name',
   url: 'url',
   author: 'author',
   title: 'title',
@@ -33,7 +33,7 @@ function parsePostFields(resp) {
 const Post = new GraphQLObjectType({
   name: POST_TYPE,
   fields: {
-    id: {
+    name: {
       type: GraphQLID
     },
     url: {

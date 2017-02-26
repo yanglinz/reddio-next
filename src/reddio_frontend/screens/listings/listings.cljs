@@ -15,7 +15,7 @@
      [:h2 "Posts"]
      [:ul
       (for [post (:posts data)]
-        ^{:key (:id post)} [listing-post data post])]
+        ^{:key (:name post)} [listing-post data post])]
      [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))
 
