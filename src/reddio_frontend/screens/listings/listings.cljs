@@ -1,11 +1,30 @@
 (ns reddio-frontend.screens.listings.listings
   (:require [reagent.core :as r]
             [reddio-frontend.utilities.core :as u]
-            [reddio-frontend.bridge :as bridge]))
+            [reddio-frontend.bridge :as bridge]
+            [reddio-frontend.components.loading-indicator :as loading-indicator]))
+
+(defn listing-post [data post]
+  [:div.listing-post
+   [:p (:title post)]])
+
+(defn listings-posts [data]
+  (let [posts (:posts data)
+        fetch-more-posts (:fetch-more-posts data)]
+    [:div.listings-posts
+     [:h2 "Posts"]
+     [:ul
+      (for [post (:posts data)]
+        ^{:key (:name post)} [listing-post data post])]
+     [:button {:on-click #(fetch-more-posts)}
+      "Fetch more"]]))
 
 (defn listings-pure [data]
   [:div.listings
-   [:h1 "Listings"]])
+   [:h1 "Listings"]
+   (if (:loading data)
+     [loading-indicator/loading-indicator]
+     [listings-posts data])])
 
 (defn listings-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))

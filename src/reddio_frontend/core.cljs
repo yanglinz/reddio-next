@@ -6,14 +6,6 @@
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.screens.listings.listings :as listings]))
 
-(def history (pushy/pushy
-              secretary/dispatch!
-              (fn [x] (when (secretary/locate-route x) x))))
-
-(defn hook-history! []
-  (secretary/set-config! :prefix "/")
-  (pushy/start! history))
-
 (defroute "/" []
   (js/console.log "/"))
 
@@ -24,9 +16,21 @@
   [:> bridge/root-provider
    [listings/listings {:url-path "/r/listentothis"}]])
 
-(defn ^:export run []
-  (hook-history!)
+(def history (pushy/pushy
+              secretary/dispatch!
+              (fn [x] (when (secretary/locate-route x) x))))
+
+(defn hook-history! []
+  (secretary/set-config! :prefix "/")
+  (pushy/start! history))
+
+(defn render []
   (r/render-component [app]
                       (. js/document (getElementById "app"))))
 
-(defn on-js-reload [])
+(defn ^:export run []
+  (hook-history!)
+  (render))
+
+(defn on-js-reload []
+  (render))

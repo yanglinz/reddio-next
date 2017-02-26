@@ -15,7 +15,7 @@ const { getTopSubreddits } = require('../services/reddit');
 const POST_TYPE = 'PostType';
 
 const POST_FIELDS = {
-  id: 'id',
+  name: 'name',
   url: 'url',
   author: 'author',
   title: 'title',
@@ -33,7 +33,7 @@ function parsePostFields(resp) {
 const Post = new GraphQLObjectType({
   name: POST_TYPE,
   fields: {
-    id: {
+    name: {
       type: GraphQLID
     },
     url: {
@@ -64,12 +64,13 @@ const Post = new GraphQLObjectType({
 });
 
 function resolvePosts(source, args, context, info) {
-  const { urlPath, limit, includeStickied } = _.defaults(args, {
+  const { urlPath, after, limit, includeStickied } = _.defaults(args, {
     limit: 25,
     includeStickied: false
   });
+
   return context.dataLoaders.subredditPosts
-    .load(urlPath)
+    .load({ urlPath, after })
     .then(resp => resp.data.children)
     .then(posts =>
       _.filter(posts, post => includeStickied || !post.data.stickied))
@@ -106,7 +107,7 @@ function resolveSubredditPosts(source, args, context, info) {
   });
   const urlPath = source.urlPath;
   return context.dataLoaders.subredditPosts
-    .load(urlPath)
+    .load({ urlPath })
     .then(resp => resp.data.children)
     .then(posts =>
       _.filter(posts, post => includeStickied || !post.data.stickied))
@@ -171,6 +172,9 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(Post),
       args: {
         urlPath: {
+          type: GraphQLString
+        },
+        after: {
           type: GraphQLString
         }
       },
