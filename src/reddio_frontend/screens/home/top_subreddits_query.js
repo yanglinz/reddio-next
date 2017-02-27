@@ -6,7 +6,7 @@ const HOME_TOP_SUBREDDITS_QUERY = gql`
   query {
     topSubreddits {
       posts(limit: 5) {
-        id
+        name
       }
     }
   }

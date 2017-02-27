@@ -3,15 +3,15 @@
             [reddio-frontend.utilities.core :as u]
             [reddio-frontend.bridge :as bridge]))
 
-(defn top-subreddits-pure [data]
+(defn top-subreddits [data]
   [:div.top-subreddits
    [:h1 "Top Subreddits"]])
 
 (defn top-subreddits-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))
         data (:data props)]
-    [top-subreddits-pure data]))
+    [top-subreddits data]))
 
-(def top-subreddits (-> (r/reactify-component top-subreddits-container)
-                        (bridge/enhance-home-top-subreddits-query)
-                        (r/adapt-react-class)))
+(def main (-> (r/reactify-component top-subreddits-container)
+              (bridge/enhance-home-top-subreddits-query)
+              (r/adapt-react-class)))
