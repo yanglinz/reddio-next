@@ -4,25 +4,26 @@
             [reddio-frontend.bridge :as bridge]))
 
 (defn subreddit-card [subreddit]
-  [:div.subreddit-card.card
-   [:div.subreddit-card-thumbnail-list
-    (for [post (:posts subreddit)]
-      ^{:key (:name post)}
-      [:div.subreddit-card-thumbnail
-       [:img {:src (:thumbnail post)}]])]
-   [:div.card-block
-    [:h3.card-title (:url-path subreddit)]
-    [:p.card-text (:public-description subreddit)]]])
+  [:div.subreddit-card
+   [:div.card
+    [:div.subreddit-card-thumbnail-list
+     (for [post (:posts subreddit)]
+       ^{:key (:name post)}
+       [:div.subreddit-card-thumbnail
+        [:img {:src (:thumbnail post)}]])]
+    [:div.card-block
+     [:h3.card-title (:url-path subreddit)]
+     [:p.card-text (:public-description subreddit)]]]])
 
 (defn top-subreddits [data]
   (let [top-subreddits (:top-subreddits data)]
     [:div.top-subreddits.container
-     [:div.row
+     [:div.row.no-gutters
       [:div.col-sm-10.offset-sm-1
-       [:div.row
+       [:div.row.no-gutters
         (for [subreddit top-subreddits]
           ^{:key (:id subreddit)}
-          [:div.col-sm-4
+          [:div.col-sm-6.col-lg-4
            [subreddit-card subreddit]])]]]]))
 
 (defn top-subreddits-container [apollo-props]

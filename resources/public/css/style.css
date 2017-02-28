@@ -1,3 +1,11 @@
+.subreddit-card {
+  padding: 5px;
+}
+
+.subreddit-card .card {
+  overflow: hidden;
+}
+
 .subreddit-card-thumbnail-list {
   display: flex;
 }
@@ -10,4 +18,13 @@
 .subreddit-card-thumbnail img {
   width: 100%;
   object-fit: cover;
+}
+
+.subreddit-card .card-title {
+  font-size: 1.25rem;
+}
+
+.subreddit-card .card-text {
+  font-size: 0.8rem;
+  color: #777;
 }
