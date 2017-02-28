@@ -5,10 +5,10 @@
 
 (defn subreddit-card [subreddit]
   [:div.subreddit-card.card
-   [:div
+   [:div.subreddit-card-thumbnail-list
     (for [post (:posts subreddit)]
       ^{:key (:name post)}
-      [:div
+      [:div.subreddit-card-thumbnail
        [:img {:src (:thumbnail post)}]])]
    [:div.card-block
     [:h3.card-title (:url-path subreddit)]
