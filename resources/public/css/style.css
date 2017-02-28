@@ -1,2 +1,13 @@
-/* some style */
+.subreddit-card-thumbnail-list {
+  display: flex;
+}
 
+.subreddit-card-thumbnail {
+  display: flex;
+  height: 65px;
+}
+
+.subreddit-card-thumbnail img {
+  width: 100%;
+  object-fit: cover;
+}
