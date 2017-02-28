@@ -16,12 +16,14 @@
 
 (defn top-subreddits [data]
   (let [top-subreddits (:top-subreddits data)]
-    [:div.top-subreddits.container-fluid
+    [:div.top-subreddits.container
      [:div.row
-      (for [subreddit top-subreddits]
-        ^{:key (:id subreddit)}
-        [:div.col-sm-4
-         [subreddit-card subreddit]])]]))
+      [:div.col-sm-10.offset-sm-1
+       [:div.row
+        (for [subreddit top-subreddits]
+          ^{:key (:id subreddit)}
+          [:div.col-sm-4
+           [subreddit-card subreddit]])]]]]))
 
 (defn top-subreddits-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))
