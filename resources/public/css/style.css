@@ -4,11 +4,10 @@
 
 .subreddit-card-thumbnail {
   display: flex;
-  align-items: center;
   height: 65px;
-  overflow: hidden;
 }
 
 .subreddit-card-thumbnail img {
   width: 100%;
+  object-fit: cover;
 }
