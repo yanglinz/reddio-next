@@ -127,6 +127,9 @@ const Subreddit = new GraphQLObjectType({
     urlPath: {
       type: GraphQLString
     },
+    customDescription: {
+      type: GraphQLString
+    },
     title: {
       type: GraphQLString,
       resolve: subredditFieldResolver('title')

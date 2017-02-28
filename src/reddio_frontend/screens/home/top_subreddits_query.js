@@ -8,7 +8,7 @@ const HOME_TOP_SUBREDDITS_QUERY = gql`
       id
       displayName
       title
-      publicDescription
+      customDescription
       urlPath
       subscribers
       posts(limit: 5) {

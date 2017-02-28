@@ -13,7 +13,7 @@
         [:img {:src (:thumbnail post)}]])]
     [:div.card-block
      [:h3.card-title (:url-path subreddit)]
-     [:p.card-text (:public-description subreddit)]]]])
+     [:p.card-text (:custom-description subreddit)]]]])
 
 (defn top-subreddits [data]
   (let [top-subreddits (:top-subreddits data)]
