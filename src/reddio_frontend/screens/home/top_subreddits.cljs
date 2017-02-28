@@ -4,8 +4,15 @@
             [reddio-frontend.bridge :as bridge]))
 
 (defn subreddit-card [subreddit]
-  [:div.subreddit-card
-   [:h3 (:url-path subreddit)]])
+  [:div.subreddit-card.card
+   [:div
+    (for [post (:posts subreddit)]
+      ^{:key (:name post)}
+      [:div
+       [:img {:src (:thumbnail post)}]])]
+   [:div.card-block
+    [:h3.card-title (:url-path subreddit)]
+    [:p.card-text (:public-description subreddit)]]])
 
 (defn top-subreddits [data]
   (let [top-subreddits (:top-subreddits data)]
