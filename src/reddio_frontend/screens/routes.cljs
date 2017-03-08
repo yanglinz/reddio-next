@@ -1,13 +1,14 @@
 (ns reddio-frontend.screens.routes
   (:require-macros [secretary.core :refer [defroute]])
-  (:require [secretary.core :as secretary]
+  (:require [re-frame.core :as rf]
+            [secretary.core :as secretary]
             [pushy.core :as pushy]))
 
 (defroute "/" []
-  (js/console.log "/"))
+  (rf/dispatch [:route-change "/"]))
 
 (defroute "/about" []
-  (js/console.log "/about"))
+  (rf/dispatch [:route-change "/about"]))
 
 (def history (pushy/pushy
               secretary/dispatch!
@@ -16,4 +17,3 @@
 (defn hook-history! []
   (secretary/set-config! :prefix "/")
   (pushy/start! history))
-

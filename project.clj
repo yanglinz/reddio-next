@@ -14,6 +14,7 @@
                   :exclusions [cljsjs/react
                                cljsjs/react-dom
                                cljsjs/react-dom-server]]
+                 [re-frame "0.9.2"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
                  [camel-snake-kebab "0.4.0"]]
