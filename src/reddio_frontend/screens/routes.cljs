@@ -10,6 +10,9 @@
 (defroute "/about" []
   (rf/dispatch [:route-change "/about"]))
 
+(defroute "/r/*" {:as params}
+  (rf/dispatch [:route-change (str "/r/" (:* params))]))
+
 (def history (pushy/pushy
               secretary/dispatch!
               (fn [x] (when (secretary/locate-route x) x))))

@@ -12,5 +12,6 @@
      [:h1 "Route: " @(rf/subscribe [:route])]
      [:ul
       [:li [:a {:href "/"} "home"]]
-      [:li [:a {:href "/about"} "about"]]]]
+      [:li [:a {:href "/about"} "about"]]
+      [:li [:a {:href "/r/listentothis"} "listentothis"]]]]
     [top-subreddits/main {:url-path "/r/listentothis"}]]])
