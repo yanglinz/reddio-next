@@ -12,4 +12,8 @@
       [:h1 "Search"]]]
     [:div.col-sm-3
      [:div.header-nav
-      [:h1 "Navigation"]]]]])
+      [:h1 "Navigation"]]]]
+   [:div.row
+    [:ul
+     [:li [:a {:href "/"} "home"]]
+     [:li [:a {:href "/about"} "about"]]]]])
