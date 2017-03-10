@@ -5,7 +5,9 @@
             [reddio-frontend.screens.home.top-subreddits :as top-subreddits]))
 
 (defn app []
-  [:> bridge/root-provider
-   [:div.app
-    [header/main]
-    [top-subreddits/main {:url-path "/r/listentothis"}]]])
+  (let [route @(rf/subscribe [:route])]
+    [:> bridge/root-provider
+     [:div.app
+      [header/main]
+      (when (= route "/")
+        [top-subreddits/main {:url-path "/r/listentothis"}])]]))
