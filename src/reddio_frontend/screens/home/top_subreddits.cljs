@@ -12,7 +12,9 @@
        [:div.subreddit-card-thumbnail
         [:img {:src (:thumbnail post)}]])]
     [:div.card-block
-     [:h3.card-title (:url-path subreddit)]
+     [:h3.card-title
+      [:a {:href (:url-path subreddit)}
+       (:url-path subreddit)]]
      [:p.card-text (:custom-description subreddit)]]]])
 
 (defn top-subreddits [data]
