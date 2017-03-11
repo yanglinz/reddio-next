@@ -1,6 +1,9 @@
 (ns reddio-frontend.screens.player.player
-  (:require))
+  (:require [reagent.core :as r]
+            [reddio-frontend.bridge :as bridge]))
 
-(defn main []
+(def react-player-adapter (r/adapt-react-class bridge/react-player))
+
+(defn main [data]
   [:div.player
-   [:h1 "Player"]])
+   [react-player-adapter data]])
