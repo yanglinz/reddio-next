@@ -3,7 +3,8 @@
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.screens.shared.header :as header]
             [reddio-frontend.screens.home.top-subreddits :as top-subreddits]
-            [reddio-frontend.screens.listings.listings :as listings]))
+            [reddio-frontend.screens.listings.listings :as listings]
+            [reddio-frontend.screens.player.player :as player]))
 
 (defn app []
   (let [route @(rf/subscribe [:route])]
@@ -12,4 +13,5 @@
       [header/main]
       (if (= route "/")
         [top-subreddits/main]
-        [listings/main {:url-path route}])]]))
+        [listings/main {:url-path route}])
+      [player/main]]]))
