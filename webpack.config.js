@@ -1,6 +1,7 @@
 const path = require('path');
 
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const config = require('./config');
 
@@ -20,6 +21,15 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: 'babel-loader'
+      },
+      {
+        test: /\.s?css$/,
+        use: ExtractTextPlugin.extract({
+          use: [
+            'css-loader',
+            'sass-loader'
+          ]
+        })
       }
     ]
   },
@@ -27,6 +37,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       __DEFINE__: JSON.stringify(config)
-    })
+    }),
+    new ExtractTextPlugin('styles.css')
   ]
 };
