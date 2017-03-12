@@ -6,5 +6,5 @@ import enhanceHomeTopSubredditQuery
 window.modules = {
   RootProvider,
   enhanceListingsQuery,
-  enhanceHomeTopSubredditQuery,
+  enhanceHomeTopSubredditQuery
 };
