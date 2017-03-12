@@ -18,6 +18,7 @@ npm-debug.log
 
 # builds
 /resources/public/js/compiled/**
+/resources/public/css/compiled/**
 .env
 
 # editors
