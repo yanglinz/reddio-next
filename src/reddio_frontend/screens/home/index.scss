@@ -1,0 +1,30 @@
+.subreddit-card {
+  padding: 5px;
+
+  .card {
+    overflow: hidden;
+  }
+
+  .card-title {
+    font-size: 1.25rem;
+  }
+
+  .card-text {
+    font-size: 0.8rem;
+    color: #777;
+  }
+
+  .card-thumbnail-list {
+    display: flex;
+  }
+
+  .card-thumbnail {
+    display: flex;
+    height: 65px;
+
+    img {
+      width: 100%;
+      object-fit: cover;
+    }
+  }
+}
