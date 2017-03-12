@@ -7,6 +7,7 @@ const LISTINGS_QUERY = gql`
     posts(urlPath: $urlPath, after: $after) {
       name
       title
+      url
     }
   }
 `;

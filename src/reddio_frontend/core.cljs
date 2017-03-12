@@ -5,7 +5,9 @@
             [reddio-frontend.screens.routes :refer [hook-history!]]
             [reddio-frontend.screens.app :refer [app]]))
 
-(def initial-state {:route "/"})
+(def initial-state {:route "/"
+                    :post nil
+                    :all-posts []})
 
 (rf/reg-event-db :initialize
                  (fn [_ _]
@@ -15,9 +17,17 @@
                  (fn [db [_ new-path]]
                    (assoc db :route new-path)))
 
+(rf/reg-event-db :play-post
+                 (fn [db [_ post all-posts]]
+                   (assoc db :post post :all-posts all-posts)))
+
 (rf/reg-sub :route
             (fn [db _]
               (:route db)))
+
+(rf/reg-sub :post
+            (fn [db _]
+              (:post db)))
 
 (defn render []
   (r/render-component [app]

@@ -1,12 +1,16 @@
 (ns reddio-frontend.screens.listings.listings
   (:require [reagent.core :as r]
+            [re-frame.core :as rf]
             [reddio-frontend.utilities.core :as u]
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.components.loading-indicator :as loading-indicator]))
 
 (defn listing-post [data post]
-  [:div.listing-post
-   [:p (:title post)]])
+  (let [posts (:post data)]
+    [:div.listing-post
+     [:p
+      {:on-click #(rf/dispatch [:play-post post posts])}
+      (:title post)]]))
 
 (defn listings-posts [data]
   (let [posts (:posts data)
