@@ -9,7 +9,6 @@
   "scripts": {
     "frontend:build": "NODE_ENV=production webpack -p --progress",
     "frontend:watch": "webpack --watch",
-    "frontend:test": "true",
     "server:watch": "nodemon src/reddio_server/index.js"
   },
   "author": "Yanglin Zhao",
@@ -37,6 +36,7 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
+    "concurrently": "^3.4.0",
     "css-loader": "^0.26.1",
     "file-loader": "^0.10.0",
     "nodemon": "^1.11.0",
