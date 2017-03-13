@@ -5,15 +5,9 @@
   [:div.header.container-fluid
    [:div.row
     [:div.col-sm-3
-     [:div.header-brand
-      [:h1 "Reddio"]]]
-    [:div.col-sm-6
-     [:div.header-search
-      [:h1 "Search"]]]
-    [:div.col-sm-3
-     [:div.header-nav
-      [:h1 "Navigation"]]]]
-   [:div.row
-    [:ul
-     [:li [:a {:href "/"} "home"]]
-     [:li [:a {:href "/about"} "about"]]]]])
+     [:div.brand
+      [:a {:href "/"}
+       [:h1
+        [:span "Reddio"]
+        [:span " "]
+        [:span.accent "Player"]]]]]]])
