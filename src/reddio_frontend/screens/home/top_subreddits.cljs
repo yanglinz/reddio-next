@@ -12,7 +12,7 @@
        [:div.card-thumbnail
         [:img {:src (:thumbnail post)}]])]
     [:div.card-block
-     [:h3.card-title
+     [:h5.card-title
       [:a {:href (:url-path subreddit)}
        (:url-path subreddit)]]
      [:p.card-text (:custom-description subreddit)]]]])
@@ -22,6 +22,11 @@
     [:div.home-section.top-subreddits.container
      [:div.row.no-gutters
       [:div.col-sm-10.offset-sm-1
+       [:div.row.no-gutters
+        [:div.col-sm-12
+         [:h2 "Featured Communities"]
+         [:div.divider]
+         [:p "Top subreddits"]]]
        [:div.row.no-gutters
         (for [subreddit top-subreddits]
           ^{:key (:id subreddit)}
