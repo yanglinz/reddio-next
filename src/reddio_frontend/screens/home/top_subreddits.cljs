@@ -19,7 +19,7 @@
 
 (defn top-subreddits [data]
   (let [top-subreddits (:top-subreddits data)]
-    [:div.top-subreddits.container
+    [:div.home-section.top-subreddits.container
      [:div.row.no-gutters
       [:div.col-sm-10.offset-sm-1
        [:div.row.no-gutters
