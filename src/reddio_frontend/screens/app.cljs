@@ -7,11 +7,15 @@
             [reddio-frontend.screens.player.player :as player]))
 
 (defn app []
-  (let [route @(rf/subscribe [:route])]
+  (let [route @(rf/subscribe [:route])
+        sort-type @(rf/subscribe [:sort-type])
+        sort-range @(rf/subscribe [:sort-range])]
     [:> bridge/root-provider
      [:div.app
       [header/main]
       (if (= route "/")
         [top-subreddits/main]
-        [listings/main {:url-path route}])
+        [listings/main {:url-path route
+                        :sort-type sort-type
+                        :sort-range sort-range}])
       [player/main]]]))

@@ -3,8 +3,8 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const LISTINGS_QUERY = gql`
-  query ($urlPath: String, $after: String) {
-    posts(urlPath: $urlPath, after: $after) {
+  query ($urlPath: String, $sortType: String, $sortRange: String, $after: String) {
+    posts(urlPath: $urlPath, sortType: $sortType: sortRange: $sortRange, after: $after) {
       name
       title
       url
@@ -13,8 +13,8 @@ const LISTINGS_QUERY = gql`
 `;
 
 function mapPropsToOptions(props) {
-  const { urlPath } = props;
-  const variables = { urlPath };
+  const { urlPath, sortType, sortRange } = props;
+  const variables = { urlPath, sortType, sortRange };
   const newProps = { variables };
   return newProps;
 }
