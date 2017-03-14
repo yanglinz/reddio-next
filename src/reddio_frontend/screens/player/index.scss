@@ -1,0 +1,23 @@
+.player {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+  border-top: 1px solid #e0e0e0;
+  background: #ffffff;
+
+  .controls {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.iframe {
+  position: fixed;
+  bottom: 110px;
+  right: 10px;
+}

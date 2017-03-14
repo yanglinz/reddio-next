@@ -10,6 +10,11 @@
         data {:url (:url current-post)
               :playing false}]
     (when current-post
-      [:div.player
-       [:h1 "Player"]
-       [react-player-adapter data]])))
+      [:div
+       [:div.player
+        [:div.controls
+         [:button "Previous"]
+         [:button "Play"]
+         [:button "Next"]]]
+       [:div.iframe
+        [react-player-adapter data]]])))
