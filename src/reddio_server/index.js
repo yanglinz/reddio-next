@@ -5,40 +5,53 @@ const rootSchema = require('./graphql/schema');
 const dataLoaders = require('./graphql/data');
 const config = require('../../config');
 
-const server = new hapi.Server();
+function configureConnection(server) {
+  server.connection({
+    host: config.HOST,
+    port: config.PORT
+  });
+}
 
-server.connection({
-  host: config.HOST,
-  port: config.PORT
-});
-
-server.register({
-  register: graphqlHapi,
-  options: {
-    path: '/graphql/',
-    graphqlOptions: {
-      schema: rootSchema,
-      context: { dataLoaders }
-    },
-    route: {
-      cors: true
+function registerGraphql(server) {
+  server.register({
+    register: graphqlHapi,
+    options: {
+      path: '/graphql/',
+      graphqlOptions: {
+        schema: rootSchema,
+        context: { dataLoaders }
+      },
+      route: {
+        cors: true
+      }
     }
-  }
-});
+  });
+}
 
-server.register({
-  register: graphiqlHapi,
-  options: {
-    path: '/graphiql/',
-    graphiqlOptions: {
-      endpointURL: '/graphql/'
+function registerGraphiql(server) {
+  server.register({
+    register: graphiqlHapi,
+    options: {
+      path: '/graphiql/',
+      graphiqlOptions: {
+        endpointURL: '/graphql/'
+      }
     }
-  }
-});
+  });
+}
 
-server.start(err => {
-  if (err) {
-    throw err;
-  }
-  console.log(`Server running at: ${server.info.uri}`);
-});
+function start() {
+  const server = new hapi.Server();
+  configureConnection(server);
+  registerGraphql(server);
+  registerGraphiql(server);
+
+  server.start(err => {
+    if (err) {
+      throw err;
+    }
+    console.log(`Server running at: ${server.info.uri}`);
+  });
+}
+
+module.exports = { start };

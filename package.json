@@ -2,7 +2,7 @@
   "name": "reddio-next",
   "version": "0.1.0",
   "description": "Reddit powered radio",
-  "main": "index.js",
+  "main": "server.js",
   "engines": {
     "node": ">=6.9.0"
   },
@@ -10,7 +10,7 @@
     "frontend:build": "NODE_ENV=production webpack -p --progress",
     "frontend:watch": "webpack --watch",
     "server:watch": "nodemon src/reddio_server/index.js",
-    "start": "node src/reddio_server/index.js"
+    "start": "node server.js"
   },
   "author": "Yanglin Zhao",
   "license": "MIT",
