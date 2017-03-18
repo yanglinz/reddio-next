@@ -6,12 +6,10 @@ const dataLoaders = require('./graphql/data');
 const config = require('../../config');
 
 function configureConnection(server) {
-  if (config.IS_DEV) {
-    server.connection({
-      host: config.HOST,
-      port: config.PORT
-    });
-  }
+  server.connection({
+    host: config.HOST,
+    port: config.PORT
+  });
 }
 
 function registerGraphql(server) {
