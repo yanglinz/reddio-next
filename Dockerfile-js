@@ -2,3 +2,13 @@ FROM node:6.10.0
 
 RUN mkdir -p /home/app
 WORKDIR /home/app
+
+COPY scripts/docker/install-yarn.sh /home/app
+RUN /home/app/install-yarn.sh
+
+ADD package.json /home/app
+ADD yarn.lock /home/app
+ADD .yarnclean /home/app
+
+RUN yarn install
+RUN cp yarn.lock foo.lock
