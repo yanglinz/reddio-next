@@ -1,0 +1,4 @@
+FROM clojure:lein-2.7.1
+
+RUN mkdir -p /home/app
+WORKDIR /home/app
