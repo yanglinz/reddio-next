@@ -1,0 +1,70 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  GITLAB_REPO: yanglinz/reddio-next
+  IMAGE_TAG_CLJS: registry.gitlab.com/$GITLAB_REPO:cljs-$CI_BUILD_REF
+  IMAGE_TAG_JS: registry.gitlab.com/$GITLAB_REPO:js-$CI_BUILD_REF
+  HEROKU_APP_NAME: reddio-next
+
+stages:
+  - setup
+  - build
+  - test
+
+job_setup_cljs:
+  stage: setup
+  except:
+    - master
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $IMAGE_TAG_CLJS -f Dockerfile-cljs .
+    - docker push $IMAGE_TAG_CLJS
+
+job_setup_js:
+  stage: setup
+  except:
+    - master
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker build --pull -t $IMAGE_TAG_JS -f Dockerfile-js .
+    - docker push $IMAGE_TAG_JS
+
+job_build_cljs:
+  stage: build
+  except:
+    - master
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker pull $IMAGE_TAG_CLJS
+    - docker run -v $(pwd):/home/app $IMAGE_TAG_CLJS scripts/noop.sh
+
+job_build_js:
+  stage: build
+  except:
+    - master
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker pull $IMAGE_TAG_JS
+    - docker run -v $(pwd):/home/app $IMAGE_TAG_JS scripts/noop.sh
+
+job_test_cljs:
+  stage: test
+  except:
+    - master
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker pull $IMAGE_TAG_CLJS
+    - docker run -v $(pwd):/home/app $IMAGE_TAG_CLJS scripts/noop.sh
+
+job_test_js:
+  stage: test
+  except:
+    - master
+  script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker pull $IMAGE_TAG_JS
+    - docker run -v $(pwd):/home/app $IMAGE_TAG_JS scripts/noop.sh
