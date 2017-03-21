@@ -10,8 +10,8 @@ function loadSubredditInfo(urlPaths) {
 
 function loadSubredditPosts(keys) {
   const reqs = _.map(keys, key => {
-    const { urlPath, after } = key;
-    return getSubredditPosts(urlPath, { after });
+    const { urlPath, sortType, sortRange, after } = key;
+    return getSubredditPosts(urlPath, sortType, { after, t: sortRange });
   });
   return Promise.all(reqs);
 }

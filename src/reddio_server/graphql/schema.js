@@ -64,16 +64,20 @@ const Post = new GraphQLObjectType({
 });
 
 function resolvePosts(source, args, context, info) {
-  const { urlPath, sortType, sortRange, after, limit, includeStickied } = _.defaults(args, {
+  const {
+    urlPath,
+    sortType,
+    sortRange,
+    after,
+    limit,
+    includeStickied
+  } = _.defaults(args, {
     limit: 25,
     includeStickied: false
   });
 
-  console.log('sortType', sortType);
-  console.log('sortRange', sortRange);
-
   return context.dataLoaders.subredditPosts
-    .load({ urlPath, after })
+    .load({ urlPath, sortType, sortRange, after })
     .then(resp => resp.data.children)
     .then(posts =>
       _.filter(posts, post => includeStickied || !post.data.stickied))

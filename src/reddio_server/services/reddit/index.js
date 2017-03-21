@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const Path = require('path');
 const Url = require('url');
 const Querystring = require('querystring');
@@ -18,10 +19,10 @@ function getSubredditInfo(urlPath, params = {}) {
   return fetch(url).then(resp => resp.json());
 }
 
-function getSubredditPosts(urlPath, params = {}) {
+function getSubredditPosts(urlPath, sortType = 'hot', params = {}) {
   const url = Url.resolve(
     'https://www.reddit.com',
-    Path.join(urlPath, `.json?${Querystring.stringify(params)}`)
+    Path.join(urlPath, sortType, `.json?${Querystring.stringify(params)}`)
   );
   return fetch(url).then(resp => resp.json());
 }
