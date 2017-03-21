@@ -9,7 +9,7 @@
   "scripts": {
     "frontend:build": "NODE_ENV=production webpack -p --progress",
     "frontend:watch": "webpack --watch",
-    "server:watch": "nodemon src/reddio_server/index.js",
+    "server:watch": "nodemon server.js",
     "start": "node server.js"
   },
   "author": "Yanglin Zhao",

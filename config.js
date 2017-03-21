@@ -10,8 +10,8 @@ const {
   PORT
 } = _.defaults(process.env, {
   PROTOCOL: 'http',
-  HOST: process.env.OPENSHIFT_NODEJS_IP || 'localhost',
-  PORT: process.env.OPENSHIFT_NODEJS_PORT || '4000'
+  HOST: 'localhost',
+  PORT: '4000'
 });
 
 const IS_PROD = NODE_ENV === 'production';
