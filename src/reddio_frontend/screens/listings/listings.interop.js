@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 
 const LISTINGS_QUERY = gql`
   query ($urlPath: String, $sortType: String, $sortRange: String, $after: String) {
-    posts(urlPath: $urlPath, sortType: $sortType: sortRange: $sortRange, after: $after) {
+    posts(urlPath: $urlPath, sortType: $sortType, sortRange: $sortRange, after: $after) {
       name
       title
       url
