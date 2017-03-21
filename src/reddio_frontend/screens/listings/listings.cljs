@@ -5,6 +5,15 @@
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.components.loading-indicator :as loading-indicator]))
 
+(defn listings-sort [sort-type sort-range]
+  [:div.listing-sort
+   [:h2 "sort type: " sort-type]
+   [:h2 "sort range: " sort-range]
+   [:ul
+    [:li {:on-click #(rf/dispatch [:set-sort-type :hot])} "hot"]
+    [:li {:on-click #(rf/dispatch [:set-sort-type :new])} "new"]
+    [:li {:on-click #(rf/dispatch [:set-sort-type :random])} "random"]]])
+
 (defn listing-post [data post]
   (let [posts (:post data)]
     [:div.listing-post
@@ -23,17 +32,19 @@
      [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))
 
-(defn listings [data]
+(defn listings [data sort-type sort-range]
   [:div.listings
-   [:h1 "Listings"]
+   [listings-sort sort-type sort-range]
    (if (:loading data)
      [loading-indicator/loading-indicator]
      [listings-posts data])])
 
 (defn listings-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))
-        data (:data props)]
-    [listings data]))
+        data (:data props)
+        sort-type (:sortType props)
+        sort-range (:sortRage props)]
+    [listings data sort-type sort-range]))
 
 (def main (-> (r/reactify-component listings-container)
               (bridge/enhance-listings-query)

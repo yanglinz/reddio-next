@@ -9,7 +9,7 @@
                     :post nil
                     :all-posts []
                     :sort-type :hot
-                    :sort-range nil })
+                    :sort-range nil})
 
 (rf/reg-event-db :initialize
                  (fn [_ _]
@@ -22,6 +22,10 @@
 (rf/reg-event-db :play-post
                  (fn [db [_ post all-posts]]
                    (assoc db :post post :all-posts all-posts)))
+
+(rf/reg-event-db :set-sort-type
+                 (fn [db [_ sort-type]]
+                   (assoc db :sort-type sort-type)))
 
 (rf/reg-sub :route
             (fn [db _]
