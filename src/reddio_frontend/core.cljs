@@ -7,7 +7,9 @@
 
 (def initial-state {:route "/"
                     :post nil
-                    :all-posts []})
+                    :all-posts []
+                    :sort-type :hot
+                    :sort-range nil})
 
 (rf/reg-event-db :initialize
                  (fn [_ _]
@@ -21,6 +23,14 @@
                  (fn [db [_ post all-posts]]
                    (assoc db :post post :all-posts all-posts)))
 
+(rf/reg-event-db :set-sort-type
+                 (fn [db [_ sort-type]]
+                   (assoc db :sort-type sort-type)))
+
+(rf/reg-event-db :set-sort-range
+                 (fn [db [_ sort-range]]
+                   (assoc db :sort-range sort-range)))
+
 (rf/reg-sub :route
             (fn [db _]
               (:route db)))
@@ -28,6 +38,14 @@
 (rf/reg-sub :post
             (fn [db _]
               (:post db)))
+
+(rf/reg-sub :sort-type
+            (fn [db _]
+              (:sort-type db)))
+
+(rf/reg-sub :sort-range
+            (fn [db _]
+              (:sort-range db)))
 
 (defn render []
   (r/render-component [app]

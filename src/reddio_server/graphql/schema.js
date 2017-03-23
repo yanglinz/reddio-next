@@ -64,13 +64,20 @@ const Post = new GraphQLObjectType({
 });
 
 function resolvePosts(source, args, context, info) {
-  const { urlPath, after, limit, includeStickied } = _.defaults(args, {
+  const {
+    urlPath,
+    sortType,
+    sortRange,
+    after,
+    limit,
+    includeStickied
+  } = _.defaults(args, {
     limit: 25,
     includeStickied: false
   });
 
   return context.dataLoaders.subredditPosts
-    .load({ urlPath, after })
+    .load({ urlPath, sortType, sortRange, after })
     .then(resp => resp.data.children)
     .then(posts =>
       _.filter(posts, post => includeStickied || !post.data.stickied))
@@ -175,6 +182,12 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLList(Post),
       args: {
         urlPath: {
+          type: GraphQLString
+        },
+        sortType: {
+          type: GraphQLString
+        },
+        sortRange: {
           type: GraphQLString
         },
         after: {

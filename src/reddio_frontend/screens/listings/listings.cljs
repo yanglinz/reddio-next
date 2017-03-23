@@ -5,6 +5,33 @@
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.components.loading-indicator :as loading-indicator]))
 
+(defn listings-sort []
+  (let [current-sort-type @(rf/subscribe [:sort-type])
+        current-sort-range @(rf/subscribe [:sort-range])
+        sort-types [:new
+                    :rising
+                    :hot
+                    :top]
+        sort-ranges [:hour
+                     :day
+                     :month]]
+    [:div.listing-sort
+     [:ul
+      (for [sort-type sort-types]
+        ^{:key sort-type}
+        [:li {:on-click #(rf/dispatch [:set-sort-type sort-type])}
+         (if (= sort-type current-sort-type)
+           [:b sort-type]
+           [:span sort-type])])]
+     (if (= current-sort-type :top)
+       [:ul
+        (for [sort-range sort-ranges]
+          ^{:key sort-range}
+          [:li {:on-click #(rf/dispatch [:set-sort-range sort-range])}
+           (if (= sort-range current-sort-range)
+             [:b sort-range]
+             [:span sort-range])])])]))
+
 (defn listing-post [data post]
   (let [posts (:post data)]
     [:div.listing-post
@@ -25,7 +52,7 @@
 
 (defn listings [data]
   [:div.listings
-   [:h1 "Listings"]
+   [listings-sort]
    (if (:loading data)
      [loading-indicator/loading-indicator]
      [listings-posts data])])
