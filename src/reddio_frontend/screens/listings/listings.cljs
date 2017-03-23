@@ -6,21 +6,31 @@
             [reddio-frontend.components.loading-indicator :as loading-indicator]))
 
 (defn listings-sort []
-  (let [sort-type @(rf/subscribe [:sort-type])
-        sort-range @(rf/subscribe [:sort-range])]
+  (let [current-sort-type @(rf/subscribe [:sort-type])
+        current-sort-range @(rf/subscribe [:sort-range])
+        sort-types [:new
+                    :rising
+                    :hot
+                    :top]
+        sort-ranges [:hour
+                     :day
+                     :month]]
     [:div.listing-sort
-     [:h2 "sort type: " sort-type]
-     [:h2 "sort range: " sort-range]
      [:ul
-      [:li {:on-click #(rf/dispatch [:set-sort-type :new])} "new"]
-      [:li {:on-click #(rf/dispatch [:set-sort-type :rising])} "rising"]
-      [:li {:on-click #(rf/dispatch [:set-sort-type :hot])} "hot"]
-      [:li {:on-click #(rf/dispatch [:set-sort-type :top])} "top"]]
-     (if (= sort-type :top)
+      (for [sort-type sort-types]
+        ^{:key sort-type}
+        [:li {:on-click #(rf/dispatch [:set-sort-type sort-type])}
+         (if (= sort-type current-sort-type)
+           [:b sort-type]
+           [:span sort-type])])]
+     (if (= current-sort-type :top)
        [:ul
-        [:li {:on-click #(rf/dispatch [:set-sort-range :hour])} "hour"]
-        [:li {:on-click #(rf/dispatch [:set-sort-range :day])} "day"]
-        [:li {:on-click #(rf/dispatch [:set-sort-range :month])} "month"]])]))
+        (for [sort-range sort-ranges]
+          ^{:key sort-range}
+          [:li {:on-click #(rf/dispatch [:set-sort-range sort-range])}
+           (if (= sort-range current-sort-range)
+             [:b sort-range]
+             [:span sort-range])])])]))
 
 (defn listing-post [data post]
   (let [posts (:post data)]
