@@ -27,6 +27,10 @@
                  (fn [db [_ sort-type]]
                    (assoc db :sort-type sort-type)))
 
+(rf/reg-event-db :set-sort-range
+                 (fn [db [_ sort-range]]
+                   (assoc db :sort-range sort-range)))
+
 (rf/reg-sub :route
             (fn [db _]
               (:route db)))

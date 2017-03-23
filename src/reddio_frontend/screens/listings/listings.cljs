@@ -5,14 +5,22 @@
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.components.loading-indicator :as loading-indicator]))
 
-(defn listings-sort [sort-type sort-range]
-  [:div.listing-sort
-   [:h2 "sort type: " sort-type]
-   [:h2 "sort range: " sort-range]
-   [:ul
-    [:li {:on-click #(rf/dispatch [:set-sort-type :hot])} "hot"]
-    [:li {:on-click #(rf/dispatch [:set-sort-type :new])} "new"]
-    [:li {:on-click #(rf/dispatch [:set-sort-type :random])} "random"]]])
+(defn listings-sort []
+  (let [sort-type @(rf/subscribe [:sort-type])
+        sort-range @(rf/subscribe [:sort-range])]
+    [:div.listing-sort
+     [:h2 "sort type: " sort-type]
+     [:h2 "sort range: " sort-range]
+     [:ul
+      [:li {:on-click #(rf/dispatch [:set-sort-type :new])} "new"]
+      [:li {:on-click #(rf/dispatch [:set-sort-type :rising])} "rising"]
+      [:li {:on-click #(rf/dispatch [:set-sort-type :hot])} "hot"]
+      [:li {:on-click #(rf/dispatch [:set-sort-type :top])} "top"]]
+     (if (= sort-type :top)
+       [:ul
+        [:li {:on-click #(rf/dispatch [:set-sort-range :hour])} "hour"]
+        [:li {:on-click #(rf/dispatch [:set-sort-range :day])} "day"]
+        [:li {:on-click #(rf/dispatch [:set-sort-range :month])} "month"]])]))
 
 (defn listing-post [data post]
   (let [posts (:post data)]
@@ -32,19 +40,17 @@
      [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))
 
-(defn listings [data sort-type sort-range]
+(defn listings [data]
   [:div.listings
-   [listings-sort sort-type sort-range]
+   [listings-sort]
    (if (:loading data)
      [loading-indicator/loading-indicator]
      [listings-posts data])])
 
 (defn listings-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))
-        data (:data props)
-        sort-type (:sortType props)
-        sort-range (:sortRage props)]
-    [listings data sort-type sort-range]))
+        data (:data props)]
+    [listings data]))
 
 (def main (-> (r/reactify-component listings-container)
               (bridge/enhance-listings-query)
