@@ -45,6 +45,8 @@ job_deploy_frontend:
   only:
     - master
   script:
+    - ./scripts/install-yarn.sh
+    - yarn install -g firebase-tools
     - firebase deploy --token $FIREBASE_TOKEN
 
 job_deploy_server:
