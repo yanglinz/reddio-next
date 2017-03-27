@@ -11,8 +11,6 @@ stages:
 job_build_cljs:
   image: clojure:lein-2.7.1
   stage: build
-  except:
-    - master
   script:
     - lein cljsbuild once min
   artifacts:
@@ -22,8 +20,6 @@ job_build_cljs:
 job_build_js:
   image: node:6.10.0
   stage: build
-  except:
-    - master
   script:
     - ./scripts/install-yarn.sh
     - yarn install
@@ -35,15 +31,24 @@ job_build_js:
 
 job_e2e:
   stage: e2e
-  except:
-    - master
   script:
     - cd resources/public/js && ls -la
   artifacts:
     paths:
       - resources/public
 
-job_deploy:
+job_deploy_frontend:
+  image: node:6.10.0
+  stage: deploy
+  environment:
+    name: production
+  only:
+    - master
+  script:
+    - cd resources/public/js/compiled && ls -la
+    - cd resources/public/css/compiled && ls -la
+
+job_deploy_server:
   image: ruby:2.1
   stage: deploy
   environment:
