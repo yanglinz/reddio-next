@@ -45,8 +45,7 @@ job_deploy_frontend:
   only:
     - master
   script:
-    - cd resources/public/js/compiled && ls -la
-    - cd resources/public/css/compiled && ls -la
+    - firebase deploy --token $FIREBASE_TOKEN
 
 job_deploy_server:
   image: ruby:2.1
