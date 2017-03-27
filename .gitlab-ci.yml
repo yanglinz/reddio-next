@@ -6,6 +6,7 @@ variables:
 stages:
   - build
   - e2e
+  - deploy
 
 job_build_cljs:
   image: clojure:lein-2.7.1
@@ -41,3 +42,17 @@ job_e2e:
   artifacts:
     paths:
       - resources/public
+
+job_deploy:
+  image: ruby:2.1
+  stage: deploy
+  environment:
+    name: production
+  only:
+    - master
+  script:
+    - gem install dpl && dpl
+        --strategy=git
+        --app=$HEROKU_APP_NAME
+        --provider=heroku
+        --api-key=$HEROKU_AUTH_TOKEN
