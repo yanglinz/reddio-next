@@ -7,8 +7,4 @@ try {
   config = {};
 }
 
-const { PROTOCOL, HOST, PORT } = config;
-
-const settings = { PROTOCOL, HOST, PORT };
-
-export default settings;
+export default config;

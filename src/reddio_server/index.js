@@ -3,12 +3,12 @@ const { graphqlHapi, graphiqlHapi } = require('graphql-server-hapi');
 
 const rootSchema = require('./graphql/schema');
 const dataLoaders = require('./graphql/data');
-const config = require('../../config');
+const settings = require('./settings');
 
 function configureConnection(server) {
   server.connection({
-    host: config.HOST,
-    port: config.PORT
+    host: settings.SERVER_HOST,
+    port: settings.SERVER_PORT
   });
 }
 
