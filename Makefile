@@ -14,7 +14,7 @@ build:
 
 .PHONY: format
 format:
-	$(PRETTIER) --single-quote --write 'webpack.config.js' 'src/**/*.js'
+	$(PRETTIER) --single-quote --write 'webpack.config.js' 'config.js' 'src/**/*.js'
 	lein cljfmt fix
 
 .PHONY: run

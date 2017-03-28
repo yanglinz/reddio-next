@@ -1,8 +1,5 @@
 image: alpine:latest
 
-variables:
-  HEROKU_APP_NAME: reddio-next
-
 stages:
   - build
   - e2e
@@ -20,10 +17,12 @@ job_build_cljs:
 job_build_js:
   image: node:6.10.0
   stage: build
+  variables:
+    FRONTEND_GRAPHQL_URI: https://reddio-next.herokuapp.com/graphql/
   script:
     - ./scripts/install-yarn.sh
     - yarn install
-    - npm run frontend:build
+    - NODE_ENV=production npm run frontend:build
   artifacts:
     paths:
       - resources/public/js/compiled
@@ -59,6 +58,6 @@ job_deploy_server:
   script:
     - gem install dpl && dpl
         --strategy=git
-        --app=$HEROKU_APP_NAME
+        --app=reddio-next
         --provider=heroku
         --api-key=$HEROKU_AUTH_TOKEN
