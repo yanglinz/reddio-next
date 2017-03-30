@@ -9,7 +9,11 @@
                     :post nil
                     :all-posts []
                     :sort-type :hot
-                    :sort-range nil})
+                    :sort-range nil
+                    :player-state :uninitialized
+                    :duration nil
+                    :progress 0
+                    :loaded 0})
 
 (rf/reg-event-db :initialize
                  (fn [_ _]
@@ -31,6 +35,55 @@
                  (fn [db [_ sort-range]]
                    (assoc db :sort-range sort-range)))
 
+(rf/reg-event-db :player-ready
+                 (fn [db [_ _]]
+                   (assoc db :player-state :ready)))
+
+(rf/reg-event-db :player-start
+                 (fn [db [_ _]]
+                   (assoc db :player-state :started)))
+
+(rf/reg-event-db :player-play
+                 (fn [db [_ _]]
+                   (assoc db :player-state :playing)))
+
+(rf/reg-event-db :player-progress
+                 (fn [db [_ progress]]
+                   (js/console.log :player-progress progress)
+                   db))
+
+(rf/reg-event-db :player-duration
+                 (fn [db [_ duration]]
+                   (js/console.log :player-duration duration)
+                   db))
+
+(rf/reg-event-db :player-pause
+                 (fn [db [_ _]]
+                   (assoc db :player-state :paused)))
+
+(rf/reg-event-db :player-buffer
+                 (fn [db [_ _]]
+                   (js/console.log :player-buffer)
+                   db))
+
+(rf/reg-event-db :player-ended
+                 (fn [db [_ _]]
+                   (js/console.log :player-ended)
+                   db))
+
+(rf/reg-event-db :player-error
+                 (fn [db [_ _]]
+                   (js/console.log :player-error)
+                   db))
+
+(rf/reg-event-db :player-command-play
+                 (fn [db [_ _]]
+                   (assoc db :player-state :playing)))
+
+(rf/reg-event-db :player-command-pause
+                 (fn [db [_ _]]
+                   (assoc db :player-state :paused)))
+
 (rf/reg-sub :route
             (fn [db _]
               (:route db)))
@@ -46,6 +99,10 @@
 (rf/reg-sub :sort-range
             (fn [db _]
               (:sort-range db)))
+
+(rf/reg-sub :player-state
+            (fn [db _]
+              (:player-state db)))
 
 (defn render []
   (r/render-component [app]
