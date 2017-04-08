@@ -14,7 +14,9 @@
                     :top]
         sort-ranges [:hour
                      :day
-                     :month]]
+                     :month
+                     :year
+                     :all]]
     [:div.listing-sort
      [:ul
       (for [sort-type sort-types]
@@ -33,7 +35,7 @@
              [:span sort-range])])])]))
 
 (defn listing-post [data post]
-  (let [posts (:post data)]
+  (let [posts (:posts data)]
     [:div.listing-post
      [:p
       {:on-click #(rf/dispatch [:play-post post posts])}

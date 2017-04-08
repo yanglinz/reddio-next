@@ -25,11 +25,11 @@
       [:div
        [:div.player
         [:div.controls
-         [:button "Previous"]
+         [:button {:on-click #(rf/dispatch [:player-command-prev])} "Previous"]
          (when (= player-state :playing)
            [:button {:on-click #(rf/dispatch [:player-command-pause])} "Pause"])
          (when (= player-state :paused)
            [:button {:on-click #(rf/dispatch [:player-command-play])} "Play"])
-         [:button "Next"]]]
+         [:button {:on-click #(rf/dispatch [:player-command-next])} "Next"]]]
        [:div.iframe
         [react-player-adapter data]]])))
