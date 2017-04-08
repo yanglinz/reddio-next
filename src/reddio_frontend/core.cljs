@@ -84,6 +84,22 @@
                  (fn [db [_ _]]
                    (assoc db :player-state :paused)))
 
+(defn next-post [coll el]
+  "Get the next post"
+  (get (zipmap coll (rest coll)) el))
+
+(defn prev-post [coll el]
+  "Get the previous post"
+  (get (zipmap (rest coll) coll) el nil))
+
+(rf/reg-event-db :player-command-next
+                 (fn [db [_ _]]
+                   (assoc db :post (next-post (:all-posts db) (:post db)))))
+
+(rf/reg-event-db :player-command-prev
+                 (fn [db [_ _]]
+                   (assoc db :post (prev-post (:all-posts db) (:post db)))))
+
 (rf/reg-sub :route
             (fn [db _]
               (:route db)))
