@@ -15,6 +15,14 @@
                     :progress 0
                     :loaded 0})
 
+(defn next-post [coll el]
+  "Get the next post"
+  (get (zipmap coll (rest coll)) el))
+
+(defn prev-post [coll el]
+  "Get the previous post"
+  (get (zipmap (rest coll) coll) el nil))
+
 (rf/reg-event-db :initialize
                  (fn [_ _]
                    initial-state))
@@ -68,13 +76,11 @@
 
 (rf/reg-event-db :player-ended
                  (fn [db [_ _]]
-                   (js/console.log :player-ended)
-                   db))
+                   (assoc db :post (next-post (:all-posts db) (:post db)))))
 
 (rf/reg-event-db :player-error
                  (fn [db [_ _]]
-                   (js/console.log :player-error)
-                   db))
+                   (assoc db :post (next-post (:all-posts db) (:post db)))))
 
 (rf/reg-event-db :player-command-play
                  (fn [db [_ _]]
@@ -83,14 +89,6 @@
 (rf/reg-event-db :player-command-pause
                  (fn [db [_ _]]
                    (assoc db :player-state :paused)))
-
-(defn next-post [coll el]
-  "Get the next post"
-  (get (zipmap coll (rest coll)) el))
-
-(defn prev-post [coll el]
-  "Get the previous post"
-  (get (zipmap (rest coll) coll) el nil))
 
 (rf/reg-event-db :player-command-next
                  (fn [db [_ _]]
