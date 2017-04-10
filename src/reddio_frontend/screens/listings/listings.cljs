@@ -38,7 +38,10 @@
   (let [posts (:posts data)]
     [:div.listing-post
      [:p
-      {:on-click #(rf/dispatch [:play-post post posts])}
+      {:on-click
+       #(when (u/playable? post) (rf/dispatch [:play-post post posts]))}
+      (when (not (u/playable? post))
+        "Not playable: ")
       (:title post)]]))
 
 (defn listings-posts [data]
