@@ -15,12 +15,12 @@
                     :progress 0
                     :loaded 0})
 
-(defn next-post [coll el]
-  "Get the next post"
+(defn next-el [coll el]
+  "Get the next element in a collection"
   (get (zipmap coll (rest coll)) el))
 
-(defn prev-post [coll el]
-  "Get the previous post"
+(defn prev-el [coll el]
+  "Get the previous element in a collection"
   (get (zipmap (rest coll) coll) el nil))
 
 (rf/reg-event-db :initialize
@@ -76,11 +76,11 @@
 
 (rf/reg-event-db :player-ended
                  (fn [db [_ _]]
-                   (assoc db :post (next-post (:all-posts db) (:post db)))))
+                   (assoc db :post (next-el (:all-posts db) (:post db)))))
 
 (rf/reg-event-db :player-error
                  (fn [db [_ _]]
-                   (assoc db :post (next-post (:all-posts db) (:post db)))))
+                   (assoc db :post (next-el (:all-posts db) (:post db)))))
 
 (rf/reg-event-db :player-command-play
                  (fn [db [_ _]]
@@ -92,11 +92,11 @@
 
 (rf/reg-event-db :player-command-next
                  (fn [db [_ _]]
-                   (assoc db :post (next-post (:all-posts db) (:post db)))))
+                   (assoc db :post (next-el (:all-posts db) (:post db)))))
 
 (rf/reg-event-db :player-command-prev
                  (fn [db [_ _]]
-                   (assoc db :post (prev-post (:all-posts db) (:post db)))))
+                   (assoc db :post (prev-el (:all-posts db) (:post db)))))
 
 (rf/reg-sub :route
             (fn [db _]
