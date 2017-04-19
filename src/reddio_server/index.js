@@ -3,6 +3,7 @@ const { graphqlHapi, graphiqlHapi } = require('graphql-server-hapi');
 
 const rootSchema = require('./graphql/schema');
 const dataLoaders = require('./graphql/data');
+const views = require('./views');
 const settings = require('./settings');
 
 function configureConnection(server) {
@@ -40,11 +41,26 @@ function registerGraphiql(server) {
   });
 }
 
+function registerRoutes(server) {
+  server.route({
+    method: 'GET',
+    path: '/',
+    handler: views.healthCheckView
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/healthz',
+    handler: views.healthCheckView
+  });
+}
+
 function start() {
   const server = new hapi.Server();
   configureConnection(server);
   registerGraphql(server);
   registerGraphiql(server);
+  registerRoutes(server);
 
   server.start(err => {
     if (err) {
