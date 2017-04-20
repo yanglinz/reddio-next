@@ -1,21 +1,11 @@
 image: alpine:latest
 
-variables:
-  DOCKER_DRIVER: overlay
-  APP_NAME: reddio-next
-  GITLAB_REPO: yanglinz/reddio-next
-  IMAGE_TAG: registry.gitlab.com/$GITLAB_REPO:$CI_BUILD_REF
-  KUBE_NAMESPACE: reddio-next
-  GCLOUD_PROJECT: highpass-io
-  GCLOUD_CLUSTER: kube-cluster
-  GCLOUD_ZONE: us-central1-a
-
 stages:
   - build
-  - test
+  - e2e
   - deploy
 
-job_build_frontend_cljs:
+job_build_cljs:
   image: clojure:lein-2.7.1
   stage: build
   script:
@@ -24,7 +14,7 @@ job_build_frontend_cljs:
     paths:
       - resources/public/js/compiled
 
-job_build_frontend_js:
+job_build_js:
   image: node:6.10.0
   stage: build
   variables:
@@ -38,18 +28,8 @@ job_build_frontend_js:
       - resources/public/js/compiled
       - resources/public/css/compiled
 
-job_build_server_js:
-  image: docker:latest
-  stage: build
-  services:
-    - docker:dind
-  script:
-    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
-    - docker build --pull -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
-
-job_test_e2e:
-  stage: test
+job_e2e:
+  stage: e2e
   script:
     - cd resources/public/js && ls -la
   artifacts:
@@ -69,16 +49,15 @@ job_deploy_frontend:
     - firebase deploy --token $FIREBASE_TOKEN
 
 job_deploy_server:
-  image: ubuntu:latest
+  image: ruby:2.1
   stage: deploy
   environment:
     name: production
   only:
     - master
   script:
-    - ./scripts/install-gcloud.sh
-    - echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/service-key.json
-    - gcloud auth activate-service-account --key-file ${HOME}/service-key.json
-    - gcloud config set project $GCLOUD_PROJECT
-    - gcloud container clusters get-credentials $GCLOUD_CLUSTER --zone $GCLOUD_ZONE
-    - ./scripts/apply-deployment.sh
+    - gem install dpl && dpl
+        --strategy=git
+        --app=reddio-next
+        --provider=heroku
+        --api-key=$HEROKU_AUTH_TOKEN
