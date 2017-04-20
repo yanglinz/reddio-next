@@ -34,9 +34,9 @@
              [:b sort-range]
              [:span sort-range])])])]))
 
-(defn listing-post [data post]
+(defn listings-post [data post]
   (let [posts (:posts data)]
-    [:div.listing-post
+    [:div.listings-post
      [:p
       {:on-click
        #(when (u/playable? post) (rf/dispatch [:play-post post posts]))}
@@ -51,7 +51,7 @@
      [:h2 "Posts"]
      [:ul
       (for [post (:posts data)]
-        ^{:key (:name post)} [listing-post data post])]
+        ^{:key (:name post)} [listings-post data post])]
      [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))
 
