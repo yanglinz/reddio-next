@@ -4,18 +4,22 @@
             [reddio-frontend.bridge :as bridge]))
 
 (defn subreddit-card [subreddit]
-  [:div.subreddit-card
-   [:div.card
-    [:div.card-thumbnail-list
-     (for [post (:posts subreddit)]
-       ^{:key (:name post)}
-       [:div.card-thumbnail
-        [:img {:src (:thumbnail post)}]])]
-    [:div.card-block
-     [:h5.card-title
-      [:a {:href (:url-path subreddit)}
-       (:url-path subreddit)]]
-     [:p.card-text (:custom-description subreddit)]]]])
+  (let [posts (->> subreddit
+                   :posts
+                   (filter :thumbnail)
+                   (take 5))]
+    [:div.subreddit-card
+     [:div.card
+      [:div.card-thumbnail-list
+       (for [post posts]
+         ^{:key (:name post)}
+         [:div.card-thumbnail
+          [:img {:src (:thumbnail post)}]])]
+      [:div.card-block
+       [:h5.card-title
+        [:a {:href (:url-path subreddit)}
+         (:url-path subreddit)]]
+       [:p.card-text (:custom-description subreddit)]]]]))
 
 (defn top-subreddits [data]
   (let [top-subreddits (:top-subreddits data)]
