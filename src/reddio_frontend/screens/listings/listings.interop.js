@@ -21,7 +21,7 @@ function mapPropsToOptions(props) {
 
 function updateQuery(previousResult, { fetchMoreResult }) {
   const previousPosts = previousResult.posts;
-  const newPosts = fetchMoreResult.data.posts;
+  const newPosts = fetchMoreResult.posts;
   return {
     posts: [].concat(previousPosts).concat(newPosts)
   };
