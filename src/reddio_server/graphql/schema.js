@@ -12,6 +12,11 @@ const {
 
 const { getTopSubreddits } = require('../services/reddit');
 
+function parsePostThumbnail(resp) {
+  const { thumbnail } = resp.data;
+  return resp.data.thumbnail || _.get(resp.data, 'media.oembed.thumbnail_url');
+}
+
 const POST_TYPE = 'PostType';
 
 const POST_FIELDS = {
@@ -22,12 +27,15 @@ const POST_FIELDS = {
   score: 'score',
   ups: 'ups',
   numComments: 'num_comments',
-  thumbnail: 'thumbnail',
+  thumbnail: parsePostThumbnail,
   subreddit: 'subreddit'
 };
 
 function parsePostFields(resp) {
-  return _.mapValues(POST_FIELDS, value => resp.data[value]);
+  return _.mapValues(
+    POST_FIELDS,
+    value => _.isString(value) ? resp.data[value] : value(resp)
+  );
 }
 
 const Post = new GraphQLObjectType({

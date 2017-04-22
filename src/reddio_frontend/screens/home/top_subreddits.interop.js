@@ -11,7 +11,7 @@ const HOME_TOP_SUBREDDITS_QUERY = gql`
       customDescription
       urlPath
       subscribers
-      posts(limit: 5) {
+      posts(limit: 10) {
         name
         thumbnail
       }
