@@ -10,7 +10,7 @@
                     :post nil
                     :all-posts []
                     :sort-type :hot
-                    :sort-range nil
+                    :sort-range :day
                     :player-state :uninitialized
                     :duration nil
                     :progress 0

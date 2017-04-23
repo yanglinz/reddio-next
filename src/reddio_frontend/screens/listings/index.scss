@@ -1,4 +1,13 @@
 .listings {
+  .listings-sort {
+    display: flex;
+    padding: 20px 0;
+
+    .listings-sort-type {
+      margin-right: 7px;
+    }
+  }
+
   .listings-posts {
     padding-bottom: 200px;
   }

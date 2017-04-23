@@ -17,22 +17,22 @@
                      :month
                      :year
                      :all]]
-    [:div.listing-sort
-     [:ul
-      (for [sort-type sort-types]
-        ^{:key sort-type}
-        [:li {:on-click #(rf/dispatch [:set-sort-type sort-type])}
-         (if (= sort-type current-sort-type)
-           [:b sort-type]
-           [:span sort-type])])]
-     (if (= current-sort-type :top)
-       [:ul
-        (for [sort-range sort-ranges]
-          ^{:key sort-range}
-          [:li {:on-click #(rf/dispatch [:set-sort-range sort-range])}
-           (if (= sort-range current-sort-range)
-             [:b sort-range]
-             [:span sort-range])])])]))
+    [:div.listings-sort
+     [:div.listings-sort-type
+      [:select.custom-select
+       {:value current-sort-type
+        :on-change #(rf/dispatch [:set-sort-type (-> % .-target .-value keyword)])}
+       (for [sort-type sort-types]
+         ^{:key sort-type}
+         [:option {:value sort-type} sort-type])]]
+     (when (= current-sort-type :top)
+       [:div.listings-sort-range
+        [:select.custom-select
+         {:value current-sort-range
+          :on-change #(rf/dispatch [:set-sort-range (-> % .-target .-value keyword)])}
+         (for [sort-range sort-ranges]
+           ^{:key sort-range}
+           [:option {:value sort-range} sort-range])]])]))
 
 (defn listings-post [data post]
   (let [posts (:posts data)]
@@ -57,7 +57,8 @@
 
 (defn listings [data]
   [:div.listings
-   [listings-sort]
+   [:div.container-fluid
+    [listings-sort]]
    (if (:loading data)
      [loading-indicator/loading-indicator]
      [listings-posts data])])
