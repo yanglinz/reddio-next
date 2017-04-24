@@ -3,6 +3,7 @@
             [re-frame.core :as rf]
             [reddio-frontend.utilities.core :as u]
             [reddio-frontend.bridge :as bridge]
+            [reddio-frontend.components.thumbnail :as thumbnail]
             [reddio-frontend.components.loading-indicator :as loading-indicator]))
 
 (defn listings-sort []
@@ -35,33 +36,42 @@
            [:option {:value sort-range} sort-range])]])]))
 
 (defn listings-post [data post]
-  (let [posts (:posts data)]
+  (let [posts (:posts data)
+        playable (u/playable? post)]
     [:div.listings-post
-     [:p
-      {:on-click
-       #(when (u/playable? post) (rf/dispatch [:play-post post posts]))}
-      (when (not (u/playable? post))
-        "Not playable: ")
-      (:title post)]]))
+     {:class (if playable :playable :unplayable)}
+     [:div.post-thumbnail
+      [thumbnail/thumbnail (:thumbnail post) {:width 65 :height 65}]]
+     [:div.post-info
+      [:div.post-title
+       {:on-click
+        #(when playable (rf/dispatch [:play-post post posts]))}
+       (:title post)]
+      [:div.post-metadata
+       [:span (:score post) " points"]
+       [:span.divider]
+       [:span "submitted by " (:author post)]
+       [:span.divider]
+       [:span (:num-comments post)
+        (if (= (:num-comments post) 1) " comment" " comments")]]]]))
 
 (defn listings-posts [data]
   (let [posts (:posts data)
         fetch-more-posts (:fetch-more-posts data)]
     [:div.listings-posts
-     [:h2 "Posts"]
-     [:ul
-      (for [post (:posts data)]
-        ^{:key (:name post)} [listings-post data post])]
+     (for [post (:posts data)]
+       ^{:key (:name post)} [listings-post data post])
      [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))
 
 (defn listings [data]
   [:div.listings
-   [:div.container-fluid
+   [:div.container
     [listings-sort]]
-   (if (:loading data)
-     [loading-indicator/loading-indicator]
-     [listings-posts data])])
+   [:div.container
+    (if (:loading data)
+      [loading-indicator/loading-indicator]
+      [listings-posts data])]])
 
 (defn listings-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))
