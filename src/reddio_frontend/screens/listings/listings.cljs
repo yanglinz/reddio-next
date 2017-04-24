@@ -1,5 +1,6 @@
 (ns reddio-frontend.screens.listings.listings
-  (:require [reagent.core :as r]
+  (:require [clojure.string :as string]
+            [reagent.core :as r]
             [re-frame.core :as rf]
             [reddio-frontend.utilities.core :as u]
             [reddio-frontend.bridge :as bridge]
@@ -35,11 +36,13 @@
            ^{:key sort-range}
            [:option {:value sort-range} sort-range])]])]))
 
-(defn listings-post [data post]
+(defn listings-post [data current-post post]
   (let [posts (:posts data)
-        playable (u/playable? post)]
+        playable (u/playable? post)
+        playing (= (:name post) (:name current-post))]
     [:div.listings-post
-     {:class (if playable :playable :unplayable)}
+     {:class (string/join " " [(if playable "playable" "unplayable")
+                               (if playing "playing" "not-playing")])}
      [:div.post-thumbnail
       [thumbnail/thumbnail (:thumbnail post) {:width 65 :height 65}]]
      [:div.post-info
@@ -56,11 +59,12 @@
         (if (= (:num-comments post) 1) " comment" " comments")]]]]))
 
 (defn listings-posts [data]
-  (let [posts (:posts data)
+  (let [current-post @(rf/subscribe [:post])
+        posts (:posts data)
         fetch-more-posts (:fetch-more-posts data)]
     [:div.listings-posts
      (for [post (:posts data)]
-       ^{:key (:name post)} [listings-post data post])
+       ^{:key (:name post)} [listings-post data current-post post])
      [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))
 
