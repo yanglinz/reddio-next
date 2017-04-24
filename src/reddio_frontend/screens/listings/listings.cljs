@@ -1,5 +1,6 @@
 (ns reddio-frontend.screens.listings.listings
   (:require [clojure.string :as string]
+            [goog.string :as gstring]
             [reagent.core :as r]
             [re-frame.core :as rf]
             [reddio-frontend.utilities.core :as u]
@@ -49,7 +50,7 @@
       [:div.post-title
        {:on-click
         #(when playable (rf/dispatch [:play-post post posts]))}
-       (:title post)]
+       (gstring/unescapeEntities (:title post))]
       [:div.post-metadata
        [:span (:score post) " points"]
        [:span.divider]
