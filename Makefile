@@ -17,6 +17,11 @@ format:
 	$(PRETTIER) --single-quote --write 'webpack.config.js' 'config.js' 'src/**/*.js'
 	lein cljfmt fix
 
+.PHONY: lint
+lint:
+	lein kibit
+	lein eastwood
+
 .PHONY: run
 run:
 	rlwrap lein figwheel

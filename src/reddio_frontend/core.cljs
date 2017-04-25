@@ -121,7 +121,7 @@
 
 (defn render []
   (r/render-component [app]
-                      (. js/document (getElementById "app"))))
+                      (.getElementById js/document "app")))
 
 (defn ^:export run []
   (rf/dispatch-sync [:initialize])
