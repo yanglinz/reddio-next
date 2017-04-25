@@ -8,7 +8,7 @@
 (defn main []
   (let [current-post @(rf/subscribe [:post])
         player-state @(rf/subscribe [:player-state])
-        playing (not (= player-state :paused))
+        playing (not= player-state :paused)
         data {:url (:url current-post)
               :controls true
               :playing playing
