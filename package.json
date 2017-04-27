@@ -43,6 +43,7 @@
     "@types/hapi": "^16.0.3",
     "@types/isomorphic-fetch": "^0.0.33",
     "@types/lodash": "^4.14.63",
+    "@types/node": "^7.0.14",
     "@types/promise": "^7.1.30",
     "concurrently": "^3.4.0",
     "css-loader": "^0.28.0",
