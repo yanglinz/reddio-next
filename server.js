@@ -1,3 +1,3 @@
-const server = require('./src/reddio_server');
+const server = require('./build');
 
 server.start();

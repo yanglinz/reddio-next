@@ -9,8 +9,10 @@
   "scripts": {
     "frontend:build": "NODE_ENV=production webpack -p --progress",
     "frontend:watch": "webpack --watch",
+    "tsc:build": "tsc",
+    "tsc:watch": "tsc -w",
     "server:watch": "nodemon server.js",
-    "start": "node server.js"
+    "start": "tsc && node server.js"
   },
   "author": "Yanglin Zhao",
   "license": "MIT",
@@ -37,6 +39,11 @@
     "redux": "^3.6.0"
   },
   "devDependencies": {
+    "@types/graphql": "^0.9.0",
+    "@types/hapi": "^16.0.3",
+    "@types/isomorphic-fetch": "^0.0.33",
+    "@types/lodash": "^4.14.63",
+    "@types/promise": "^7.1.30",
     "concurrently": "^3.4.0",
     "css-loader": "^0.26.1",
     "extract-text-webpack-plugin": "^2.1.0",
@@ -45,6 +52,8 @@
     "nodemon": "^1.11.0",
     "prettier": "^0.16.0",
     "sass-loader": "^6.0.3",
+    "tslint": "^5.1.0",
+    "typescript": "^2.2.2",
     "url-loader": "^0.5.7",
     "webpack": "^2.2.1"
   }
