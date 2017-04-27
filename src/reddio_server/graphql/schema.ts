@@ -1,40 +1,39 @@
-const _ = require('lodash');
-const {
-  graphql,
-  GraphQLSchema,
-  GraphQLObjectType,
-  GraphQLID,
+import { graphql,
   GraphQLBoolean,
-  GraphQLList,
+  GraphQLID,
   GraphQLInt,
-  GraphQLString
-} = require('graphql');
+  GraphQLList,
+  GraphQLObjectType,
+  GraphQLSchema,
+  GraphQLString,
+} from "graphql";
+import * as _ from "lodash";
 
-const { getTopSubreddits } = require('../services/reddit');
+import { getTopSubreddits } from "../services/reddit";
 
 function parsePostThumbnail(resp) {
   const { thumbnail } = resp.data;
-  return resp.data.thumbnail || _.get(resp.data, 'media.oembed.thumbnail_url');
+  return resp.data.thumbnail || _.get(resp.data, "media.oembed.thumbnail_url");
 }
 
-const POST_TYPE = 'PostType';
+const POST_TYPE = "PostType";
 
 const POST_FIELDS = {
-  name: 'name',
-  url: 'url',
-  author: 'author',
-  title: 'title',
-  score: 'score',
-  ups: 'ups',
-  numComments: 'num_comments',
+  name: "name",
+  url: "url",
+  author: "author",
+  title: "title",
+  score: "score",
+  ups: "ups",
+  numComments: "num_comments",
   thumbnail: parsePostThumbnail,
-  subreddit: 'subreddit'
+  subreddit: "subreddit",
 };
 
 function parsePostFields(resp) {
   return _.mapValues(
     POST_FIELDS,
-    value => _.isString(value) ? resp.data[value] : value(resp)
+    (value) => _.isString(value) ? resp.data[value] : value(resp),
   );
 }
 
@@ -42,33 +41,33 @@ const Post = new GraphQLObjectType({
   name: POST_TYPE,
   fields: {
     name: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     url: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     author: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     title: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     score: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     ups: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     numComments: {
-      type: GraphQLInt
+      type: GraphQLInt,
     },
     thumbnail: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     subreddit: {
-      type: GraphQLString
-    }
-  }
+      type: GraphQLString,
+    },
+  },
 });
 
 function resolvePosts(source, args, context, info) {
@@ -78,31 +77,31 @@ function resolvePosts(source, args, context, info) {
     sortRange,
     after,
     limit,
-    includeStickied
+    includeStickied,
   } = _.defaults(args, {
     limit: 25,
-    includeStickied: false
+    includeStickied: false,
   });
 
   return context.dataLoaders.subredditPosts
     .load({ urlPath, sortType, sortRange, after })
-    .then(resp => resp.data.children)
-    .then(posts =>
-      _.filter(posts, post => includeStickied || !post.data.stickied))
-    .then(posts => _.take(posts, limit))
-    .then(posts => _.map(posts, parsePostFields));
+    .then((resp) => resp.data.children)
+    .then((posts: any[]) =>
+      _.filter(posts, (post) => includeStickied || !post.data.stickied))
+    .then((posts) => _.take(posts, limit))
+    .then((posts) => _.map(posts, parsePostFields));
 }
 
-const SUBREDDIT_TYPE = 'SubredditType';
+const SUBREDDIT_TYPE = "SubredditType";
 
 const SUBREDDIT_FIELDS = {
-  title: 'title',
-  publicDescription: 'public_description',
-  subscribers: 'subscribers'
+  title: "title",
+  publicDescription: "public_description",
+  subscribers: "subscribers",
 };
 
 function parseSubredditFields(resp) {
-  return _.mapValues(SUBREDDIT_FIELDS, value => resp.data[value]);
+  return _.mapValues(SUBREDDIT_FIELDS, (value) => resp.data[value]);
 }
 
 function subredditFieldResolver(field) {
@@ -111,68 +110,68 @@ function subredditFieldResolver(field) {
     return context.dataLoaders.subredditInfo
       .load(urlPath)
       .then(parseSubredditFields)
-      .then(data => data[field]);
+      .then((data) => data[field]);
   };
 }
 
 function resolveSubredditPosts(source, args, context, info) {
   const { limit, includeStickied } = _.defaults(args, {
     limit: 25,
-    includeStickied: false
+    includeStickied: false,
   });
   const urlPath = source.urlPath;
   return context.dataLoaders.subredditPosts
     .load({ urlPath })
-    .then(resp => resp.data.children)
-    .then(posts =>
-      _.filter(posts, post => includeStickied || !post.data.stickied))
-    .then(posts => _.take(posts, limit))
-    .then(posts => _.map(posts, parsePostFields));
+    .then((resp) => resp.data.children)
+    .then((posts: any[]) =>
+      _.filter(posts, (post) => includeStickied || !post.data.stickied))
+    .then((posts) => _.take(posts, limit))
+    .then((posts) => _.map(posts, parsePostFields));
 }
 
 const Subreddit = new GraphQLObjectType({
   name: SUBREDDIT_TYPE,
   fields: {
     id: {
-      type: GraphQLID
+      type: GraphQLID,
     },
     displayName: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     urlPath: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     customDescription: {
-      type: GraphQLString
+      type: GraphQLString,
     },
     title: {
       type: GraphQLString,
-      resolve: subredditFieldResolver('title')
+      resolve: subredditFieldResolver("title"),
     },
     publicDescription: {
       type: GraphQLString,
-      resolve: subredditFieldResolver('publicDescription')
+      resolve: subredditFieldResolver("publicDescription"),
     },
     subscribers: {
       type: GraphQLInt,
-      resolve: subredditFieldResolver('subscribers')
+      resolve: subredditFieldResolver("subscribers"),
     },
     posts: {
       type: new GraphQLList(Post),
       args: {
         limit: {
-          type: GraphQLInt
+          type: GraphQLInt,
         },
         includeStickied: {
-          type: GraphQLBoolean
-        }
+          type: GraphQLBoolean,
+        },
       },
-      resolve: resolveSubredditPosts
-    }
-  }
+      resolve: resolveSubredditPosts,
+    },
+  },
 });
 
-const ROOT_QUERY_TYPE = 'RootQueryType';
+const ROOT_QUERY_TYPE = "RootQueryType";
 
 function resolveTopSubreddits(source, args, context, info) {
   const subreddits = getTopSubreddits();
@@ -184,31 +183,31 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     topSubreddits: {
       type: new GraphQLList(Subreddit),
-      resolve: resolveTopSubreddits
+      resolve: resolveTopSubreddits,
     },
     posts: {
       type: new GraphQLList(Post),
       args: {
         urlPath: {
-          type: GraphQLString
+          type: GraphQLString,
         },
         sortType: {
-          type: GraphQLString
+          type: GraphQLString,
         },
         sortRange: {
-          type: GraphQLString
+          type: GraphQLString,
         },
         after: {
-          type: GraphQLString
-        }
+          type: GraphQLString,
+        },
       },
-      resolve: resolvePosts
-    }
-  }
+      resolve: resolvePosts,
+    },
+  },
 });
 
 const schema = new GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
 });
 
-module.exports = schema;
+export default schema;

@@ -1,14 +1,12 @@
-const hapi = require('hapi');
-const { graphqlHapi, graphiqlHapi } = require('graphql-server-hapi');
+import { graphiqlHapi, graphqlHapi } from "graphql-server-hapi";
+import * as Hapi from "hapi";
 
-const rootSchema = require('./graphql/schema');
-const dataLoaders = require('./graphql/data');
-const settings = require('./settings');
+import dataLoaders from "./graphql/data";
+import rootSchema from "./graphql/schema";
 
 function configureConnection(server) {
   server.connection({
-    host: settings.SERVER_HOST,
-    port: settings.SERVER_PORT
+    port: process.env.PORT || 4000,
   });
 }
 
@@ -16,15 +14,15 @@ function registerGraphql(server) {
   server.register({
     register: graphqlHapi,
     options: {
-      path: '/graphql/',
+      path: "/graphql/",
       graphqlOptions: {
         schema: rootSchema,
-        context: { dataLoaders }
+        context: { dataLoaders },
       },
       route: {
-        cors: true
-      }
-    }
+        cors: true,
+      },
+    },
   });
 }
 
@@ -32,21 +30,21 @@ function registerGraphiql(server) {
   server.register({
     register: graphiqlHapi,
     options: {
-      path: '/graphiql/',
+      path: "/graphiql/",
       graphiqlOptions: {
-        endpointURL: '/graphql/'
-      }
-    }
+        endpointURL: "/graphql/",
+      },
+    },
   });
 }
 
 function start() {
-  const server = new hapi.Server();
+  const server = new Hapi.Server();
   configureConnection(server);
   registerGraphql(server);
   registerGraphiql(server);
 
-  server.start(err => {
+  server.start((err) => {
     if (err) {
       throw err;
     }
