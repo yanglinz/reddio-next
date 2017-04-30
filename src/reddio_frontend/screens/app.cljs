@@ -15,7 +15,7 @@
       [header/main]
       (if (= route "/")
         [top-subreddits/main]
-        [listings/main {:url-path route
+        [listings/main {:pathname route
                         :sort-type sort-type
                         :sort-range sort-range}])
       [player/main]]]))

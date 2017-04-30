@@ -1,8 +1,8 @@
 import { graphiqlHapi, graphqlHapi } from "graphql-server-hapi";
 import * as Hapi from "hapi";
 
-import dataLoaders from "./graphql/data";
 import rootSchema from "./graphql/schema";
+import dataLoaders from "./graphql/data-loaders";
 
 function configureConnection(server) {
   server.connection({

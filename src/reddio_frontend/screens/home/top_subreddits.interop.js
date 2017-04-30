@@ -5,15 +5,15 @@ import gql from 'graphql-tag';
 const HOME_TOP_SUBREDDITS_QUERY = gql`
   query {
     topSubreddits {
-      id
-      displayName
-      title
-      customDescription
-      urlPath
-      subscribers
-      posts(limit: 10) {
-        name
-        thumbnail
+      listings {
+        pathname
+        customInfo {
+          description
+        }
+        posts(limit: 10) {
+          name
+          thumbnail
+        }
       }
     }
   }

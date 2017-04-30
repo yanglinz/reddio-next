@@ -38,7 +38,7 @@
            [:option {:value sort-range} sort-range])]])]))
 
 (defn listings-post [data current-post post]
-  (let [posts (:posts data)
+  (let [posts (:posts (:listing data))
         playable (u/playable? post)
         playing (= (:name post) (:name current-post))]
     [:div.listings-post
@@ -61,10 +61,10 @@
 
 (defn listings-posts [data]
   (let [current-post @(rf/subscribe [:post])
-        posts (:posts data)
+        posts (:posts (:listing data))
         fetch-more-posts (:fetch-more-posts data)]
     [:div.listings-posts
-     (for [post (:posts data)]
+     (for [post posts]
        ^{:key (:name post)} [listings-post data current-post post])
      [:button {:on-click #(fetch-more-posts)}
       "Fetch more"]]))

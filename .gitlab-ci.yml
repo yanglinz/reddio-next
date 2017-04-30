@@ -22,6 +22,8 @@ job_build_js:
   script:
     - ./scripts/install-yarn.sh
     - yarn install
+    - yarn run tsc:build
+    - yarn test
     - NODE_ENV=production npm run frontend:build
   artifacts:
     paths:
