@@ -20,7 +20,9 @@
               :on-pause #(rf/dispatch [:player-pause])
               :on-buffer #(rf/dispatch [:player-buffer])
               :on-ended #(rf/dispatch [:player-ended])
-              :on-error #(rf/dispatch [:player-error])}]
+              :on-error #(rf/dispatch [:player-error])
+              :soundcloud-config #js {:clientId nil
+                                      :showArtwork true}}]
     (when current-post
       [:div
        [:div.player
