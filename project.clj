@@ -10,7 +10,7 @@
                  [org.clojure/clojurescript "1.9.229"]
                  [org.clojure/core.async "0.2.395"
                   :exclusions [org.clojure/tools.reader]]
-                 [reagent "0.6.0"
+                 [reagent "0.6.1"
                   :exclusions [cljsjs/react
                                cljsjs/react-dom
                                cljsjs/react-dom-server]]
