@@ -21,6 +21,7 @@
               :on-buffer #(rf/dispatch [:player-buffer])
               :on-ended #(rf/dispatch [:player-ended])
               :on-error #(rf/dispatch [:player-error])
+              :youtube-config #js {:preload true}
               :soundcloud-config #js {:clientId nil
                                       :showArtwork true}}]
     (when current-post
