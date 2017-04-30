@@ -25,6 +25,7 @@
                     :top]
         sort-ranges [:hour
                      :day
+                     :week
                      :month
                      :year
                      :all]]
