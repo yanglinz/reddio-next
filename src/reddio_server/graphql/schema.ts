@@ -9,188 +9,114 @@ import { graphql,
 } from "graphql";
 import * as _ from "lodash";
 
-import { getTopSubreddits } from "../services/reddit";
+import * as r from "../services/reddit";
+import { Listing, ListingInfo, ListingPost } from "../services/reddit";
+import { CUSTOM_METADATA, TOP_SUBREDDITS } from "../services/reddit/custom-sets";
 
-function parsePostThumbnail(resp) {
-  const { thumbnail } = resp.data;
-  return resp.data.thumbnail || _.get(resp.data, "media.oembed.thumbnail_url");
+export function postToPostType(post: ListingPost) {
+  return {
+    author: post.data.author,
+    name: post.data.name,
+    numComments: post.data.num_comments,
+    score: post.data.score,
+    thumbnail: r.parsePostThumbnail(post),
+    title: post.data.title,
+    ups: post.data.ups,
+    url: post.data.url,
+  };
 }
 
-const POST_TYPE = "PostType";
-
-const POST_FIELDS = {
-  name: "name",
-  url: "url",
-  author: "author",
-  title: "title",
-  score: "score",
-  ups: "ups",
-  numComments: "num_comments",
-  thumbnail: parsePostThumbnail,
-  subreddit: "subreddit",
-};
-
-function parsePostFields(resp) {
-  return _.mapValues(
-    POST_FIELDS,
-    (value) => _.isString(value) ? resp.data[value] : value(resp),
-  );
+export function infoToListingInfoType(info: ListingInfo) {
+  return {
+    title: info.data.display_name,
+  };
 }
 
-const Post = new GraphQLObjectType({
-  name: POST_TYPE,
+const PostType = new GraphQLObjectType({
+  name: "Post",
   fields: {
-    name: {
-      type: GraphQLID,
-    },
-    url: {
-      type: GraphQLString,
-    },
     author: {
       type: GraphQLString,
     },
-    title: {
-      type: GraphQLString,
-    },
-    score: {
-      type: GraphQLInt,
-    },
-    ups: {
-      type: GraphQLInt,
+    name: {
+      type: GraphQLID,
     },
     numComments: {
+      type: GraphQLInt,
+    },
+    score: {
       type: GraphQLInt,
     },
     thumbnail: {
       type: GraphQLString,
     },
-    subreddit: {
-      type: GraphQLString,
-    },
-  },
-});
-
-function resolvePosts(source, args, context, info) {
-  const {
-    urlPath,
-    sortType,
-    sortRange,
-    after,
-    limit,
-    includeStickied,
-  } = _.defaults(args, {
-    limit: 25,
-    includeStickied: false,
-  });
-
-  return context.dataLoaders.subredditPosts
-    .load({ urlPath, sortType, sortRange, after })
-    .then((resp) => resp.data.children)
-    .then((posts: any[]) =>
-      _.filter(posts, (post) => includeStickied || !post.data.stickied))
-    .then((posts) => _.take(posts, limit))
-    .then((posts) => _.map(posts, parsePostFields));
-}
-
-const SUBREDDIT_TYPE = "SubredditType";
-
-const SUBREDDIT_FIELDS = {
-  title: "title",
-  publicDescription: "public_description",
-  subscribers: "subscribers",
-};
-
-function parseSubredditFields(resp) {
-  return _.mapValues(SUBREDDIT_FIELDS, (value) => resp.data[value]);
-}
-
-function subredditFieldResolver(field) {
-  return (source, args, context, info) => {
-    const urlPath = source.urlPath;
-    return context.dataLoaders.subredditInfo
-      .load(urlPath)
-      .then(parseSubredditFields)
-      .then((data) => data[field]);
-  };
-}
-
-function resolveSubredditPosts(source, args, context, info) {
-  const { limit, includeStickied } = _.defaults(args, {
-    limit: 25,
-    includeStickied: false,
-  });
-  const urlPath = source.urlPath;
-  return context.dataLoaders.subredditPosts
-    .load({ urlPath })
-    .then((resp) => resp.data.children)
-    .then((posts: any[]) =>
-      _.filter(posts, (post) => includeStickied || !post.data.stickied))
-    .then((posts) => _.take(posts, limit))
-    .then((posts) => _.map(posts, parsePostFields));
-}
-
-const Subreddit = new GraphQLObjectType({
-  name: SUBREDDIT_TYPE,
-  fields: {
-    id: {
-      type: GraphQLID,
-    },
-    displayName: {
-      type: GraphQLString,
-    },
-    urlPath: {
-      type: GraphQLString,
-    },
-    customDescription: {
-      type: GraphQLString,
-    },
     title: {
       type: GraphQLString,
-      resolve: subredditFieldResolver("title"),
     },
-    publicDescription: {
-      type: GraphQLString,
-      resolve: subredditFieldResolver("publicDescription"),
-    },
-    subscribers: {
+    ups: {
       type: GraphQLInt,
-      resolve: subredditFieldResolver("subscribers"),
     },
-    posts: {
-      type: new GraphQLList(Post),
-      args: {
-        limit: {
-          type: GraphQLInt,
-        },
-        includeStickied: {
-          type: GraphQLBoolean,
-        },
-      },
-      resolve: resolveSubredditPosts,
+    url: {
+      type: GraphQLString,
     },
   },
 });
 
-const ROOT_QUERY_TYPE = "RootQueryType";
-
-function resolveTopSubreddits(source, args, context, info) {
-  const subreddits = getTopSubreddits();
-  return Promise.resolve(subreddits);
-}
-
-const RootQuery = new GraphQLObjectType({
-  name: ROOT_QUERY_TYPE,
+const ListingInfoType = new GraphQLObjectType({
+  name: "ListingInfo",
   fields: {
-    topSubreddits: {
-      type: new GraphQLList(Subreddit),
-      resolve: resolveTopSubreddits,
+    title: {
+      type: GraphQLString,
+    },
+  },
+});
+
+const ListingCustomInfoType = new GraphQLObjectType({
+  name: "ListingCustomInfoType",
+  fields: {
+    pathname: {
+      type: GraphQLString,
+    },
+    description: {
+      type: GraphQLString,
+      resolve: (source, args, context, info) => {
+        const { pathname } = source;
+        const metadata = CUSTOM_METADATA[pathname] || {};
+        return metadata.description;
+      },
+    },
+  },
+});
+
+const ListingType = new GraphQLObjectType({
+  name: "Listing",
+  fields: {
+    pathname: {
+      type: GraphQLString,
+    },
+    info: {
+      type: ListingInfoType,
+      resolve: (source, args, context, info) => {
+        const { pathname } = source;
+        const { subredditInfo, multiredditInfo } = context.dataLoaders;
+        const loader = (
+          (r.isSubreddit(pathname) && subredditInfo) ||
+          (r.isMultireddit(pathname) && multiredditInfo)
+        );
+        return loader.load(pathname)
+          .then(infoToListingInfoType);
+      },
+    },
+    customInfo: {
+      type: ListingCustomInfoType,
+      resolve: (source, args, context, info) => {
+        const { pathname } = source;
+        return { pathname };
+      },
     },
     posts: {
-      type: new GraphQLList(Post),
+      type: new GraphQLList(PostType),
       args: {
-        urlPath: {
-          type: GraphQLString,
-        },
         sortType: {
           type: GraphQLString,
         },
@@ -200,14 +126,63 @@ const RootQuery = new GraphQLObjectType({
         after: {
           type: GraphQLString,
         },
+        limit: {
+          type: GraphQLInt,
+        },
       },
-      resolve: resolvePosts,
+      resolve: (source, args, context, info) => {
+        const { pathname } = source;
+        const { sortType, sortRange, after, limit } = args;
+        const loader = context.dataLoaders.listing;
+        return loader.load({ pathname, sortType, sortRange, after, limit })
+          .then((listing: Listing) => _.map(listing.data.children, postToPostType));
+      },
+    },
+  },
+});
+
+const ListingSetType = new GraphQLObjectType({
+  name: "ListingSet",
+  fields: {
+    pathnames: {
+      type: new GraphQLList(GraphQLString),
+    },
+    listings: {
+      type: new GraphQLList(ListingType),
+      resolve: (source, args, context, info) => {
+        const { pathnames } = source;
+        return _.map(pathnames, (pathname) => ({ pathname }));
+      },
+    },
+  },
+});
+
+const RootQueryType = new GraphQLObjectType({
+  name: "RootQuery",
+  fields: {
+    listing: {
+      type: ListingType,
+      args: {
+        pathname: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (source, args, context, info) => {
+        const { pathname } = args;
+        return { pathname };
+      },
+    },
+    topSubreddits: {
+      type: ListingSetType,
+      resolve: (source, args, context, info) => {
+        return { pathnames: TOP_SUBREDDITS };
+      },
     },
   },
 });
 
 const schema = new GraphQLSchema({
-  query: RootQuery,
+  query: RootQueryType,
 });
 
 export default schema;

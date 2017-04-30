@@ -3,12 +3,12 @@
             [reddio-frontend.utilities.core :as u]
             [reddio-frontend.bridge :as bridge]))
 
-(defn subreddit-card [subreddit]
-  (let [posts (->> subreddit
+(defn listing-card [listing]
+  (let [posts (->> listing
                    :posts
                    (filter :thumbnail)
                    (take 5))]
-    [:div.subreddit-card
+    [:div.listing-card
      [:div.card
       [:div.card-thumbnail-list
        (for [post posts]
@@ -17,12 +17,13 @@
           [:img {:src (:thumbnail post)}]])]
       [:div.card-block
        [:h5.card-title
-        [:a {:href (:url-path subreddit)}
-         (:url-path subreddit)]]
-       [:p.card-text (:custom-description subreddit)]]]]))
+        [:a {:href (:pathname listing)}
+         (:pathname listing)]]
+       [:p.card-text (:description (:custom-info listing))]]]]))
 
 (defn top-subreddits [data]
-  (let [top-subreddits (:top-subreddits data)]
+  (let [top-subreddits (:top-subreddits data)
+        listings (:listings top-subreddits)]
     [:div.home-section.top-subreddits.container
      [:div.row.no-gutters
       [:div.col-sm-10.offset-sm-1
@@ -32,10 +33,10 @@
          [:div.divider]
          [:p "Top subreddits"]]]
        [:div.row.no-gutters
-        (for [subreddit top-subreddits]
-          ^{:key (:id subreddit)}
+        (for [listing listings]
+          ^{:key (:pathname listing :custom-info)}
           [:div.col-sm-6.col-lg-4
-           [subreddit-card subreddit]])]]]]))
+           [listing-card listing]])]]]]))
 
 (defn top-subreddits-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))

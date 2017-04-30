@@ -17,6 +17,7 @@ build:
 format:
 	@$(PRETTIER) --single-quote --write 'webpack.config.js' 'config.js' 'src/**/*.js'
 	@lein cljfmt fix
+	@$(TSLINT) --fix src/reddio_server/**/*.ts
 
 .PHONY: lint
 lint:
