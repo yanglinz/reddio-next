@@ -8,6 +8,14 @@
             [reddio-frontend.components.thumbnail :as thumbnail]
             [reddio-frontend.components.loading-indicator :as loading-indicator]))
 
+(defn listings-info [data]
+  (let [info (:info (:info (:listing data)))
+        custom-info (:custom-info (:listing data))]
+    [:div.listings-info
+     [:h3.listings-title (:pathname custom-info)]
+     [:p.listings-description.lead (:description custom-info)]
+     [:p.listings-subcount (:subscribers info) " subscribers"]]))
+
 (defn listings-sort []
   (let [current-sort-type @(rf/subscribe [:sort-type])
         current-sort-range @(rf/subscribe [:sort-range])
@@ -71,12 +79,12 @@
 
 (defn listings [data]
   [:div.listings
-   [:div.container
-    [listings-sort]]
-   [:div.container
-    (if (:loading data)
-      [loading-indicator/loading-indicator]
-      [listings-posts data])]])
+   (if (:loading data)
+     [loading-indicator/loading-indicator]
+     [:div.container
+      [listings-info data]
+      [listings-sort]
+      [listings-posts data]])])
 
 (defn listings-container [apollo-props]
   (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))

@@ -36,11 +36,11 @@ export interface Listing {
 export interface SubredditInfo {
   kind: ListingKind;
   data: {
-    subscribers: number;
     display_name: string;
-    title: string;
     description_html: string;
     header_title: string;
+    subscribers: number;
+    title: string;
   };
 }
 
@@ -50,11 +50,8 @@ export interface MultiredditInfo {
     display_name: string;
     description_html: string;
     subreddits: any[];
-    created_utc: number;
   };
 }
-
-export type ListingInfo = SubredditInfo | MultiredditInfo;
 
 type ListingType = "hot" | "new" | "rising" | "top";
 type ListingRange = "hour" | "day" | "week" | "month" | "year" | "all";

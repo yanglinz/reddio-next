@@ -5,6 +5,18 @@ import gql from 'graphql-tag';
 const LISTINGS_QUERY = gql`
   query ($pathname: String, $sortType: String, $sortRange: String, $after: String) {
     listing(pathname: $pathname) {
+      customInfo {
+        pathname
+        description
+      }
+      info {
+        ... on ListingSubredditInfo {
+          info {
+            title
+            subscribers
+          }
+        }
+      }
       posts(sortType: $sortType, sortRange: $sortRange, after: $after) {
         author
         name
