@@ -2,6 +2,15 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+@import "./components/thumbnail";
 @import "./screens/home/index";
 @import "./screens/listings/index";
 @import "./screens/player/index";
