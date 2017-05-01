@@ -1,7 +1,8 @@
 (ns reddio-frontend.screens.home.top-subreddits
   (:require [reagent.core :as r]
             [reddio-frontend.utilities.core :as u]
-            [reddio-frontend.bridge :as bridge]))
+            [reddio-frontend.bridge :as bridge]
+            [reddio-frontend.components.thumbnail :as thumbnail]))
 
 (defn listing-card [listing]
   (let [posts (->> listing
@@ -14,7 +15,7 @@
        (for [post posts]
          ^{:key (:name post)}
          [:div.card-thumbnail
-          [:img {:src (:thumbnail post)}]])]
+          [thumbnail/thumbnail (:thumbnail post)]])]
       [:div.card-block
        [:h5.card-title
         [:a {:href (:pathname listing)}
