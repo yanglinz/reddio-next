@@ -22,7 +22,7 @@
               :on-ended #(rf/dispatch [:player-ended])
               :on-error #(rf/dispatch [:player-error])
               :youtube-config #js {:preload true}
-              :soundcloud-config #js {:clientId nil
+              :soundcloud-config #js {:clientId (:frontend-sc-client-id bridge/settings)
                                       :showArtwork true}}]
     (when current-post
       [:div

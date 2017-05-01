@@ -17,8 +17,6 @@ job_build_cljs:
 job_build_js:
   image: node:6.10.0
   stage: build
-  variables:
-    FRONTEND_GRAPHQL_URI: https://reddio-next.herokuapp.com/graphql/
   script:
     - ./scripts/install-yarn.sh
     - yarn install
