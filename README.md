@@ -1,3 +1,3 @@
 # Reddio Next
 
-:music: Reddit powered music client.
+:musical_note: Reddit powered music client.
