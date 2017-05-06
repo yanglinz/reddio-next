@@ -72,11 +72,13 @@
   (let [current-post @(rf/subscribe [:post])
         posts (:posts (:listing data))
         fetch-more-posts (:fetch-more-posts data)]
-    [:div.listings-posts
-     (for [post posts]
-       ^{:key (:name post)} [listings-post data current-post post])
-     [:button {:on-click #(fetch-more-posts)}
-      "Fetch more"]]))
+    [:div
+     [:div.listings-posts
+      (for [post posts]
+        ^{:key (:name post)} [listings-post data current-post post])]
+     [:div.listings-load-more
+      [:button.btn.btn-secondary {:on-click #(fetch-more-posts)}
+       "Load More"]]]))
 
 (defn listings [data]
   [:div.listings
