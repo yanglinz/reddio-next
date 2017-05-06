@@ -14,6 +14,37 @@
     align-items: center;
     justify-content: center;
   }
+
+  .controls.uninitialized {
+    svg {
+      fill: #e0e0e0;
+    }
+  }
+
+  .control {
+    margin: 0 0.75rem;
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  .control.control-play, .control.control-pause {
+    margin: 0 0.25rem;
+
+    svg {
+      width: 3.75rem;
+      height: 3.75rem;
+    }
+  }
+
+  .control.control-repeat {
+    svg {
+      width: 1.65rem;
+      height: 1.65rem;
+    }
+  }
 }
 
 .iframe {
