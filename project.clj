@@ -17,9 +17,10 @@
                  [re-frame "0.9.2"]
                  [secretary "1.2.3"]
                  [kibu/pushy "0.3.6"]
-                 [camel-snake-kebab "0.4.0"]]
+                 [camel-snake-kebab "0.4.0"]
+                 [figwheel-sidecar "0.5.0"]]
 
-  :plugins [[lein-figwheel "0.5.9"]
+  :plugins [[lein-cljsbuild "1.1.0"]
             [lein-cljfmt "0.5.6"]
             [jonase/eastwood "0.2.3"]
             [lein-kibit "0.1.3"]
