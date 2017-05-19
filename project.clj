@@ -42,7 +42,7 @@
                            ;; in the default browser once Figwheel has
                            ;; started and complied your application.
                            ;; Comment this out once it no longer serves you.
-                           :open-urls ["http://localhost:3449"]}
+                           :open-urls ["http://reddio.test"]}
 
                 :compiler {:main reddio-frontend.core
                            :asset-path "/js/compiled/out"
