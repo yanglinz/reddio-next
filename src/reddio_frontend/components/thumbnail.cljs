@@ -1,5 +1,6 @@
 (ns reddio-frontend.components.thumbnail
-  (:require [reagent.core :as r]))
+  (:require [clojure.string :as string]
+            [reagent.core :as r]))
 
 (defn rand-color []
   (rand-nth ["#ef9a9a"
@@ -33,5 +34,5 @@
                                :height h}}
        (if @loading-error
          [:div.thumbnail-error {:style {:backgroundColor placeholder-color}}]
-         [:img {:src image
+         [:img {:src (string/replace-first image "http://" "https://")
                 :on-error #(reset! loading-error true)}])])))
