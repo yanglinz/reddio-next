@@ -25,16 +25,20 @@ lint:
 	@lein eastwood
 	@$(TSLINT) src/reddio_server/**/*.ts
 
-.PHONY: run
-run:
-	@rlwrap lein figwheel
-
 .PHONY: watch
 watch:
 	@$(CONCURRENTLY) --kill-others \
 		'npm run -s tsc:watch' \
 		'npm run -s server:watch' \
 		'npm run -s frontend:watch'
+
+.PHONY: up
+up:
+	sudo nginx -p "$(shell pwd)" -c $(shell pwd)/etc/nginx/nginx.conf
+
+.PHONY: down
+down:
+	sudo nginx -s quit
 
 .PHONY: clean
 clean:

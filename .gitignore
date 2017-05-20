@@ -25,3 +25,7 @@ npm-debug.log
 # editors
 /.idea/
 *.iml
+
+# certs
+**/selfsigned.crt
+**/selfsigned.key
