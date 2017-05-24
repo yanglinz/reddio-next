@@ -32,7 +32,7 @@
     (fn []
       [:div.thumbnail {:style {:width w
                                :height h}}
-       (if @loading-error
+       (if (or (not image) @loading-error)
          [:div.thumbnail-error {:style {:backgroundColor placeholder-color}}]
          [:img {:src (string/replace-first image "http://" "https://")
                 :on-error #(reset! loading-error true)}])])))
