@@ -1,5 +1,5 @@
 (ns reddio-frontend.bridge
-  (:require [reddio-frontend.utilities.core :as u]))
+  (:require [reddio-frontend.lib.core :as lib]))
 
 (def react-player (aget js/window "ReactPlayer"))
 
@@ -8,4 +8,4 @@
 (def enhance-home-top-subreddits-query (aget js/window "modules" "enhanceHomeTopSubredditQuery"))
 (def settings (-> (aget js/window "modules" "settings")
                   js->clj
-                  u/kebab-case-keywordize-keys))
+                  lib/kebab-case-keywordize-keys))
