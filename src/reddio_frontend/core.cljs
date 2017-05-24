@@ -2,6 +2,7 @@
   (:require-macros [secretary.core :refer [defroute]])
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
+            [reddio-frontend.lib.core :as lib]
             [reddio-frontend.modules.reddit.core :as reddit]
             [reddio-frontend.screens.routes :refer [hook-history!]]
             [reddio-frontend.screens.app :refer [app]]))
@@ -15,14 +16,6 @@
                     :duration nil
                     :progress 0
                     :loaded 0})
-
-(defn next-el [coll el]
-  "Get the next element in a collection"
-  (get (zipmap coll (rest coll)) el))
-
-(defn prev-el [coll el]
-  "Get the previous element in a collection"
-  (get (zipmap (rest coll) coll) el nil))
 
 (rf/reg-event-db :initialize
                  (fn [_ _]
@@ -77,11 +70,11 @@
 
 (rf/reg-event-db :player-ended
                  (fn [db [_ _]]
-                   (assoc db :post (next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
+                   (assoc db :post (lib/next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
 
 (rf/reg-event-db :player-error
                  (fn [db [_ _]]
-                   (assoc db :post (next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
+                   (assoc db :post (lib/next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
 
 (rf/reg-event-db :player-command-play
                  (fn [db [_ _]]
@@ -93,11 +86,11 @@
 
 (rf/reg-event-db :player-command-next
                  (fn [db [_ _]]
-                   (assoc db :post (next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
+                   (assoc db :post (lib/next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
 
 (rf/reg-event-db :player-command-prev
                  (fn [db [_ _]]
-                   (assoc db :post (prev-el (filter reddit/playable? (:all-posts db)) (:post db)))))
+                   (assoc db :post (lib/prev-el (filter reddit/playable? (:all-posts db)) (:post db)))))
 
 (rf/reg-sub :route
             (fn [db _]
