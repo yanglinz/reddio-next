@@ -2,9 +2,9 @@
   (:require-macros [secretary.core :refer [defroute]])
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
+            [reddio-frontend.modules.reddit.core :as reddit]
             [reddio-frontend.screens.routes :refer [hook-history!]]
-            [reddio-frontend.screens.app :refer [app]]
-            [reddio-frontend.utilities.core :as u]))
+            [reddio-frontend.screens.app :refer [app]]))
 
 (def initial-state {:route "/"
                     :post nil
@@ -77,11 +77,11 @@
 
 (rf/reg-event-db :player-ended
                  (fn [db [_ _]]
-                   (assoc db :post (next-el (filter u/playable? (:all-posts db)) (:post db)))))
+                   (assoc db :post (next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
 
 (rf/reg-event-db :player-error
                  (fn [db [_ _]]
-                   (assoc db :post (next-el (filter u/playable? (:all-posts db)) (:post db)))))
+                   (assoc db :post (next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
 
 (rf/reg-event-db :player-command-play
                  (fn [db [_ _]]
@@ -93,11 +93,11 @@
 
 (rf/reg-event-db :player-command-next
                  (fn [db [_ _]]
-                   (assoc db :post (next-el (filter u/playable? (:all-posts db)) (:post db)))))
+                   (assoc db :post (next-el (filter reddit/playable? (:all-posts db)) (:post db)))))
 
 (rf/reg-event-db :player-command-prev
                  (fn [db [_ _]]
-                   (assoc db :post (prev-el (filter u/playable? (:all-posts db)) (:post db)))))
+                   (assoc db :post (prev-el (filter reddit/playable? (:all-posts db)) (:post db)))))
 
 (rf/reg-sub :route
             (fn [db _]

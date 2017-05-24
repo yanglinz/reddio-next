@@ -3,7 +3,8 @@
             [goog.string :as gstring]
             [reagent.core :as r]
             [re-frame.core :as rf]
-            [reddio-frontend.utilities.core :as u]
+            [reddio-frontend.lib.core :as lib]
+            [reddio-frontend.modules.reddit.core :as reddit]
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.components.thumbnail :as thumbnail]
             [reddio-frontend.components.loading-indicator :as loading-indicator]))
@@ -48,7 +49,7 @@
 
 (defn listings-post [data current-post post]
   (let [posts (:posts (:listing data))
-        playable (u/playable? post)
+        playable (reddit/playable? post)
         playing (= (:name post) (:name current-post))]
     [:div.listings-post
      {:class (string/join " " [(if playable "playable" "unplayable")
@@ -90,7 +91,7 @@
       [listings-posts data]])])
 
 (defn listings-container [apollo-props]
-  (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))
+  (let [props (lib/kebab-case-keywordize-keys (js->clj apollo-props))
         data (:data props)]
     [listings data]))
 

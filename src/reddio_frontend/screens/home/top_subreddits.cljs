@@ -1,6 +1,6 @@
 (ns reddio-frontend.screens.home.top-subreddits
   (:require [reagent.core :as r]
-            [reddio-frontend.utilities.core :as u]
+            [reddio-frontend.lib.core :as lib]
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.components.thumbnail :as thumbnail]))
 
@@ -40,7 +40,7 @@
            [listing-card listing]])]]]]))
 
 (defn top-subreddits-container [apollo-props]
-  (let [props (u/kebab-case-keywordize-keys (js->clj apollo-props))
+  (let [props (lib/kebab-case-keywordize-keys (js->clj apollo-props))
         data (:data props)]
     [top-subreddits data]))
 
