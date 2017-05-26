@@ -21,6 +21,7 @@
                  [figwheel-sidecar "0.5.0"]]
 
   :plugins [[lein-cljsbuild "1.1.0"]
+            [lein-doo "0.1.7"]
             [lein-cljfmt "0.5.6"]
             [jonase/eastwood "0.2.3"]
             [lein-kibit "0.1.3"]
@@ -61,7 +62,16 @@
                 :compiler {:output-to "resources/public/js/compiled/reddio_next.js"
                            :main reddio-frontend.core
                            :optimizations :advanced
-                           :pretty-print false}}]}
+                           :pretty-print false}}
+
+               ;; This is the build for karma tests
+               ;; lein doo chrome test
+               ;; lein doo chrome test once
+               {:id "test"
+                :source-paths ["src" "test"]
+                :compiler {:output-to "resources/public/js/compiled/testable.js"
+                           :main reddio-frontend.runner
+                           :optimizations :none}}]}
 
   :figwheel {;; :http-server-root "public" ;; default and assumes "resources"
              ;; :server-port 3449 ;; default
@@ -97,6 +107,8 @@
              ;; to configure a different figwheel logfile path
              ;; :server-logfile "tmp/logs/figwheel-logfile.log"
              }
+
+  :doo {:paths {:karma "node_modules/karma/bin/karma"}}
 
   ;; setting up nREPL for Figwheel and ClojureScript dev
   ;; Please see:

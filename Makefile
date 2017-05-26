@@ -13,6 +13,14 @@ build:
 	@npm run -s frontend:build
 	@lein cljsbuild once min
 
+.PHONY: test
+test: clean
+	@lein doo chrome test once
+
+.PHONY: test-watch
+test-watch:
+	@lein doo chrome test
+
 .PHONY: format
 format:
 	@$(PRETTIER) --single-quote --write 'webpack.config.js' 'config.js' 'src/**/*.js'
