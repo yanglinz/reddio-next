@@ -69,8 +69,9 @@
                ;; lein doo chrome test once
                {:id "test"
                 :source-paths ["src" "test"]
-                :compiler {:output-to "resources/public/js/compiled/testable.js"
-                           :main reddio-frontend.runner
+                :compiler {:main reddio-frontend.runner
+                           :output-to "target/testable.js"
+                           :output-dir "target"
                            :optimizations :none}}]}
 
   :figwheel {;; :http-server-root "public" ;; default and assumes "resources"
@@ -81,13 +82,6 @@
 
              ;; Start an nREPL server into the running figwheel process
              ;; :nrepl-port 7888
-
-             ;; Server Ring Handler (optional)
-             ;; if you want to embed a ring handler into the figwheel http-kit
-             ;; server, this is for simple ring servers, if this
-             ;; doesn't work for you just run your own server :) (see lein-ring)
-
-             :ring-handler reddio-dev.server/handler
 
              ;; To be able to open files in your editor from the heads up display
              ;; you will need to put a script on your path.
@@ -106,7 +100,13 @@
 
              ;; to configure a different figwheel logfile path
              ;; :server-logfile "tmp/logs/figwheel-logfile.log"
-             }
+
+             ;; Server Ring Handler (optional)
+             ;; if you want to embed a ring handler into the figwheel http-kit
+             ;; server, this is for simple ring servers, if this
+             ;; doesn't work for you just run your own server :) (see lein-ring)
+
+             :ring-handler reddio-dev.server/handler}
 
   :doo {:paths {:karma "node_modules/karma/bin/karma"}}
 
@@ -121,6 +121,4 @@
                    :source-paths ["src" "dev"]
                    ;; for CIDER
                    ;; :plugins [[cider/cider-nrepl "0.12.0"]]
-                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}}
-
-)
+                   :repl-options {:nrepl-middleware [cemerick.piggieback/wrap-cljs-repl]}}})
