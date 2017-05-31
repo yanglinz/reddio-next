@@ -195,12 +195,6 @@ const ListingType = new GraphQLObjectType({
     posts: {
       type: new GraphQLList(PostType),
       args: {
-        sortType: {
-          type: GraphQLString,
-        },
-        sortRange: {
-          type: GraphQLString,
-        },
         after: {
           type: GraphQLString,
         },
@@ -210,9 +204,9 @@ const ListingType = new GraphQLObjectType({
       },
       resolve: (source, args, context, info) => {
         const { pathname } = source;
-        const { sortType, sortRange, after, limit } = args;
+        const { after, limit } = args;
         const loader = context.dataLoaders.listing;
-        return loader.load({ pathname, sortType, sortRange, after, limit })
+        return loader.load({ pathname, after, limit })
           .then((listing: Listing) => _.map(listing.data.children, postToPostType));
       },
     },

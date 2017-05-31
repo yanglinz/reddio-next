@@ -18,18 +18,11 @@
      [:p.listings-subcount (:subscribers info) " subscribers"]]))
 
 (defn listings-sort []
-  (let [current-sort-type @(rf/subscribe [:sort-type])
-        current-sort-range @(rf/subscribe [:sort-range])
-        sort-types [:new
-                    :rising
-                    :hot
-                    :top]
-        sort-ranges [:hour
-                     :day
-                     :week
-                     :month
-                     :year
-                     :all]]
+  (let [route @(rf/subscribe [:route])
+        current-sort-type (or (reddit/listing-type route) :hot)
+        current-sort-range (or (reddit/listing-time route) :day)
+        sort-types reddit/LISTING_TYPES
+        sort-ranges reddit/SORT_TIMES]
     [:div.listings-sort
      [:div.listings-sort-type
       [:select.custom-select

@@ -53,33 +53,29 @@ export interface MultiredditInfo {
   };
 }
 
-type ListingType = "hot" | "new" | "rising" | "top";
-type ListingRange = "hour" | "day" | "week" | "month" | "year" | "all";
-
 interface ListingParams {
   after?: string;
   before?: string;
   count?: number;
   limit?: number;
-  t?: ListingRange;
 }
 
 export function isSubreddit(pathname: string) {
   const parts = _.compact(pathname.split('/'));
   const [r, ...rest] = parts;
-  return parts.length === 2 && r === 'r';
+  return !isCommentThread(pathname) && parts.length >= 2 && r === 'r';
 }
 
 export function isMultireddit(pathname: string) {
   const parts = _.compact(pathname.split('/'));
   const [u, user, m, ...rest] = parts;
-  return parts.length === 4 && u === 'user' && m === 'm';
+  return parts.length >= 4 && u === 'user' && m === 'm';
 }
 
 export function isCommentThread(pathname: string) {
   const parts = _.compact(pathname.split('/'));
   const [r, sub, c, id, ...rest] = parts;
-  return parts.length === 5 && r === 'r' && c === 'comments';
+  return parts.length >= 5 && r === 'r' && c === 'comments';
 }
 
 export function parsePostThumbnail(post: ListingPost) {
@@ -87,26 +83,48 @@ export function parsePostThumbnail(post: ListingPost) {
   return post.data.thumbnail || _.get(post.data, "media.oembed.thumbnail_url");
 }
 
-export function getListing(pathname: string, t: ListingType = "hot", qs: ListingParams = {}) {
+const LISTING_TYPES = [
+  "hot",
+  "new",
+  "rising",
+  "top",
+];
+
+export function getRootPathname(pathname: string) {
+  const parsed = Url.parse(pathname);
+  const trimmed = _.trimEnd(parsed.pathname, "/");
+  const fragments = trimmed.split("/");
+  const modifiedFragments = _.includes(LISTING_TYPES, _.last(fragments))
+    ? _.slice(fragments, 0, fragments.length - 1)
+    : fragments;
+  return modifiedFragments.join("/");
+}
+
+export function getListing(pathname: string, qs: ListingParams = {}) {
+  const parsed = Url.parse(pathname);
+  const parsedQs = Querystring.parse(parsed.query);
   const url = Url.resolve(
     "https://www.reddit.com",
-    Path.join(pathname, t, `.json?${Querystring.stringify(qs)}`),
+    Path.join(parsed.pathname, `.json?${Querystring.stringify(_.extend(qs, parsedQs))}`),
   );
+
   return fetch(url).then((resp) => resp.json());
 }
 
 export function getSubredditInfo(pathname: string) {
+  const rootPathname = getRootPathname(pathname);
   const url = Url.resolve(
     "https://www.reddit.com",
-    Path.join(pathname, `about.json`),
+    Path.join(rootPathname, `about.json`),
   );
   return fetch(url).then((resp) => resp.json());
 }
 
 export function getMultiredditInfo(pathname: string) {
+  const rootPathname = getRootPathname(pathname);
   const url = Url.resolve(
     "https://www.reddit.com/api/multi",
-    Path.join(pathname, `.json`),
+    Path.join(rootPathname, `.json`),
   );
   return fetch(url).then((resp) => resp.json());
 }

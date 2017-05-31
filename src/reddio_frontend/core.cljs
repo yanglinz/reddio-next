@@ -4,14 +4,12 @@
             [re-frame.core :as rf]
             [reddio-frontend.lib.core :as lib]
             [reddio-frontend.modules.reddit.core :as reddit]
-            [reddio-frontend.screens.routes :refer [hook-history!]]
+            [reddio-frontend.screens.routes :refer [hook-history! replace-token!]]
             [reddio-frontend.screens.app :refer [app]]))
 
 (def initial-state {:route "/"
                     :post nil
                     :all-posts []
-                    :sort-type :hot
-                    :sort-range :day
                     :player-state :uninitialized
                     :duration nil
                     :progress 0
@@ -29,13 +27,29 @@
                  (fn [db [_ post all-posts]]
                    (assoc db :post post :all-posts all-posts)))
 
-(rf/reg-event-db :set-sort-type
-                 (fn [db [_ sort-type]]
-                   (assoc db :sort-type sort-type)))
+(defn set-sort-type [cofx event]
+  (let [{db :db} cofx
+        [_ sort-type] event
+        pathname (reddit/listing-pathname (:route db) sort-type)]
+    {:db (assoc db :route pathname)
+     :change-route pathname}))
 
-(rf/reg-event-db :set-sort-range
-                 (fn [db [_ sort-range]]
-                   (assoc db :sort-range sort-range)))
+(rf/reg-event-fx :set-sort-type set-sort-type)
+
+(defn set-sort-range [cofx event]
+  (let [{db :db} cofx
+        [_ sort-range] event
+        sort-type :top
+        pathname (reddit/listing-pathname (:route db) sort-type sort-range)]
+    {:db (assoc db :route pathname)
+     :change-route pathname}))
+
+(rf/reg-event-fx :set-sort-range set-sort-range)
+
+(defn route-change! [route]
+  (replace-token! route))
+
+(rf/reg-fx :change-route route-change!)
 
 (rf/reg-event-db :player-ready
                  (fn [db [_ _]]
@@ -99,14 +113,6 @@
 (rf/reg-sub :post
             (fn [db _]
               (:post db)))
-
-(rf/reg-sub :sort-type
-            (fn [db _]
-              (:sort-type db)))
-
-(rf/reg-sub :sort-range
-            (fn [db _]
-              (:sort-range db)))
 
 (rf/reg-sub :player-state
             (fn [db _]

@@ -3,7 +3,7 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 const LISTINGS_QUERY = gql`
-  query ($pathname: String, $sortType: String, $sortRange: String, $after: String) {
+  query ($pathname: String, $after: String) {
     listing(pathname: $pathname) {
       customInfo {
         pathname
@@ -17,7 +17,7 @@ const LISTINGS_QUERY = gql`
           }
         }
       }
-      posts(sortType: $sortType, sortRange: $sortRange, after: $after) {
+      posts(after: $after) {
         author
         name
         numComments
@@ -31,8 +31,8 @@ const LISTINGS_QUERY = gql`
 `;
 
 function mapPropsToOptions(props) {
-  const { pathname, sortType, sortRange } = props;
-  const variables = { pathname, sortType, sortRange };
+  const { pathname } = props;
+  const variables = { pathname };
   const newProps = { variables };
   return newProps;
 }
