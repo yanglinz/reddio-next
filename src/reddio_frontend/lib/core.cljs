@@ -1,6 +1,22 @@
 (ns reddio-frontend.lib.core
   (:require [clojure.walk :as w]
+            [clojure.string :as string]
             [camel-snake-kebab.core :refer [->kebab-case-keyword]]))
+
+(defn in? [coll elm]
+  "Predicate for whether an element is in a collection"
+  (some #(= elm %) coll))
+
+(defn params->qs [params]
+  "Format query strings"
+  (string/join "&" (for [[k v] params] (str (name k) "=" v))))
+
+(defn url-pathname [pathname & [query-params]]
+  "Format url pathname on pathname and query params"
+  (let [qs (params->qs query-params)]
+    (if (empty? qs)
+      (str "/" pathname)
+      (str "/" pathname "?" qs))))
 
 (defn next-el [coll el]
   "Get the next element in a collection"

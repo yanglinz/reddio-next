@@ -23,7 +23,7 @@ export const CUSTOM_METADATA = {
     title: "/r/mashups",
     description: "This subreddit is dedicated to musical mashups.",
   },
-}
+};
 
 export const TOP_SUBREDDITS = [
   "/r/listentothis",

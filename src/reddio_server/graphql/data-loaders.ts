@@ -15,8 +15,8 @@ function loadMultiredditInfo(pathnames: string[]) {
 
 function loadListing(keys: any[]) {
   const reqs = _.map(keys, (key) => {
-    const { pathname, sortType, sortRange: t, after, limit } = key;
-    return r.getListing(pathname, sortType, { t, after, limit });
+    const { pathname, after, limit } = key;
+    return r.getListing(pathname, { after, limit });
   });
   return Promise.all(reqs);
 }
