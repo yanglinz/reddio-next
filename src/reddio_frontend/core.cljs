@@ -7,7 +7,7 @@
             [reddio-frontend.screens.routes :refer [hook-history! replace-token!]]
             [reddio-frontend.screens.app :refer [app]]))
 
-(def initial-state {:route "/"
+(def initial-state {:route nil
                     :post nil
                     :all-posts []
                     :player-state :uninitialized

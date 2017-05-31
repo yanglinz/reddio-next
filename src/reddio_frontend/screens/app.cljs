@@ -11,7 +11,8 @@
     [:> bridge/root-provider
      [:div.app
       [header/main]
-      (if (= route "/")
-        [top-subreddits/main]
-        [listings/main {:pathname route}])
+      (when route
+        (if (= route "/")
+          [top-subreddits/main]
+          [listings/main {:pathname route}]))
       [player/main]]]))
