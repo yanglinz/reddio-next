@@ -4,6 +4,11 @@
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.components.icons :as icons]))
 
+(def WIDTH 640)
+(def HEIGHT 360)
+(def COMPACT_WIDTH 320)
+(def COMPACT_HEIGHT 180)
+
 (def react-player-adapter (r/adapt-react-class bridge/react-player))
 
 (defn main-controls [current-post player-state]
@@ -35,14 +40,18 @@
 (defn main []
   (let [current-post @(rf/subscribe [:post])
         player-state @(rf/subscribe [:player-state])
+        route @(rf/subscribe [:route])
         initialized (not (nil? current-post))
-        playing (not= player-state :paused)]
+        playing (not= player-state :paused)
+        compact? (= route "/")]
     [:div
      [:div.player
       [main-controls current-post player-state]]
      (when initialized
        [:div.iframe
         (let [data {:url (:url current-post)
+                    :width (if compact? COMPACT_WIDTH WIDTH)
+                    :height (if compact? COMPACT_HEIGHT HEIGHT)
                     :controls true
                     :playing playing
                     :on-ready #(rf/dispatch [:player-ready])
