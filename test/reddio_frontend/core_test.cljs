@@ -3,4 +3,4 @@
 
 (deftest dummy-test
   (is (= 1.0 1))
-  (.startsWith "foo" "f"))
+  (is (clojure.string/starts-with? "foo" "f")))
