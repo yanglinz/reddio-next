@@ -1,50 +1,59 @@
-image: alpine:latest
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay
+  REPO_NAME: yanglinz/reddio-next
+  BUILD_IMAGE: registry.gitlab.com/$REPO_NAME/build:$CI_BUILD_REF
+  CACHE_IMAGE: registry.gitlab.com/$REPO_NAME/build:cache
 
 stages:
+  - setup
   - build
-  - e2e
   - deploy
 
-job_build_cljs:
-  image: clojure:lein-2.7.1
+job_setup:
+  stage: setup
+  script:
+    - echo "$CI_COMMIT_REF_NAME"
+    # authenticate with gitlab registry
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    # build docker image using cached layers
+    - docker pull $CACHE_IMAGE || true
+    - docker build -t $BUILD_IMAGE --cache-from $CACHE_IMAGE .
+    - docker push $BUILD_IMAGE
+    # push cache if we're on master branch
+    - if [ $CI_COMMIT_REF_NAME == "master" ]; then docker tag $BUILD_IMAGE $CACHE_IMAGE; fi
+    - if [ $CI_COMMIT_REF_NAME == "master" ]; then docker push $CACHE_IMAGE; fi
+
+job_test:
   stage: build
   script:
-    - lein cljsbuild once min
-  artifacts:
-    paths:
-      - resources/public/js/compiled
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker pull $BUILD_IMAGE
+    - docker run $BUILD_IMAGE ./scripts/ci/test.sh
 
-job_build_js:
-  image: node:6.10.0
+job_build:
   stage: build
   script:
-    - ./scripts/install-yarn.sh
-    - yarn install
-    - yarn run tsc:build
-    - yarn test
-    - NODE_ENV=production npm run frontend:build
-  artifacts:
-    paths:
-      - resources/public/js/compiled
-      - resources/public/css/compiled
-
-job_e2e:
-  stage: e2e
-  script:
-    - cd resources/public/js && ls -la
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+    - docker pull $BUILD_IMAGE
+    - docker run $BUILD_IMAGE make build
   artifacts:
     paths:
       - resources/public
 
 job_deploy_frontend:
-  image: node:6.10.0
+  image: node:8.
   stage: deploy
   environment:
     name: production
   only:
     - master
   script:
-    - ./scripts/install-yarn.sh
+    - ./scripts/docker/install-yarn.sh
     - yarn global add firebase-tools
     - firebase deploy --token $FIREBASE_TOKEN
 
@@ -61,3 +70,4 @@ job_deploy_server:
         --app=reddio-next
         --provider=heroku
         --api-key=$HEROKU_AUTH_TOKEN
+
