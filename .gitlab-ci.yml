@@ -46,7 +46,7 @@ job_build:
       - resources/public
 
 job_deploy_frontend:
-  image: node:8.
+  image: node:8.0
   stage: deploy
   environment:
     name: production
