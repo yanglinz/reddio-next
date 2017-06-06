@@ -40,7 +40,7 @@ job_build:
   script:
     - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
     - docker pull $BUILD_IMAGE
-    - docker run -v $(pwd):/home/app $BUILD_IMAGE make build
+    - docker run -v $(pwd)/resources:/home/app/resources $BUILD_IMAGE make build
   artifacts:
     paths:
       - resources/public
