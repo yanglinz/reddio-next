@@ -12,23 +12,23 @@
 (def l-404-pathname "/foo/bar/baz")
 
 (deftest listing-type
-  (is (= (reddit/listing-type l-default-pathname) nil))
+  (is (nil? (reddit/listing-type l-default-pathname)))
   (is (= (reddit/listing-type l-hot-pathname) :hot))
   (is (= (reddit/listing-type l-new-pathname) :new))
   (is (= (reddit/listing-type l-rising-pathname) :rising))
   (is (= (reddit/listing-type l-top-default-pathname) :top))
   (is (= (reddit/listing-type l-top-month-pathname) :top))
-  (is (= (reddit/listing-type l-404-pathname) nil)))
+  (is (nil? (reddit/listing-type l-404-pathname))))
 
 (deftest listing-time
-  (is (= (reddit/listing-time l-default-pathname) nil))
-  (is (= (reddit/listing-time l-hot-pathname) nil))
-  (is (= (reddit/listing-time l-new-pathname) nil))
-  (is (= (reddit/listing-time l-rising-pathname) nil))
-  (is (= (reddit/listing-time l-top-default-pathname) nil))
+  (is (nil? (reddit/listing-time l-default-pathname)))
+  (is (nil? (reddit/listing-time l-hot-pathname)))
+  (is (nil? (reddit/listing-time l-new-pathname)))
+  (is (nil? (reddit/listing-time l-rising-pathname)))
+  (is (nil? (reddit/listing-time l-top-default-pathname)))
   (is (= (reddit/listing-time l-top-month-pathname) :month))
   (is (= (reddit/listing-time l-top-all-pathname) :all))
-  (is (= (reddit/listing-time l-404-pathname) nil)))
+  (is (nil? (reddit/listing-time l-404-pathname))))
 
 (deftest listing-pathname-default-test
   (is (= (reddit/listing-pathname l-default-pathname :default) l-default-pathname))

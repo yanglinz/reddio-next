@@ -4,4 +4,4 @@
 
 (deftest next-el-test
   (is (= (core/next-el [1 2 3] 2) 3))
-  (is (= (core/next-el [1] 1) nil)))
+  (is (nil? (core/next-el [1] 1))))
