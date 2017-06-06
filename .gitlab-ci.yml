@@ -53,9 +53,7 @@ job_deploy_frontend:
   only:
     - master
   script:
-    - ./scripts/docker/install-deps.sh
-    - ./scripts/docker/install-yarn.sh
-    - yarn global add firebase-tools
+    - npm install -g firebase-tools
     - firebase deploy --token $FIREBASE_TOKEN
 
 job_deploy_server:
