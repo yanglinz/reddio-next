@@ -53,6 +53,7 @@ job_deploy_frontend:
   only:
     - master
   script:
+    - ls resources/public/js/compiled
     - npm install -g firebase-tools
     - firebase deploy --token $FIREBASE_TOKEN
 
