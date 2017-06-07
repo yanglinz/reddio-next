@@ -9,8 +9,6 @@ const {
   SERVER_HOST,
   SERVER_PORT,
   SERVER_PROTOCOL,
-  FRONTEND_GRAPHQL_URI,
-  FRONTEND_SC_CLIENT_ID,
 } = process.env;
 
 const IS_PROD = NODE_ENV === "production";
@@ -23,6 +21,4 @@ module.exports = {
   SERVER_HOST,
   SERVER_PORT: SERVER_PORT || PORT,
   SERVER_PROTOCOL,
-  FRONTEND_GRAPHQL_URI,
-  FRONTEND_SC_CLIENT_ID,
 };

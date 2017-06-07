@@ -3,8 +3,6 @@ const path = require("path");
 const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const config = require("./config");
-
 const entry = path.resolve(__dirname, "src/reddio_frontend/index");
 const outputPath = path.resolve(__dirname, "resources/public");
 const jsOutputName = "js/compiled/bundle.js";
@@ -34,7 +32,6 @@ module.exports = {
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-      __DEFINE__: JSON.stringify(config),
     }),
     new ExtractTextPlugin(cssOutputName),
   ],

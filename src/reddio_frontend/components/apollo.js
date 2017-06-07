@@ -5,7 +5,7 @@ import settings from "../settings";
 
 const client = new ApolloClient({
   networkInterface: createNetworkInterface({
-    uri: settings.FRONTEND_GRAPHQL_URI,
+    uri: settings.GRAPHQL_URI,
   }),
 });
 

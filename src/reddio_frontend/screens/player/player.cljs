@@ -64,6 +64,6 @@
                     :on-ended #(rf/dispatch [:player-ended])
                     :on-error #(rf/dispatch [:player-error])
                     :youtube-config #js {:preload true}
-                    :soundcloud-config #js {:clientId (:frontend-sc-client-id bridge/settings)
+                    :soundcloud-config #js {:clientId (:sc-client-id bridge/settings)
                                             :showArtwork true}}]
           [react-player-adapter data])])]))
