@@ -23,7 +23,8 @@ test-watch:
 
 .PHONY: format
 format:
-	@$(PRETTIER) --single-quote --write 'webpack.config.js' 'config.js' 'src/**/*.js'
+	@$(PRETTIER) --write '*.js'
+	@$(PRETTIER) --write '{src,test}/**/*.{js,css,scss,ts,tsx}'
 	@lein cljfmt fix
 	@$(TSLINT) --fix src/reddio_server/**/*.ts
 

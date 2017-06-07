@@ -1,5 +1,5 @@
-const _ = require('lodash');
-const dotenv = require('dotenv');
+const _ = require("lodash");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
@@ -13,7 +13,7 @@ const {
   FRONTEND_SC_CLIENT_ID
 } = process.env;
 
-const IS_PROD = NODE_ENV === 'production';
+const IS_PROD = NODE_ENV === "production";
 const IS_DEV = !IS_PROD;
 
 module.exports = {

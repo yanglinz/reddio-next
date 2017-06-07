@@ -1,6 +1,6 @@
-import React from 'react';
-import { graphql } from 'react-apollo';
-import gql from 'graphql-tag';
+import React from "react";
+import { graphql } from "react-apollo";
+import gql from "graphql-tag";
 
 const LISTINGS_QUERY = gql`
   query ($pathname: String, $after: String) {
