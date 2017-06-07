@@ -1,4 +1,5 @@
-import { graphql,
+import {
+  graphql,
   GraphQLBoolean,
   GraphQLID,
   GraphQLInt,
@@ -11,8 +12,16 @@ import { graphql,
 import * as _ from "lodash";
 
 import * as r from "../services/reddit";
-import { Listing, ListingPost, MultiredditInfo, SubredditInfo } from "../services/reddit";
-import { CUSTOM_METADATA, TOP_SUBREDDITS } from "../services/reddit/custom-sets";
+import {
+  Listing,
+  ListingPost,
+  MultiredditInfo,
+  SubredditInfo,
+} from "../services/reddit";
+import {
+  CUSTOM_METADATA,
+  TOP_SUBREDDITS,
+} from "../services/reddit/custom-sets";
 
 export function postToPostType(post: ListingPost) {
   return {
@@ -143,10 +152,7 @@ const ListingMultiredditInfoType = new GraphQLObjectType({
 
 const ListingInfoType = new GraphQLUnionType({
   name: "ListingInfo",
-  types: [
-    ListingSubredditInfoType,
-    ListingMultiredditInfoType,
-  ],
+  types: [ListingSubredditInfoType, ListingMultiredditInfoType],
   resolveType: ({ pathname }) => {
     return (
       (r.isSubreddit(pathname) && ListingSubredditInfoType) ||
@@ -206,8 +212,11 @@ const ListingType = new GraphQLObjectType({
         const { pathname } = source;
         const { after, limit } = args;
         const loader = context.dataLoaders.listing;
-        return loader.load({ pathname, after, limit })
-          .then((listing: Listing) => _.map(listing.data.children, postToPostType));
+        return loader
+          .load({ pathname, after, limit })
+          .then((listing: Listing) =>
+            _.map(listing.data.children, postToPostType),
+          );
       },
     },
   },
