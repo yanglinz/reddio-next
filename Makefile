@@ -1,7 +1,8 @@
 BIN := node_modules/.bin
 PRETTIER := $(BIN)/prettier
 CONCURRENTLY := $(BIN)/concurrently
-TSLINT := $(BIN)/tslint
+
+PRETTIER_FLAGS := --write --trailing-comma=es5
 
 .PHONY: setup
 setup:
@@ -10,7 +11,7 @@ setup:
 
 .PHONY: build
 build:
-	@NODE_ENV=production npm run -s frontend:build
+	@npm run -s frontend:build
 	@lein cljsbuild once min
 
 .PHONY: test
@@ -23,16 +24,14 @@ test-watch:
 
 .PHONY: format
 format:
-	@$(PRETTIER) --write '*.js'
-	@$(PRETTIER) --write '{src,test}/**/*.{js,css,scss,ts,tsx}'
 	@lein cljfmt fix
-	@$(TSLINT) --fix src/reddio_server/**/*.ts
+	@$(PRETTIER) $(PRETTIER_FLAGS) '*.js'
+	@$(PRETTIER) $(PRETTIER_FLAGS) '{src,test}/**/*.{js,css,scss,ts,tsx}'
 
 .PHONY: lint
 lint:
 	@lein kibit
 	@lein eastwood
-	@$(TSLINT) src/reddio_server/**/*.ts
 
 .PHONY: watch
 watch:

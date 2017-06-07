@@ -14,7 +14,7 @@ function loadMultiredditInfo(pathnames: string[]) {
 }
 
 function loadListing(keys: any[]) {
-  const reqs = _.map(keys, (key) => {
+  const reqs = _.map(keys, key => {
     const { pathname, after, limit } = key;
     return r.getListing(pathname, { after, limit });
   });

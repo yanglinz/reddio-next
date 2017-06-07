@@ -42,8 +42,8 @@ function updateQuery(previousResult, { fetchMoreResult }) {
   const newPosts = fetchMoreResult.listing.posts;
   return {
     listing: {
-      posts: [].concat(previousPosts).concat(newPosts)
-    }
+      posts: [].concat(previousPosts).concat(newPosts),
+    },
   };
 }
 
@@ -63,7 +63,7 @@ function mapPropsToProps(props) {
     fetchMore({
       query: LISTINGS_QUERY,
       variables: Object.assign({}, variables, { after }),
-      updateQuery
+      updateQuery,
     });
 
   const newData = Object.assign({}, data, { fetchMorePosts });
@@ -73,7 +73,7 @@ function mapPropsToProps(props) {
 
 const queryParams = {
   props: mapPropsToProps,
-  options: mapPropsToOptions
+  options: mapPropsToOptions,
 };
 
 const enhanceListingsQuery = graphql(LISTINGS_QUERY, queryParams);

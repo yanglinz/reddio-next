@@ -14,28 +14,28 @@ module.exports = {
   entry: entry,
   output: {
     path: outputPath,
-    filename: jsOutputName
+    filename: jsOutputName,
   },
   module: {
     rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: "babel-loader"
+        use: "babel-loader",
       },
       {
         test: /\.s?css$/,
         use: ExtractTextPlugin.extract({
-          use: ["css-loader", "sass-loader"]
-        })
-      }
-    ]
+          use: ["css-loader", "sass-loader"],
+        }),
+      },
+    ],
   },
   plugins: [
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-      __DEFINE__: JSON.stringify(config)
+      __DEFINE__: JSON.stringify(config),
     }),
-    new ExtractTextPlugin(cssOutputName)
-  ]
+    new ExtractTextPlugin(cssOutputName),
+  ],
 };

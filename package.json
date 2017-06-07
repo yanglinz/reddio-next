@@ -62,7 +62,6 @@
     "prettier": "^1.4.2",
     "sass-loader": "6.0.3",
     "ts-jest": "19.0.14",
-    "tslint": "5.1.0",
     "typescript": "2.2.2",
     "url-loader": "0.5.7",
     "webpack": "2.2.1"

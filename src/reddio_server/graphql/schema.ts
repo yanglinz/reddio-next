@@ -215,7 +215,7 @@ const ListingType = new GraphQLObjectType({
         return loader
           .load({ pathname, after, limit })
           .then((listing: Listing) =>
-            _.map(listing.data.children, postToPostType),
+            _.map(listing.data.children, postToPostType)
           );
       },
     },
@@ -232,7 +232,7 @@ const ListingSetType = new GraphQLObjectType({
       type: new GraphQLList(ListingType),
       resolve: (source, args, context, info) => {
         const { pathnames } = source;
-        return _.map(pathnames, (pathname) => ({ pathname }));
+        return _.map(pathnames, pathname => ({ pathname }));
       },
     },
   },
