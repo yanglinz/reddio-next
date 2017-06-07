@@ -10,7 +10,7 @@ setup:
 
 .PHONY: build
 build:
-	@npm run -s frontend:build
+	@NODE_ENV=production npm run -s frontend:build
 	@lein cljsbuild once min
 
 .PHONY: test
