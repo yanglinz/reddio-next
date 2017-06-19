@@ -2,7 +2,7 @@
   (:require [reagent.core :as r]
             [reddio-frontend.lib.core :as lib]
             [reddio-frontend.bridge :as bridge]
-            [reddio-frontend.components.thumbnail :as thumbnail]))
+            [reddio-frontend.components.thumbnail.core :as thumbnail]))
 
 (defn listing-card [listing]
   (let [posts (->> listing
