@@ -6,8 +6,8 @@
             [reddio-frontend.lib.core :as lib]
             [reddio-frontend.modules.reddit.core :as reddit]
             [reddio-frontend.bridge :as bridge]
-            [reddio-frontend.components.thumbnail :as thumbnail]
-            [reddio-frontend.components.loading-indicator :as loading-indicator]))
+            [reddio-frontend.components.thumbnail.core :as thumbnail]
+            [reddio-frontend.components.loading-indicator.core :as loading-indicator]))
 
 (defn listings-info [data]
   (let [info (:info (:info (:listing data)))

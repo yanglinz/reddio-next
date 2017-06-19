@@ -10,7 +10,7 @@ html {
   box-sizing: inherit;
 }
 
-@import "./components/thumbnail";
+@import "./components/thumbnail/core";
 @import "./screens/home/index";
 @import "./screens/listings/index";
 @import "./screens/player/index";

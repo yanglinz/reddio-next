@@ -1,4 +1,4 @@
-(ns reddio-frontend.components.icons
+(ns reddio-frontend.components.icons.core
   (:require))
 
 (defn play-circle []

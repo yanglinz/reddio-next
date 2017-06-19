@@ -1,4 +1,4 @@
-(ns reddio-frontend.components.thumbnail
+(ns reddio-frontend.components.thumbnail.core
   (:require [clojure.string :as string]
             [reagent.core :as r]))
 

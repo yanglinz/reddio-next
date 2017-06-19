@@ -2,14 +2,13 @@
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
             [reddio-frontend.bridge :as bridge]
-            [reddio-frontend.components.icons :as icons]))
+            [reddio-frontend.components.react-player.core :as react-player]
+            [reddio-frontend.components.icons.core :as icons]))
 
 (def WIDTH 640)
 (def HEIGHT 360)
 (def COMPACT_WIDTH 320)
 (def COMPACT_HEIGHT 180)
-
-(def react-player-adapter (r/adapt-react-class bridge/react-player))
 
 (defn main-controls [current-post player-state]
   (let [initialized (not (nil? current-post))
@@ -63,7 +62,7 @@
                     :on-buffer #(rf/dispatch [:player-buffer])
                     :on-ended #(rf/dispatch [:player-ended])
                     :on-error #(rf/dispatch [:player-error])
-                    :youtube-config #js {:preload true}
-                    :soundcloud-config #js {:clientId (:sc-client-id bridge/settings)
-                                            :showArtwork true}}]
-          [react-player-adapter data])])]))
+                    :youtube-config {:preload true}
+                    :soundcloud-config {:client-id (:sc-client-id bridge/settings)
+                                        :show-artwork true}}]
+          [react-player/react-player data])])]))

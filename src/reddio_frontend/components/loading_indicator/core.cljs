@@ -1,4 +1,4 @@
-(ns reddio-frontend.components.loading-indicator
+(ns reddio-frontend.components.loading-indicator.core
   (:require))
 
 (defn loading-indicator []
