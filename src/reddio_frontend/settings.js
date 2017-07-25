@@ -6,7 +6,7 @@ const graphqlByEnv = {
 
 const config = {
   GRAPHQL_URI: graphqlByEnv[window.location.host] || graphqlByEnv.fallback,
-  SC_CLIENT_ID: "cUa40O3Jg3Emvp6Tv4U6ymYYO50NUGpJ",
+  SC_CLIENT_ID: "ubStmLVqKyHd2R4DLingkQjSSXlsgq6D",
 };
 
 export default config;
