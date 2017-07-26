@@ -11,11 +11,12 @@
 
 (defn listings-info [data]
   (let [info (:info (:info (:listing data)))
-        custom-info (:custom-info (:listing data))]
+        custom-info (:custom-info (:listing data))
+        count (reddit/sub-count (:subscribers info))]
     [:div.listings-info
      [:h3.listings-title (:pathname custom-info)]
      [:p.listings-description.lead (:description custom-info)]
-     [:p.listings-subcount (:subscribers info) " subscribers"]]))
+     [:p.listings-subcount count " subscribers"]]))
 
 (defn listings-sort []
   (let [route @(rf/subscribe [:route])
