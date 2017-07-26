@@ -56,3 +56,9 @@
   "Predicate for whether a post is playable"
   (let [domain (.getDomain (Uri.parse (:url post)))]
     (or (youtube? domain) (soundcloud? domain))))
+
+(defn sub-count [count]
+  "Get the formatted subscriber count string"
+  (if (> count 10000)
+    (str (.toFixed (/ count 1000) 1) "k")
+    (str count)))
