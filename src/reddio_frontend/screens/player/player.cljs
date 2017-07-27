@@ -3,6 +3,7 @@
             [re-frame.core :as rf]
             [reddio-frontend.bridge :as bridge]
             [reddio-frontend.components.react-player.core :as react-player]
+            [reddio-frontend.components.thumbnail.core :as thumbnail]
             [reddio-frontend.components.icons.core :as icons]))
 
 (def WIDTH 640)
@@ -10,31 +11,48 @@
 (def COMPACT_WIDTH 320)
 (def COMPACT_HEIGHT 180)
 
-(defn main-controls [current-post player-state]
+(defn player-left [current-post]
+  [:div.player-left
+   [thumbnail/thumbnail (:thumbnail current-post) {:width 65 :height 65}]])
+
+(defn player-right [current-post]
+  [:div.player-right])
+
+(defn player-main [current-post player-state]
   (let [initialized (not (nil? current-post))
         playing (not= player-state :paused)
         no-op identity]
-    [:div.controls
-     {:class (str (if initialized "initialized" "uninitialized"))}
-     [:div.control.control-shuffle
+    [:div.player-main
+     {:class (str (if initialized
+                    "initialized"
+                    "uninitialized"))}
+     [:div.control.control-repeat
       {:on-click no-op}
-      [icons/shuffle-switch]]
+      [icons/repeat-one]]
      [:div.control.control-prev
-      {:on-click (if initialized #(rf/dispatch [:player-command-prev]) no-op)}
+      {:on-click (if initialized
+                   #(rf/dispatch [:player-command-prev])
+                   no-op)}
       [icons/skip-previous]]
      (if (= player-state :paused)
        [:div.control.control-play
-        {:on-click (if initialized #(rf/dispatch [:player-command-play]) no-op)}
+        {:on-click (if initialized
+                     #(rf/dispatch [:player-command-play])
+                     no-op)}
         [icons/play-circle]]
        [:div.control.control-pause
-        {:on-click (if initialized #(rf/dispatch [:player-command-pause]) no-op)}
+        {:on-click (if initialized
+                     #(rf/dispatch [:player-command-pause])
+                     no-op)}
         [icons/pause-circle]])
      [:div.control.control-next
-      {:on-click (if initialized #(rf/dispatch [:player-command-next]) no-op)}
+      {:on-click (if initialized
+                   #(rf/dispatch [:player-command-next])
+                   no-op)}
       [icons/skip-next]]
-     [:div.control.control-repeat
+     [:div.control.control-shuffle
       {:on-click no-op}
-      [icons/repeat-one]]]))
+      [icons/shuffle-switch]]]))
 
 (defn main []
   (let [current-post @(rf/subscribe [:post])
@@ -45,7 +63,9 @@
         compact? (= route "/")]
     [:div
      [:div.player
-      [main-controls current-post player-state]]
+      [player-left current-post]
+      [player-main current-post player-state]
+      [player-right current-post]]
      (when initialized
        [:div.iframe
         (let [data {:url (:url current-post)

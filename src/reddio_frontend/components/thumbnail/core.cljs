@@ -23,16 +23,18 @@
              "#eeeeee"
              "#b0bec5"]))
 
+(def all-loading-errors (r/atom {}))
+
 (defn thumbnail [image options]
-  (let [loading-error (r/atom false)
+  (let [all-errors @all-loading-errors
+        error? (get all-errors image)
         placeholder-color (rand-color)
         {width :width height :height} options
         w (or width "100%")
         h (or height "100%")]
-    (fn []
-      [:div.thumbnail {:style {:width w
-                               :height h}}
-       (if (or (not image) @loading-error)
-         [:div.thumbnail-error {:style {:backgroundColor placeholder-color}}]
-         [:img {:src (string/replace-first image "http://" "https://")
-                :on-error #(reset! loading-error true)}])])))
+    [:div.thumbnail {:style {:width w :height h}}
+     (if (or error? (not image))
+       [:div.thumbnail-error {:style {:backgroundColor placeholder-color}}]
+       [:img {:src (string/replace-first image "http://" "https://")
+              :on-error #(reset! all-loading-errors
+                                 (assoc all-errors image true))}])]))
