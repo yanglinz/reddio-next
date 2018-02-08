@@ -1,8 +1,7 @@
 const graphqlByEnv = {
   "reddio.test": "https://reddio.test/api/graphql/",
-  "reddio.co":
+  fallback:
     "https://mgbatrhrd1.execute-api.us-east-1.amazonaws.com/dev/graphql/",
-  fallback: "https://reddio.test/api/graphql/",
 };
 
 const config = {
