@@ -1,9 +1,0 @@
-{
-  "verbose": false,
-  "watch": [
-    "build"
-  ],
-  "ignore": [
-    "*.test.js"
-  ]
-}
