@@ -1,0 +1,10 @@
+{
+  "name": "graphql-server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "hapi": "^17.8.1"
+  }
+}
