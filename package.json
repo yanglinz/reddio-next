@@ -3,16 +3,9 @@
   "version": "0.1.0",
   "description": "Reddit powered radio",
   "main": "server.js",
-  "engines": {
-    "node": ">=6.9.0"
-  },
   "scripts": {
     "frontend:build": "NODE_ENV=production webpack -p --progress",
     "frontend:watch": "webpack --watch",
-    "tsc:build": "tsc",
-    "tsc:watch": "tsc -w",
-    "server:watch": "nodemon server.js",
-    "start": "tsc && node server.js",
     "test": "jest"
   },
   "author": "Yanglin Zhao",
@@ -25,10 +18,7 @@
     "babel-preset-react": "6.22.0",
     "dataloader": "1.3.0",
     "dotenv": "4.0.0",
-    "graphql": "0.9.3",
-    "graphql-server-hapi": "0.7.2",
     "graphql-tag": "2.0.0",
-    "hapi": "16.1.0",
     "isomorphic-fetch": "2.2.1",
     "lodash": "4.17.4",
     "normalize.css": "6.0.0",
@@ -40,13 +30,6 @@
     "redux": "3.6.0"
   },
   "devDependencies": {
-    "@types/graphql": "0.9.0",
-    "@types/hapi": "16.0.3",
-    "@types/isomorphic-fetch": "0.0.33",
-    "@types/jest": "19.2.2",
-    "@types/lodash": "4.14.63",
-    "@types/node": "7.0.14",
-    "@types/promise": "7.1.30",
     "concurrently": "3.4.0",
     "css-loader": "0.28.0",
     "extract-text-webpack-plugin": "2.1.0",
@@ -62,7 +45,6 @@
     "prettier": "^1.4.2",
     "sass-loader": "6.0.3",
     "ts-jest": "19.0.14",
-    "typescript": "2.2.2",
     "url-loader": "0.5.7",
     "webpack": "2.2.1"
   },

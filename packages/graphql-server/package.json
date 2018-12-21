@@ -4,7 +4,25 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "tsc:build": "tsc",
+    "tsc:watch": "tsc -w",
+    "server:watch": "nodemon server.js",
+    "start": "tsc && node server.js"
+  },
   "dependencies": {
-    "hapi": "^17.8.1"
+    "graphql": "^14.0.2",
+    "graphql-server-hapi": "^1.4.0",
+    "hapi": "^17.8.1",
+    "lodash": "^4.17.11"
+  },
+  "devDependencies": {
+    "@types/graphql": "14.0.3",
+    "@types/hapi": "17.8.2",
+    "@types/isomorphic-fetch": "0.0.34",
+    "@types/jest": "23.3.10",
+    "@types/lodash": "4.14.119",
+    "@types/node": "10.12.18",
+    "typescript": "^3.2.2"
   }
 }
