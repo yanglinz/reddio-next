@@ -1,0 +1,18 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.11
+    working_directory: ~/packages/graphql-server
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - npm-deps-{{ checksum "yarn.lock" }}
+          - npm-deps-  # fallback
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: npm-deps-{{ checksum "yarn.lock" }}
+      - run: yarn run build
