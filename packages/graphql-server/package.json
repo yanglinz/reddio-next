@@ -8,7 +8,7 @@
     "format": "prettier --write './**/*.{js,ts}'",
     "build:tsc": "tsc",
     "dev:tsc": "tsc -w",
-    "dev:server": "node-dev --no-notify server.js",
+    "dev:server": "node-dev --no-notify index.js",
     "start": "run-p dev:*"
   },
   "dependencies": {
