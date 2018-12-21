@@ -3,7 +3,7 @@ import * as Querystring from "querystring";
 import * as Url from "url";
 
 import * as _ from "lodash";
-import * as fetch from "isomorphic-fetch";
+import axios from "axios";
 
 type ListingKind = "t1" | "t2" | "t3" | "t4" | "t5" | "t6";
 
@@ -106,7 +106,7 @@ export function getListing(pathname: string, qs: ListingParams = {}) {
     )
   );
 
-  return fetch(url).then(resp => resp.json());
+  return axios.get(url).then(r => r.data);
 }
 
 export function getSubredditInfo(pathname: string) {
@@ -115,7 +115,7 @@ export function getSubredditInfo(pathname: string) {
     "https://www.reddit.com",
     Path.join(rootPathname, `about.json`)
   );
-  return fetch(url).then(resp => resp.json());
+  return axios.get(url).then(r => r.data);
 }
 
 export function getMultiredditInfo(pathname: string) {
@@ -124,5 +124,5 @@ export function getMultiredditInfo(pathname: string) {
     "https://www.reddit.com/api/multi",
     Path.join(rootPathname, `.json`)
   );
-  return fetch(url).then(resp => resp.json());
+  return axios.get(url).then(r => r.data);
 }

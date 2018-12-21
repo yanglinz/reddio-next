@@ -6,7 +6,7 @@ import dataLoaders from "./graphql/data-loaders";
 
 function configureConnection(server) {
   server.connection({
-    port: process.env.PORT || 4000,
+    port: process.env.PORT || 4000
   });
 }
 
@@ -17,12 +17,12 @@ function registerGraphql(server) {
       path: "/graphql/",
       graphqlOptions: {
         schema: rootSchema,
-        context: { dataLoaders },
+        context: { dataLoaders }
       },
       route: {
-        cors: true,
-      },
-    },
+        cors: true
+      }
+    }
   });
 }
 
@@ -32,24 +32,20 @@ function registerGraphiql(server) {
     options: {
       path: "/graphiql/",
       graphiqlOptions: {
-        endpointURL: "/graphql/",
-      },
-    },
+        endpointURL: "/graphql/"
+      }
+    }
   });
 }
 
 function start() {
   const server = new Hapi.Server();
+
   configureConnection(server);
   registerGraphql(server);
   registerGraphiql(server);
 
-  server.start(err => {
-    if (err) {
-      throw err;
-    }
-    console.log(`Server running at: ${server.info.uri}`);
-  });
+  server.start().catch(err => console.error(err));
 }
 
 module.exports = { start };

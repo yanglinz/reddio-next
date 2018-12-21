@@ -24,7 +24,7 @@ function loadListing(keys: any[]) {
 const dataLoaders = {
   listing: new DataLoader(loadListing),
   subredditInfo: new DataLoader(loadSubredditInfo),
-  multiredditInfo: new DataLoader(loadMultiredditInfo),
+  multiredditInfo: new DataLoader(loadMultiredditInfo)
 };
 
 export default dataLoaders;
