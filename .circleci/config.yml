@@ -33,7 +33,7 @@ jobs:
       - attach_workspace:
           at: .
       - run:
-          command: yarn global add now@12.1.14
+          command: npm install -g now@12.1.14
       - run:
           working_directory: ~/project/packages/graphql-server
           command: now --token $ZEIT_TOKEN
