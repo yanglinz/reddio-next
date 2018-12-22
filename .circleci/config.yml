@@ -4,19 +4,23 @@ jobs:
   build_graphql_server:
     docker:
       - image: circleci/node:8.11
-    working_directory: ~/project/etc/
+    working_directory: ~/project
     steps:
       - checkout
-      - run: cd packages/graphql-server
       - restore_cache:
-          keys:
-          - npm-deps-{{ checksum "yarn.lock" }}
-      - run: yarn install
+          working_directory: ~/project/packages/graphql-server
+          key: npm-deps-{{ checksum "yarn.lock" }}
+      - run:
+          working_directory: ~/project/packages/graphql-server
+          command: yarn install
       - save_cache:
+          working_directory: ~/project/packages/graphql-server
           paths:
             - node_modules
           key: npm-deps-{{ checksum "yarn.lock" }}
-      - run: pwd && ls -la
+      - run: 
+          working_directory: ~/project/packages/graphql-server
+          command: pwd && ls
 
 workflows:
   version: 2
