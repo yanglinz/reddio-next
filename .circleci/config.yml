@@ -4,7 +4,7 @@ jobs:
   build_graphql_server:
     docker:
       - image: circleci/node:8.11
-    working_directory: $CIRCLE_WORKING_DIRECTORY/packages/graphql-server
+    working_directory: ./packages/graphql-server
     steps:
       - checkout
       - restore_cache:
