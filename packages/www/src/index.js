@@ -4,6 +4,9 @@ import * as serviceWorker from "./serviceWorker";
 
 import AppRoutes from "./app/routes";
 
+import * as reddio from "../../reddio-ui";
+import * as offline from "../../offline-ui";
+
 ReactDOM.render(<AppRoutes />, document.getElementById("root"));
 
 // If you want your app to work offline and load faster, you can change

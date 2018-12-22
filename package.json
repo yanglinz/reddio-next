@@ -1,0 +1,13 @@
+{
+  "name": "reddit-clients",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:yanglinz/reddit-clients.git",
+  "author": "Yanglin Zhao <yz1876@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/offline-ui",
+    "packages/reddio-ui"
+  ]
+}
