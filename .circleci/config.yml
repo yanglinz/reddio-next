@@ -1,8 +1,5 @@
 version: 2
 
-environment:
-  FOO: bar
-
 jobs:
   build_graphql_server:
     docker:
@@ -22,9 +19,29 @@ jobs:
       - run: 
           working_directory: ~/project/packages/graphql-server
           command: pwd && ls
+      - persist_to_workspace:
+          root: .
+          paths:
+            - packages/graphql-server/build
 
+  deploy:
+    docker:
+      - image: circleci/node:8.11
+    working_directory: ~/project
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          working_directory: ~/project/packages/graphql-server
+          command: pwd && ls
+
+    
 workflows:
   version: 2
   main:
     jobs:
       - build_graphql_server
+      - deploy:
+          requires:
+            - build_graphql_server
