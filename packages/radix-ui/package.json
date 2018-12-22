@@ -1,9 +1,6 @@
 {
-  "name": "@app/radix-ui",
-  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "lovefield": "^2.1.12",
     "normalize.css": "^8.0.1",
     "react": "^16.6.3",
     "react-art": "^16.6.3",
@@ -13,7 +10,6 @@
     "react-scripts": "2.1.1"
   },
   "scripts": {
-    "postinstall": "./scripts/link.sh",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
