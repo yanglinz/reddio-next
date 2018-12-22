@@ -18,7 +18,7 @@ jobs:
             - packages/graphql-server/node_modules
       - run: 
           working_directory: ~/project/packages/graphql-server
-          command: pwd && ls
+          command: yarn run build
       - persist_to_workspace:
           root: .
           paths:
