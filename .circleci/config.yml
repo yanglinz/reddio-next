@@ -15,4 +15,4 @@ jobs:
           paths:
             - node_modules
           key: npm-deps-{{ checksum "yarn.lock" }}
-      - run: yarn run build
+      - run: ls -la
