@@ -1,5 +1,8 @@
 version: 2
 
+environment:
+  FOO: bar
+
 jobs:
   build_graphql_server:
     docker:
@@ -8,16 +11,14 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          working_directory: ~/project/packages/graphql-server
-          key: npm-deps-{{ checksum "yarn.lock" }}
+          key: npm-deps-{{ checksum "packages/graphql-server/yarn.lock" }}
       - run:
           working_directory: ~/project/packages/graphql-server
           command: yarn install
       - save_cache:
-          working_directory: ~/project/packages/graphql-server
+          key: npm-deps-{{ checksum "packages/graphql-server/yarn.lock" }}
           paths:
-            - node_modules
-          key: npm-deps-{{ checksum "yarn.lock" }}
+            - packages/graphql-server/node_modules
       - run: 
           working_directory: ~/project/packages/graphql-server
           command: pwd && ls
