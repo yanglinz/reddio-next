@@ -16,7 +16,7 @@ jobs:
           key: npm-deps-{{ checksum "packages/graphql-server/yarn.lock" }}
           paths:
             - packages/graphql-server/node_modules
-      - run: 
+      - run:
           working_directory: ~/project/packages/graphql-server
           command: yarn run build
       - persist_to_workspace:

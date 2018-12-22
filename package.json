@@ -10,5 +10,11 @@
     "packages/graphql-server",
     "packages/radix-ui",
     "packages/reddio-ui"
-  ]
+  ],
+  "scripts": {
+    "format": "prettier --write '**/**/*.{js,ts,md,yaml,yml}'"
+  },
+  "devDependencies": {
+    "prettier": "^1.15.3"
+  }
 }

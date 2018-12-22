@@ -7,5 +7,5 @@ window.modules = {
   RootProvider,
   enhanceListingsQuery,
   enhanceHomeTopSubredditQuery,
-  settings,
+  settings
 };
