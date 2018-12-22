@@ -7,6 +7,7 @@ jobs:
     working_directory: ~/project/etc/
     steps:
       - checkout
+      - run: cd packages/graphql-server
       - restore_cache:
           keys:
           - npm-deps-{{ checksum "yarn.lock" }}
