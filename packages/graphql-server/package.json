@@ -9,6 +9,7 @@
     "build:tsc": "tsc",
     "dev:tsc": "tsc -w",
     "dev:server": "node-dev --no-notify index.js",
+    "build": "run-s build:*",
     "start": "run-p dev:*"
   },
   "dependencies": {

@@ -1,18 +1,51 @@
 version: 2
+
 jobs:
-  build:
+  build_graphql_server:
     docker:
       - image: circleci/node:8.11
-    working_directory: ~/packages/graphql-server
+    working_directory: ~/project
     steps:
       - checkout
       - restore_cache:
-          keys:
-          - npm-deps-{{ checksum "yarn.lock" }}
-          - npm-deps-  # fallback
-      - run: yarn install
+          key: npm-deps-{{ checksum "packages/graphql-server/yarn.lock" }}
+      - run:
+          working_directory: ~/project/packages/graphql-server
+          command: yarn install
       - save_cache:
+          key: npm-deps-{{ checksum "packages/graphql-server/yarn.lock" }}
           paths:
-            - node_modules
-          key: npm-deps-{{ checksum "yarn.lock" }}
-      - run: yarn run build
+            - packages/graphql-server/node_modules
+      - run: 
+          working_directory: ~/project/packages/graphql-server
+          command: yarn run build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - packages/graphql-server/build
+
+  deploy:
+    docker:
+      - image: circleci/node:8.11
+    working_directory: ~/project
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          command: yarn global add now@12.1.14
+      - run:
+          working_directory: ~/project/packages/graphql-server
+          command: $(yarn global bin)/now --token $ZEIT_TOKEN
+
+workflows:
+  version: 2
+  main:
+    jobs:
+      - build_graphql_server
+      - deploy:
+          requires:
+            - build_graphql_server
+          filters:
+            branches:
+              only: master
