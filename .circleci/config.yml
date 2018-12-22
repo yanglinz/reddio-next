@@ -15,7 +15,7 @@ jobs:
           paths:
             - node_modules
           key: npm-deps-{{ checksum "yarn.lock" }}
-      - run: ls -la
+      - run: pwd && ls -la
 
 workflows:
   version: 2
