@@ -46,3 +46,6 @@ workflows:
       - deploy:
           requires:
             - build_graphql_server
+          filters:
+            branches:
+              only: master
