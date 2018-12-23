@@ -1,7 +1,4 @@
 import { configure } from "@storybook/react";
-
-function loadStories() {
-  require("../src/stories");
-}
+import { loadStories } from "./storyLoader";
 
 configure(loadStories, module);
