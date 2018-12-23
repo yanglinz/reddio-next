@@ -1,28 +1,38 @@
 version: 2
 
 jobs:
-  build_graphql_server:
+  build:
     docker:
       - image: circleci/node:8.11
     working_directory: ~/project
     steps:
       - checkout
       - restore_cache:
-          key: npm-deps-{{ checksum "packages/graphql-server/yarn.lock" }}
+          key: npm-deps-{{ checksum "yarn.lock" }}
       - run:
-          working_directory: ~/project/packages/graphql-server
           command: yarn install
       - save_cache:
-          key: npm-deps-{{ checksum "packages/graphql-server/yarn.lock" }}
+          key: npm-deps-{{ checksum "yarn.lock" }}
           paths:
+            - node_modules
             - packages/graphql-server/node_modules
-      - run: 
+            - packages/radix-ui/node_modules
+            - packages/reddio-ui/node_modules
+      - run:
           working_directory: ~/project/packages/graphql-server
+          command: yarn run build
+      - run:
+          working_directory: ~/project/packages/radix-ui
+          command: yarn run build
+      - run:
+          working_directory: ~/project/packages/reddio-ui
           command: yarn run build
       - persist_to_workspace:
           root: .
           paths:
             - packages/graphql-server/build
+            - packages/radix-ui/build
+            - packages/reddio-ui/build
 
   deploy:
     docker:
@@ -37,15 +47,21 @@ jobs:
       - run:
           working_directory: ~/project/packages/graphql-server
           command: $(yarn global bin)/now --token $ZEIT_TOKEN
+      - run:
+          working_directory: ~/project/packages/radix-ui
+          command: pwd && ls -la
+      - run:
+          working_directory: ~/project/packages/reddio-ui
+          command: pwd && ls -la
 
 workflows:
   version: 2
   main:
     jobs:
-      - build_graphql_server
+      - build
       - deploy:
           requires:
-            - build_graphql_server
+            - build
           filters:
             branches:
               only: master
