@@ -9,6 +9,7 @@
     "outDir": "build",
     "module": "commonjs",
     "target": "es2016",
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
     "sourceMap": true
   },
