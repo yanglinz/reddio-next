@@ -21,10 +21,12 @@ function loadListing(keys: any[]) {
   return Promise.all(reqs);
 }
 
-const dataLoaders = {
-  listing: new DataLoader(loadListing),
-  subredditInfo: new DataLoader(loadSubredditInfo),
-  multiredditInfo: new DataLoader(loadMultiredditInfo)
-};
+function createDataLoaders() {
+  return {
+    listing: new DataLoader(loadListing),
+    subredditInfo: new DataLoader(loadSubredditInfo),
+    multiredditInfo: new DataLoader(loadMultiredditInfo)
+  };
+}
 
-export default dataLoaders;
+export default createDataLoaders;
