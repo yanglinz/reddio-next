@@ -1,51 +1,23 @@
-import { graphiqlHapi, graphqlHapi } from "graphql-server-hapi";
 import * as Hapi from "hapi";
+import { ApolloServer } from "apollo-server-hapi";
 
-import rootSchema from "./graphql/schema";
-import dataLoaders from "./graphql/data-loaders";
+import schema from "./graphql/schema";
+// import dataLoaders from "./graphql/data-loaders";
 
-function configureConnection(server) {
-  server.connection({
+async function start() {
+  const app = new Hapi.Server({
+    host: "localhost",
     port: process.env.PORT || 4000
   });
-}
+  const apollo = new ApolloServer({ schema });
 
-function registerGraphql(server) {
-  server.register({
-    register: graphqlHapi,
-    options: {
-      path: "/graphql/",
-      graphqlOptions: {
-        schema: rootSchema,
-        context: { dataLoaders }
-      },
-      route: {
-        cors: true
-      }
-    }
-  });
-}
-
-function registerGraphiql(server) {
-  server.register({
-    register: graphiqlHapi,
-    options: {
-      path: "/graphiql/",
-      graphiqlOptions: {
-        endpointURL: "/graphql/"
-      }
-    }
-  });
-}
-
-function start() {
-  const server = new Hapi.Server();
-
-  configureConnection(server);
-  registerGraphql(server);
-  registerGraphiql(server);
-
-  server.start().catch(err => console.error(err));
+  try {
+    await apollo.applyMiddleware({ app });
+    await apollo.installSubscriptionHandlers(app.listener);
+    await app.start();
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 module.exports = { start };
