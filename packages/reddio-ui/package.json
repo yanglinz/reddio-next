@@ -21,7 +21,9 @@
   ],
   "config": {
     "react-native-storybook-loader": {
-      "searchDir": ["./src"],
+      "searchDir": [
+        "./src"
+      ],
       "pattern": "**/*.story.js",
       "outputFile": "./.storybook/storyLoader.js"
     }
@@ -29,6 +31,7 @@
   "dependencies": {
     "apollo-boost": "^0.1.23",
     "graphql": "^14.0.2",
+    "lodash": "^4.17.11",
     "normalize.css": "^8.0.1",
     "react": "^16.6.3",
     "react-apollo": "^2.3.3",
