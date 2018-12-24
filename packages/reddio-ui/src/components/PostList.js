@@ -1,17 +1,25 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-export function Post() {
+export function Post(props) {
+  const {
+    author,
+    name,
+    numComments,
+    score,
+    thumbnail,
+    title,
+    url
+  } = props.post;
   return (
     <View>
-      <Text>This is a post</Text>
+      <Text>{title}</Text>
     </View>
   );
 }
 
-export function PostList() {
-  const posts = [];
-  return posts.map(p => <Post key={p.name} />);
+export function PostList(props) {
+  return props.posts.map(p => <Post key={p.name} post={p} />);
 }
 
 export default PostList;
