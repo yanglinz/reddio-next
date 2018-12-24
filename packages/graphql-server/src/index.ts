@@ -20,7 +20,7 @@ async function start() {
   });
 
   try {
-    await apollo.applyMiddleware({ app });
+    await apollo.applyMiddleware({ app, cors: true });
     await apollo.installSubscriptionHandlers(app.listener);
     await app.start();
   } catch (err) {
