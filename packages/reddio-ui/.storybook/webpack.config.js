@@ -3,7 +3,7 @@ module.exports = {
     rules: [
       {
         test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-        loader: "file-loader",
+        loader: "file-loader"
       }
     ]
   },

@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
     paddingBottom: 16
   },
   branding: {
-    display: "flex",
     flexDirection: "row",
     alignItems: "center"
   },
