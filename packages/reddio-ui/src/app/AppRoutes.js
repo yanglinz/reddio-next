@@ -2,6 +2,7 @@ import React from "react";
 import { ActivityIndicator, View } from "react-native";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
+import Header from "../components/Header";
 import DynamicImport from "../components/DynamicImport";
 
 function Loading() {
@@ -22,11 +23,21 @@ function LazyHome(props) {
   );
 }
 
+function Screen(props) {
+  return (
+    <View>
+      <Header>{props.children}</Header>
+    </View>
+  );
+}
+
 function AppRoutes() {
   return (
     <Router>
       <React.Fragment>
-        <Route path="/" exact component={LazyHome} />
+        <Screen>
+          <Route path="/" exact component={LazyHome} />
+        </Screen>
       </React.Fragment>
     </Router>
   );
