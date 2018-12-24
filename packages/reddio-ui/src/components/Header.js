@@ -8,9 +8,10 @@ function Header() {
     <View style={styles.header}>
       <TouchableOpacity style={styles.branding}>
         <View style={styles.siteIcon}>
-          <IconMusicalNote size={12} color="#FF6F00" />
+          <IconMusicalNote size={12} color="#388e3c" />
         </View>
         <Text style={styles.siteName}>Reddio</Text>
+        <Text style={styles.siteNameAccent}> Player</Text>
       </TouchableOpacity>
     </View>
   );
@@ -18,7 +19,7 @@ function Header() {
 
 const styles = StyleSheet.create({
   header: {
-    borderColor: "#ddd",
+    borderColor: "#DDD",
     borderBottomWidth: 1,
     paddingTop: 2,
     paddingBottom: 2
@@ -30,12 +31,15 @@ const styles = StyleSheet.create({
   },
   siteIcon: {
     marginTop: 2,
-    marginRight: 8
+    marginRight: 12
   },
   siteName: {
-    color: "#FF6F00",
-    fontSize: 20,
-    fontWeight: "bold"
+    color: "#388e3c",
+    fontSize: 24
+  },
+  siteNameAccent: {
+    color: "#999",
+    fontSize: 24
   }
 });
 
