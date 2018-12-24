@@ -20,15 +20,16 @@ const styles = StyleSheet.create({
   header: {
     borderColor: "#ddd",
     borderBottomWidth: 1,
-    paddingTop: 16,
-    paddingBottom: 16
+    paddingTop: 2,
+    paddingBottom: 2
   },
   branding: {
     flexDirection: "row",
-    alignItems: "center"
+    alignItems: "center",
+    padding: 16
   },
   siteIcon: {
-    marginTop: 4,
+    marginTop: 2,
     marginRight: 8
   },
   siteName: {
