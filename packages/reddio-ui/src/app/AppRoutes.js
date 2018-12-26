@@ -27,6 +27,7 @@ function Screen(props) {
   return (
     <View>
       <Header>{props.children}</Header>
+      {props.children}
     </View>
   );
 }
