@@ -1,25 +1,38 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 export function Post(props) {
-  const {
-    author,
-    name,
-    numComments,
-    score,
-    thumbnail,
-    title,
-    url
-  } = props.post;
+  const { author, numComments, score, thumbnail, title, url } = props.post;
   return (
-    <View>
-      <Text>{title}</Text>
-    </View>
+    <TouchableOpacity
+      style={styles.post}
+      onPress={() => props.onPress(props.post)}
+    >
+      <Image source={thumbnail} />
+      <View>
+        <Text href={url}>{title}</Text>
+        <Text style={styles.postMeta}>
+          {score} points | Posted by {author} | {numComments} comments
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
 }
 
 export function PostList(props) {
-  return props.posts.map(p => <Post key={p.name} post={p} />);
+  const onPress = () => console.log("onPress");
+  return props.posts.map(p => <Post key={p.name} post={p} onPress={onPress} />);
 }
+
+const styles = StyleSheet.create({
+  post: {
+    borderColor: "#DDD",
+    borderBottomWidth: 1,
+    padding: 16
+  },
+  postMeta: {
+    color: "#999"
+  }
+});
 
 export default PostList;
