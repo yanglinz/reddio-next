@@ -2,6 +2,7 @@ import React from "react";
 import { View } from "react-native";
 
 import ListingProvider from "../app/ListingProvider";
+import PostListSort from "../components/PostListSort";
 import PostList from "../components/PostList";
 
 class Home extends React.Component {
@@ -11,7 +12,12 @@ class Home extends React.Component {
         <ListingProvider pathname="/">
           {({ data }) => {
             const posts = data.listing.posts;
-            return <PostList posts={posts} />;
+            return (
+              <View>
+                <PostListSort />
+                <PostList posts={posts} />
+              </View>
+            );
           }}
         </ListingProvider>
       </View>
