@@ -23,6 +23,16 @@ function LazyHome(props) {
   );
 }
 
+function LazyListingResolver(props) {
+  return (
+    <DynamicImport load={() => import("../screens/ListingResolver")}>
+      {Component =>
+        Component === null ? <Loading /> : <Component {...props} />
+      }
+    </DynamicImport>
+  );
+}
+
 function Screen(props) {
   return (
     <View>
@@ -37,7 +47,8 @@ function AppRoutes() {
     <Router>
       <React.Fragment>
         <Screen>
-          <Route path="/" exact component={LazyHome} />
+          <Route path="/" component={LazyHome} />
+          <Route component={LazyListingResolver} />
         </Screen>
       </React.Fragment>
     </Router>
