@@ -1,6 +1,6 @@
 import React from "react";
 import { ActivityIndicator, View } from "react-native";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "../components/Header";
 import DynamicImport from "../components/DynamicImport";
@@ -47,8 +47,10 @@ function AppRoutes() {
     <Router>
       <React.Fragment>
         <Screen>
-          <Route path="/" component={LazyHome} />
-          <Route component={LazyListingResolver} />
+          <Switch>
+            <Route path="/" exact component={LazyHome} />
+            <Route component={LazyListingResolver} />
+          </Switch>
         </Screen>
       </React.Fragment>
     </Router>
