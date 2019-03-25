@@ -8,9 +8,12 @@ import PostList from "../components/PostList";
 
 class ListingResolver extends React.Component {
   render() {
+    const { location } = this.props;
+    const pathname = location.pathname + location.search;
+
     return (
       <View>
-        <ListingProvider pathname="/">
+        <ListingProvider pathname={pathname}>
           {({ data }) => {
             const posts = data.listing.posts;
             return (
