@@ -29,26 +29,25 @@
     }
   },
   "dependencies": {
-    "apollo-boost": "^0.1.23",
+    "apollo-boost": "^0.3.1",
     "graphql": "^14.0.2",
     "lodash": "^4.17.11",
     "normalize.css": "^8.0.1",
     "open-iconic": "^1.1.1",
-    "react": "^16.6.3",
-    "react-apollo": "^2.3.3",
-    "react-art": "^16.6.3",
-    "react-dom": "^16.6.3",
-    "react-native-web": "^0.9.9",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "2.1.1"
+    "react": "^16.8.5",
+    "react-apollo": "^2.5.2",
+    "react-art": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-native-web": "^0.11.2",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8"
   },
   "devDependencies": {
-    "@babel/core": "^7.2.2",
     "@storybook/addon-actions": "^4.1.3",
     "@storybook/addon-links": "^4.1.3",
     "@storybook/addons": "^4.1.3",
     "@storybook/react": "^4.1.3",
-    "babel-loader": "^8.0.4",
+    "prettier": "^1.16.4",
     "react-native-storybook-loader": "^1.8.0"
   }
 }
