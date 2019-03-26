@@ -25,7 +25,7 @@ export function getSortType(location) {
   return sortTypes.hot;
 }
 
-function getSortRange(location) {
+export function getSortRange(location) {
   // TODO
 }
 
