@@ -68,15 +68,29 @@ export function resolveSortTypePath(location, newSort) {
   return { pathname: newParts.join("/"), search };
 }
 
-export function PostListSort() {
+export function resolveSortRangePath(location, newRange) {
+  const { pathname, search } = location;
+  return { pathname, search };
+}
+
+export function PostListSort(props) {
+  const { location } = props;
+
   return (
     <div className="PostListSort">
-      <Picker selectedValue={"key0"} onValueChange={v => console.log(v)}>
-        <Picker.Item label="hello" value="key0" />
-        <Picker.Item label="world" value="key1" />
+      <Picker
+        selectedValue={getSortType(location)}
+        onValueChange={sortType => {
+          const nextPath = resolveSortTypePath(location, sortType);
+          props.history.push(nextPath);
+        }}
+      >
+        <Picker.Item label="Hot" value={sortTypes.hot} />
+        <Picker.Item label="New" value={sortTypes.new} />
+        <Picker.Item label="Top" value={sortTypes.top} />
       </Picker>
     </div>
   );
 }
 
-export default PostListSort;
+export default withRouter(PostListSort);
