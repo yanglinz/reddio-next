@@ -5,15 +5,29 @@ import first from "lodash/first";
 import last from "lodash/last";
 import dropRight from "lodash/dropRight";
 
-function getSortType(location) {
-  // TODO
+const sortTypes = { hot: "hot", top: "top", new: "new" };
+
+export function getSortType(location) {
+  const { pathname } = location;
+  if (pathname === "/") {
+    return sortTypes.hot;
+  }
+
+  const pathParts = pathname.split("/");
+  const pathNamedParts = pathParts.filter(Boolean);
+  const lastPart = last(pathNamedParts);
+
+  if (sortTypes[lastPart.toLowerCase()]) {
+    return sortTypes[lastPart.toLowerCase()];
+  }
+
+  // Return the default sortType of hot if we don't know
+  return sortTypes.hot;
 }
 
 function getSortRange(location) {
   // TODO
 }
-
-const sortTypes = ["hot", "top", "new"];
 
 export function resolveSortTypePath(location, newSort) {
   const { pathname, search } = location;
@@ -43,7 +57,7 @@ export function resolveSortTypePath(location, newSort) {
     return { pathname, search };
   }
 
-  const hasSortType = sortTypes.includes(last(pathNamedParts));
+  const hasSortType = sortTypes[last(pathNamedParts)];
   let newParts;
   if (hasSortType) {
     newParts = dropRight(pathParts).concat(newSort);
