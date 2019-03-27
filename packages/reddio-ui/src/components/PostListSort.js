@@ -1,5 +1,5 @@
 import React from "react";
-import { Picker } from "react-native";
+import { View, Picker, StyleSheet } from "react-native";
 import { withRouter } from "react-router-dom";
 import first from "lodash/first";
 import last from "lodash/last";
@@ -77,7 +77,7 @@ export function PostListSort(props) {
   const { location } = props;
 
   return (
-    <div className="PostListSort">
+    <View style={styles.postListSort}>
       <Picker
         selectedValue={getSortType(location)}
         onValueChange={sortType => {
@@ -89,8 +89,14 @@ export function PostListSort(props) {
         <Picker.Item label="New" value={sortTypes.new} />
         <Picker.Item label="Top" value={sortTypes.top} />
       </Picker>
-    </div>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  postListSort: {
+    padding: 16
+  }
+});
 
 export default withRouter(PostListSort);
