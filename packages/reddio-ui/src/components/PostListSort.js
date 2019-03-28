@@ -80,7 +80,10 @@ export function resolveSortTypePath(location, newSort) {
 
 export function resolveSortRangePath(location, newRange) {
   const { pathname, search } = location;
-  return { pathname, search };
+  const params = Qs.parse(search.replace("?", ""));
+  params.t = newRange;
+  const newSearch = `?${Qs.stringify(params)}`;
+  return { pathname, search: newSearch };
 }
 
 export function PostListSort(props) {
@@ -105,7 +108,8 @@ export function PostListSort(props) {
         <Picker
           selectedValue={getSortRange(location)}
           onValueChange={sortRange => {
-            console.log(sortRange);
+            const nextPath = resolveSortRangePath(location, sortRange);
+            props.history.push(nextPath);
           }}
         >
           <Picker.Item label="Day" value={sortRanges.day} />

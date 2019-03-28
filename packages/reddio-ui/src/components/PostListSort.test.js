@@ -1,4 +1,9 @@
-import { getSortType, getSortRange, resolveSortTypePath } from "./PostListSort";
+import {
+  getSortType,
+  getSortRange,
+  resolveSortTypePath,
+  resolveSortRangePath
+} from "./PostListSort";
 
 describe("getSortType", () => {
   it("should handle root path", () => {
@@ -94,4 +99,18 @@ describe("resolveSortTypePath", () => {
 
   // TODO: trailing slashes
   // TODO: multi-reddits
+});
+
+describe("resolveSortRangePath", () => {
+  it("should set new sortRange", () => {
+    const location = { pathname: "/", search: "" };
+    const path = resolveSortRangePath(location, "week");
+    expect(path).toEqual({ pathname: "/", search: "?t=week" });
+  });
+
+  it("should override existing sortRange", () => {
+    const location = { pathname: "/", search: "?t=day" };
+    const path = resolveSortRangePath(location, "week");
+    expect(path).toEqual({ pathname: "/", search: "?t=week" });
+  });
 });
