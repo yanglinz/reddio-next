@@ -1,12 +1,19 @@
 import React from "react";
 import { View, Picker, StyleSheet } from "react-native";
 import { withRouter } from "react-router-dom";
+import * as Qs from "qs";
 import first from "lodash/first";
 import last from "lodash/last";
 import dropRight from "lodash/dropRight";
 
 const sortTypes = { hot: "hot", top: "top", new: "new" };
-const sortRanges = { day: "day", week: "week", month: "month" };
+const sortRanges = {
+  hour: "hour",
+  day: "day",
+  week: "week",
+  month: "month",
+  year: "year"
+};
 
 export function getSortType(location) {
   const { pathname } = location;
@@ -27,7 +34,9 @@ export function getSortType(location) {
 }
 
 export function getSortRange(location) {
-  // TODO
+  const { search } = location;
+  const params = Qs.parse(search.replace("?", ""));
+  return params.t || sortRanges.day;
 }
 
 export function resolveSortTypePath(location, newSort) {
@@ -94,7 +103,7 @@ export function PostListSort(props) {
 
       {currentSortType === sortTypes.top ? (
         <Picker
-          selectedValue={sortRanges.day}
+          selectedValue={getSortRange(location)}
           onValueChange={sortRange => {
             console.log(sortRange);
           }}
