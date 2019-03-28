@@ -6,13 +6,21 @@ import first from "lodash/first";
 import last from "lodash/last";
 import dropRight from "lodash/dropRight";
 
-const sortTypes = { hot: "hot", top: "top", new: "new" };
+const sortTypes = {
+  hot: "hot",
+  top: "top",
+  new: "new",
+  controversial: "controversial",
+  rising: "rising"
+};
+
 const sortRanges = {
   hour: "hour",
   day: "day",
   week: "week",
   month: "month",
-  year: "year"
+  year: "year",
+  all: "all"
 };
 
 export function getSortType(location) {
@@ -102,6 +110,8 @@ export function PostListSort(props) {
         <Picker.Item label="Hot" value={sortTypes.hot} />
         <Picker.Item label="New" value={sortTypes.new} />
         <Picker.Item label="Top" value={sortTypes.top} />
+        <Picker.Item label="Controversial" value={sortTypes.controversial} />
+        <Picker.Item label="Rising" value={sortTypes.rising} />
       </Picker>
 
       {currentSortType === sortTypes.top ? (
@@ -112,9 +122,12 @@ export function PostListSort(props) {
             props.history.push(nextPath);
           }}
         >
+          <Picker.Item label="Hour" value={sortRanges.hour} />
           <Picker.Item label="Day" value={sortRanges.day} />
           <Picker.Item label="Week" value={sortRanges.week} />
           <Picker.Item label="Month" value={sortRanges.month} />
+          <Picker.Item label="Year" value={sortRanges.year} />
+          <Picker.Item label="All" value={sortRanges.all} />
         </Picker>
       ) : null}
     </View>
