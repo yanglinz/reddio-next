@@ -3,6 +3,7 @@ import { View, Text, ActivityIndicator } from "react-native";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import last from "lodash/last";
+import uniqBy from "lodash/uniqBy";
 
 const LISTING_QUERY = gql`
   query ListingQuery($pathname: String!, $after: String) {
@@ -38,7 +39,9 @@ function ListingError() {
 
 function combineQueries(data, moreData) {
   const combined = { ...data };
-  combined.listing.posts = data.listing.posts.concat(moreData.listing.posts);
+  let posts = data.listing.posts.concat(moreData.listing.posts);
+  posts = uniqBy(posts, p => p.name);
+  combined.listing.posts = posts;
   return combined;
 }
 
