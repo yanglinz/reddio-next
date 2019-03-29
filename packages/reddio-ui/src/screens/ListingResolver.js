@@ -14,12 +14,12 @@ class ListingResolver extends React.Component {
     return (
       <View>
         <ListingProvider pathname={pathname}>
-          {({ data }) => {
+          {({ data, loadNextPage }) => {
             const posts = data.listing.posts;
             return (
               <View>
                 <PostListSort />
-                <PostList posts={posts} />
+                <PostList posts={posts} loadNextPage={loadNextPage} />
               </View>
             );
           }}

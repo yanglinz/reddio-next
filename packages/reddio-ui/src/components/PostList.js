@@ -1,5 +1,13 @@
 import React from "react";
-import { View, Image, Text, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  FlatList,
+  Button,
+  Image,
+  Text,
+  TouchableOpacity,
+  StyleSheet
+} from "react-native";
 
 export function Post(props) {
   const { author, numComments, score, thumbnail, title, url } = props.post;
@@ -19,9 +27,22 @@ export function Post(props) {
   );
 }
 
+const flatListKeyExtractor = p => p.name;
+
 export function PostList(props) {
+  const { loadNextPage } = props;
   const onPress = () => console.log("onPress");
-  return props.posts.map(p => <Post key={p.name} post={p} onPress={onPress} />);
+  return (
+    <View>
+      <FlatList
+        data={props.posts}
+        renderItem={({ item }) => <Post post={item} onPress={onPress} />}
+        keyExtractor={flatListKeyExtractor}
+      />
+
+      <Button onPress={loadNextPage} title="Load More" />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
