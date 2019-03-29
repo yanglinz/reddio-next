@@ -16,25 +16,28 @@ jobs:
           paths:
             - node_modules
             - packages/graphql-server/node_modules
-            - packages/radix-ui/node_modules
             - packages/reddio-ui/node_modules
+
+      # Server
       - run:
           working_directory: ~/project/packages/graphql-server
           command: yarn run build
-      - run:
-          working_directory: ~/project/packages/radix-ui
-          command: yarn run build
+
+      # Reddio
       - run:
           working_directory: ~/project/packages/reddio-ui
           command: yarn run build
+      - run:
+          working_directory: ~/project/packages/reddio-ui
+          command: yarn test
       - run:
           working_directory: ~/project/packages/reddio-ui
           command: yarn run build-storybook
+
       - persist_to_workspace:
           root: .
           paths:
             - packages/graphql-server/build
-            - packages/radix-ui/build
             - packages/reddio-ui/build
 
   deploy:
@@ -51,11 +54,8 @@ jobs:
           working_directory: ~/project/packages/graphql-server
           command: $(yarn global bin)/now --token $ZEIT_TOKEN
       - run:
-          working_directory: ~/project/packages/radix-ui
-          command: pwd && ls -la
-      - run:
           working_directory: ~/project/packages/reddio-ui
-          command: pwd && ls -la
+          command: echo "Deploy!"
 
 workflows:
   version: 2
