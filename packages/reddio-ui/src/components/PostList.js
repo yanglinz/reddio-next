@@ -2,6 +2,7 @@ import React from "react";
 import {
   View,
   FlatList,
+  Button,
   Image,
   Text,
   TouchableOpacity,
@@ -29,6 +30,7 @@ export function Post(props) {
 const flatListKeyExtractor = p => p.name;
 
 export function PostList(props) {
+  const { loadNextPage } = props;
   const onPress = () => console.log("onPress");
   return (
     <View>
@@ -37,6 +39,8 @@ export function PostList(props) {
         renderItem={({ item }) => <Post post={item} onPress={onPress} />}
         keyExtractor={flatListKeyExtractor}
       />
+
+      <Button onPress={loadNextPage} title="Load More" />
     </View>
   );
 }

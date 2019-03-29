@@ -2,11 +2,12 @@ import React from "react";
 import { View, Text, ActivityIndicator } from "react-native";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import last from "lodash/last";
 
 const LISTING_QUERY = gql`
-  query ListingQuery($pathname: String!) {
+  query ListingQuery($pathname: String!, $after: String) {
     listing(pathname: $pathname) {
-      posts {
+      posts(after: $after) {
         author
         name
         numComments
@@ -35,13 +36,19 @@ function ListingError() {
   );
 }
 
+function combineQueries(data, moreData) {
+  const combined = { ...data };
+  combined.listing.posts = data.listing.posts.concat(moreData.listing.posts);
+  return combined;
+}
+
 class ListingProvider extends React.Component {
   render() {
     const { pathname } = this.props;
     const variables = { pathname };
     return (
       <Query query={LISTING_QUERY} variables={variables}>
-        {({ loading, error, data }) => {
+        {({ loading, error, fetchMore, data }) => {
           if (loading) {
             return <ListingLoading />;
           }
@@ -50,7 +57,20 @@ class ListingProvider extends React.Component {
             return <ListingError />;
           }
 
-          return this.props.children({ data });
+          return this.props.children({
+            data,
+            loadNextPage: () => {
+              const posts = data.listing.posts || [];
+              fetchMore({
+                variables: {
+                  ...variables,
+                  after: (last(posts) || {}).name
+                },
+                updateQuery: (prev, { fetchMoreResult }) =>
+                  combineQueries(prev, fetchMoreResult)
+              });
+            }
+          });
         }}
       </Query>
     );
