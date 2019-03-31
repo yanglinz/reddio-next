@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { connect } from "react-redux";
 
 import Header from "../components/Header";
 import DynamicImport from "../components/DynamicImport";
+import * as appStore from "../app/AppStore";
 
 function Loading() {
   return (
@@ -42,7 +44,13 @@ function Screen(props) {
   );
 }
 
-function AppRoutes() {
+function AppRoutes(props) {
+  const { dispatch } = props;
+
+  useEffect(() => {
+    dispatch(appStore.initialize());
+  });
+
   return (
     <Router>
       <React.Fragment>
@@ -57,4 +65,4 @@ function AppRoutes() {
   );
 }
 
-export default AppRoutes;
+export default connect()(AppRoutes);
