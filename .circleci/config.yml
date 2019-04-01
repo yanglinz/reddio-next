@@ -18,6 +18,10 @@ jobs:
             - packages/graphql-server/node_modules
             - packages/reddio-ui/node_modules
 
+      # Root
+      - run:
+          command: yarn run check-format
+
       # Server
       - run:
           working_directory: ~/project/packages/graphql-server
