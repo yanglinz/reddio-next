@@ -23,6 +23,12 @@ export function playbackReducer(state = initialState, action) {
         draftState.posts = posts;
       });
     }
+    case "PLAYBACK/PLAY_POST": {
+      const { postId } = action.payload;
+      return immer(state, draftState => {
+        draftState.current = postId;
+      });
+    }
     default: {
       return state;
     }
