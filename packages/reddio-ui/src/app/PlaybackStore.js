@@ -5,6 +5,11 @@ export function setPosts(posts) {
   return { type: "PLAYBACK/SET_POSTS", payload };
 }
 
+export function playPost(postId) {
+  const payload = { postId };
+  return { type: "PLAYBACK/PLAY_POST", payload };
+}
+
 export const initialState = {
   current: undefined,
   posts: []

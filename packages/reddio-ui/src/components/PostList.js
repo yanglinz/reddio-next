@@ -8,6 +8,9 @@ import {
   TouchableOpacity,
   StyleSheet
 } from "react-native";
+import { connect } from "react-redux";
+
+import * as playbackStore from "../app/PlaybackStore";
 
 export function Post(props) {
   const { author, numComments, score, thumbnail, title, url } = props.post;
@@ -30,13 +33,18 @@ export function Post(props) {
 const flatListKeyExtractor = p => p.name;
 
 export function PostList(props) {
-  const { loadNextPage } = props;
-  const onPress = () => console.log("onPress");
+  const { loadNextPage, dispatch } = props;
+
   return (
     <View>
       <FlatList
         data={props.posts}
-        renderItem={({ item }) => <Post post={item} onPress={onPress} />}
+        renderItem={({ item }) => (
+          <Post
+            post={item}
+            onPress={() => dispatch(playbackStore.playPost(item.name))}
+          />
+        )}
         keyExtractor={flatListKeyExtractor}
       />
 
@@ -56,4 +64,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default PostList;
+export default connect()(PostList);
