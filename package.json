@@ -12,6 +12,7 @@
   ],
   "scripts": {
     "format": "prettier --write '**/**/*.{js,ts,css,html,md,yaml,yml}'",
+    "check-format": "prettier --check '**/**/*.{js,ts,css,html,md,yaml,yml}'",
     "start:graphql": "cd packages/graphql-server && yarn start",
     "start:reddio": "cd packages/reddio-ui && yarn start",
     "start": "run-p start:*"
