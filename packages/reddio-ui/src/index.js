@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
 
 import AppRoutes from "./app/AppRoutes";
+import AppPlayer from "./app/AppPlayer";
 import store from "./store";
 
 const client = new ApolloClient({ uri: "http://localhost:4000/graphql" });
@@ -13,6 +14,7 @@ function Application() {
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
+        <AppPlayer />
         <AppRoutes />
       </ApolloProvider>
     </Provider>

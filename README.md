@@ -1,3 +1,3 @@
-# Reddio Next
+# Reddio Clients
 
-:musical_note: Reddit powered music client.
+TBD.
