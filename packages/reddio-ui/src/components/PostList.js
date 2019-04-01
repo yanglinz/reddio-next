@@ -55,7 +55,7 @@ export function PostList(props) {
 
 const styles = StyleSheet.create({
   post: {
-    borderColor: "#DDD",
+    borderColor: "#ddd",
     borderBottomWidth: 1,
     padding: 16
   },
