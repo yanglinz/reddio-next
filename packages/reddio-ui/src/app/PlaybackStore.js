@@ -1,3 +1,5 @@
+import immer from "immer";
+
 export function setPosts(posts) {
   const payload = { posts };
   return { type: "PLAYBACK/SET_POSTS", payload };
@@ -9,10 +11,15 @@ export const initialState = {
 };
 
 export function playbackReducer(state = initialState, action) {
-  if (action) {
-    // TODO: implement real reducer
-    return state;
+  switch (action.type) {
+    case "PLAYBACK/SET_POSTS": {
+      const { posts } = action.payload;
+      return immer(state, draftState => {
+        draftState.posts = posts;
+      });
+    }
+    default: {
+      return state;
+    }
   }
-
-  return state;
 }

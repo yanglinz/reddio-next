@@ -31,6 +31,7 @@
   "dependencies": {
     "apollo-boost": "^0.3.1",
     "graphql": "^14.0.2",
+    "immer": "^2.1.4",
     "lodash": "^4.17.11",
     "normalize.css": "^8.0.1",
     "open-iconic": "^1.1.1",
