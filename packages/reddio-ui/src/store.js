@@ -8,7 +8,7 @@ const rootReducer = combineReducers({
 });
 
 export function createReduxStore() {
-  const logger = createLogger();
+  const logger = createLogger({ collapsed: true });
   const middleware = applyMiddleware(logger);
   return createStore(rootReducer, middleware);
 }
