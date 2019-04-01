@@ -1,12 +1,20 @@
 import React from "react";
 import ReactPlayer from "react-player";
+import { connect } from "react-redux";
 
 import Player from "../components/Player";
+import * as playbackStore from "./PlaybackStore";
 
-function AppPlayer() {
-  const isActive = true; // TODO: use playback state to determine
+function mapStateToProps(state) {
+  return {
+    activePost: playbackStore.selectActivePost(state)
+  };
+}
 
-  if (!isActive) {
+function AppPlayer(props) {
+  const { activePost } = props;
+
+  if (!activePost) {
     return null;
   }
 
@@ -23,8 +31,9 @@ function AppPlayer() {
         <ReactPlayer
           width={350}
           height={165}
-          url="https://www.youtube.com/watch?v=ysz5S6PUM-U"
-          playing
+          url={undefined}
+          controls
+          playing={false}
         />
       </div>
 
@@ -43,4 +52,4 @@ function AppPlayer() {
   );
 }
 
-export default AppPlayer;
+export default connect(mapStateToProps)(AppPlayer);

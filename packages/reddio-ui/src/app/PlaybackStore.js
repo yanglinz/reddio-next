@@ -1,4 +1,5 @@
 import immer from "immer";
+import find from "lodash/find";
 
 export function setPosts(posts) {
   const payload = { posts };
@@ -8,6 +9,16 @@ export function setPosts(posts) {
 export function playPost(postId) {
   const payload = { postId };
   return { type: "PLAYBACK/PLAY_POST", payload };
+}
+
+export function selectActivePost(state) {
+  const playbackState = state.playback;
+  const { current, posts } = playbackState;
+  if (!current) {
+    return null;
+  }
+
+  return find(posts, p => p.name === current);
 }
 
 export const initialState = {
