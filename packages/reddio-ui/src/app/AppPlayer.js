@@ -1,20 +1,55 @@
 import React from "react";
+import ReactPlayer from "react-player";
+import { connect } from "react-redux";
+
 import Player from "../components/Player";
+import * as playbackStore from "./PlaybackStore";
 
-import "./AppPlayer.css";
+function mapStateToProps(state) {
+  return {
+    activePost: playbackStore.selectActivePost(state)
+  };
+}
 
-function AppPlayer() {
-  const isActive = true; // TODO: use playback state to determine
+function AppPlayer(props) {
+  const { activePost } = props;
 
-  if (!isActive) {
+  if (!activePost) {
     return null;
   }
 
   return (
     <div className="AppPlayer">
-      <Player />
+      <div
+        style={{
+          zIndex: 2,
+          position: "fixed",
+          bottom: 90,
+          right: 20
+        }}
+      >
+        <ReactPlayer
+          width={350}
+          height={165}
+          url={activePost.url}
+          controls
+          playing={false}
+        />
+      </div>
+
+      <div
+        style={{
+          zIndex: 2,
+          position: "fixed",
+          bottom: 0,
+          width: "100%",
+          background: "#fff"
+        }}
+      >
+        <Player />
+      </div>
     </div>
   );
 }
 
-export default AppPlayer;
+export default connect(mapStateToProps)(AppPlayer);
