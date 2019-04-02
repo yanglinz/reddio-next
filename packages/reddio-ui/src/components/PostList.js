@@ -10,23 +10,38 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
+import * as Parser from "../app/Parser";
 import * as playbackStore from "../app/PlaybackStore";
 
 export function Post(props) {
   const { author, numComments, score, thumbnail, title, url } = props.post;
-  return (
-    <TouchableOpacity
-      style={styles.post}
-      onPress={() => props.onPress(props.post)}
-    >
+  const isPlayable = Parser.isPostPlayable(url);
+
+  const postBody = (
+    <React.Fragment>
       <Image source={thumbnail} />
       <View>
-        <Text href={url}>{title}</Text>
+        <Text
+          href={url}
+          style={isPlayable ? undefined : styles.postTitleUnplayable}
+        >
+          {title}
+        </Text>
         <Text style={styles.postMeta}>
           {score} points | Posted by {author} | {numComments} comments
         </Text>
       </View>
+    </React.Fragment>
+  );
+  return isPlayable ? (
+    <TouchableOpacity
+      style={styles.post}
+      onPress={() => props.onPress(props.post)}
+    >
+      {postBody}
     </TouchableOpacity>
+  ) : (
+    <View style={styles.post}>{postBody}</View>
   );
 }
 
@@ -58,6 +73,9 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     borderBottomWidth: 1,
     padding: 16
+  },
+  postTitleUnplayable: {
+    color: "#aaa"
   },
   postMeta: {
     color: "#999"
