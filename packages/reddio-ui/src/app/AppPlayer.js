@@ -31,7 +31,7 @@ function AppPlayer(props) {
         <ReactPlayer
           width={350}
           height={165}
-          url={undefined}
+          url={activePost.url}
           controls
           playing={false}
         />
