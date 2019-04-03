@@ -10,12 +10,12 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
-import * as Parser from "../app/Parser";
-import * as playbackStore from "../app/PlaybackStore";
+import * as reddit from "../lib/reddit";
+import * as playerStore from "../player/store";
 
 export function Post(props) {
   const { author, numComments, score, thumbnail, title, url } = props.post;
-  const isPlayable = Parser.isPostPlayable(url);
+  const isPlayable = reddit.isPostPlayable(url);
 
   const postBody = (
     <React.Fragment>
@@ -57,7 +57,7 @@ export function PostList(props) {
         renderItem={({ item }) => (
           <Post
             post={item}
-            onPress={() => dispatch(playbackStore.playPost(item.name))}
+            onPress={() => dispatch(playerStore.playPost(item.name))}
           />
         )}
         keyExtractor={flatListKeyExtractor}

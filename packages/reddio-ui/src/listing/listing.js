@@ -3,17 +3,17 @@ import { connect } from "react-redux";
 import { View } from "react-native";
 import { withRouter } from "react-router";
 
-import ListingProvider from "../app/ListingProvider";
-import PostListSort from "../components/PostListSort";
-import PostList from "../components/PostList";
-import * as playbackStore from "../app/PlaybackStore";
+import ListingProvider from "./listing-provider";
+import PostListSort from "./post-sort";
+import PostList from "./post-list";
+import * as playerStore from "../player/store";
 
 function ListingView(props) {
   const { data, loadNextPage, dispatch } = props;
   const posts = data.listing.posts;
 
   useEffect(() => {
-    dispatch(playbackStore.setPosts(posts));
+    dispatch(playerStore.setPosts(posts));
   }, [posts]);
 
   return (

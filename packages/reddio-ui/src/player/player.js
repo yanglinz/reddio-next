@@ -2,12 +2,12 @@ import React from "react";
 import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 
-import Player from "../components/Player";
-import * as playbackStore from "./PlaybackStore";
+import PlayerControls from "./controls";
+import * as playerStore from "./store";
 
 function mapStateToProps(state) {
   return {
-    activePost: playbackStore.selectActivePost(state)
+    activePost: playerStore.selectActivePost(state)
   };
 }
 
@@ -46,7 +46,7 @@ function AppPlayer(props) {
           background: "#fff"
         }}
       >
-        <Player />
+        <PlayerControls />
       </div>
     </div>
   );
