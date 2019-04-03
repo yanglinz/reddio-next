@@ -11,7 +11,7 @@ import {
 import { connect } from "react-redux";
 
 import * as reddit from "../lib/reddit";
-import * as playbackStore from "../app/PlaybackStore";
+import * as playerStore from "../player/store";
 
 export function Post(props) {
   const { author, numComments, score, thumbnail, title, url } = props.post;
