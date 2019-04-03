@@ -15,7 +15,7 @@ function Loading() {
 
 function LazyHome(props) {
   return (
-    <DynamicImport load={() => import("./screens/Home")}>
+    <DynamicImport load={() => import("./explorer/home")}>
       {Component =>
         Component === null ? <Loading /> : <Component {...props} />
       }
