@@ -57,7 +57,7 @@ export function PostList(props) {
         renderItem={({ item }) => (
           <Post
             post={item}
-            onPress={() => dispatch(playbackStore.playPost(item.name))}
+            onPress={() => dispatch(playerStore.playPost(item.name))}
           />
         )}
         keyExtractor={flatListKeyExtractor}

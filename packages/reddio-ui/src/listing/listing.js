@@ -6,14 +6,14 @@ import { withRouter } from "react-router";
 import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
 import PostList from "./post-list";
-import * as playbackStore from "../player/PlaybackStore";
+import * as playerStore from "../player/store";
 
 function ListingView(props) {
   const { data, loadNextPage, dispatch } = props;
   const posts = data.listing.posts;
 
   useEffect(() => {
-    dispatch(playbackStore.setPosts(posts));
+    dispatch(playerStore.setPosts(posts));
   }, [posts]);
 
   return (

@@ -1,10 +1,10 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import { createLogger } from "redux-logger";
 
-import { playbackReducer } from "./player/PlaybackStore";
+import playerReducer from "./player/store";
 
 const rootReducer = combineReducers({
-  playback: playbackReducer
+  player: playerReducer
 });
 
 export function createReduxStore() {
