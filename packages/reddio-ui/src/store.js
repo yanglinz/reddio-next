@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, combineReducers } from "redux";
 import { createLogger } from "redux-logger";
 
-import { playbackReducer } from "./app/PlaybackStore";
+import { playbackReducer } from "./player/PlaybackStore";
 
 const rootReducer = combineReducers({
   playback: playbackReducer

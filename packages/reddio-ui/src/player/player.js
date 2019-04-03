@@ -2,7 +2,7 @@ import React from "react";
 import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 
-import Player from "../components/Player";
+import Player from "../components/controls";
 import * as playbackStore from "./PlaybackStore";
 
 function mapStateToProps(state) {
