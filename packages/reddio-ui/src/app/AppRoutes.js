@@ -3,7 +3,7 @@ import { ActivityIndicator, View } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { connect } from "react-redux";
 
-import Header from "../components/Header";
+import Header from "../brand/Header";
 import DynamicImport from "../components/DynamicImport";
 import * as appStore from "../app/AppStore";
 

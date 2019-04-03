@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-import IconMusicalNote from "../assets/IconMusicalNote";
+import IconMusicalNote from "./icon-musical-note";
 
 function Header() {
   return (
