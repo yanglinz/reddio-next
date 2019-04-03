@@ -2,8 +2,8 @@ import React from "react";
 import { ActivityIndicator, View } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Header from "./brand/Header";
-import DynamicImport from "./components/DynamicImport";
+import Header from "./brand/header";
+import DynamicImport from "./lib/dynamic-import";
 
 function Loading() {
   return (
@@ -25,7 +25,7 @@ function LazyHome(props) {
 
 function LazyListingResolver(props) {
   return (
-    <DynamicImport load={() => import("./screens/ListingResolver")}>
+    <DynamicImport load={() => import("./listing/listing")}>
       {Component =>
         Component === null ? <Loading /> : <Component {...props} />
       }

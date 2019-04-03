@@ -3,7 +3,7 @@ import {
   getSortRange,
   resolveSortTypePath,
   resolveSortRangePath
-} from "./PostListSort";
+} from "./post-list";
 
 describe("getSortType", () => {
   it("should handle root path", () => {
