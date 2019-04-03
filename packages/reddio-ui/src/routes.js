@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { ActivityIndicator, View } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { connect } from "react-redux";
 
-import Header from "../brand/Header";
-import DynamicImport from "../components/DynamicImport";
-import * as appStore from "../app/AppStore";
+import Header from "./brand/Header";
+import DynamicImport from "./components/DynamicImport";
 
 function Loading() {
   return (
@@ -17,7 +15,7 @@ function Loading() {
 
 function LazyHome(props) {
   return (
-    <DynamicImport load={() => import("../screens/Home")}>
+    <DynamicImport load={() => import("./screens/Home")}>
       {Component =>
         Component === null ? <Loading /> : <Component {...props} />
       }
@@ -27,7 +25,7 @@ function LazyHome(props) {
 
 function LazyListingResolver(props) {
   return (
-    <DynamicImport load={() => import("../screens/ListingResolver")}>
+    <DynamicImport load={() => import("./screens/ListingResolver")}>
       {Component =>
         Component === null ? <Loading /> : <Component {...props} />
       }
@@ -44,13 +42,7 @@ function Screen(props) {
   );
 }
 
-function AppRoutes(props) {
-  const { dispatch } = props;
-
-  useEffect(() => {
-    dispatch(appStore.initialize());
-  });
-
+function AppRoutes() {
   return (
     <Router>
       <React.Fragment>
@@ -65,4 +57,4 @@ function AppRoutes(props) {
   );
 }
 
-export default connect()(AppRoutes);
+export default AppRoutes;
