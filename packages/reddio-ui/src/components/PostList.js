@@ -10,12 +10,12 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
-import * as Parser from "../app/Parser";
+import * as reddit from "../lib/reddit";
 import * as playbackStore from "../app/PlaybackStore";
 
 export function Post(props) {
   const { author, numComments, score, thumbnail, title, url } = props.post;
-  const isPlayable = Parser.isPostPlayable(url);
+  const isPlayable = reddit.isPostPlayable(url);
 
   const postBody = (
     <React.Fragment>
