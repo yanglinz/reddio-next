@@ -44,13 +44,35 @@ export function selectActivePost(state) {
   return find(posts, p => p.name === current);
 }
 
+export const mediaStatuses = {
+  INITIALIZED: "INITIALIZED",
+  PLAYING: "PLAYING",
+  PAUSED: "PAUSED"
+};
+
 export const initialState = {
+  status: undefined,
   current: undefined,
   posts: []
 };
 
 export function playerReducer(state = initialState, action) {
   switch (action.type) {
+    case "PLAYER/INITIALIZING": {
+      return immer(state, draftState => {
+        draftState.status = mediaStatuses.INITIALIZED;
+      });
+    }
+    case "PLAYER/PLAYING": {
+      return immer(state, draftState => {
+        draftState.status = mediaStatuses.PLAYING;
+      });
+    }
+    case "PLAYER/PAUSING": {
+      return immer(state, draftState => {
+        draftState.status = mediaStatuses.PAUSED;
+      });
+    }
     case "PLAYER/SET_POSTS": {
       const { posts } = action.payload;
       return immer(state, draftState => {
