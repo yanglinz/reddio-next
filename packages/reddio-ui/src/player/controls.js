@@ -1,16 +1,18 @@
 import React from "react";
 import { View, Button, StyleSheet } from "react-native";
+import noop from "lodash/noop";
 
-function Player() {
+function PlayerControls(props) {
+  const { status } = props;
   return (
     <View style={styles.player}>
       <View style={styles.controls}>
         <View style={styles.controlButton}>
-          <Button onPress={() => console.log("play")} title="Play" />
+          <Button onPress={noop} title="Play" disabled={status === "PLAYING"} />
         </View>
 
         <View style={styles.controlButton}>
-          <Button onPress={() => console.log("pause")} title="Pause" />
+          <Button onPress={noop} title="Pause" disabled={status === "PAUSED"} />
         </View>
       </View>
     </View>
@@ -34,4 +36,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Player;
+export default PlayerControls;

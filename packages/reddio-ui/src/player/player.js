@@ -8,12 +8,13 @@ import * as playerStore from "./store";
 
 function mapStateToProps(state) {
   return {
+    status: state.player.status,
     activePost: playerStore.selectActivePost(state)
   };
 }
 
 function AppPlayer(props) {
-  const { dispatch, activePost } = props;
+  const { dispatch, status, activePost } = props;
 
   if (!activePost) {
     return null;
@@ -34,7 +35,7 @@ function AppPlayer(props) {
           height={165}
           url={activePost.url}
           controls
-          playing={false}
+          playing={true}
           onReady={() => dispatch(playerStore.initializing())}
           onStart={() => dispatch(playerStore.starting())}
           onPlay={() => dispatch(playerStore.playing())}
@@ -57,7 +58,7 @@ function AppPlayer(props) {
           background: "#fff"
         }}
       >
-        <PlayerControls />
+        <PlayerControls status={status} />
       </div>
     </div>
   );
