@@ -1,6 +1,29 @@
 import immer from "immer";
 import find from "lodash/find";
 
+export function initializing() {
+  return { type: "PLAYER/INITIALIZING" };
+}
+
+export function starting() {
+  return { type: "PLAYER/STARTING" };
+}
+
+export function playing() {
+  return { type: "PLAYER/PLAYING" };
+}
+export function pausing() {
+  return { type: "PLAYER/PAUSING" };
+}
+
+export function ending() {
+  return { type: "PLAYER/ENDING" };
+}
+
+export function erroring() {
+  return { type: "PLAYER/ERRORING" };
+}
+
 export function setPosts(posts) {
   const payload = { posts };
   return { type: "PLAYER/SET_POSTS", payload };

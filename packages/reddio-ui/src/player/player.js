@@ -1,6 +1,7 @@
 import React from "react";
 import ReactPlayer from "react-player";
 import { connect } from "react-redux";
+import noop from "lodash/noop";
 
 import PlayerControls from "./controls";
 import * as playerStore from "./store";
@@ -12,7 +13,7 @@ function mapStateToProps(state) {
 }
 
 function AppPlayer(props) {
-  const { activePost } = props;
+  const { dispatch, activePost } = props;
 
   if (!activePost) {
     return null;
@@ -34,6 +35,16 @@ function AppPlayer(props) {
           url={activePost.url}
           controls
           playing={false}
+          onReady={() => dispatch(playerStore.initializing())}
+          onStart={() => dispatch(playerStore.starting())}
+          onPlay={() => dispatch(playerStore.playing())}
+          onPause={() => dispatch(playerStore.pausing())}
+          onEnded={() => dispatch(playerStore.ending())}
+          onError={() => dispatch(playerStore.erroring())}
+          onProgress={noop}
+          onDuration={noop}
+          onBuffer={noop}
+          onSeek={noop}
         />
       </div>
 
