@@ -52,12 +52,14 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
+
       # Deploy server
       - run:
           command: yarn global add now@12.1.14
       - run:
           working_directory: ~/project/packages/graphql-server
           command: $(yarn global bin)/now --token $ZEIT_TOKEN
+
       # Deploy reddio-ui
       - run:
           working_directory: ~/project/packages/reddio-ui
