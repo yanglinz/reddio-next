@@ -66,6 +66,12 @@ jobs:
           command: wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
       - run:
           working_directory: ~/project/packages/reddio-ui
+          command: ls -la
+      - run:
+          working_directory: ~/project/packages/reddio-ui
+          command: cd build && ls -la
+      - run:
+          working_directory: ~/project/packages/reddio-ui
           command: ./netlifyctl -A $NETLIFY_AUTH_TOKEN -b build -y deploy
 
 workflows:
