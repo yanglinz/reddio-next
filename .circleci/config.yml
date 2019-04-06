@@ -62,7 +62,7 @@ jobs:
 
       # Deploy reddio-ui
       - run:
-          command: yarn global add netlify-cli
+          command: yarn global add netlify-cli@2.10.0
       - run:
           working_directory: ~/project/packages/reddio-ui
           command: netlify deploy -d build -p -a=$NETLIFY_AUTH_TOKEN -s=ba4c2d75-7e4c-40e0-84b6-161b58bf01b1
