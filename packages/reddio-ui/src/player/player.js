@@ -8,12 +8,14 @@ import * as playerStore from "./store";
 
 function mapStateToProps(state) {
   return {
+    status: state.player.status,
     activePost: playerStore.selectActivePost(state)
   };
 }
 
 function AppPlayer(props) {
-  const { dispatch, activePost } = props;
+  const { dispatch, status, activePost } = props;
+  const { iframeEvents } = playerStore;
 
   if (!activePost) {
     return null;
@@ -34,13 +36,13 @@ function AppPlayer(props) {
           height={165}
           url={activePost.url}
           controls
-          playing={false}
-          onReady={() => dispatch(playerStore.initializing())}
-          onStart={() => dispatch(playerStore.starting())}
-          onPlay={() => dispatch(playerStore.playing())}
-          onPause={() => dispatch(playerStore.pausing())}
-          onEnded={() => dispatch(playerStore.ending())}
-          onError={() => dispatch(playerStore.erroring())}
+          playing={true}
+          onReady={() => dispatch(playerStore.iframeAction(iframeEvents.READY))}
+          onStart={() => dispatch(playerStore.iframeAction(iframeEvents.START))}
+          onPlay={() => dispatch(playerStore.iframeAction(iframeEvents.PLAY))}
+          onPause={() => dispatch(playerStore.iframeAction(iframeEvents.PAUSE))}
+          onEnded={() => dispatch(playerStore.iframeAction(iframeEvents.ENDED))}
+          onError={() => dispatch(playerStore.iframeAction(iframeEvents.ERROR))}
           onProgress={noop}
           onDuration={noop}
           onBuffer={noop}
@@ -57,7 +59,7 @@ function AppPlayer(props) {
           background: "#fff"
         }}
       >
-        <PlayerControls />
+        <PlayerControls status={status} />
       </div>
     </div>
   );

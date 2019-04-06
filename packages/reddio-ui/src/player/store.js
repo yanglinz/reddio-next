@@ -1,27 +1,21 @@
 import immer from "immer";
+import invariant from "invariant";
 import find from "lodash/find";
 
-export function initializing() {
-  return { type: "PLAYER/INITIALIZING" };
-}
+export const iframeEvents = {
+  READY: "READY",
+  START: "START",
+  PLAY: "PLAY",
+  PAUSE: "PAUSE",
+  ENDED: "ENDED",
+  ERROR: "ERROR"
+};
 
-export function starting() {
-  return { type: "PLAYER/STARTING" };
-}
-
-export function playing() {
-  return { type: "PLAYER/PLAYING" };
-}
-export function pausing() {
-  return { type: "PLAYER/PAUSING" };
-}
-
-export function ending() {
-  return { type: "PLAYER/ENDING" };
-}
-
-export function erroring() {
-  return { type: "PLAYER/ERRORING" };
+export function iframeAction(eventName, payload) {
+  const event = iframeEvents[eventName];
+  invariant(event, "Expected valid iframeEvent");
+  const type = `PLAYER/IFRAME_${event}`;
+  return { type, payload };
 }
 
 export function setPosts(posts) {
@@ -44,13 +38,35 @@ export function selectActivePost(state) {
   return find(posts, p => p.name === current);
 }
 
+export const mediaStatuses = {
+  INITIALIZED: "INITIALIZED",
+  PLAYING: "PLAYING",
+  PAUSED: "PAUSED"
+};
+
 export const initialState = {
+  status: undefined,
   current: undefined,
   posts: []
 };
 
 export function playerReducer(state = initialState, action) {
   switch (action.type) {
+    case "PLAYER/IFRAME_READY": {
+      return immer(state, draftState => {
+        draftState.status = mediaStatuses.INITIALIZED;
+      });
+    }
+    case "PLAYER/IFRAME_PLAY": {
+      return immer(state, draftState => {
+        draftState.status = mediaStatuses.PLAYING;
+      });
+    }
+    case "PLAYER/IFRAME_PAUSE": {
+      return immer(state, draftState => {
+        draftState.status = mediaStatuses.PAUSED;
+      });
+    }
     case "PLAYER/SET_POSTS": {
       const { posts } = action.payload;
       return immer(state, draftState => {
