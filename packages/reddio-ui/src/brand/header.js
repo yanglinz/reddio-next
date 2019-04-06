@@ -1,15 +1,10 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
-import IconMusicalNote from "./icon-musical-note";
-
 function Header() {
   return (
     <View style={styles.header}>
       <TouchableOpacity style={styles.branding}>
-        <View style={styles.siteIcon}>
-          <IconMusicalNote size={12} color="#388e3c" />
-        </View>
         <Text style={styles.siteName}>Reddio</Text>
         <Text style={styles.siteNameAccent}> Player</Text>
       </TouchableOpacity>
