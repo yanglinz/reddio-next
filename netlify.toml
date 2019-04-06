@@ -1,5 +1,5 @@
 [Settings]
-  ID = "ba4c2d75-7e4c-40e0-84b6-161b58bf01b1"
+  ID = "not-a-real-id"
 
 [build]
   base = "."
@@ -17,8 +17,3 @@
 [context.branch-deploy]
   publish = ""
   command = ""
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
