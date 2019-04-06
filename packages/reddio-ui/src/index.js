@@ -8,7 +8,17 @@ import AppRoutes from "./routes";
 import AppPlayer from "./player/player";
 import store from "./store";
 
-const client = new ApolloClient({ uri: "http://localhost:4000/graphql" });
+let graphqlUri = "https://graphql-server.yanglin.now.sh/";
+try {
+  const isLocal = document.location.host.includes("localhost");
+  if (isLocal) {
+    graphqlUri = "http://localhost:4000/graphql";
+  }
+} catch (e) {
+  // Do nothing
+}
+
+const client = new ApolloClient({ uri: graphqlUri });
 
 function Application() {
   return (
