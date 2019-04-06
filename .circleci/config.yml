@@ -52,19 +52,20 @@ jobs:
       - checkout
       - attach_workspace:
           at: .
+
       # Deploy server
       - run:
           command: yarn global add now@12.1.14
       - run:
           working_directory: ~/project/packages/graphql-server
           command: $(yarn global bin)/now --token $ZEIT_TOKEN
+
       # Deploy reddio-ui
       - run:
-          working_directory: ~/project/packages/reddio-ui
-          command: wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
+          command: yarn global add netlify-cli
       - run:
           working_directory: ~/project/packages/reddio-ui
-          command: ./netlifyctl -A $NETLIFY_AUTH_TOKEN -b build -y deploy
+          command: netlify deploy -d build -p -a=$NETLIFY_AUTH_TOKEN -s=ba4c2d75-7e4c-40e0-84b6-161b58bf01b1
 
 workflows:
   version: 2
