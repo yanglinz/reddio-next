@@ -1,5 +1,7 @@
 import immer from "immer";
 import invariant from "invariant";
+import { combineEpics } from "redux-observable";
+import { ignoreElements } from "rxjs/operators";
 import find from "lodash/find";
 
 /**
@@ -45,6 +47,16 @@ export function selectActivePost(state) {
 
   return find(posts, p => p.name === current);
 }
+
+/**
+ * Epics
+ */
+
+function exampleEpic(action$) {
+  return action$.pipe(ignoreElements());
+}
+
+export const playerEpic = combineEpics(exampleEpic);
 
 /**
  * Reducer
