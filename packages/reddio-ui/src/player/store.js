@@ -2,6 +2,10 @@ import immer from "immer";
 import invariant from "invariant";
 import find from "lodash/find";
 
+/**
+ * Action creators
+ */
+
 export const iframeEvents = {
   READY: "READY",
   START: "START",
@@ -28,6 +32,10 @@ export function playPost(postId) {
   return { type: "PLAYER/PLAY_POST", payload };
 }
 
+/**
+ * Selectors
+ */
+
 export function selectActivePost(state) {
   const playerState = state.player;
   const { current, posts } = playerState;
@@ -37,6 +45,10 @@ export function selectActivePost(state) {
 
   return find(posts, p => p.name === current);
 }
+
+/**
+ * Reducer
+ */
 
 export const mediaStatuses = {
   INITIALIZED: "INITIALIZED",
