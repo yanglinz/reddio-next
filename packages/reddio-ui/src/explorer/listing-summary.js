@@ -12,7 +12,7 @@ function ListingSummary(props) {
 
   return (
     <View style={styles.summary}>
-      <Text>{pathname}</Text>
+      <Text style={styles.title}>{pathname}</Text>
       <View style={styles.imageReel}>
         {images.map(i => (
           <View key={i}>
@@ -29,6 +29,10 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingLeft: 20,
     paddingRight: 20
+  },
+  title: {
+    fontSize: 18,
+    marginBottom: 5
   },
   imageReel: {
     display: "flex",
