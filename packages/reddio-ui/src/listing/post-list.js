@@ -25,7 +25,7 @@ export function Post(props) {
           href={url}
           style={isPlayable ? undefined : styles.postTitleUnplayable}
         >
-          {title}
+          <span dangerouslySetInnerHTML={{ __html: title }} />
         </Text>
         <Text style={styles.postMeta}>
           {score} points | Posted by {author} | {numComments} comments
