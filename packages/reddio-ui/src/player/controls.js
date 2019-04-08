@@ -1,18 +1,25 @@
 import React from "react";
 import { View, Button, StyleSheet } from "react-native";
-import noop from "lodash/noop";
 
 function PlayerControls(props) {
-  const { status } = props;
+  const { status, handlePlay, handlePause } = props;
   return (
     <View style={styles.player}>
       <View style={styles.controls}>
         <View style={styles.controlButton}>
-          <Button onPress={noop} title="Play" disabled={status === "PLAYING"} />
+          <Button
+            onPress={handlePlay}
+            title="Play"
+            disabled={status === "PLAYING"}
+          />
         </View>
 
         <View style={styles.controlButton}>
-          <Button onPress={noop} title="Pause" disabled={status === "PAUSED"} />
+          <Button
+            onPress={handlePause}
+            title="Pause"
+            disabled={status === "PAUSED"}
+          />
         </View>
       </View>
     </View>

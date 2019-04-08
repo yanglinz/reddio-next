@@ -1,5 +1,7 @@
 import immer from "immer";
 import invariant from "invariant";
+import { combineEpics } from "redux-observable";
+import { ignoreElements } from "rxjs/operators";
 import find from "lodash/find";
 
 /**
@@ -32,6 +34,14 @@ export function playPost(postId) {
   return { type: "PLAYER/PLAY_POST", payload };
 }
 
+export function controlPlay() {
+  return { type: "PLAYER/CONTROL_PLAY" };
+}
+
+export function controlPause() {
+  return { type: "PLAYER/CONTROL_PAUSE" };
+}
+
 /**
  * Selectors
  */
@@ -47,6 +57,16 @@ export function selectActivePost(state) {
 }
 
 /**
+ * Epics
+ */
+
+function exampleEpic(action$) {
+  return action$.pipe(ignoreElements());
+}
+
+export const playerEpic = combineEpics(exampleEpic);
+
+/**
  * Reducer
  */
 
@@ -58,6 +78,9 @@ export const mediaStatuses = {
 
 export const initialState = {
   status: undefined,
+  // Iframe is set to playing by default so that
+  // the first post is autoplayed on click
+  iframePlaying: true,
   current: undefined,
   posts: []
 };
@@ -77,6 +100,16 @@ export function playerReducer(state = initialState, action) {
     case "PLAYER/IFRAME_PAUSE": {
       return immer(state, draftState => {
         draftState.status = mediaStatuses.PAUSED;
+      });
+    }
+    case "PLAYER/CONTROL_PLAY": {
+      return immer(state, draftState => {
+        draftState.iframePlaying = true;
+      });
+    }
+    case "PLAYER/CONTROL_PAUSE": {
+      return immer(state, draftState => {
+        draftState.iframePlaying = false;
       });
     }
     case "PLAYER/SET_POSTS": {

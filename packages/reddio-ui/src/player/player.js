@@ -9,12 +9,13 @@ import * as playerStore from "./store";
 function mapStateToProps(state) {
   return {
     status: state.player.status,
+    iframePlaying: state.player.iframePlaying,
     activePost: playerStore.selectActivePost(state)
   };
 }
 
 function AppPlayer(props) {
-  const { dispatch, status, activePost } = props;
+  const { dispatch, status, iframePlaying, activePost } = props;
   const { iframeEvents } = playerStore;
 
   if (!activePost) {
@@ -36,7 +37,7 @@ function AppPlayer(props) {
           height={165}
           url={activePost.url}
           controls
-          playing={true}
+          playing={iframePlaying}
           onReady={() => dispatch(playerStore.iframeAction(iframeEvents.READY))}
           onStart={() => dispatch(playerStore.iframeAction(iframeEvents.START))}
           onPlay={() => dispatch(playerStore.iframeAction(iframeEvents.PLAY))}
@@ -59,7 +60,11 @@ function AppPlayer(props) {
           background: "#fff"
         }}
       >
-        <PlayerControls status={status} />
+        <PlayerControls
+          status={status}
+          handlePlay={() => dispatch(playerStore.controlPlay())}
+          handlePause={() => dispatch(playerStore.controlPause())}
+        />
       </div>
     </div>
   );
