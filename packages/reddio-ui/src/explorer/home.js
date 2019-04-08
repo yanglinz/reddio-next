@@ -3,6 +3,8 @@ import { View, Text, ActivityIndicator } from "react-native";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
+import ListingSummary from "./listing-summary";
+
 const HOME_QUERY = gql`
   query HomeQuery {
     topSubreddits {
@@ -20,7 +22,7 @@ const HOME_QUERY = gql`
   }
 `;
 
-function ListingLoading() {
+function HomeLoading() {
   return (
     <View>
       <ActivityIndicator />
@@ -28,7 +30,7 @@ function ListingLoading() {
   );
 }
 
-function ListingError() {
+function HomeError() {
   return (
     <View>
       <Text>:(</Text>
@@ -42,16 +44,24 @@ class Home extends React.Component {
       <Query query={HOME_QUERY}>
         {({ loading, error, data }) => {
           if (loading) {
-            return <ListingLoading />;
+            return <HomeLoading />;
           }
 
           if (error) {
-            return <ListingError />;
+            return <HomeError />;
           }
 
+          const topListings = data.topSubreddits.listings || [];
           return (
             <View>
-              <Text>Hello world</Text>
+              {topListings.map(listingInfo => (
+                <ListingSummary
+                  key={listingInfo.pathname}
+                  pathname={listingInfo.pathname}
+                  customInfo={listingInfo.customInfo}
+                  posts={listingInfo.posts}
+                />
+              ))}
             </View>
           );
         }}
