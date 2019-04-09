@@ -8,6 +8,8 @@ import AppRoutes from "./routes";
 import AppPlayer from "./player/player";
 import store from "./store";
 
+import "./index.css";
+
 let graphqlUri = "https://graphql-server.yanglin.now.sh/graphql";
 try {
   const isLocal = document.location.host.includes("localhost");
