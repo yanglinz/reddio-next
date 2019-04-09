@@ -1,10 +1,14 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { withRouter } from "react-router-dom";
 
-function Header() {
+function Header(props) {
   return (
     <View style={styles.header}>
-      <TouchableOpacity style={styles.branding}>
+      <TouchableOpacity
+        style={styles.branding}
+        onPress={() => props.history.push("/")}
+      >
         <Text style={styles.siteName}>Reddio</Text>
         <Text style={styles.siteNameAccent}> Player</Text>
       </TouchableOpacity>
@@ -39,4 +43,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Header;
+export default withRouter(Header);
