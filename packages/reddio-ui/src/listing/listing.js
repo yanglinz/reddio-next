@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { withRouter } from "react-router";
 
 import ListingProvider from "./listing-provider";
@@ -17,9 +17,11 @@ function ListingView(props) {
   }, [posts]);
 
   return (
-    <View>
-      <PostListSort />
-      <PostList posts={posts} loadNextPage={loadNextPage} />
+    <View style={styles.listing}>
+      <View style={styles.listingBackground}>
+        <PostListSort />
+        <PostList posts={posts} loadNextPage={loadNextPage} />
+      </View>
     </View>
   );
 }
@@ -40,5 +42,18 @@ class ListingResolver extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  listing: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  listingBackground: {
+    backgroundColor: "#fff",
+    marginTop: 25,
+    marginBottom: 25,
+    width: 850
+  }
+});
 
 export default withRouter(ListingResolver);
