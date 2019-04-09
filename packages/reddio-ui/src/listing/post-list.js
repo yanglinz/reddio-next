@@ -71,7 +71,7 @@ export function PostList(props) {
 const styles = StyleSheet.create({
   post: {
     borderColor: "#ddd",
-    borderBottomWidth: 1,
+    borderTopWidth: 1,
     padding: 16
   },
   postTitleUnplayable: {
