@@ -35,10 +35,12 @@ function ListingSummary(props) {
 
 const styles = StyleSheet.create({
   summary: {
-    backgroundColor: "#fff",
     width: 300,
     paddingBottom: design.spacing.base,
-    marginBottom: design.spacing.base
+    marginBottom: design.spacing.base,
+    backgroundColor: "#fff",
+    borderRadius: 2,
+    overflow: "hidden"
   },
   imageList: {
     display: "flex",
@@ -49,7 +51,6 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: design.fontSize.large,
-    fontWeight: 500,
     marginBottom: design.spacing.smaller1
   },
   description: {
