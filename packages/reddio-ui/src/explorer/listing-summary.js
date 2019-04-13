@@ -4,6 +4,7 @@ import uniqBy from "lodash/uniqBy";
 import take from "lodash/take";
 
 import Thumbnail from "../lib/thumbnail";
+import * as design from "../design";
 
 function ListingSummary(props) {
   const { pathname, posts, customInfo } = props;
@@ -12,7 +13,7 @@ function ListingSummary(props) {
   let thumbnailPosts = uniqBy(posts, p => p.thumbnail);
   // Take off the first post. It's usually a stickied post
   // TODO: filter by stickied
-  thumbnailPosts.shift()
+  thumbnailPosts.shift();
   thumbnailPosts = take(thumbnailPosts, 5);
 
   return (
@@ -20,12 +21,14 @@ function ListingSummary(props) {
       <View style={styles.imageList}>
         {thumbnailPosts.map(p => (
           <View key={p.name}>
-            <Thumbnail width={60} height={65} src={p.thumbnail} seed={p.name} />
+            <Thumbnail width={60} height={60} src={p.thumbnail} seed={p.name} />
           </View>
         ))}
       </View>
-      <Text style={styles.title}>{pathname}</Text>
-      <Text style={{}}>{description}</Text>
+      <View style={styles.content}>
+        <Text style={styles.title}>{pathname}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </View>
     </View>
   );
 }
@@ -34,19 +37,22 @@ const styles = StyleSheet.create({
   summary: {
     backgroundColor: "#fff",
     width: 300,
-    marginBottom: 20
+    paddingBottom: design.spacing.base,
+    marginBottom: design.spacing.base
   },
   imageList: {
     display: "flex",
     flexDirection: "row"
   },
-  images: {
-    width: 50,
-    height: 50
+  content: {
+    padding: design.spacing.base
   },
   title: {
-    fontSize: 18,
-    marginBottom: 5
+    fontSize: design.fontSize.large,
+    marginBottom: design.spacing.smaller1
+  },
+  description: {
+    fontSize: design.fontSize.baseSmall
   }
 });
 
