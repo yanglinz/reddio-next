@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { withRouter } from "react-router-dom";
 import uniqBy from "lodash/uniqBy";
 import take from "lodash/take";
 
@@ -7,7 +8,7 @@ import Thumbnail from "../lib/thumbnail";
 import * as design from "../design";
 
 function ListingSummary(props) {
-  const { pathname, posts, customInfo } = props;
+  const { pathname, posts, customInfo, history } = props;
   const { description } = customInfo;
 
   let thumbnailPosts = uniqBy(posts, p => p.thumbnail);
@@ -26,7 +27,9 @@ function ListingSummary(props) {
         ))}
       </View>
       <View style={styles.content}>
-        <Text style={styles.title}>{pathname}</Text>
+        <Text style={styles.title} onPress={() => history.push(pathname)}>
+          {pathname}
+        </Text>
         <Text style={styles.description}>{description}</Text>
       </View>
     </View>
@@ -59,4 +62,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ListingSummary;
+export default withRouter(ListingSummary);
