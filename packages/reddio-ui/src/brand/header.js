@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { withRouter } from "react-router-dom";
 
-function Header(props) {
+export function Header(props) {
   return (
     <View style={styles.header}>
       <TouchableOpacity
