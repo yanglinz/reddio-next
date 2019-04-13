@@ -2,6 +2,8 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { withRouter } from "react-router-dom";
 
+import * as design from "../design";
+
 export function Header(props) {
   return (
     <View style={styles.header}>
@@ -35,11 +37,11 @@ const styles = StyleSheet.create({
   },
   siteName: {
     color: "#388e3c",
-    fontSize: 24
+    fontSize: design.fontSize.larger3
   },
   siteNameAccent: {
     color: "#999",
-    fontSize: 24
+    fontSize: design.fontSize.larger3
   }
 });
 

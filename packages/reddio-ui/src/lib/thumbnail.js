@@ -54,6 +54,7 @@ function Thumbnail(props) {
         src={src}
         width={width}
         height={height}
+        alt="A post" // todo
         onError={() => setErrored(true)}
       />
     </View>
