@@ -24,5 +24,6 @@ export const fontSize = {
   larger3: 50
 };
 
-// TODO
-export const colors = {};
+export const fontColors = {
+  lightGray: "#777"
+};

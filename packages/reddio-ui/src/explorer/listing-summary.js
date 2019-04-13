@@ -49,10 +49,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: design.fontSize.large,
+    fontWeight: 500,
     marginBottom: design.spacing.smaller1
   },
   description: {
-    fontSize: design.fontSize.baseSmall
+    fontSize: design.fontSize.baseSmall,
+    color: design.fontColors.lightGray
   }
 });
 

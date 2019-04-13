@@ -90,7 +90,8 @@ const styles = StyleSheet.create({
   },
   sectionSubtitle: {
     fontSize: design.fontSize.base,
-    marginBottom: design.spacing.large
+    marginBottom: design.spacing.large,
+    color: design.fontColors.lightGray
   },
   featuredSummaryList: {
     width: 900 + design.spacing.small * 3,
