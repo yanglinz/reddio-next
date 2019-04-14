@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
-import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import gql from "graphql-tag";
 import last from "lodash/last";
 import uniqBy from "lodash/uniqBy";
 

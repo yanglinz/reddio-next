@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import gql from "graphql-tag";
 
 import ListingSummary from "./listing-summary";
 import Loading from "../lib/loading";
