@@ -5,6 +5,8 @@ import { Query } from "react-apollo";
 import last from "lodash/last";
 import uniqBy from "lodash/uniqBy";
 
+import Loading from "../lib/loading";
+
 const LISTING_QUERY = gql`
   query ListingQuery($pathname: String!, $after: String) {
     listing(pathname: $pathname) {
@@ -24,7 +26,7 @@ const LISTING_QUERY = gql`
 function ListingLoading() {
   return (
     <View>
-      <ActivityIndicator />
+      <Loading />
     </View>
   );
 }

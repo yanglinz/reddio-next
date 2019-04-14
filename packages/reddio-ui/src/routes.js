@@ -1,16 +1,9 @@
 import React, { Suspense, lazy } from "react";
-import { ActivityIndicator, View } from "react-native";
+import { View } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./brand/header";
-
-function Loading() {
-  return (
-    <View>
-      <ActivityIndicator size="large" color="#0000ff" />
-    </View>
-  );
-}
+import Loading from "./lib/loading";
 
 const Home = lazy(() => import("./explorer/home"));
 const ListingResolver = lazy(() => import("./listing/listing"));

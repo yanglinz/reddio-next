@@ -1,9 +1,10 @@
 import React from "react";
-import { View, Text, ActivityIndicator, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
 import ListingSummary from "./listing-summary";
+import Loading from "../lib/loading";
 import * as design from "../design";
 
 const HOME_QUERY = gql`
@@ -26,7 +27,7 @@ const HOME_QUERY = gql`
 function HomeLoading() {
   return (
     <View>
-      <ActivityIndicator />
+      <Loading />
     </View>
   );
 }
