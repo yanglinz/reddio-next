@@ -2,10 +2,14 @@ import React from "react";
 import { View, Button, StyleSheet } from "react-native";
 
 function PlayerControls(props) {
-  const { status, handlePlay, handlePause } = props;
+  const { status, handlePrev, handlePlay, handlePause, handleSkip } = props;
   return (
     <View style={styles.player}>
       <View style={styles.controls}>
+        <View style={styles.controlButton}>
+          <Button onPress={handlePrev} title="Prev" />
+        </View>
+
         <View style={styles.controlButton}>
           <Button
             onPress={handlePlay}
@@ -20,6 +24,10 @@ function PlayerControls(props) {
             title="Pause"
             disabled={status === "PAUSED"}
           />
+        </View>
+
+        <View style={styles.controlButton}>
+          <Button onPress={handleSkip} title="Skip" />
         </View>
       </View>
     </View>

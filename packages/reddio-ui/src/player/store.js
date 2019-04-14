@@ -3,6 +3,9 @@ import invariant from "invariant";
 import { combineEpics } from "redux-observable";
 import { ignoreElements } from "rxjs/operators";
 import find from "lodash/find";
+import findIndex from "lodash/findIndex";
+
+import * as reddit from "../lib/reddit";
 
 /**
  * Action creators
@@ -40,6 +43,14 @@ export function controlPlay() {
 
 export function controlPause() {
   return { type: "PLAYER/CONTROL_PAUSE" };
+}
+
+export function controlSkip() {
+  return { type: "PLAYER/CONTROL_SKIP" };
+}
+
+export function controlPrev() {
+  return { type: "PLAYER/CONTROL_PREV" };
 }
 
 /**
@@ -102,16 +113,6 @@ export function playerReducer(state = initialState, action) {
         draftState.status = mediaStatuses.PAUSED;
       });
     }
-    case "PLAYER/CONTROL_PLAY": {
-      return immer(state, draftState => {
-        draftState.iframePlaying = true;
-      });
-    }
-    case "PLAYER/CONTROL_PAUSE": {
-      return immer(state, draftState => {
-        draftState.iframePlaying = false;
-      });
-    }
     case "PLAYER/SET_POSTS": {
       const { posts } = action.payload;
       return immer(state, draftState => {
@@ -122,6 +123,43 @@ export function playerReducer(state = initialState, action) {
       const { postId } = action.payload;
       return immer(state, draftState => {
         draftState.current = postId;
+      });
+    }
+    case "PLAYER/CONTROL_PLAY": {
+      return immer(state, draftState => {
+        draftState.iframePlaying = true;
+      });
+    }
+    case "PLAYER/CONTROL_PAUSE": {
+      return immer(state, draftState => {
+        draftState.iframePlaying = false;
+      });
+    }
+    case "PLAYER/CONTROL_SKIP": {
+      const playablePosts = state.posts.filter(p =>
+        reddit.isPostPlayable(p.url)
+      );
+      const currentIndex = findIndex(
+        playablePosts,
+        p => p.name === state.current
+      );
+
+      const nextPost = playablePosts[currentIndex + 1];
+      return immer(state, draftState => {
+        draftState.current = nextPost ? nextPost.name : undefined;
+      });
+    }
+    case "PLAYER/CONTROL_PREV": {
+      const playablePosts = state.posts.filter(p =>
+        reddit.isPostPlayable(p.url)
+      );
+      const currentIndex = findIndex(
+        playablePosts,
+        p => p.name === state.current
+      );
+      const prevPost = playablePosts[currentIndex - 1];
+      return immer(state, draftState => {
+        draftState.current = prevPost ? prevPost.name : undefined;
       });
     }
     default: {
