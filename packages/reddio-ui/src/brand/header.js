@@ -23,25 +23,19 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     borderColor: "#ddd",
     borderBottomWidth: 1,
-    paddingTop: 2,
-    paddingBottom: 2
+    padding: design.spacing.base
   },
   branding: {
     flexDirection: "row",
-    alignItems: "center",
-    padding: 16
-  },
-  siteIcon: {
-    marginTop: 2,
-    marginRight: 12
+    alignItems: "center"
   },
   siteName: {
     color: "#388e3c",
-    fontSize: design.fontSize.larger3
+    fontSize: design.fontSize.larger2
   },
   siteNameAccent: {
     color: "#999",
-    fontSize: design.fontSize.larger3
+    fontSize: design.fontSize.larger2
   }
 });
 

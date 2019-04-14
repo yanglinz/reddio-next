@@ -13,11 +13,9 @@ export const spacing = {
 // https://type-scale.com/
 
 export const fontSize = {
-  tiny: 9,
-  small: 12,
-  baseSmall: 13,
+  smaller1: 10,
+  small: 13,
   base: 16,
-  baseLarge: 18,
   large: 21,
   larger1: 28,
   larger2: 37,
