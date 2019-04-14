@@ -1,9 +1,8 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { ActivityIndicator, View } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./brand/header";
-import DynamicImport from "./lib/dynamic-import";
 
 function Loading() {
   return (
@@ -13,25 +12,8 @@ function Loading() {
   );
 }
 
-function LazyHome(props) {
-  return (
-    <DynamicImport load={() => import("./explorer/home")}>
-      {Component =>
-        Component === null ? <Loading /> : <Component {...props} />
-      }
-    </DynamicImport>
-  );
-}
-
-function LazyListingResolver(props) {
-  return (
-    <DynamicImport load={() => import("./listing/listing")}>
-      {Component =>
-        Component === null ? <Loading /> : <Component {...props} />
-      }
-    </DynamicImport>
-  );
-}
+const Home = lazy(() => import("./explorer/home"));
+const ListingResolver = lazy(() => import("./listing/listing"));
 
 function Screen(props) {
   return (
@@ -47,10 +29,12 @@ function AppRoutes() {
     <Router>
       <React.Fragment>
         <Screen>
-          <Switch>
-            <Route path="/" exact component={LazyHome} />
-            <Route component={LazyListingResolver} />
-          </Switch>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route component={ListingResolver} />
+            </Switch>
+          </Suspense>
         </Screen>
       </React.Fragment>
     </Router>
