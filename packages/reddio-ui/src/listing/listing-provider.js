@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ActivityIndicator } from "react-native";
+import { View, Text } from "react-native";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import last from "lodash/last";
