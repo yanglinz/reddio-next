@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 
 import * as reddit from "../lib/reddit";
 import * as playerStore from "../player/store";
+import * as design from "../design";
 
 function mapStateToProps(state) {
   return {
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
   post: {
     borderColor: "#ddd",
     borderTopWidth: 1,
-    padding: 16
+    padding: design.spacing.base
   },
   postActive: {
     borderLeftColor: "#999",
