@@ -7,6 +7,7 @@ import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
 import PostList from "./post-list";
 import * as playerStore from "../player/store";
+import * as design from "../design";
 
 function ListingView(props) {
   const { data, loadNextPage, dispatch } = props;
@@ -50,8 +51,8 @@ const styles = StyleSheet.create({
   },
   listingBackground: {
     backgroundColor: "#fff",
-    marginTop: 25,
-    marginBottom: 25,
+    marginTop: design.spacing.base,
+    marginBottom: design.spacing.base,
     width: 850
   }
 });

@@ -12,9 +12,18 @@ import { connect } from "react-redux";
 
 import * as reddit from "../lib/reddit";
 import * as playerStore from "../player/store";
+import * as design from "../design";
+
+function mapStateToProps(state) {
+  return {
+    activePost: playerStore.selectActivePost(state)
+  };
+}
 
 export function Post(props) {
-  const { author, numComments, score, thumbnail, title, url } = props.post;
+  const { post, activePost } = props;
+  const { name, author, numComments, score, thumbnail, title, url } = post;
+  const isActive = activePost && activePost.name === name;
   const isPlayable = reddit.isPostPlayable(url);
 
   const postBody = (
@@ -35,7 +44,7 @@ export function Post(props) {
   );
   return isPlayable ? (
     <TouchableOpacity
-      style={styles.post}
+      style={isActive ? [styles.post, styles.postActive] : styles.post}
       onPress={() => props.onPress(props.post)}
     >
       {postBody}
@@ -48,18 +57,23 @@ export function Post(props) {
 const flatListKeyExtractor = p => p.name;
 
 export function PostList(props) {
-  const { loadNextPage, dispatch } = props;
-
+  const { posts, activePost, loadNextPage, dispatch } = props;
   return (
     <View>
       <FlatList
-        data={props.posts}
+        data={posts}
         renderItem={({ item }) => (
           <Post
             post={item}
+            activePost={activePost}
             onPress={() => dispatch(playerStore.playPost(item.name))}
           />
         )}
+        extraData={{
+          // Invalidate cache and re-render
+          itemCount: (posts && posts.length) || 0,
+          activePostName: activePost && activePost.name
+        }}
         keyExtractor={flatListKeyExtractor}
       />
 
@@ -72,7 +86,11 @@ const styles = StyleSheet.create({
   post: {
     borderColor: "#ddd",
     borderTopWidth: 1,
-    padding: 16
+    padding: design.spacing.base
+  },
+  postActive: {
+    borderLeftColor: "#999",
+    borderLeftWidth: 5
   },
   postTitleUnplayable: {
     color: "#aaa"
@@ -82,4 +100,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(PostList);
+export default connect(mapStateToProps)(PostList);

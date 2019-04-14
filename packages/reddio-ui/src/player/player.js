@@ -62,8 +62,10 @@ function AppPlayer(props) {
       >
         <PlayerControls
           status={status}
+          handlePrev={() => dispatch(playerStore.controlPrev())}
           handlePlay={() => dispatch(playerStore.controlPlay())}
           handlePause={() => dispatch(playerStore.controlPause())}
+          handleSkip={() => dispatch(playerStore.controlSkip())}
         />
       </div>
     </div>

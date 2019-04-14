@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     marginBottom: design.spacing.smaller1
   },
   description: {
-    fontSize: design.fontSize.baseSmall,
+    fontSize: design.fontSize.small,
     color: design.fontColors.lightGray
   }
 });
