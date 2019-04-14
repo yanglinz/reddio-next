@@ -10,6 +10,10 @@ export const spacing = {
   larger4: 178
 };
 
+export const layoutWidth = {
+  // TODO: Add layout width e.g. 600
+};
+
 // https://type-scale.com/
 
 export const fontSize = {
