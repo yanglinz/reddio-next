@@ -1,6 +1,8 @@
 import React from "react";
 import { View, Button, StyleSheet } from "react-native";
 
+import * as design from "../design";
+
 function PlayerControls(props) {
   const { status, handlePrev, handlePlay, handlePause, handleSkip } = props;
   return (
@@ -40,14 +42,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderColor: "#ddd",
     borderTopWidth: 1,
-    padding: 16
+    padding: design.spacing.base
   },
   controls: {
     flexDirection: "row"
   },
   controlButton: {
-    marginLeft: 5,
-    marginRight: 5
+    marginLeft: design.spacing.smaller1,
+    marginRight: design.spacing.smaller1
   }
 });
 
