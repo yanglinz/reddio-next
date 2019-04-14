@@ -15,6 +15,7 @@
     "check-format": "prettier --check '**/**/*.{js,ts,css,html,md,yaml,yml}'",
     "start:graphql": "cd packages/graphql-server && yarn start",
     "start:reddio": "cd packages/reddio-ui && yarn start",
+    "start:reddio-storybook": "cd packages/reddio-ui && yarn run storybook",
     "start": "run-p start:*"
   },
   "devDependencies": {
