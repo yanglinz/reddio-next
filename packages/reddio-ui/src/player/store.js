@@ -1,7 +1,7 @@
 import immer from "immer";
 import invariant from "invariant";
-import { combineEpics } from "redux-observable";
-import { ignoreElements } from "rxjs/operators";
+import { ofType, combineEpics } from "redux-observable";
+import { map } from "rxjs/operators";
 import find from "lodash/find";
 import findIndex from "lodash/findIndex";
 
@@ -71,11 +71,14 @@ export function selectActivePost(state) {
  * Epics
  */
 
-function exampleEpic(action$) {
-  return action$.pipe(ignoreElements());
+function skipPostEpic(action$) {
+  return action$.pipe(
+    ofType("PLAYER/IFRAME_ENDED", "PLAYER/IFRAME_ERROR"),
+    map(() => controlSkip())
+  );
 }
 
-export const playerEpic = combineEpics(exampleEpic);
+export const playerEpic = combineEpics(skipPostEpic);
 
 /**
  * Reducer
