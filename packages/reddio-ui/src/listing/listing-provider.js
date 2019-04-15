@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text } from "react-native";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import last from "lodash/last";
 import uniqBy from "lodash/uniqBy";
 
 import Loading from "../lib/loading";
@@ -68,14 +67,17 @@ class ListingProvider extends React.Component {
             return <ListingError />;
           }
 
+          const paginatedPosts = data.listing.paginatedPosts || {};
+          const { posts, pageInfo } = paginatedPosts;
+
           return this.props.children({
-            data,
+            posts,
+            pageInfo,
             loadNextPage: () => {
-              const posts = data.listing.posts || [];
               fetchMore({
                 variables: {
                   ...variables,
-                  after: (last(posts) || {}).name
+                  after: pageInfo && pageInfo.nextCuorsor
                 },
                 updateQuery: (prev, { fetchMoreResult }) =>
                   combineQueries(prev, fetchMoreResult)

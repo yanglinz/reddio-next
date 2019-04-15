@@ -10,8 +10,7 @@ import * as playerStore from "../player/store";
 import * as design from "../design";
 
 function ListingView(props) {
-  const { data, loadNextPage, dispatch } = props;
-  const posts = data.listing.posts;
+  const { posts, loadNextPage, dispatch } = props;
 
   useEffect(() => {
     dispatch(playerStore.setPosts(posts));
@@ -36,8 +35,12 @@ class ListingResolver extends React.Component {
 
     return (
       <ListingProvider pathname={pathname}>
-        {({ data, loadNextPage }) => (
-          <ListingViewConnected data={data} loadNextPage={loadNextPage} />
+        {({ posts, pageInfo, loadNextPage }) => (
+          <ListingViewConnected
+            posts={posts}
+            pageInfo={pageInfo}
+            loadNextPage={loadNextPage}
+          />
         )}
       </ListingProvider>
     );
