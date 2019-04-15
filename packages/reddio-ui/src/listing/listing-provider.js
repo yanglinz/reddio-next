@@ -10,14 +10,20 @@ import Loading from "../lib/loading";
 const LISTING_QUERY = gql`
   query ListingQuery($pathname: String!, $after: String) {
     listing(pathname: $pathname) {
-      posts(after: $after) {
-        author
-        name
-        numComments
-        score
-        thumbnail
-        title
-        url
+      paginatedPosts(after: $after) {
+        posts {
+          author
+          name
+          numComments
+          score
+          thumbnail
+          title
+          url
+        }
+        pageInfo {
+          nextCursor
+          hasNextPage
+        }
       }
     }
   }
