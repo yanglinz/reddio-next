@@ -30,6 +30,8 @@ export interface Listing {
   kind: ListingKind;
   data: {
     children: ListingPost[];
+    after: string | null;
+    before: string | null;
   };
 }
 

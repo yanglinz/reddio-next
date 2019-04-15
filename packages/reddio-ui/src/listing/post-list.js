@@ -57,7 +57,7 @@ export function Post(props) {
 const flatListKeyExtractor = p => p.name;
 
 export function PostList(props) {
-  const { posts, activePost, loadNextPage, dispatch } = props;
+  const { posts, pageInfo, activePost, loadNextPage, dispatch } = props;
   return (
     <View>
       <FlatList
@@ -77,7 +77,9 @@ export function PostList(props) {
         keyExtractor={flatListKeyExtractor}
       />
 
-      <Button onPress={loadNextPage} title="Load More" />
+      {pageInfo.hasNextPage ? (
+        <Button onPress={loadNextPage} title="Load More" />
+      ) : null}
     </View>
   );
 }

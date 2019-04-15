@@ -1,8 +1,8 @@
 import React from "react";
+import immer from "immer";
 import { View, Text } from "react-native";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import last from "lodash/last";
 import uniqBy from "lodash/uniqBy";
 
 import Loading from "../lib/loading";
@@ -10,14 +10,20 @@ import Loading from "../lib/loading";
 const LISTING_QUERY = gql`
   query ListingQuery($pathname: String!, $after: String) {
     listing(pathname: $pathname) {
-      posts(after: $after) {
-        author
-        name
-        numComments
-        score
-        thumbnail
-        title
-        url
+      paginatedPosts(after: $after) {
+        posts {
+          author
+          name
+          numComments
+          score
+          thumbnail
+          title
+          url
+        }
+        pageInfo {
+          hasNextPage
+          nextCursor
+        }
       }
     }
   }
@@ -40,11 +46,16 @@ function ListingError() {
 }
 
 function combineQueries(data, moreData) {
-  const combined = { ...data };
-  let posts = data.listing.posts.concat(moreData.listing.posts);
-  posts = uniqBy(posts, p => p.name);
-  combined.listing.posts = posts;
-  return combined;
+  return immer(data, draft => {
+    let posts = data.listing.paginatedPosts.posts.concat(
+      moreData.listing.paginatedPosts.posts
+    );
+    posts = uniqBy(posts, p => p.name);
+
+    draft.listing.paginatedPosts.posts = posts;
+    draft.listing.paginatedPosts.pageInfo =
+      moreData.listing.paginatedPosts.pageInfo;
+  });
 }
 
 class ListingProvider extends React.Component {
@@ -62,14 +73,17 @@ class ListingProvider extends React.Component {
             return <ListingError />;
           }
 
+          const paginatedPosts = data.listing.paginatedPosts || {};
+          const { posts, pageInfo } = paginatedPosts;
+
           return this.props.children({
-            data,
+            posts,
+            pageInfo,
             loadNextPage: () => {
-              const posts = data.listing.posts || [];
               fetchMore({
                 variables: {
                   ...variables,
-                  after: (last(posts) || {}).name
+                  after: pageInfo && pageInfo.nextCursor
                 },
                 updateQuery: (prev, { fetchMoreResult }) =>
                   combineQueries(prev, fetchMoreResult)
