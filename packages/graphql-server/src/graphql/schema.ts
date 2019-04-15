@@ -1,5 +1,4 @@
 import {
-  graphql,
   GraphQLBoolean,
   GraphQLID,
   GraphQLInt,
@@ -65,58 +64,30 @@ export function multiredditInfoToListingSubInfoType(info: MultiredditInfo) {
 const PostType = new GraphQLObjectType({
   name: "Post",
   fields: {
-    author: {
-      type: GraphQLString
-    },
-    name: {
-      type: GraphQLID
-    },
-    numComments: {
-      type: GraphQLInt
-    },
-    score: {
-      type: GraphQLInt
-    },
-    thumbnail: {
-      type: GraphQLString
-    },
-    title: {
-      type: GraphQLString
-    },
-    ups: {
-      type: GraphQLInt
-    },
-    url: {
-      type: GraphQLString
-    }
+    author: { type: GraphQLString },
+    name: { type: GraphQLID },
+    numComments: { type: GraphQLInt },
+    score: { type: GraphQLInt },
+    thumbnail: { type: GraphQLString },
+    title: { type: GraphQLString },
+    ups: { type: GraphQLInt },
+    url: { type: GraphQLString }
   }
 });
 
 const ListingSubredditInfoType = new GraphQLObjectType({
   name: "ListingSubredditInfo",
   fields: {
-    pathname: {
-      type: GraphQLString
-    },
+    pathname: { type: GraphQLString },
     info: {
       type: new GraphQLObjectType({
         name: "ListingSubredditSubInfo",
         fields: {
-          displayName: {
-            type: GraphQLString
-          },
-          description: {
-            type: GraphQLString
-          },
-          headerTitle: {
-            type: GraphQLString
-          },
-          subscribers: {
-            type: GraphQLInt
-          },
-          title: {
-            type: GraphQLString
-          }
+          displayName: { type: GraphQLString },
+          description: { type: GraphQLString },
+          headerTitle: { type: GraphQLString },
+          subscribers: { type: GraphQLInt },
+          title: { type: GraphQLString }
         }
       }),
       resolve: (source, args, context, info) => {
@@ -131,22 +102,14 @@ const ListingSubredditInfoType = new GraphQLObjectType({
 const ListingMultiredditInfoType = new GraphQLObjectType({
   name: "ListingMultiredditInfo",
   fields: {
-    pathname: {
-      type: GraphQLString
-    },
+    pathname: { type: GraphQLString },
     info: {
       type: new GraphQLObjectType({
         name: "ListingMultiredditSubInfo",
         fields: {
-          displayName: {
-            type: GraphQLString
-          },
-          description: {
-            type: GraphQLString
-          },
-          subredditCount: {
-            type: GraphQLInt
-          }
+          displayName: { type: GraphQLString },
+          description: { type: GraphQLString },
+          subredditCount: { type: GraphQLInt }
         }
       }),
       resolve: (source, args, context, info) => {
@@ -172,9 +135,7 @@ const ListingInfoType = new GraphQLUnionType({
 const ListingCustomInfoType = new GraphQLObjectType({
   name: "ListingCustomInfoType",
   fields: {
-    pathname: {
-      type: GraphQLString
-    },
+    pathname: { type: GraphQLString },
     description: {
       type: GraphQLString,
       resolve: (source, args, context, info) => {
@@ -189,9 +150,7 @@ const ListingCustomInfoType = new GraphQLObjectType({
 const ListingType = new GraphQLObjectType({
   name: "Listing",
   fields: {
-    pathname: {
-      type: GraphQLString
-    },
+    pathname: { type: GraphQLString },
     info: {
       type: ListingInfoType,
       resolve: (source, args, context, info) => {
@@ -209,12 +168,8 @@ const ListingType = new GraphQLObjectType({
     posts: {
       type: new GraphQLList(PostType),
       args: {
-        after: {
-          type: GraphQLString
-        },
-        limit: {
-          type: GraphQLInt
-        }
+        after: { type: GraphQLString },
+        limit: { type: GraphQLInt }
       },
       resolve: (source, args, context, info) => {
         const { pathname } = source;
@@ -225,7 +180,8 @@ const ListingType = new GraphQLObjectType({
           .then((listing: Listing) =>
             _.map(listing.data.children, postToPostType)
           );
-      }
+      },
+      postsV2: {}
     }
   }
 });
@@ -233,9 +189,7 @@ const ListingType = new GraphQLObjectType({
 const ListingSetType = new GraphQLObjectType({
   name: "ListingSet",
   fields: {
-    pathnames: {
-      type: new GraphQLList(GraphQLString)
-    },
+    pathnames: { type: new GraphQLList(GraphQLString) },
     listings: {
       type: new GraphQLList(ListingType),
       resolve: (source, args, context, info) => {
@@ -252,9 +206,7 @@ const RootQueryType = new GraphQLObjectType({
     listing: {
       type: ListingType,
       args: {
-        pathname: {
-          type: GraphQLString
-        }
+        pathname: { type: GraphQLString }
       },
       resolve: (source, args, context, info) => {
         const { pathname } = args;
@@ -270,8 +222,6 @@ const RootQueryType = new GraphQLObjectType({
   }
 });
 
-const schema = new GraphQLSchema({
-  query: RootQueryType
-});
+const schema = new GraphQLSchema({ query: RootQueryType });
 
 export default schema;
