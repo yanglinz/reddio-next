@@ -75,6 +75,41 @@ const PostType = new GraphQLObjectType({
   }
 });
 
+const PaginatedPostType = new GraphQLObjectType({
+  name: "PaginatedPostType",
+  fields: {
+    pathname: { type: GraphQLString },
+    after: { type: GraphQLString },
+    limit: { type: GraphQLInt },
+    posts: {
+      type: new GraphQLList(PostType),
+      resolve: (source, args, context, info) => {
+        const { pathname, after, limit } = source;
+        const loader = context.dataLoaders.listing;
+        return loader
+          .load({ pathname, after, limit })
+          .then((listing: Listing) =>
+            _.map(listing.data.children, postToPostType)
+          );
+      }
+    },
+    pageInfo: {
+      type: PageInfoType,
+      resolve: (source, args, context, info) => {
+        const { pathname, after, limit } = source;
+        const loader = context.dataLoaders.listing;
+        return loader
+          .load({ pathname, after, limit })
+          .then((listing: Listing) => {
+            const nextCursor = listing.data.after;
+            const hasNextPage = Boolean(nextCursor);
+            return { nextCursor, hasNextPage };
+          });
+      }
+    }
+  }
+});
+
 const ListingSubredditInfoType = new GraphQLObjectType({
   name: "ListingSubredditInfo",
   fields: {
@@ -180,8 +215,19 @@ const ListingType = new GraphQLObjectType({
           .then((listing: Listing) =>
             _.map(listing.data.children, postToPostType)
           );
+      }
+    },
+    paginatedPosts: {
+      type: PaginatedPostType,
+      args: {
+        after: { type: GraphQLString },
+        limit: { type: GraphQLInt }
       },
-      postsV2: {}
+      resolve: (source, args, context, info) => {
+        const { pathname } = source;
+        const { after, limit } = args;
+        return { pathname, after, limit };
+      }
     }
   }
 });
