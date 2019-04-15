@@ -1,4 +1,5 @@
 import React from "react";
+import immer from "immer";
 import { View, Text } from "react-native";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
@@ -20,8 +21,8 @@ const LISTING_QUERY = gql`
           url
         }
         pageInfo {
-          nextCursor
           hasNextPage
+          nextCursor
         }
       }
     }
@@ -45,11 +46,16 @@ function ListingError() {
 }
 
 function combineQueries(data, moreData) {
-  const combined = { ...data };
-  let posts = data.listing.posts.concat(moreData.listing.posts);
-  posts = uniqBy(posts, p => p.name);
-  combined.listing.posts = posts;
-  return combined;
+  return immer(data, draft => {
+    let posts = data.listing.paginatedPosts.posts.concat(
+      moreData.listing.paginatedPosts.posts
+    );
+    posts = uniqBy(posts, p => p.name);
+
+    draft.listing.paginatedPosts.posts = posts;
+    draft.listing.paginatedPosts.pageInfo =
+      moreData.listing.paginatedPosts.pageInfo;
+  });
 }
 
 class ListingProvider extends React.Component {
@@ -77,7 +83,7 @@ class ListingProvider extends React.Component {
               fetchMore({
                 variables: {
                   ...variables,
-                  after: pageInfo && pageInfo.nextCuorsor
+                  after: pageInfo && pageInfo.nextCursor
                 },
                 updateQuery: (prev, { fetchMoreResult }) =>
                   combineQueries(prev, fetchMoreResult)
