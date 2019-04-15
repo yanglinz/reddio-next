@@ -10,7 +10,7 @@ import * as playerStore from "../player/store";
 import * as design from "../design";
 
 function ListingView(props) {
-  const { posts, loadNextPage, dispatch } = props;
+  const { posts, pageInfo, loadNextPage, dispatch } = props;
 
   useEffect(() => {
     dispatch(playerStore.setPosts(posts));
@@ -20,7 +20,11 @@ function ListingView(props) {
     <View style={styles.listing}>
       <View style={styles.listingBackground}>
         <PostListSort />
-        <PostList posts={posts} loadNextPage={loadNextPage} />
+        <PostList
+          posts={posts}
+          pageInfo={pageInfo}
+          loadNextPage={loadNextPage}
+        />
       </View>
     </View>
   );
