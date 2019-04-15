@@ -23,6 +23,14 @@ import {
   TOP_SUBREDDITS
 } from "../services/reddit/custom-sets";
 
+const PageInfoType = new GraphQLObjectType({
+  name: "PageInfoType",
+  fields: {
+    hasNextPage: { type: GraphQLBoolean },
+    nextCursor: { type: GraphQLString }
+  }
+});
+
 export function postToPostType(post: ListingPost) {
   return {
     author: post.data.author,
