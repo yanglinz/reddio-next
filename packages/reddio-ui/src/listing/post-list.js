@@ -3,13 +3,13 @@ import {
   View,
   FlatList,
   Button,
-  Image,
   Text,
   TouchableOpacity,
   StyleSheet
 } from "react-native";
 import { connect } from "react-redux";
 
+import Thumbnail from "../lib/thumbnail";
 import * as reddit from "../lib/reddit";
 import * as playerStore from "../player/store";
 import * as design from "../design";
@@ -28,11 +28,13 @@ export function Post(props) {
 
   const postBody = (
     <React.Fragment>
-      <Image source={thumbnail} />
+      <View style={styles.thumbnail}>
+        <Thumbnail src={thumbnail} width={45} height={45} seed={name} />
+      </View>
       <View>
         <Text
           href={url}
-          style={isPlayable ? undefined : styles.postTitleUnplayable}
+          style={isPlayable ? undefined : styles.titleUnplayable}
         >
           <span dangerouslySetInnerHTML={{ __html: title }} />
         </Text>
@@ -86,15 +88,21 @@ export function PostList(props) {
 
 const styles = StyleSheet.create({
   post: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
     borderColor: "#ddd",
     borderTopWidth: 1,
-    padding: design.spacing.base
+    padding: design.spacing.small
+  },
+  thumbnail: {
+    marginRight: design.spacing.small
   },
   postActive: {
     borderLeftColor: "#999",
     borderLeftWidth: 5
   },
-  postTitleUnplayable: {
+  titleUnplayable: {
     color: "#aaa"
   },
   postMeta: {

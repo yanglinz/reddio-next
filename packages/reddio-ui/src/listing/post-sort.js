@@ -6,6 +6,8 @@ import first from "lodash/first";
 import last from "lodash/last";
 import dropRight from "lodash/dropRight";
 
+import * as design from "../design";
+
 const sortTypes = {
   hot: "hot",
   top: "top",
@@ -136,7 +138,10 @@ export function PostListSort(props) {
 
 const styles = StyleSheet.create({
   postListSort: {
-    padding: 16
+    paddingTop: design.spacing.base,
+    paddingBottom: design.spacing.base,
+    paddingLeft: design.spacing.small,
+    paddingRight: design.spacing.small
   }
 });
 
