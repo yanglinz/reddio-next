@@ -10,7 +10,7 @@ import * as playerStore from "../player/store";
 import * as design from "../design";
 
 function ListingView(props) {
-  const { posts, pageInfo, loadNextPage, dispatch } = props;
+  const { posts, pageInfo, loadNextPage, isRefetching, dispatch } = props;
 
   useEffect(() => {
     dispatch(playerStore.setPosts(posts));
@@ -24,6 +24,7 @@ function ListingView(props) {
           posts={posts}
           pageInfo={pageInfo}
           loadNextPage={loadNextPage}
+          isRefetching={isRefetching}
         />
       </View>
     </View>
@@ -39,11 +40,12 @@ class ListingResolver extends React.Component {
 
     return (
       <ListingProvider pathname={pathname}>
-        {({ posts, pageInfo, loadNextPage }) => (
+        {({ posts, pageInfo, loadNextPage, isRefetching }) => (
           <ListingViewConnected
             posts={posts}
             pageInfo={pageInfo}
             loadNextPage={loadNextPage}
+            isRefetching={isRefetching}
           />
         )}
       </ListingProvider>

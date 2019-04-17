@@ -4,6 +4,7 @@ import { View, Text } from "react-native";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import uniqBy from "lodash/uniqBy";
+import isEmpty from "lodash/isEmpty";
 
 import Loading from "../lib/loading";
 
@@ -63,15 +64,27 @@ class ListingProvider extends React.Component {
     const { pathname } = this.props;
     const variables = { pathname };
     return (
-      <Query query={LISTING_QUERY} variables={variables}>
-        {({ loading, error, fetchMore, data }) => {
-          if (loading) {
+      <Query
+        query={LISTING_QUERY}
+        variables={variables}
+        notifyOnNetworkStatusChange
+      >
+        {({ networkStatus, loading, error, fetchMore, data }) => {
+          if (isEmpty(data) && loading) {
             return <ListingLoading />;
           }
 
-          if (error) {
+          if (isEmpty(data) && error) {
             return <ListingError />;
           }
+
+          // Check if refetch was called
+          // https://github.com/apollographql/apollo-client/blob/master/packages/apollo-client/src/core/networkStatus.ts
+          const fetchMoreStatus = 3;
+          const refetchStatus = 4;
+          const isRefetching =
+            networkStatus === fetchMoreStatus ||
+            networkStatus === refetchStatus;
 
           const paginatedPosts = data.listing.paginatedPosts || {};
           const { posts, pageInfo } = paginatedPosts;
@@ -79,6 +92,9 @@ class ListingProvider extends React.Component {
           return this.props.children({
             posts,
             pageInfo,
+            loading,
+            error,
+            isRefetching,
             loadNextPage: () => {
               fetchMore({
                 variables: {
