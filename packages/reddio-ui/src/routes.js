@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { View } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./brand/header";
@@ -10,7 +10,7 @@ const ListingResolver = lazy(() => import("./listing/listing"));
 
 function Screen(props) {
   return (
-    <View>
+    <View style={styles.screen}>
       <Header>{props.children}</Header>
       {props.children}
     </View>
@@ -33,5 +33,11 @@ function AppRoutes() {
     </Router>
   );
 }
+
+const styles = StyleSheet.create({
+  screen: {
+    paddingBottom: 75
+  }
+});
 
 export default AppRoutes;

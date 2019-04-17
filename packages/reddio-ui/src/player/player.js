@@ -18,10 +18,6 @@ function AppPlayer(props) {
   const { dispatch, status, iframePlaying, activePost } = props;
   const { iframeEvents } = playerStore;
 
-  if (!activePost) {
-    return null;
-  }
-
   return (
     <div className="AppPlayer">
       <div
@@ -32,23 +28,35 @@ function AppPlayer(props) {
           right: 20
         }}
       >
-        <ReactPlayer
-          width={350}
-          height={165}
-          url={activePost.url}
-          controls
-          playing={iframePlaying}
-          onReady={() => dispatch(playerStore.iframeAction(iframeEvents.READY))}
-          onStart={() => dispatch(playerStore.iframeAction(iframeEvents.START))}
-          onPlay={() => dispatch(playerStore.iframeAction(iframeEvents.PLAY))}
-          onPause={() => dispatch(playerStore.iframeAction(iframeEvents.PAUSE))}
-          onEnded={() => dispatch(playerStore.iframeAction(iframeEvents.ENDED))}
-          onError={() => dispatch(playerStore.iframeAction(iframeEvents.ERROR))}
-          onProgress={noop}
-          onDuration={noop}
-          onBuffer={noop}
-          onSeek={noop}
-        />
+        {activePost ? (
+          <ReactPlayer
+            width={350}
+            height={165}
+            url={activePost.url}
+            controls
+            playing={iframePlaying}
+            onReady={() =>
+              dispatch(playerStore.iframeAction(iframeEvents.READY))
+            }
+            onStart={() =>
+              dispatch(playerStore.iframeAction(iframeEvents.START))
+            }
+            onPlay={() => dispatch(playerStore.iframeAction(iframeEvents.PLAY))}
+            onPause={() =>
+              dispatch(playerStore.iframeAction(iframeEvents.PAUSE))
+            }
+            onEnded={() =>
+              dispatch(playerStore.iframeAction(iframeEvents.ENDED))
+            }
+            onError={() =>
+              dispatch(playerStore.iframeAction(iframeEvents.ERROR))
+            }
+            onProgress={noop}
+            onDuration={noop}
+            onBuffer={noop}
+            onSeek={noop}
+          />
+        ) : null}
       </div>
 
       <div
@@ -62,6 +70,7 @@ function AppPlayer(props) {
       >
         <PlayerControls
           status={status}
+          activePost={activePost}
           handlePrev={() => dispatch(playerStore.controlPrev())}
           handlePlay={() => dispatch(playerStore.controlPlay())}
           handlePause={() => dispatch(playerStore.controlPause())}
