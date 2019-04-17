@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./brand/header";
 import Loading from "./lib/loading";
 
-const Home = lazy(() => import("./explorer/home"));
+const Home = lazy(() => import("./home/home"));
 const ListingResolver = lazy(() => import("./listing/listing"));
 
 function Screen(props) {
