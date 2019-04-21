@@ -22,9 +22,7 @@ function ListingView(props) {
     <View style={styles.listing}>
       <View
         style={
-          mq.medium
-            ? [styles.listingBackground, styles.listingBackgroundMed]
-            : styles.listingBackground
+          mq.medium ? [styles.listingBg, styles.listingBgMed] : styles.listingBg
         }
       >
         <PostListSort />
@@ -66,10 +64,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center"
   },
-  listingBackground: {
+  listingBg: {
     backgroundColor: "#fff"
   },
-  listingBackgroundMed: {
+  listingBgMed: {
+    width: design.layoutWidth.medium,
     marginTop: design.spacing.base,
     marginBottom: design.spacing.base
   }
