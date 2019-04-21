@@ -6,19 +6,27 @@ import { withRouter } from "react-router";
 import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
 import PostList from "./post-list";
+import useMediaQuery from "../lib/media-query-hook";
 import * as playerStore from "../player/store";
 import * as design from "../design";
 
 function ListingView(props) {
   const { posts, pageInfo, loadNextPage, isRefetching, dispatch } = props;
 
+  const { medium } = useMediaQuery();
   useEffect(() => {
     dispatch(playerStore.setPosts(posts));
   }, [posts]);
 
   return (
     <View style={styles.listing}>
-      <View style={styles.listingBackground}>
+      <View
+        style={
+          medium
+            ? [styles.listingBackground, styles.listingBackgroundMed]
+            : styles.listingBackground
+        }
+      >
         <PostListSort />
         <PostList
           posts={posts}
@@ -59,10 +67,11 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   listingBackground: {
-    backgroundColor: "#fff",
+    backgroundColor: "#fff"
+  },
+  listingBackgroundMed: {
     marginTop: design.spacing.base,
-    marginBottom: design.spacing.base,
-    width: 850
+    marginBottom: design.spacing.base
   }
 });
 
