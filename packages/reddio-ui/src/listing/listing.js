@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   listingBgMed: {
-    width: design.layoutWidth.medium,
+    width: design.layoutWidth.medium - design.spacing.large * 2,
     marginTop: design.spacing.base,
     marginBottom: design.spacing.base
   }
