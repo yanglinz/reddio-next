@@ -13,7 +13,7 @@ import * as design from "../design";
 function ListingView(props) {
   const { posts, pageInfo, loadNextPage, isRefetching, dispatch } = props;
 
-  const { medium } = useMediaQuery();
+  const mq = useMediaQuery();
   useEffect(() => {
     dispatch(playerStore.setPosts(posts));
   }, [posts]);
@@ -22,7 +22,7 @@ function ListingView(props) {
     <View style={styles.listing}>
       <View
         style={
-          medium
+          mq.medium
             ? [styles.listingBackground, styles.listingBackgroundMed]
             : styles.listingBackground
         }

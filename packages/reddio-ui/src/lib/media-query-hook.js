@@ -10,7 +10,8 @@ function useMediaQuery() {
   const small = useMedia({ minWidth: smallBreak });
   const medium = useMedia({ minWidth: mediumBreak });
   const large = useMedia({ minWidth: largeBreak });
-  return { large, medium, small };
+  const mq = { large, medium, small };
+  return mq;
 }
 
 export default useMediaQuery;
