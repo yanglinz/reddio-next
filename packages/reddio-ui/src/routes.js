@@ -6,6 +6,7 @@ import Header from "./brand/header";
 import Loading from "./lib/loading";
 
 const Home = lazy(() => import("./home/home"));
+const Explore = lazy(() => import("./explore/explore"));
 const ListingResolver = lazy(() => import("./listing/listing"));
 
 function Screen(props) {
@@ -25,6 +26,7 @@ function AppRoutes() {
           <Suspense fallback={<Loading />}>
             <Switch>
               <Route path="/" exact component={Home} />
+              <Route path="/explore" exact component={Explore} />
               <Route component={ListingResolver} />
             </Switch>
           </Suspense>
