@@ -1,17 +1,20 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { withRouter } from "react-router-dom";
 
 import * as design from "../design";
 
 function Summary(props) {
-  const { title, listings } = props;
+  const { title, listings, history } = props;
 
   return (
     <View style={styles.summary}>
-      <Text style={styles.title}>{title}</Text>
+      <View style={styles.title}>
+        <Text style={styles.titleText}>{title}</Text>
+      </View>
       {listings.map(listing => (
         <View key={listing} style={styles.listing}>
-          <Text>{listing}</Text>
+          <Text onPress={() => history.push(listing)}>{listing}</Text>
         </View>
       ))}
     </View>
@@ -20,11 +23,21 @@ function Summary(props) {
 
 const styles = StyleSheet.create({
   summary: {
-    padding: design.spacing.base
+    marginBottom: design.spacing.large,
+    borderColor: "#ddd",
+    borderBottomWidth: 1
   },
   title: {
-    fontSize: design.spacing.base,
-    fontWeight: 900
+    paddingTop: design.spacing.base,
+    paddingBottom: design.spacing.base,
+    paddingLeft: design.spacing.small,
+    paddingRight: design.spacing.small
+  },
+  titleText: {
+    fontSize: design.fontSize.small,
+    fontWeight: "900",
+    textTransform: "uppercase",
+    letterSpacing: 1
   },
   listing: {
     display: "flex",
@@ -36,4 +49,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Summary;
+export default withRouter(Summary);
