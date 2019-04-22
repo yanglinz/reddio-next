@@ -7,8 +7,10 @@ function Summary(props) {
   const { title, listings } = props;
 
   return (
-    <View style={styles.summary}>
-      <Text style={styles.title}>{title}</Text>
+    <View>
+      <View style={styles.title}>
+        <Text style={styles.titleText}>{title}</Text>
+      </View>
       {listings.map(listing => (
         <View key={listing} style={styles.listing}>
           <Text>{listing}</Text>
@@ -19,12 +21,17 @@ function Summary(props) {
 }
 
 const styles = StyleSheet.create({
-  summary: {
-    padding: design.spacing.base
-  },
   title: {
-    fontSize: design.spacing.base,
-    fontWeight: 900
+    paddingTop: design.spacing.base,
+    paddingBottom: design.spacing.base,
+    paddingLeft: design.spacing.small,
+    paddingRight: design.spacing.small
+  },
+  titleText: {
+    fontSize: design.fontSize.small,
+    fontWeight: "900",
+    textTransform: "uppercase",
+    letterSpacing: 1
   },
   listing: {
     display: "flex",
