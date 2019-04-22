@@ -8,7 +8,7 @@ function Summary(props) {
   const { title, listings, history } = props;
 
   return (
-    <View>
+    <View style={styles.summary}>
       <View style={styles.title}>
         <Text style={styles.titleText}>{title}</Text>
       </View>
@@ -22,6 +22,11 @@ function Summary(props) {
 }
 
 const styles = StyleSheet.create({
+  summary: {
+    marginBottom: design.spacing.large,
+    borderColor: "#ddd",
+    borderBottomWidth: 1
+  },
   title: {
     paddingTop: design.spacing.base,
     paddingBottom: design.spacing.base,

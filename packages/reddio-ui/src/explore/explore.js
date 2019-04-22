@@ -16,6 +16,7 @@ function Explore() {
         }
       >
         <Summary title="Classical" listings={data.byGenre.classical} />
+        <Summary title="Hip-Hop" listings={data.byGenre.hiphop} />
       </View>
     </View>
   );
