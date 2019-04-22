@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { withRouter } from "react-router";
 
 import ListingProvider from "./listing-provider";
@@ -11,7 +11,14 @@ import * as playerStore from "../player/store";
 import * as design from "../design";
 
 function ListingView(props) {
-  const { posts, pageInfo, loadNextPage, isRefetching, dispatch } = props;
+  const {
+    pathname,
+    posts,
+    pageInfo,
+    loadNextPage,
+    isRefetching,
+    dispatch
+  } = props;
 
   const mq = useMediaQuery();
   useEffect(() => {
@@ -25,6 +32,9 @@ function ListingView(props) {
           mq.medium ? [styles.listingBg, styles.listingBgMed] : styles.listingBg
         }
       >
+        <View style={styles.title}>
+          <Text style={styles.titleText}>{pathname}</Text>
+        </View>
         <PostListSort />
         <PostList
           posts={posts}
@@ -48,6 +58,7 @@ class ListingResolver extends React.Component {
       <ListingProvider pathname={pathname}>
         {({ posts, pageInfo, loadNextPage, isRefetching }) => (
           <ListingViewConnected
+            pathname={pathname}
             posts={posts}
             pageInfo={pageInfo}
             loadNextPage={loadNextPage}
@@ -71,6 +82,19 @@ const styles = StyleSheet.create({
     width: design.layoutWidth.medium - design.spacing.large * 2,
     marginTop: design.spacing.base,
     marginBottom: design.spacing.base
+  },
+  title: {
+    paddingTop: design.spacing.base,
+    paddingBottom: design.spacing.base,
+    paddingLeft: design.spacing.small,
+    paddingRight: design.spacing.small,
+    borderBottomColor: "#ddd",
+    borderBottomWidth: 1
+  },
+  titleText: {
+    fontSize: design.fontSize.base,
+    fontWeight: "900",
+    textTransform: "uppercase"
   }
 });
 
