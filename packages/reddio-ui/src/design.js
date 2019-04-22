@@ -1,3 +1,9 @@
+export const layoutWidth = {
+  small: 480,
+  medium: 760,
+  large: 980
+};
+
 export const spacing = {
   smaller2: 4,
   smaller1: 6,
@@ -8,10 +14,6 @@ export const spacing = {
   larger2: 67,
   larger3: 109,
   larger4: 178
-};
-
-export const layoutWidth = {
-  // TODO: Add layout width e.g. 600
 };
 
 // https://type-scale.com/
