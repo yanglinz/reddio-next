@@ -94,7 +94,8 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: design.fontSize.base,
     fontWeight: "900",
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    letterSpacing: 1
   }
 });
 
