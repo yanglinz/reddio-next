@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1
   },
   titleText: {
-    fontSize: design.fontSize.base,
+    fontSize: design.fontSize.small,
     fontWeight: "900",
     textTransform: "uppercase",
     letterSpacing: 1
