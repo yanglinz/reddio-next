@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { withRouter } from "react-router-dom";
 
 import * as design from "../design";
 
 function Summary(props) {
-  const { title, listings } = props;
+  const { title, listings, history } = props;
 
   return (
     <View>
@@ -13,7 +14,7 @@ function Summary(props) {
       </View>
       {listings.map(listing => (
         <View key={listing} style={styles.listing}>
-          <Text>{listing}</Text>
+          <Text onPress={() => history.push(listing)}>{listing}</Text>
         </View>
       ))}
     </View>
@@ -43,4 +44,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Summary;
+export default withRouter(Summary);
