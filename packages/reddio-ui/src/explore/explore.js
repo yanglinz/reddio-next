@@ -15,8 +15,10 @@ function Explore() {
           mq.medium ? [styles.exploreBg, styles.exploreBgMed] : styles.exploreBg
         }
       >
-        <Summary title="Classical" listings={data.byGenre.classical} />
+        <Summary title="Electronic" listings={data.byGenre.electronic} />
+        <Summary title="Rock / Alternative" listings={data.byGenre.rock} />
         <Summary title="Hip-Hop" listings={data.byGenre.hiphop} />
+        <Summary title="Classical" listings={data.byGenre.classical} />
       </View>
     </View>
   );
