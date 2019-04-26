@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   siteName: {
-    color: design.colors.primary.c3,
+    color: design.colors.primary.c4,
     fontSize: design.fontSize.larger2
   },
   siteNameAccent: {

@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   player: {
     display: "flex",
     alignItems: "center",
-    borderColor: "#ddd",
+    borderColor: design.colors.mono.c9,
     borderTopWidth: 1,
     padding: design.spacing.base
   },
