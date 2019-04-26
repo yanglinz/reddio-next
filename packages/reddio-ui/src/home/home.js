@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Button, Text, StyleSheet } from "react-native";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -70,6 +70,11 @@ class Home extends React.Component {
                   ))}
                 </View>
               </View>
+
+              <View style={styles.explore}>
+                <Text>Explore more music communities</Text>
+                <Button title="Explore" />
+              </View>
             </View>
           );
         }}
@@ -100,6 +105,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between"
+  },
+  explore: {
+    backgroundColor: "#000",
+    padding: 50
   }
 });
 
