@@ -21,7 +21,7 @@ export const colors = {
     c7: "#9fb3c8",
     c8: "#bcccdc",
     c9: "#d9e2ec",
-    c10: "#f0f4f8",
+    c10: "#f0f4f8"
   }
 };
 

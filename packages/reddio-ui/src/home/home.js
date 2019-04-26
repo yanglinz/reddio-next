@@ -75,8 +75,10 @@ class Home extends React.Component {
               </View>
 
               <View style={styles.explore}>
-                <Text>Explore more music communities</Text>
-                <Button title="Explore" />
+                <Text style={styles.exploreTitle}>
+                  Explore more music communities
+                </Text>
+                <Button title="Explore" color={design.colors.primary.c5} />
               </View>
             </View>
           );
@@ -110,8 +112,15 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   explore: {
-    backgroundColor: "#000",
-    padding: 50
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: design.colors.mono.c4,
+    padding: design.spacing.larger2
+  },
+  exploreTitle: {
+    fontSize: design.fontSize.large,
+    marginBottom: design.spacing.small,
+    color: design.colors.mono.c10
   }
 });
 
