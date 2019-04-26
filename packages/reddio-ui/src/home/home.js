@@ -55,10 +55,13 @@ class Home extends React.Component {
 
           const topListings = data.topSubreddits.listings || [];
           return (
-            <View style={styles.home}>
-              <View>
-                <Text style={styles.sectionTitle}>Featured Communities</Text>
-                <Text style={styles.sectionSubtitle}>Top subreddits</Text>
+            <View>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitleText}>
+                  Featured Communities
+                </Text>
+                <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
+
                 <View style={styles.featuredSummaryList}>
                   {topListings.map(listingInfo => (
                     <ListingSummary
@@ -84,17 +87,17 @@ class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  home: {
+  section: {
     display: "flex",
     alignItems: "center",
     paddingTop: design.spacing.larger2,
     paddingBottom: design.spacing.larger2
   },
-  sectionTitle: {
+  sectionTitleText: {
     fontSize: design.fontSize.larger1,
     marginBottom: design.spacing.small
   },
-  sectionSubtitle: {
+  sectionSubtitleText: {
     fontSize: design.fontSize.base,
     marginBottom: design.spacing.large,
     color: design.fontColors.lightGray
