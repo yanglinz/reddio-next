@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native";
+import { withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -42,6 +43,8 @@ function HomeError() {
 
 class Home extends React.Component {
   render() {
+    const { history } = this.props;
+
     return (
       <Query query={HOME_QUERY}>
         {({ loading, error, data }) => {
@@ -78,7 +81,11 @@ class Home extends React.Component {
                 <Text style={styles.exploreTitle}>
                   Explore more music communities
                 </Text>
-                <Button title="Explore" color={design.colors.primary.c5} />
+                <Button
+                  title="Explore"
+                  color={design.colors.primary.c5}
+                  onPress={() => history.push("/explore")}
+                />
               </View>
             </View>
           );
@@ -124,4 +131,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;
+export default withRouter(Home);
