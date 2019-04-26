@@ -104,12 +104,13 @@ const styles = StyleSheet.create({
   },
   sectionTitleText: {
     fontSize: design.fontSize.larger1,
-    marginBottom: design.spacing.small
+    marginBottom: design.spacing.small,
+    color: design.colors.mono.c3
   },
   sectionSubtitleText: {
     fontSize: design.fontSize.base,
     marginBottom: design.spacing.large,
-    color: design.fontColors.lightGray
+    color: design.colors.mono.c6
   },
   featuredSummaryList: {
     width: 900 + design.spacing.small * 3,
