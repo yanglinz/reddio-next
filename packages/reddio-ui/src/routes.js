@@ -38,7 +38,7 @@ function AppRoutes() {
 
 const styles = StyleSheet.create({
   screen: {
-    paddingBottom: 75
+    paddingBottom: 65
   }
 });
 

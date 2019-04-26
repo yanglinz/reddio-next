@@ -1,5 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Button, Text, StyleSheet } from "react-native";
+import { withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -42,6 +43,8 @@ function HomeError() {
 
 class Home extends React.Component {
   render() {
+    const { history } = this.props;
+
     return (
       <Query query={HOME_QUERY}>
         {({ loading, error, data }) => {
@@ -55,10 +58,13 @@ class Home extends React.Component {
 
           const topListings = data.topSubreddits.listings || [];
           return (
-            <View style={styles.home}>
-              <View>
-                <Text style={styles.sectionTitle}>Featured Communities</Text>
-                <Text style={styles.sectionSubtitle}>Top subreddits</Text>
+            <View>
+              <View style={styles.section}>
+                <Text style={styles.sectionTitleText}>
+                  Featured Communities
+                </Text>
+                <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
+
                 <View style={styles.featuredSummaryList}>
                   {topListings.map(listingInfo => (
                     <ListingSummary
@@ -70,6 +76,17 @@ class Home extends React.Component {
                   ))}
                 </View>
               </View>
+
+              <View style={styles.explore}>
+                <Text style={styles.exploreTitle}>
+                  Explore more music communities
+                </Text>
+                <Button
+                  title="Explore"
+                  color={design.colors.primary.c5}
+                  onPress={() => history.push("/explore")}
+                />
+              </View>
             </View>
           );
         }}
@@ -79,20 +96,21 @@ class Home extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  home: {
+  section: {
     display: "flex",
     alignItems: "center",
     paddingTop: design.spacing.larger2,
     paddingBottom: design.spacing.larger2
   },
-  sectionTitle: {
+  sectionTitleText: {
     fontSize: design.fontSize.larger1,
-    marginBottom: design.spacing.small
+    marginBottom: design.spacing.small,
+    color: design.colors.neutral.c3
   },
-  sectionSubtitle: {
+  sectionSubtitleText: {
     fontSize: design.fontSize.base,
     marginBottom: design.spacing.large,
-    color: design.fontColors.lightGray
+    color: design.colors.neutral.c6
   },
   featuredSummaryList: {
     width: 900 + design.spacing.small * 3,
@@ -100,7 +118,18 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-between"
+  },
+  explore: {
+    display: "flex",
+    alignItems: "center",
+    backgroundColor: design.colors.neutral.c4,
+    padding: design.spacing.larger2
+  },
+  exploreTitle: {
+    fontSize: design.fontSize.large,
+    marginBottom: design.spacing.small,
+    color: design.colors.neutral.c10
   }
 });
 
-export default Home;
+export default withRouter(Home);
