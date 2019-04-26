@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: design.fontSize.small,
-    color: design.colors.mono.c6
+    color: design.colors.neutral.c6
   }
 });
 

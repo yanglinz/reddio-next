@@ -11,7 +11,7 @@ export const colors = {
     c9: "#bef8fd",
     c10: "#e0fcff"
   },
-  mono: {
+  neutral: {
     c1: "#102a43",
     c2: "#243b53",
     c3: "#334e68",

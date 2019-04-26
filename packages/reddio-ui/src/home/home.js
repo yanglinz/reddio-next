@@ -105,12 +105,12 @@ const styles = StyleSheet.create({
   sectionTitleText: {
     fontSize: design.fontSize.larger1,
     marginBottom: design.spacing.small,
-    color: design.colors.mono.c3
+    color: design.colors.neutral.c3
   },
   sectionSubtitleText: {
     fontSize: design.fontSize.base,
     marginBottom: design.spacing.large,
-    color: design.colors.mono.c6
+    color: design.colors.neutral.c6
   },
   featuredSummaryList: {
     width: 900 + design.spacing.small * 3,
@@ -122,13 +122,13 @@ const styles = StyleSheet.create({
   explore: {
     display: "flex",
     alignItems: "center",
-    backgroundColor: design.colors.mono.c4,
+    backgroundColor: design.colors.neutral.c4,
     padding: design.spacing.larger2
   },
   exploreTitle: {
     fontSize: design.fontSize.large,
     marginBottom: design.spacing.small,
-    color: design.colors.mono.c10
+    color: design.colors.neutral.c10
   }
 });
 

@@ -21,7 +21,7 @@ export function Header(props) {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: "#fff",
-    borderColor: design.colors.mono.c9,
+    borderColor: design.colors.neutral.c9,
     borderBottomWidth: 1,
     padding: design.spacing.base
   },
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     fontSize: design.fontSize.larger2
   },
   siteNameAccent: {
-    color: design.colors.mono.c5,
+    color: design.colors.neutral.c5,
     fontSize: design.fontSize.larger2
   }
 });
