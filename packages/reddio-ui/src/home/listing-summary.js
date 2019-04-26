@@ -54,11 +54,12 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: design.fontSize.large,
-    marginBottom: design.spacing.smaller1
+    marginBottom: design.spacing.smaller1,
+    color: design.colors.primary.c2
   },
   description: {
     fontSize: design.fontSize.small,
-    color: design.fontColors.lightGray
+    color: design.colors.mono.c6
   }
 });
 
