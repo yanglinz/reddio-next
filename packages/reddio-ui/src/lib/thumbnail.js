@@ -27,11 +27,10 @@ const colors = [
 ];
 
 function Thumbnail(props) {
-  const { width, height, src, seed } = props;
-
+  const { title, width, height, src, seed } = props;
   const [errored, setErrored] = useState(false);
 
-  // Get random choice
+  // Choose a color randomly based on a seed
   let color = colors[0];
   try {
     const rngSeed = isString(seed) ? random.hash(seed) : seed;
@@ -49,14 +48,15 @@ function Thumbnail(props) {
         backgroundColor: color
       }}
     >
-      <img
-        style={{ display: errored ? "none" : undefined }}
-        src={src}
-        width={width}
-        height={height}
-        alt="A post" // todo
-        onError={() => setErrored(true)}
-      />
+      {errored ? null : (
+        <img
+          src={src}
+          width={width}
+          height={height}
+          alt={title}
+          onError={() => setErrored(true)}
+        />
+      )}
     </View>
   );
 }

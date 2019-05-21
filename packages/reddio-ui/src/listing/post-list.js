@@ -29,7 +29,13 @@ export function Post(props) {
   const postBody = (
     <React.Fragment>
       <View style={styles.thumbnail}>
-        <Thumbnail src={thumbnail} width={45} height={45} seed={name} />
+        <Thumbnail
+          title={title}
+          src={thumbnail}
+          width={45}
+          height={45}
+          seed={name}
+        />
       </View>
       <View>
         <Text
