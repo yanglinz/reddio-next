@@ -7,6 +7,7 @@ import Thumbnail from "./thumbnail";
 storiesOf("Thumbnail", module).add("default", () => (
   <View style={{ width: 100 }}>
     <Thumbnail
+      title="Example thumbnail"
       width={50}
       height={50}
       seed="some-seed"
@@ -14,6 +15,7 @@ storiesOf("Thumbnail", module).add("default", () => (
     />
 
     <Thumbnail
+      title="Example thumbnail"
       width={50}
       height={50}
       seed="another-seed"

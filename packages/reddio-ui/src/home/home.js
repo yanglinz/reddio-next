@@ -18,6 +18,7 @@ const HOME_QUERY = gql`
         }
         posts(limit: 10) {
           name
+          title
           thumbnail
         }
       }

@@ -22,7 +22,13 @@ function ListingSummary(props) {
       <View style={styles.imageList}>
         {thumbnailPosts.map(p => (
           <View key={p.name}>
-            <Thumbnail width={60} height={60} src={p.thumbnail} seed={p.name} />
+            <Thumbnail
+              title={p.title}
+              width={60}
+              height={60}
+              src={p.thumbnail}
+              seed={p.name}
+            />
           </View>
         ))}
       </View>
