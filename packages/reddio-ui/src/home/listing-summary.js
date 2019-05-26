@@ -7,6 +7,14 @@ import take from "lodash/take";
 import Thumbnail from "../lib/thumbnail";
 import * as design from "../design";
 
+export function ListingSummarySkeleton(props) {
+  return (
+    <View style={styles.summary}>
+      <Text>Hello world</Text>
+    </View>
+  );
+}
+
 export function ListingSummary(props) {
   const { pathname, posts, customInfo, history } = props;
   const { description } = customInfo;

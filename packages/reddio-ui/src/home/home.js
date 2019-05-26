@@ -4,7 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import ListingSummary from "./listing-summary";
+import ListingSummary, { ListingSummarySkeleton } from "./listing-summary";
 import Loading from "../lib/loading";
 import * as design from "../design";
 
@@ -29,6 +29,17 @@ const HOME_QUERY = gql`
 function HomeLoading() {
   return (
     <View>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitleText}>Featured Communities</Text>
+        <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
+
+        <View style={styles.featuredSummaryList}>
+          {Array.from({ length: 6 }).map(() => (
+            <ListingSummarySkeleton />
+          ))}
+        </View>
+      </View>
+
       <Loading />
     </View>
   );
