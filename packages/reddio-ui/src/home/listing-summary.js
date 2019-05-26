@@ -7,7 +7,7 @@ import take from "lodash/take";
 import Thumbnail from "../lib/thumbnail";
 import * as design from "../design";
 
-function ListingSummary(props) {
+export function ListingSummary(props) {
   const { pathname, posts, customInfo, history } = props;
   const { description } = customInfo;
 
@@ -49,7 +49,8 @@ const styles = StyleSheet.create({
     marginBottom: design.spacing.base,
     backgroundColor: "#fff",
     borderRadius: 2,
-    overflow: "hidden"
+    overflow: "hidden",
+    boxShadow: `0 1px 10px rgba(0, 0, 0, 0.15)`
   },
   imageList: {
     display: "flex",

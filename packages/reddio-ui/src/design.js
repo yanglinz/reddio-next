@@ -44,7 +44,6 @@ export const spacing = {
   larger4: 178
 };
 
-
 export const fontSize = {
   // https://type-scale.com/
   smaller1: 10,
