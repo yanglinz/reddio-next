@@ -1,4 +1,5 @@
 export const colors = {
+  // Colors are ordered from lightest to darkest
   primary: {
     c1: "#044e54",
     c2: "#0a6c74",
@@ -25,10 +26,6 @@ export const colors = {
   }
 };
 
-export const fontColors = {
-  lightGray: "#777"
-};
-
 export const layoutWidth = {
   small: 480,
   medium: 760,
@@ -47,9 +44,8 @@ export const spacing = {
   larger4: 178
 };
 
-// https://type-scale.com/
-
 export const fontSize = {
+  // https://type-scale.com/
   smaller1: 10,
   small: 13,
   base: 16,
