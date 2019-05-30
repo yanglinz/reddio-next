@@ -5,12 +5,20 @@ import uniqBy from "lodash/uniqBy";
 import take from "lodash/take";
 
 import Thumbnail from "../lib/thumbnail";
+import Skeleton from "../lib/skeleton";
 import * as design from "../design";
 
-export function ListingSummarySkeleton(props) {
+export function ListingSummarySkeleton() {
   return (
     <View style={styles.summary}>
-      <Text>Hello world</Text>
+      <Skeleton width={300} height={60} />
+
+      <View style={styles.content}>
+        <View style={{ height: design.spacing.smaller1 }} />
+        <Skeleton width={140} height={design.fontSize.large} />
+        <View style={{ height: design.spacing.smaller1 }} />
+        <Skeleton width={220} height={design.fontSize.larger2} />
+      </View>
     </View>
   );
 }
