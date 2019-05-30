@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
@@ -18,12 +18,28 @@ function Screen(props) {
   );
 }
 
+function DelayedLoading() {
+  const [done, setDone] = useState(false);
+
+  let timeout;
+  useEffect(() => {
+    timeout = setTimeout(() => setDone(true), 1500);
+    return () => timeout && clearTimeout(timeout);
+  });
+
+  if (done) {
+    return <Loading />;
+  }
+
+  return null;
+}
+
 function AppRoutes() {
   return (
     <Router>
       <React.Fragment>
         <Screen>
-          <Suspense fallback={<Loading />}>
+          <Suspense fallback={<DelayedLoading />}>
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/explore" exact component={Explore} />

@@ -34,8 +34,8 @@ function HomeLoading() {
         <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
 
         <View style={styles.featuredSummaryList}>
-          {Array.from({ length: 6 }).map(() => (
-            <ListingSummarySkeleton />
+          {Array.from({ length: 6 }).map((_, i) => (
+            <ListingSummarySkeleton key={i} />
           ))}
         </View>
       </View>
