@@ -2,16 +2,28 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { View, Text, StyleSheet } from "react-native";
 import { withRouter } from "react-router";
+import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
-import PostList from "./post-list";
+import PostList, { PostListSkeleton } from "./post-list";
 import useMediaQuery from "../lib/media-query-hook";
 import * as playerStore from "../player/store";
 import * as design from "../design";
 
+function ListingError() {
+  return (
+    <View>
+      <Text>:(</Text>
+    </View>
+  );
+}
+
 function ListingView(props) {
   const {
+    loading,
+    error,
+    data,
     pathname,
     posts,
     pageInfo,
@@ -20,9 +32,18 @@ function ListingView(props) {
     dispatch
   } = props;
 
+  const hasError = isEmpty(data) && error;
+  const isLoading = isEmpty(data) && loading;
+
+  if (hasError) {
+    return <ListingError />;
+  }
+
   const mq = useMediaQuery();
   useEffect(() => {
-    dispatch(playerStore.setPosts(posts));
+    if (posts) {
+      dispatch(playerStore.setPosts(posts));
+    }
   }, [posts]);
 
   return (
@@ -36,12 +57,16 @@ function ListingView(props) {
           <Text style={styles.titleText}>{pathname}</Text>
         </View>
         <PostListSort />
-        <PostList
-          posts={posts}
-          pageInfo={pageInfo}
-          loadNextPage={loadNextPage}
-          isRefetching={isRefetching}
-        />
+        {isLoading ? (
+          <PostListSkeleton />
+        ) : (
+          <PostList
+            posts={posts}
+            pageInfo={pageInfo}
+            loadNextPage={loadNextPage}
+            isRefetching={isRefetching}
+          />
+        )}
       </View>
     </View>
   );
@@ -56,14 +81,8 @@ class ListingResolver extends React.Component {
 
     return (
       <ListingProvider pathname={pathname}>
-        {({ posts, pageInfo, loadNextPage, isRefetching }) => (
-          <ListingViewConnected
-            pathname={pathname}
-            posts={posts}
-            pageInfo={pageInfo}
-            loadNextPage={loadNextPage}
-            isRefetching={isRefetching}
-          />
+        {renderProps => (
+          <ListingViewConnected pathname={pathname} {...renderProps} />
         )}
       </ListingProvider>
     );
@@ -76,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   listingBg: {
-    backgroundColor: "#fff"
+    backgroundColor: "#FFF"
   },
   listingBgMed: {
     width: design.layoutWidth.medium - design.spacing.large * 2,
@@ -88,7 +107,7 @@ const styles = StyleSheet.create({
     paddingBottom: design.spacing.base,
     paddingLeft: design.spacing.small,
     paddingRight: design.spacing.small,
-    borderBottomColor: "#ddd",
+    borderBottomColor: design.colors.neutral.c10,
     borderBottomWidth: 1
   },
   titleText: {

@@ -10,6 +10,7 @@ import {
 import { connect } from "react-redux";
 
 import Thumbnail from "../lib/thumbnail";
+import Skeleton from "../lib/skeleton";
 import * as reddit from "../lib/reddit";
 import * as playerStore from "../player/store";
 import * as design from "../design";
@@ -18,6 +19,21 @@ function mapStateToProps(state) {
   return {
     activePost: playerStore.selectActivePost(state)
   };
+}
+
+export function PostSkeleton() {
+  return (
+    <View style={styles.post}>
+      <View style={styles.thumbnail}>
+        <Skeleton width={45} height={45} />
+      </View>
+      <View>
+        <Skeleton width={45} height={design.fontSize.base} />
+        <View style={{ height: 3 }} />
+        <Skeleton width={150} height={design.fontSize.base} />
+      </View>
+    </View>
+  );
 }
 
 export function Post(props) {
@@ -59,6 +75,17 @@ export function Post(props) {
     </TouchableOpacity>
   ) : (
     <View style={styles.post}>{postBody}</View>
+  );
+}
+
+export function PostListSkeleton() {
+  const count = 25;
+  return (
+    <View>
+      {Array.from({ length: count }).map((_, i) => (
+        <PostSkeleton key={i} />
+      ))}
+    </View>
   );
 }
 
@@ -110,7 +137,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#ddd",
+    borderColor: design.colors.neutral.c10,
     borderTopWidth: 1,
     padding: design.spacing.small
   },
@@ -118,7 +145,7 @@ const styles = StyleSheet.create({
     marginRight: design.spacing.small
   },
   postActive: {
-    borderLeftColor: "#999",
+    borderLeftColor: design.colors.primaryAlt.c7,
     borderLeftWidth: 5
   },
   titleUnplayable: {
