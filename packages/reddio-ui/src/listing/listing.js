@@ -2,16 +2,37 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { View, Text, StyleSheet } from "react-native";
 import { withRouter } from "react-router";
+import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
 import PostList from "./post-list";
+import Loading from "../lib/loading";
 import useMediaQuery from "../lib/media-query-hook";
 import * as playerStore from "../player/store";
 import * as design from "../design";
 
+function ListingLoading() {
+  return (
+    <View>
+      <Loading />
+    </View>
+  );
+}
+
+function ListingError() {
+  return (
+    <View>
+      <Text>:(</Text>
+    </View>
+  );
+}
+
 function ListingView(props) {
   const {
+    loading,
+    error,
+    data,
     pathname,
     posts,
     pageInfo,
@@ -19,6 +40,14 @@ function ListingView(props) {
     isRefetching,
     dispatch
   } = props;
+
+  if (isEmpty(data) && loading) {
+    return <ListingLoading />;
+  }
+
+  if (isEmpty(data) && error) {
+    return <ListingError />;
+  }
 
   const mq = useMediaQuery();
   useEffect(() => {
@@ -56,14 +85,8 @@ class ListingResolver extends React.Component {
 
     return (
       <ListingProvider pathname={pathname}>
-        {({ posts, pageInfo, loadNextPage, isRefetching }) => (
-          <ListingViewConnected
-            pathname={pathname}
-            posts={posts}
-            pageInfo={pageInfo}
-            loadNextPage={loadNextPage}
-            isRefetching={isRefetching}
-          />
+        {renderProps => (
+          <ListingViewConnected pathname={pathname} {...renderProps} />
         )}
       </ListingProvider>
     );
