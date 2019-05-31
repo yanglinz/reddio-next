@@ -17,11 +17,17 @@ function PlayerControls(props) {
     <View style={styles.player}>
       <View style={styles.controls}>
         <View style={styles.controlButton}>
-          <Button onPress={handlePrev} title="Prev" disabled={!activePost} />
+          <Button
+            color={design.colors.primary.c6}
+            onPress={handlePrev}
+            title="Prev"
+            disabled={!activePost}
+          />
         </View>
 
         <View style={styles.controlButton}>
           <Button
+            color={design.colors.primary.c6}
             onPress={handlePlay}
             title="Play"
             disabled={status === "PLAYING" || !activePost}
@@ -30,6 +36,7 @@ function PlayerControls(props) {
 
         <View style={styles.controlButton}>
           <Button
+            color={design.colors.primary.c6}
             onPress={handlePause}
             title="Pause"
             disabled={status === "PAUSED" || !activePost}
@@ -37,7 +44,12 @@ function PlayerControls(props) {
         </View>
 
         <View style={styles.controlButton}>
-          <Button onPress={handleSkip} title="Skip" disabled={!activePost} />
+          <Button
+            color={design.colors.primary.c6}
+            onPress={handleSkip}
+            title="Skip"
+            disabled={!activePost}
+          />
         </View>
       </View>
     </View>

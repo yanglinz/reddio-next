@@ -95,6 +95,7 @@ export function PostList(props) {
 
       {pageInfo.hasNextPage ? (
         <Button
+          color={design.colors.primary.c4}
           onPress={loadNextPage}
           title="Load More"
           disabled={isRefetching}
