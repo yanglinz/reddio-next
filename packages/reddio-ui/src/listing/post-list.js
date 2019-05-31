@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#ddd",
+    borderColor: design.colors.neutral.c10,
     borderTopWidth: 1,
     padding: design.spacing.small
   },
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     marginRight: design.spacing.small
   },
   postActive: {
-    borderLeftColor: "#999",
+    borderLeftColor: design.colors.primaryAlt.c7,
     borderLeftWidth: 5
   },
   titleUnplayable: {

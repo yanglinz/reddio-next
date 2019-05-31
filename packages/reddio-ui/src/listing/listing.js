@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   listingBg: {
-    backgroundColor: "#fff"
+    backgroundColor: "#FFF"
   },
   listingBgMed: {
     width: design.layoutWidth.medium - design.spacing.large * 2,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     paddingBottom: design.spacing.base,
     paddingLeft: design.spacing.small,
     paddingRight: design.spacing.small,
-    borderBottomColor: "#ddd",
+    borderBottomColor: design.colors.neutral.c10,
     borderBottomWidth: 1
   },
   titleText: {
