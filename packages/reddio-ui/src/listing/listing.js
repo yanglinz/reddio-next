@@ -6,19 +6,10 @@ import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
-import PostList from "./post-list";
-import Loading from "../lib/loading";
+import PostList, { PostListSkeleton } from "./post-list";
 import useMediaQuery from "../lib/media-query-hook";
 import * as playerStore from "../player/store";
 import * as design from "../design";
-
-function ListingLoading() {
-  return (
-    <View>
-      <Loading />
-    </View>
-  );
-}
 
 function ListingError() {
   return (
@@ -41,17 +32,18 @@ function ListingView(props) {
     dispatch
   } = props;
 
-  if (isEmpty(data) && loading) {
-    return <ListingLoading />;
-  }
+  const hasError = isEmpty(data) && error;
+  const isLoading = isEmpty(data) && loading;
 
-  if (isEmpty(data) && error) {
+  if (hasError) {
     return <ListingError />;
   }
 
   const mq = useMediaQuery();
   useEffect(() => {
-    dispatch(playerStore.setPosts(posts));
+    if (posts) {
+      dispatch(playerStore.setPosts(posts));
+    }
   }, [posts]);
 
   return (
@@ -65,12 +57,16 @@ function ListingView(props) {
           <Text style={styles.titleText}>{pathname}</Text>
         </View>
         <PostListSort />
-        <PostList
-          posts={posts}
-          pageInfo={pageInfo}
-          loadNextPage={loadNextPage}
-          isRefetching={isRefetching}
-        />
+        {isLoading ? (
+          <PostListSkeleton />
+        ) : (
+          <PostList
+            posts={posts}
+            pageInfo={pageInfo}
+            loadNextPage={loadNextPage}
+            isRefetching={isRefetching}
+          />
+        )}
       </View>
     </View>
   );

@@ -62,6 +62,14 @@ export function Post(props) {
   );
 }
 
+export function PostListSkeleton() {
+  return (
+    <View>
+      <Text>Hello world!</Text>
+    </View>
+  );
+}
+
 const flatListKeyExtractor = p => p.name;
 
 export function PostList(props) {
