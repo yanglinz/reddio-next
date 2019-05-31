@@ -1,28 +1,40 @@
 export const colors = {
   // Colors are ordered from lightest to darkest
   primary: {
-    c1: "#044e54",
-    c2: "#0a6c74",
-    c3: "#0e7c86",
-    c4: "#14919b",
-    c5: "#2cb1bc",
-    c6: "#38bec9",
-    c7: "#54d1db",
-    c8: "#87eaf2",
-    c9: "#bef8fd",
-    c10: "#e0fcff"
+    c1: "#003E6B",
+    c2: "#0A558C",
+    c3: "#0F609B",
+    c4: "#186FAF",
+    c5: "#2680C2",
+    c6: "#4098D7",
+    c7: "#62B0E8",
+    c8: "#84C5F4",
+    c9: "#B6E0FE",
+    c10: "#DCEEFB"
+  },
+  primaryAlt: {
+    c1: "#8D2B0B",
+    c2: "#B44D12",
+    c3: "#CB6E17",
+    c4: "#DE911D",
+    c5: "#F0B429",
+    c6: "#F7C948",
+    c7: "#FADB5F",
+    c8: "#FCE588",
+    c9: "#FFF3C4",
+    c10: "#FFFBEA"
   },
   neutral: {
-    c1: "#102a43",
-    c2: "#243b53",
+    c1: "#102A43",
+    c2: "#243B53",
     c3: "#334e68",
     c4: "#486581",
-    c5: "#627d98",
-    c6: "#829ab1",
-    c7: "#9fb3c8",
-    c8: "#bcccdc",
-    c9: "#d9e2ec",
-    c10: "#f0f4f8"
+    c5: "#627D98",
+    c6: "#829AB1",
+    c7: "#9FB3C8",
+    c8: "#BCCCDC",
+    c9: "#D9E2EC",
+    c10: "#F0F4F8"
   }
 };
 
