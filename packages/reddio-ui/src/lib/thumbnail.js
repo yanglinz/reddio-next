@@ -40,6 +40,7 @@ function Thumbnail(props) {
     // Do nothing
   }
 
+  const showImage = !errored && src;
   return (
     <View
       style={{
@@ -48,7 +49,7 @@ function Thumbnail(props) {
         backgroundColor: color
       }}
     >
-      {errored ? null : (
+      {showImage ? (
         <img
           src={src}
           width={width}
@@ -56,7 +57,7 @@ function Thumbnail(props) {
           alt={title}
           onError={() => setErrored(true)}
         />
-      )}
+      ) : null}
     </View>
   );
 }
