@@ -16,7 +16,7 @@ const HOME_QUERY = gql`
         customInfo {
           description
         }
-        posts(limit: 10) {
+        posts(limit: 20) {
           name
           title
           thumbnail

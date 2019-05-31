@@ -1,8 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { withRouter } from "react-router-dom";
-import uniqBy from "lodash/uniqBy";
+import sortBy from "lodash/sortBy";
 import take from "lodash/take";
+import uniqBy from "lodash/uniqBy";
 
 import Thumbnail from "../lib/thumbnail";
 import Skeleton from "../lib/skeleton";
@@ -27,9 +28,15 @@ export function ListingSummary(props) {
   const { pathname, posts, customInfo, history } = props;
   const { description } = customInfo;
 
-  let thumbnailPosts = uniqBy(posts, p => p.thumbnail);
+  let thumbnailPosts = posts;
+  // Take posts that have valid thumbnail
+  // Which may sometimes be null, or "self"
+  thumbnailPosts = sortBy(
+    thumbnailPosts,
+    p => p.thumbnail && p.thumbnail.length > 4
+  );
+  thumbnailPosts = uniqBy(thumbnailPosts, p => p.thumbnail);
   // Take off the first post. It's usually a stickied post
-  // TODO: filter by stickied
   thumbnailPosts.shift();
   thumbnailPosts = take(thumbnailPosts, 5);
 
