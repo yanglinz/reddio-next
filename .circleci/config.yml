@@ -77,8 +77,8 @@ workflows:
     jobs:
       - build
       - percy/finalize_all:
-         requires:
-           - build
+          requires:
+            - build
       - deploy:
           requires:
             - build
