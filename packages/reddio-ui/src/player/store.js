@@ -4,6 +4,7 @@ import { ofType, combineEpics } from "redux-observable";
 import { map } from "rxjs/operators";
 import find from "lodash/find";
 import findIndex from "lodash/findIndex";
+import isEmpty from "lodash/isEmpty";
 
 import * as reddit from "../lib/reddit";
 
@@ -30,6 +31,11 @@ export function iframeAction(eventName, payload) {
 export function setPosts(posts) {
   const payload = { posts };
   return { type: "PLAYER/SET_POSTS", payload };
+}
+
+export function appendPosts(posts) {
+  const payload = { posts };
+  return { type: "PLAYER/APPEND_POSTS", payload };
 }
 
 export function playPost(postId) {
@@ -118,6 +124,23 @@ export function playerReducer(state = initialState, action) {
     }
     case "PLAYER/SET_POSTS": {
       const { posts } = action.payload;
+      return immer(state, draftState => {
+        draftState.posts = posts;
+      });
+    }
+    case "PLAYER/APPEND_POSTS": {
+      const { posts } = action.payload;
+
+      const arePostsEmpty = isEmpty(state.posts) || isEmpty(posts);
+      if (arePostsEmpty) {
+        return state;
+      }
+
+      const arePostsConsistent = state.posts[0].name !== posts[0].name;
+      if (arePostsConsistent) {
+        return state;
+      }
+
       return immer(state, draftState => {
         draftState.posts = posts;
       });

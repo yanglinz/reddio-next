@@ -109,7 +109,10 @@ export function PostList(props) {
           <Post
             post={item}
             activePost={activePost}
-            onPress={() => dispatch(playerStore.playPost(item.name))}
+            onPress={() => {
+              dispatch(playerStore.setPosts(posts));
+              dispatch(playerStore.playPost(item.name));
+            }}
           />
         )}
         extraData={{
