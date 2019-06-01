@@ -6,7 +6,7 @@ import { ListingSummary, ListingSummarySkeleton } from "./listing-summary";
 
 const posts = Array.from({ length: 10 }, (_, i) => ({
   title: "Example post",
-  thumbnail: `https://picsum.photos/200/300?cache=${i}`
+  thumbnail: `https://picsum.photos/id/${i}${i}/200/300`
 }));
 const customInfo = {
   description: "Listentothis is the place to discover new and overlooked music."

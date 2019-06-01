@@ -11,7 +11,7 @@ storiesOf("Thumbnail", module).add("default", () => (
       width={50}
       height={50}
       seed="some-seed"
-      src="https://picsum.photos/200/300"
+      src="https://picsum.photos/id/42/200/300"
     />
 
     <Thumbnail
