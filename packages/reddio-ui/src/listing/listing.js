@@ -42,9 +42,7 @@ function ListingView(props) {
 
   const mq = useMediaQuery();
   useEffect(() => {
-    if (posts) {
-      dispatch(playerStore.setPosts(posts));
-    }
+    dispatch(playerStore.appendPosts(posts));
   }, [posts]);
 
   return (
