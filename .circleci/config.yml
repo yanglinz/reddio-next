@@ -1,4 +1,4 @@
-version: 2
+version: 2.1
 
 jobs:
   build:
@@ -38,11 +38,31 @@ jobs:
           working_directory: ~/project/packages/reddio-ui
           command: yarn run build-storybook
 
+      # Global builds
+      - run:
+          # TODO: consolidate storybooks
+          command: mv packages/reddio-ui/storybook-static .
+
       - persist_to_workspace:
           root: .
           paths:
+            - storybook-static
             - packages/graphql-server/build
             - packages/reddio-ui/build
+
+  percy_upload:
+    docker:
+      - image: buildkite/puppeteer
+    working_directory: ~/project
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          command: |
+            rm package.json yarn.lock
+            npm install @percy/storybook
+            node_modules/.bin/percy-storybook --widths=320,1280
 
   deploy:
     docker:
@@ -72,6 +92,9 @@ workflows:
   main:
     jobs:
       - build
+      - percy_upload:
+          requires:
+            - build
       - deploy:
           requires:
             - build
