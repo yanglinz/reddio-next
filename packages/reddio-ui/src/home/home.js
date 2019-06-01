@@ -6,6 +6,7 @@ import gql from "graphql-tag";
 
 import ListingSummary, { ListingSummarySkeleton } from "./listing-summary";
 import Loading from "../lib/loading";
+import * as Layout from "../layout";
 import * as design from "../design";
 
 const HOME_QUERY = gql`
@@ -29,16 +30,18 @@ const HOME_QUERY = gql`
 function HomeLoading() {
   return (
     <View>
-      <View style={styles.section}>
-        <Text style={styles.sectionTitleText}>Featured Communities</Text>
-        <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
+      <Layout.Wide>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitleText}>Featured Communities</Text>
+          <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
 
-        <View style={styles.featuredSummaryList}>
-          {Array.from({ length: 6 }).map((_, i) => (
-            <ListingSummarySkeleton key={i} />
-          ))}
+          <View style={styles.featuredSummaryList}>
+            {Array.from({ length: 6 }).map((_, i) => (
+              <ListingSummarySkeleton key={i} />
+            ))}
+          </View>
         </View>
-      </View>
+      </Layout.Wide>
 
       <Loading />
     </View>
@@ -71,23 +74,25 @@ class Home extends React.Component {
           const topListings = data.topSubreddits.listings || [];
           return (
             <View>
-              <View style={styles.section}>
-                <Text style={styles.sectionTitleText}>
-                  Featured Communities
-                </Text>
-                <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
+              <Layout.Wide>
+                <View style={styles.section}>
+                  <Text style={styles.sectionTitleText}>
+                    Featured Communities
+                  </Text>
+                  <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
 
-                <View style={styles.featuredSummaryList}>
-                  {topListings.map(listingInfo => (
-                    <ListingSummary
-                      key={listingInfo.pathname}
-                      pathname={listingInfo.pathname}
-                      customInfo={listingInfo.customInfo}
-                      posts={listingInfo.posts}
-                    />
-                  ))}
+                  <View style={styles.featuredSummaryList}>
+                    {topListings.map(listingInfo => (
+                      <ListingSummary
+                        key={listingInfo.pathname}
+                        pathname={listingInfo.pathname}
+                        customInfo={listingInfo.customInfo}
+                        posts={listingInfo.posts}
+                      />
+                    ))}
+                  </View>
                 </View>
-              </View>
+              </Layout.Wide>
 
               <View style={styles.explore}>
                 <Text style={styles.exploreTitle}>
@@ -125,11 +130,10 @@ const styles = StyleSheet.create({
     color: design.colors.neutral.c6
   },
   featuredSummaryList: {
-    width: 900 + design.spacing.small * 3,
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "space-between"
+    justifyContent: "space-around"
   },
   explore: {
     display: "flex",

@@ -1,0 +1,20 @@
+/* small: 480, */
+/* medium: 760, */
+/* large: 980 */
+
+.Wide {
+  width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 760px) {
+  .Wide {
+    width: 720px;
+  }
+}
+
+@media (min-width: 980px) {
+  .Wide {
+    width: 940px;
+  }
+}
