@@ -1,0 +1,33 @@
+.Wide {
+  width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 760px) {
+  .Wide {
+    width: 720px;
+  }
+}
+
+@media (min-width: 980px) {
+  .Wide {
+    width: 940px;
+  }
+}
+
+.Standard {
+  width: 480px;
+  margin: 0 auto;
+}
+
+@media (min-width: 760px) {
+  .Standard {
+    width: 520px;
+  }
+}
+
+@media (min-width: 980px) {
+  .Standard {
+    width: 640px;
+  }
+}

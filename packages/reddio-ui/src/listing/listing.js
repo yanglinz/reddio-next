@@ -8,6 +8,7 @@ import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
 import PostList, { PostListSkeleton } from "./post-list";
 import useMediaQuery from "../lib/media-query-hook";
+import * as Layout from "../layout";
 import * as playerStore from "../player/store";
 import * as design from "../design";
 
@@ -33,7 +34,7 @@ function ListingView(props) {
   } = props;
 
   const hasError = isEmpty(data) && error;
-  const isLoading = isEmpty(data) && loading;
+  const isLoading = isEmpty(data) && loading && !isRefetching;
 
   if (hasError) {
     return <ListingError />;
@@ -48,26 +49,30 @@ function ListingView(props) {
 
   return (
     <View style={styles.listing}>
-      <View
-        style={
-          mq.medium ? [styles.listingBg, styles.listingBgMed] : styles.listingBg
-        }
-      >
-        <View style={styles.title}>
-          <Text style={styles.titleText}>{pathname}</Text>
+      <Layout.Standard>
+        <View
+          style={
+            mq.medium
+              ? [styles.listingBg, styles.listingBgMed]
+              : styles.listingBg
+          }
+        >
+          <View style={styles.title}>
+            <Text style={styles.titleText}>{pathname}</Text>
+          </View>
+          <PostListSort />
+          {isLoading ? (
+            <PostListSkeleton />
+          ) : (
+            <PostList
+              posts={posts}
+              pageInfo={pageInfo}
+              loadNextPage={loadNextPage}
+              isRefetching={isRefetching}
+            />
+          )}
         </View>
-        <PostListSort />
-        {isLoading ? (
-          <PostListSkeleton />
-        ) : (
-          <PostList
-            posts={posts}
-            pageInfo={pageInfo}
-            loadNextPage={loadNextPage}
-            isRefetching={isRefetching}
-          />
-        )}
-      </View>
+      </Layout.Standard>
     </View>
   );
 }
@@ -90,15 +95,11 @@ class ListingResolver extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  listing: {
-    justifyContent: "center",
-    alignItems: "center"
-  },
+  listing: {},
   listingBg: {
-    backgroundColor: "#FFF"
+    backgroundColor: "#fff"
   },
   listingBgMed: {
-    width: design.layoutWidth.medium - design.spacing.large * 2,
     marginTop: design.spacing.base,
     marginBottom: design.spacing.base
   },

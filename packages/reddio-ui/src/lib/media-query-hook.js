@@ -1,4 +1,4 @@
-import { useMedia } from "use-media";
+import { useMediaLayout } from "use-media";
 
 import * as design from "../design";
 
@@ -7,9 +7,9 @@ const mediumBreak = design.layoutWidth.medium;
 const largeBreak = design.layoutWidth.large;
 
 function useMediaQuery() {
-  const small = useMedia({ minWidth: smallBreak });
-  const medium = useMedia({ minWidth: mediumBreak });
-  const large = useMedia({ minWidth: largeBreak });
+  const small = useMediaLayout({ minWidth: smallBreak });
+  const medium = useMediaLayout({ minWidth: mediumBreak });
+  const large = useMediaLayout({ minWidth: largeBreak });
   const mq = { large, medium, small };
   return mq;
 }
