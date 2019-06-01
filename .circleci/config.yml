@@ -40,13 +40,18 @@ jobs:
       - run:
           working_directory: ~/project/packages/reddio-ui
           command: yarn run build-storybook
+      
+      # Global builds
+      - run:
+          # TODO: consolidate storybooks
+          command: mv packages/reddio-ui/storybook-static .
 
       - persist_to_workspace:
           root: .
           paths:
+            - storybook-static
             - packages/graphql-server/build
             - packages/reddio-ui/build
-            - packages/reddio-ui/storybook-static
 
   deploy:
     docker:
