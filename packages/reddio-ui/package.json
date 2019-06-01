@@ -8,8 +8,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "rnstl && start-storybook -p 9009 -s public --ci",
-    "build-storybook": "rnstl && build-storybook -s public",
-    "percy": "build-storybook && percy-storybook --widths=320,1280"
+    "build-storybook": "rnstl && build-storybook -s public --quiet"
   },
   "eslintConfig": {
     "extends": "react-app"
