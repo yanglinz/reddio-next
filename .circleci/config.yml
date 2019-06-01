@@ -61,7 +61,7 @@ jobs:
       - run:
           command: |
             rm package.json yarn.lock
-            yarn add puppeteer @percy/storybook
+            PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false yarn add puppeteer @percy/storybook
             node_modules/.bin/percy-storybook --widths=320,1280
 
   deploy:
