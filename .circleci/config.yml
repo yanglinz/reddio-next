@@ -36,7 +36,7 @@ jobs:
           command: yarn test
       - run:
           working_directory: ~/project/packages/reddio-ui
-          command: yarn run build-storybook
+          command: yarn run percy
 
       - persist_to_workspace:
           root: .

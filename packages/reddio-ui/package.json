@@ -8,7 +8,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "rnstl && start-storybook -p 9009 -s public --ci",
-    "build-storybook": "rnstl && build-storybook -s public"
+    "build-storybook": "rnstl && build-storybook -s public",
+    "percy": "build-storybook && percy-storybook --widths=320,1280"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -53,6 +54,7 @@
     "use-media": "^1.3.0"
   },
   "devDependencies": {
+    "@percy/storybook": "^3.0.2",
     "@storybook/addon-actions": "^5.0.6",
     "@storybook/addon-links": "^5.0.6",
     "@storybook/addons": "^5.0.6",
