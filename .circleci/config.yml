@@ -60,7 +60,7 @@ jobs:
           at: .
       - run:
           command: |
-            npm install @percy/storybook
+            yarn install
             node_modules/.bin/percy-storybook --widths=320,1280
 
   deploy:
