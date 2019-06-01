@@ -60,7 +60,8 @@ jobs:
           at: .
       - run:
           command: |
-            yarn install
+            rm package.json yarn.lock
+            yarn add puppeteer @percy/storybook
             node_modules/.bin/percy-storybook --widths=320,1280
 
   deploy:
