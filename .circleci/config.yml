@@ -52,7 +52,7 @@ jobs:
 
   percy_upload:
     docker:
-      - image: percyio/agent:latest
+      - image: buildkite/puppeteer
     working_directory: ~/project
     steps:
       - checkout
@@ -61,7 +61,7 @@ jobs:
       - run:
           command: |
             rm package.json yarn.lock
-            PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=false yarn add puppeteer @percy/storybook
+            npm install @percy/storybook
             node_modules/.bin/percy-storybook --widths=320,1280
 
   deploy:
