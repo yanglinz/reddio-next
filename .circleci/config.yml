@@ -52,7 +52,7 @@ jobs:
 
   percy_upload:
     docker:
-      - image: circleci/node:8.11
+      - image: percyio/agent:latest
     working_directory: ~/project
     steps:
       - checkout
@@ -65,7 +65,7 @@ jobs:
 
   deploy:
     docker:
-      - image: percyio/agent
+      - image: circleci/node:8.11
     working_directory: ~/project
     steps:
       - checkout
