@@ -36,13 +36,14 @@ jobs:
           command: yarn test
       - run:
           working_directory: ~/project/packages/reddio-ui
-          command: yarn run percy
+          command: yarn run build-storybook
 
       - persist_to_workspace:
           root: .
           paths:
             - packages/graphql-server/build
             - packages/reddio-ui/build
+            - packages/reddio-ui/storybook-static
 
   deploy:
     docker:
