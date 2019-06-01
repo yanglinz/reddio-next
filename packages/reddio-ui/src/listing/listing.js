@@ -34,7 +34,7 @@ function ListingView(props) {
   } = props;
 
   const hasError = isEmpty(data) && error;
-  const isLoading = isEmpty(data) && loading;
+  const isLoading = isEmpty(data) && loading && !isRefetching;
 
   if (hasError) {
     return <ListingError />;
