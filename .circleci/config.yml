@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  percy: percy/agent@volatile
+
 jobs:
   build:
     docker:
@@ -73,6 +76,9 @@ workflows:
   main:
     jobs:
       - build
+      - percy/finalize_all:
+         requires:
+           - build
       - deploy:
           requires:
             - build
