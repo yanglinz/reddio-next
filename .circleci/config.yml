@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  percy: percy/agent@volatile
-
 jobs:
   build:
     docker:
@@ -53,9 +50,22 @@ jobs:
             - packages/graphql-server/build
             - packages/reddio-ui/build
 
-  deploy:
+  percy_upload:
     docker:
       - image: circleci/node:8.11
+    working_directory: ~/project
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          command: |
+            npm install @percy/storybook
+            node_modules/.bin/percy-storybook --widths=320,1280
+
+  deploy:
+    docker:
+      - image: percyio/agent
     working_directory: ~/project
     steps:
       - checkout
@@ -81,7 +91,7 @@ workflows:
   main:
     jobs:
       - build
-      - percy/finalize_all:
+      - percy_upload:
           requires:
             - build
       - deploy:
