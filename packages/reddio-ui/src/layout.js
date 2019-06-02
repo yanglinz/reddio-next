@@ -1,10 +1,22 @@
 import React from "react";
 import { View } from "react-native";
+import { useMediaLayout } from "use-media";
 
 import "./layout.css";
 
-// TODO: move media-query-hook into layout.js
-// TODO: remove layout constants from design.js
+const layoutWidth = {
+  small: 480,
+  medium: 760,
+  large: 980
+};
+
+export function useMediaQuery() {
+  const small = useMediaLayout({ minWidth: layoutWidth.small });
+  const medium = useMediaLayout({ minWidth: layoutWidth.medium });
+  const large = useMediaLayout({ minWidth: layoutWidth.large });
+  const mq = { large, medium, small };
+  return mq;
+}
 
 export function FullWidth(props) {
   return (

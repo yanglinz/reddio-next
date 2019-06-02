@@ -38,12 +38,6 @@ export const colors = {
   }
 };
 
-export const layoutWidth = {
-  small: 480,
-  medium: 760,
-  large: 980
-};
-
 export const spacing = {
   smaller2: 4,
   smaller1: 6,

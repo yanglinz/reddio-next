@@ -3,12 +3,11 @@ import { View, StyleSheet } from "react-native";
 
 import Summary from "./summary";
 import * as Layout from "../layout";
-import useMediaQuery from "../lib/media-query-hook";
 import * as data from "./data";
 import * as design from "../design";
 
 function Explore() {
-  const mq = useMediaQuery();
+  const mq = Layout.useMediaQuery();
   return (
     <View style={styles.explore}>
       <Layout.Standard>
