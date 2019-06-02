@@ -6053,6 +6053,14 @@ extsprintf@^1.2.0:
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
   integrity sha1-4mifjzVvrWLMplo6kcXfX5VRaS8=
 
+fast-check@^1.15.1:
+  version "1.15.1"
+  resolved "https://registry.yarnpkg.com/fast-check/-/fast-check-1.15.1.tgz#54c19668335fc823ceb43023e9a08d63a9e158f5"
+  integrity sha512-AhVx0sam1qDBmrEFRD3OufJHekzka7pyOj3zVAz6H0QenxUCIXG0LFLxcju6oRQNOt8FZOq3AfX+B0GtPNDjkA==
+  dependencies:
+    pure-rand "^1.6.2"
+    tslib "^1.9.3"
+
 fast-deep-equal@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-2.0.1.tgz#7b05218ddf9667bf7f370bf7fdb2cb15fdd0aa49"
@@ -11253,6 +11261,11 @@ puppeteer@^1.4.0:
     proxy-from-env "^1.0.0"
     rimraf "^2.6.1"
     ws "^6.1.0"
+
+pure-rand@^1.6.2:
+  version "1.6.2"
+  resolved "https://registry.yarnpkg.com/pure-rand/-/pure-rand-1.6.2.tgz#90b3ae78efe36f7e6e27bfffedf934f77382e6e6"
+  integrity sha512-HNwHOH63m7kCxe0kWEe5jSLwJiL2N83RUUN8POniFuZS+OsbFcMWlvXgxIU2nwKy2zYG2bQan40WBNK4biYPRg==
 
 q@^1.1.2:
   version "1.5.1"

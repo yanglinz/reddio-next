@@ -24,6 +24,7 @@ export const iframeEvents = {
 export function iframeAction(eventName, payload) {
   const event = iframeEvents[eventName];
   invariant(event, "Expected valid iframeEvent");
+  // TODO: Fix the grep test
   const type = `PLAYER/IFRAME_${event}`;
   return { type, payload };
 }
