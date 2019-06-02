@@ -81,7 +81,27 @@ describe("player store generative test", () => {
 
     fc.assert(
       fc.property(actionArb(), action => {
-        state = playerReducer(state, action);
+        state = store.playerReducer(state, action);
+      })
+    );
+  });
+
+  it("it maintains state invariant", () => {
+    let state = {
+      ...store.initialState
+    };
+
+    fc.assert(
+      fc.property(actionArb(), action => {
+        state = store.playerReducer(state, action);
+
+        const hasValidStatus = [
+          undefined,
+          "INITIALIZED",
+          "PLAYING",
+          "PAUSED"
+        ].includes(state.status);
+        expect(hasValidStatus).toEqual(true);
       })
     );
   });
