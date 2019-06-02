@@ -20,6 +20,16 @@ export function isPostPlayable(postUrl) {
   return Boolean(playableSources[host]);
 }
 
+export function getCleanedPathname(pathname) {
+  const pathParts = pathname.split("/");
+  if (pathParts[1] === "r") {
+    const [slash, r, subreddit] = pathParts;
+    return [slash, r, subreddit].join("/");
+  }
+
+  return pathname;
+}
+
 export const sortTypes = {
   hot: "hot",
   top: "top",

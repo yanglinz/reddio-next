@@ -1,9 +1,30 @@
 import {
+  getCleanedPathname,
   getSortType,
   getSortRange,
   resolveSortTypePath,
   resolveSortRangePath
 } from "./reddit";
+
+describe("getCleanedPathname", () => {
+  it("should handle a subreddit", () => {
+    const pathname = "/r/listentothis";
+    const cleaned = getCleanedPathname(pathname);
+    expect(cleaned).toEqual("/r/listentothis");
+  });
+
+  it("should handle a subreddit with sortType", () => {
+    const pathname = "/r/listentothis/new";
+    const cleaned = getCleanedPathname(pathname);
+    expect(cleaned).toEqual("/r/listentothis");
+  });
+
+  it("should handle a subreddit with sortRange", () => {
+    const pathname = "/r/listentothis/top/?t=week";
+    const cleaned = getCleanedPathname(pathname);
+    expect(cleaned).toEqual("/r/listentothis");
+  });
+});
 
 describe("getSortType", () => {
   it("should handle root path", () => {

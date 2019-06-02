@@ -8,6 +8,7 @@ import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
 import PostList, { PostListSkeleton } from "./post-list";
 import * as Layout from "../layout";
+import * as reddit from "../lib/reddit";
 import * as playerStore from "../player/store";
 import * as design from "../design";
 
@@ -55,7 +56,9 @@ function ListingView(props) {
           }
         >
           <View style={styles.title}>
-            <Text style={styles.titleText}>{pathname}</Text>
+            <Text style={styles.titleText}>
+              {reddit.getCleanedPathname(pathname)}
+            </Text>
           </View>
           <PostListSort />
           {isLoading ? (
