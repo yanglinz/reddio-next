@@ -7,7 +7,6 @@ import isEmpty from "lodash/isEmpty";
 import ListingProvider from "./listing-provider";
 import PostListSort from "./post-sort";
 import PostList, { PostListSkeleton } from "./post-list";
-import useMediaQuery from "../lib/media-query-hook";
 import * as Layout from "../layout";
 import * as playerStore from "../player/store";
 import * as design from "../design";
@@ -40,7 +39,7 @@ function ListingView(props) {
     return <ListingError />;
   }
 
-  const mq = useMediaQuery();
+  const mq = Layout.useMediaQuery();
   useEffect(() => {
     dispatch(playerStore.appendPosts(posts));
   }, [posts]);
