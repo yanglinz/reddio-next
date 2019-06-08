@@ -9,6 +9,7 @@ function loadStories() {
   require('../src/home/listing-summary.story');
   require('../src/lib/skeleton.story');
   require('../src/lib/thumbnail.story');
+  require('../src/listing/listing-header.story');
   require('../src/listing/post-list.story');
   
 }
@@ -18,6 +19,7 @@ const stories = [
   '../src/home/listing-summary.story',
   '../src/lib/skeleton.story',
   '../src/lib/thumbnail.story',
+  '../src/listing/listing-header.story',
   '../src/listing/post-list.story',
   
 ];

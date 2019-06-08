@@ -7,6 +7,13 @@ import uniqBy from "lodash/uniqBy";
 const LISTING_QUERY = gql`
   query ListingQuery($pathname: String!, $after: String) {
     listing(pathname: $pathname) {
+      info {
+        ... on ListingSubredditInfo {
+          info {
+            subscribers
+          }
+        }
+      }
       paginatedPosts(after: $after) {
         posts {
           author
@@ -58,11 +65,13 @@ class ListingProvider extends React.Component {
             networkStatus === fetchMoreStatus ||
             networkStatus === refetchStatus;
 
+          const info = data && data.listing && data.listing.info;
           const paginatedPosts =
             (data && data.listing && data.listing.paginatedPosts) || {};
           const { posts, pageInfo } = paginatedPosts;
 
           return this.props.children({
+            info,
             posts,
             pageInfo,
             loading,

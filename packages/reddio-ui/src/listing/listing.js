@@ -5,10 +5,10 @@ import { withRouter } from "react-router";
 import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./listing-provider";
+import ListingHeader from "./listing-header";
 import PostListSort from "./post-sort";
 import PostList, { PostListSkeleton } from "./post-list";
 import * as Layout from "../layout";
-import * as reddit from "../lib/reddit";
 import * as playerStore from "../player/store";
 import * as design from "../design";
 
@@ -24,8 +24,8 @@ function ListingView(props) {
   const {
     loading,
     error,
-    data,
     pathname,
+    info,
     posts,
     pageInfo,
     loadNextPage,
@@ -33,8 +33,8 @@ function ListingView(props) {
     dispatch
   } = props;
 
-  const hasError = isEmpty(data) && error;
-  const isLoading = isEmpty(data) && loading && !isRefetching;
+  const hasError = isEmpty(posts) && error;
+  const isLoading = isEmpty(posts) && loading && !isRefetching;
 
   if (hasError) {
     return <ListingError />;
@@ -55,11 +55,7 @@ function ListingView(props) {
               : styles.listingBg
           }
         >
-          <View style={styles.title}>
-            <Text style={styles.titleText}>
-              {reddit.getCleanedPathname(pathname)}
-            </Text>
-          </View>
+          <ListingHeader pathname={pathname} info={info} />
           <PostListSort />
           {isLoading ? (
             <PostListSkeleton />
@@ -103,7 +99,7 @@ const styles = StyleSheet.create({
     marginTop: design.spacing.base,
     marginBottom: design.spacing.base
   },
-  title: {
+  header: {
     paddingTop: design.spacing.base,
     paddingBottom: design.spacing.base,
     paddingLeft: design.spacing.small,
@@ -111,11 +107,16 @@ const styles = StyleSheet.create({
     borderBottomColor: design.colors.neutral.c10,
     borderBottomWidth: 1
   },
-  titleText: {
+  title: {
     fontSize: design.fontSize.small,
     fontWeight: "900",
     textTransform: "uppercase",
     letterSpacing: 1
+  },
+  subtitle: {
+    marginTop: design.spacing.smaller1,
+    fontSize: design.fontSize.small,
+    color: design.colors.neutral.c5
   }
 });
 
