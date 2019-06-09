@@ -29,20 +29,22 @@ export function PostListSort(props) {
       </Picker>
 
       {currentSortType === reddit.sortTypes.top ? (
-        <Picker
-          selectedValue={reddit.getSortRange(location)}
-          onValueChange={sortRange => {
-            const nextPath = reddit.resolveSortRangePath(location, sortRange);
-            props.history.push(nextPath);
-          }}
-        >
-          <Picker.Item label="Hour" value={reddit.sortRanges.hour} />
-          <Picker.Item label="Day" value={reddit.sortRanges.day} />
-          <Picker.Item label="Week" value={reddit.sortRanges.week} />
-          <Picker.Item label="Month" value={reddit.sortRanges.month} />
-          <Picker.Item label="Year" value={reddit.sortRanges.year} />
-          <Picker.Item label="All" value={reddit.sortRanges.all} />
-        </Picker>
+        <View style={styles.sortRange}>
+          <Picker
+            selectedValue={reddit.getSortRange(location)}
+            onValueChange={sortRange => {
+              const nextPath = reddit.resolveSortRangePath(location, sortRange);
+              props.history.push(nextPath);
+            }}
+          >
+            <Picker.Item label="Hour" value={reddit.sortRanges.hour} />
+            <Picker.Item label="Day" value={reddit.sortRanges.day} />
+            <Picker.Item label="Week" value={reddit.sortRanges.week} />
+            <Picker.Item label="Month" value={reddit.sortRanges.month} />
+            <Picker.Item label="Year" value={reddit.sortRanges.year} />
+            <Picker.Item label="All" value={reddit.sortRanges.all} />
+          </Picker>
+        </View>
       ) : null}
     </View>
   );
@@ -54,6 +56,9 @@ const styles = StyleSheet.create({
     paddingBottom: design.spacing.base,
     paddingLeft: design.spacing.small,
     paddingRight: design.spacing.small
+  },
+  sortRange: {
+    paddingTop: design.spacing.smaller2
   }
 });
 

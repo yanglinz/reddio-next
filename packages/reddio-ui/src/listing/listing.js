@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { withRouter } from "react-router";
 import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./listing-provider";
+import ListingError from "./listing-error";
 import ListingHeader from "./listing-header";
 import PostListSort from "./post-sort";
 import PostList, { PostListSkeleton } from "./post-list";
@@ -12,10 +13,12 @@ import * as Layout from "../layout";
 import * as playerStore from "../player/store";
 import * as design from "../design";
 
-function ListingError() {
+function LoadError() {
   return (
-    <View>
-      <Text>:(</Text>
+    <View style={styles.listing}>
+      <Layout.Standard>
+        <ListingError />
+      </Layout.Standard>
     </View>
   );
 }
@@ -37,7 +40,7 @@ function ListingView(props) {
   const isLoading = isEmpty(posts) && loading && !isRefetching;
 
   if (hasError) {
-    return <ListingError />;
+    return <LoadError />;
   }
 
   const mq = Layout.useMediaQuery();

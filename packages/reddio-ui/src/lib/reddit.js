@@ -16,7 +16,12 @@ const sources = [
 const playableSources = zipObject(sources, sources);
 
 export function isPostPlayable(postUrl) {
-  const host = new URL(postUrl).host;
+  let host;
+  try {
+    host = new URL(postUrl).host;
+  } catch (e) {
+    return false;
+  }
   return Boolean(playableSources[host]);
 }
 

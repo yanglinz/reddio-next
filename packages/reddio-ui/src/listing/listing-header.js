@@ -11,10 +11,11 @@ function ListingHeader(props) {
   let subscribers = "";
   const infoType = info && info.__typename;
   if (infoType === "ListingSubredditInfo") {
+    const subscriberCount = (info.info && info.info.subscribers) || 0;
     subscribers =
       subscribers === 1
         ? "1 subscriber"
-        : `${info.info.subscribers.toLocaleString()} subscribers`;
+        : `${subscriberCount.toLocaleString()} subscribers`;
   }
 
   return (
