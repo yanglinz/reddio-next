@@ -24,13 +24,14 @@
     "test:format": "prettier --check '**/**/*.{js,ts,css,html,md,yaml,yml}'",
     "test:cra": "react-scripts test",
     "test": "run-s test:*",
-    "build-disabled:storybook": "rnstl && build-storybook -s public --quiet",
+    "disabled:storybook-build": "rnstl && build-storybook -s public --quiet",
+    "disabled:storybook-run": "rnstl && start-storybook -p 9009 -s public --ci",
     "build:cra": "react-scripts build",
     "build:tsc": "tsc --project ./server",
     "build": "run-s build:*",
     "dev:cra": "BROWSER=false react-scripts start",
-    "dev:storybook": "rnstl && start-storybook -p 9009 -s public --ci",
-    "start": "now dev"
+    "dev:now": "now dev --listen 4040",
+    "dev": "run-p dev:*"
   },
   "dependencies": {
     "apollo-boost": "^0.3.1",
