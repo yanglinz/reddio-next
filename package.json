@@ -15,7 +15,7 @@
     "start:legacy-reddio": "cd packages/reddio-ui && yarn start",
     "start:legacy-reddio-storybook": "cd packages/reddio-ui && yarn run storybook",
     "build:tsc": "tsc",
-    "dev:tsc": "tsc -w",
+    "build": "run-s build:*",
     "start": "now dev"
   },
   "dependencies": {
