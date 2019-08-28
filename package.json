@@ -22,9 +22,6 @@
   "scripts": {
     "format": "prettier --write '**/**/*.{js,ts,css,html,md,yaml,yml}'",
     "check-format": "prettier --check '**/**/*.{js,ts,css,html,md,yaml,yml}'",
-    "start:legacy-graphql": "cd packages/graphql-server && yarn start",
-    "start:legacy-reddio": "cd packages/reddio-ui && yarn start",
-    "start:legacy-reddio-storybook": "cd packages/reddio-ui && yarn run storybook",
     "start:cra": "BROWSER=false react-scripts start",
     "build:cra": "react-scripts build",
     "test:cra": "react-scripts test",
