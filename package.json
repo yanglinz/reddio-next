@@ -21,15 +21,14 @@
   },
   "scripts": {
     "format": "prettier --write '**/**/*.{js,ts,css,html,md,yaml,yml}'",
-    "check-format": "prettier --check '**/**/*.{js,ts,css,html,md,yaml,yml}'",
-    "start:cra": "BROWSER=false react-scripts start",
-    "build:cra": "react-scripts build",
+    "test:format": "prettier --check '**/**/*.{js,ts,css,html,md,yaml,yml}'",
     "test:cra": "react-scripts test",
-    "eject:cra": "react-scripts eject",
-    "storybook:cra": "rnstl && start-storybook -p 9009 -s public --ci",
-    "build-storybook:cra": "rnstl && build-storybook -s public --quiet",
+    "build:storybook": "rnstl && build-storybook -s public --quiet",
+    "build:cra": "react-scripts build",
     "build:tsc": "tsc",
     "build": "run-s build:*",
+    "dev:cra": "BROWSER=false react-scripts start",
+    "dev:storybook": "rnstl && start-storybook -p 9009 -s public --ci",
     "start": "now dev"
   },
   "dependencies": {
