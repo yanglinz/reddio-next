@@ -1,3 +1,3 @@
-import start from "./src/index";
+import start from "./server";
 
 start();
