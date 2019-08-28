@@ -1,4 +1,4 @@
-import * as DataLoader from "dataloader";
+import DataLoader from "dataloader";
 import * as _ from "lodash";
 
 import * as r from "../services/reddit";

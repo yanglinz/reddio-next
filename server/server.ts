@@ -20,7 +20,7 @@ async function start() {
   });
 
   try {
-    await apollo.applyMiddleware({ app, cors: true });
+    await apollo.applyMiddleware({ app, path: "/graphql/", cors: true });
     await apollo.installSubscriptionHandlers(app.listener);
     await app.start();
   } catch (err) {
@@ -28,4 +28,4 @@ async function start() {
   }
 }
 
-module.exports = { start };
+export default start;
