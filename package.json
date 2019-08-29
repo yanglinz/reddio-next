@@ -30,8 +30,10 @@
     "build:tsc": "tsc --project ./server",
     "build": "run-s build:*",
     "dev:cra": "BROWSER=false react-scripts start",
-    "dev:now": "now dev --listen 4040",
-    "dev": "run-p dev:*"
+    "dev:now": "now --local-config .zeit/now.dev.json dev --listen 4000",
+    "dev": "run-p dev:*",
+    "deploy:preview": "now --local-config .zeit/now.prod.json dev --listen 4000",
+    "deploy": "now --local-config .zeit/now.prod.json"
   },
   "dependencies": {
     "apollo-boost": "^0.3.1",

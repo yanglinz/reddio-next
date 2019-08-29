@@ -1,14 +1,1 @@
-{
-  "version": 2,
-  "builds": [
-    { "src": "www/*", "use": "@now/static" },
-    { "src": "server/*", "use": "@now/node" }
-  ],
-  "routes": [
-    {
-      "src": "/graphql/(.*)",
-      "dest": "server/index.ts"
-    },
-    { "src": "/(.*)", "dest": "www/index.html" }
-  ]
-}
+./.zeit/now.prod.json

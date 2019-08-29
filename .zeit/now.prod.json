@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "name": "reddit-clients",
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    },
+    { "src": "server/*", "use": "@now/node" }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "headers": { "Cache-Control": "max-age=8640000, immutable" },
+      "continue": true
+    },
+    {
+      "src": "/graphql/(.*)",
+      "dest": "server/index.ts"
+    }
+  ]
+}
