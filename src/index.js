@@ -10,7 +10,7 @@ import store from "./store";
 
 import "./index.css";
 
-let graphqlUri = "https://graphql-server.yanglin.now.sh/graphql/";
+let graphqlUri = "/graphql/";
 try {
   const isLocal = document.location.host.includes("localhost");
   if (isLocal) {
