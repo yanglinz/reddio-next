@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "reddit-clients",
+  "builds": [{ "src": "server/*", "use": "@now/node" }],
+  "routes": [
+    {
+      "src": "/graphql/(.*)",
+      "dest": "server/index.ts"
+    }
+  ]
+}
