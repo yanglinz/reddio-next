@@ -12,7 +12,7 @@
   "routes": [
     {
       "src": "/static/(.*)",
-      "headers": { "Cache-Control": "max-age=1234, immutable" },
+      "headers": { "Cache-Control": "max-age=8640000, immutable" },
       "continue": true
     },
     {
