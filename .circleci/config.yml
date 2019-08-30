@@ -10,7 +10,6 @@ jobs:
   build:
     docker:
       - image: circleci/node:8.11
-    working_directory: ~/project
     steps:
       - checkout
       - restore_cache:
@@ -21,45 +20,22 @@ jobs:
           key: npm-deps-{{ checksum "yarn.lock" }}
           paths:
             - node_modules
-            - packages/graphql-server/node_modules
-            - packages/reddio-ui/node_modules
 
-      # Root
       - run:
-          command: yarn run check-format
-
-      # Server
-      - run:
-          working_directory: ~/project/packages/graphql-server
-          command: yarn run build
-
-      # Reddio
-      - run:
-          working_directory: ~/project/packages/reddio-ui
-          command: yarn run build
-      - run:
-          working_directory: ~/project/packages/reddio-ui
           command: yarn test
       - run:
-          working_directory: ~/project/packages/reddio-ui
-          command: yarn run build-storybook
-
-      # Global builds
+          command: yarn run storybook
       - run:
-          # TODO: consolidate storybooks
-          command: mv packages/reddio-ui/storybook-static .
+          command: yarn run build
 
       - persist_to_workspace:
           root: .
           paths:
             - storybook-static
-            - packages/graphql-server/build
-            - packages/reddio-ui/build
 
   percy_upload:
     docker:
       - image: buildkite/puppeteer
-    working_directory: ~/project
     steps:
       - checkout
       - attach_workspace:
@@ -70,31 +46,14 @@ jobs:
             npm install @percy/storybook
             node_modules/.bin/percy-storybook --widths=320,1280
 
-  deploy:
-    docker:
-      - image: circleci/node:8.11
-    working_directory: ~/project
-    steps:
-      - checkout
-      - attach_workspace:
-          at: .
-
-      # Deploy server
-      - run:
-          command: yarn global add now@12.1.14
-      - run:
-          working_directory: ~/project/packages/graphql-server
-          command: $(yarn global bin)/now --token $ZEIT_TOKEN
-
-      # Deploy reddio-ui
-      - run:
-          command: yarn global add netlify-cli@2.10.0
-      - run:
-          working_directory: ~/project/packages/reddio-ui
-          command: $(yarn global bin)/netlify deploy -d build -p -a=$NETLIFY_AUTH_TOKEN -s=ba4c2d75-7e4c-40e0-84b6-161b58bf01b1
-
 workflows:
   version: 2
   main:
     jobs:
-      - placeholder
+      - build
+      - percy_upload:
+          requires:
+            - build
+          filters:
+            branches:
+              ignore: master
