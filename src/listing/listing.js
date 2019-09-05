@@ -39,14 +39,14 @@ function ListingView(props) {
   const hasError = isEmpty(posts) && error;
   const isLoading = isEmpty(posts) && loading && !isRefetching;
 
-  if (hasError) {
-    return <LoadError />;
-  }
-
   const mq = Layout.useMediaQuery();
   useEffect(() => {
     dispatch(playerStore.appendPosts(posts));
-  }, [posts]);
+  }, [posts, dispatch]);
+
+  if (hasError) {
+    return <LoadError />;
+  }
 
   return (
     <View style={styles.listing}>

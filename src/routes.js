@@ -21,11 +21,11 @@ function Screen(props) {
 function DelayedLoading() {
   const [done, setDone] = useState(false);
 
-  let timeout;
   useEffect(() => {
+    let timeout;
     timeout = setTimeout(() => setDone(true), 1500);
     return () => timeout && clearTimeout(timeout);
-  });
+  }, []);
 
   if (done) {
     return <Loading />;
