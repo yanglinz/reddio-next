@@ -20,7 +20,7 @@ export function Header(props) {
 
 const styles = StyleSheet.create({
   header: {
-    backgroundColor: "#fff",
+    backgroundColor: "#fefefe",
     borderColor: design.colors.neutral.c9,
     borderBottomWidth: 1,
     padding: design.spacing.base
