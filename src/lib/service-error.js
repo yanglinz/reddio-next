@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 
 import * as design from "../design";
 
-function ListingError() {
+function ServiceError() {
   return (
     <View style={styles.error}>
       <Text style={styles.icon}>:(</Text>
@@ -39,4 +39,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ListingError;
+export default ServiceError;

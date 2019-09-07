@@ -5,6 +5,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import ListingSummary, { ListingSummarySkeleton } from "./listing-summary";
+import ServiceError from "../lib/service-error";
 import * as Layout from "../layout";
 import * as design from "../design";
 
@@ -65,7 +66,7 @@ function HomeLoading() {
 function HomeError() {
   return (
     <View>
-      <Text>:(</Text>
+      <ServiceError />
     </View>
   );
 }
