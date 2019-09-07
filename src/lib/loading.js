@@ -13,7 +13,8 @@ function Loading() {
 
 const styles = StyleSheet.create({
   loading: {
-    marginTop: design.spacing.large
+    marginTop: design.spacing.large,
+    marginBottom: design.spacing.large
   }
 });
 
