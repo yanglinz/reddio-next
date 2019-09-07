@@ -59,8 +59,6 @@ function HomeLoading() {
           </View>
         </View>
       </Layout.Wide>
-
-      <Loading />
     </View>
   );
 }
