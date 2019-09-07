@@ -5,7 +5,6 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 import ListingSummary, { ListingSummarySkeleton } from "./listing-summary";
-import Loading from "../lib/loading";
 import * as Layout from "../layout";
 import * as design from "../design";
 
@@ -59,8 +58,6 @@ function HomeLoading() {
           </View>
         </View>
       </Layout.Wide>
-
-      <Loading />
     </View>
   );
 }
