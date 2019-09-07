@@ -148,8 +148,7 @@ const styles = StyleSheet.create({
     marginRight: design.spacing.small
   },
   postActive: {
-    borderLeftColor: design.colors.primaryAlt.c7,
-    borderLeftWidth: 5
+    backgroundColor: design.colors.primaryAlt.c10
   },
   titleUnplayable: {
     color: "#aaa"
