@@ -5,10 +5,10 @@ import { withRouter } from "react-router";
 import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./listing-provider";
-import ListingError from "./listing-error";
 import ListingHeader from "./listing-header";
 import PostListSort from "./post-sort";
 import PostList, { PostListSkeleton } from "./post-list";
+import ServiceError from "../lib/service-error";
 import * as Layout from "../layout";
 import * as playerStore from "../player/store";
 import * as design from "../design";
@@ -17,7 +17,7 @@ function LoadError() {
   return (
     <View style={styles.listing}>
       <Layout.Standard>
-        <ListingError />
+        <ServiceError />
       </Layout.Standard>
     </View>
   );
