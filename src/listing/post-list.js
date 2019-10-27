@@ -36,6 +36,14 @@ export function PostSkeleton() {
   );
 }
 
+function formatTitle(title) {
+  const threshold = 80;
+  if (title.length > threshold) {
+    return title.substr(0, threshold) + "...";
+  }
+  return title;
+}
+
 export function Post(props) {
   const { post, activePost } = props;
   const { name, author, numComments, score, thumbnail, title, url } = post;
@@ -58,7 +66,7 @@ export function Post(props) {
           href={url}
           style={isPlayable ? undefined : styles.titleUnplayable}
         >
-          <span dangerouslySetInnerHTML={{ __html: title }} />
+          <span dangerouslySetInnerHTML={{ __html: formatTitle(title) }} />
         </Text>
         <Text style={styles.postMeta}>
           {score} points | Posted by {author} | {numComments} comments
