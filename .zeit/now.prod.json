@@ -18,6 +18,7 @@
     {
       "src": "/graphql/(.*)",
       "dest": "server/index.ts"
-    }
+    },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }
