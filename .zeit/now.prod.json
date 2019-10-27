@@ -18,6 +18,8 @@
     {
       "src": "/graphql/(.*)",
       "dest": "server/index.ts"
-    }
+    },
+    { "src": "/explore", "dest": "/" },
+    { "src": "/r/(.*)", "dest": "/" }
   ]
 }
