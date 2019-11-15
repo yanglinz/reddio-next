@@ -1,5 +1,3 @@
-# Reddio Clients
-
-Personal projects that use the Reddit API.
+# Reddio Next
 
 [https://reddio.yanglinzhao.com/](https://reddio.yanglinzhao.com/)
