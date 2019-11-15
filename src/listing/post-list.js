@@ -21,16 +21,25 @@ function mapStateToProps(state) {
   };
 }
 
+function getRandomWidth(min, max) {
+  let w = Math.random() * Math.floor(max);
+  w = Math.max(min, w);
+  w = Math.min(max, w);
+  return w;
+}
+
 export function PostSkeleton() {
+  const titleWidth = getRandomWidth(100, 250);
+  const descriptionWidth = getRandomWidth(150, 350);
   return (
     <View style={styles.post}>
       <View style={styles.thumbnail}>
         <Skeleton width={45} height={45} />
       </View>
       <View>
-        <Skeleton width={45} height={design.fontSize.base} />
+        <Skeleton width={titleWidth} height={design.fontSize.base} />
         <View style={{ height: 3 }} />
-        <Skeleton width={150} height={design.fontSize.base} />
+        <Skeleton width={descriptionWidth} height={design.fontSize.base} />
       </View>
     </View>
   );
@@ -90,9 +99,9 @@ export function PostListSkeleton() {
   const count = 25;
   return (
     <View>
-      {Array.from({ length: count }).map((_, i) => (
-        <PostSkeleton key={i} />
-      ))}
+      {Array.from({ length: count }).map((_, i) => {
+        return <PostSkeleton key={i} />;
+      })}
     </View>
   );
 }
