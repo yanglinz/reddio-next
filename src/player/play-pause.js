@@ -2,9 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import IconPlay from "../assets/icon-play";
+import * as design from "../design";
 
 function PlayPause(props) {
-  const size = props.size || 100;
+  const size = props.size || 70;
   return (
     <div
       className="PlayPause"
@@ -12,12 +13,24 @@ function PlayPause(props) {
     >
       <motion.div
         whileTap={{
-          scale: 3.5,
-          opacity: 1
+          scale: 1.25,
+          opacity: 0.5
         }}
       >
         <svg viewBox={`0 0 ${size} ${size}`}>
-          <circle cx={size / 2} cy={size / 2} r={size / 4} fill="#eee" />
+          <circle
+            cx={size / 2}
+            cy={size / 2}
+            r={size / 2}
+            fill={design.colors.primaryAlt.c5}
+          />
+          <rect
+            width={size / 2}
+            height={size / 2}
+            x={size / 4}
+            y={size / 4}
+            fill="#fefefe"
+          />
         </svg>
       </motion.div>
 
@@ -37,7 +50,7 @@ function PlayPause(props) {
           pointerEvents: "none"
         }}
       >
-        <IconPlay size={200} />
+        <IconPlay size={70} />
       </div>
     </div>
   );
