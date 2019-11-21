@@ -8,6 +8,7 @@ import AppRoutes from "./routes";
 import AppPlayer from "./player/player";
 import store from "./store";
 
+import * as styles from "./index.treat.js";
 import "./index.css";
 
 let graphqlUri = "/graphql/";
@@ -26,8 +27,10 @@ function Application() {
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
-        <AppPlayer />
-        <AppRoutes />
+        <div className={styles.index}>
+          <AppPlayer />
+          <AppRoutes />
+        </div>
       </ApolloProvider>
     </Provider>
   );
