@@ -12,6 +12,7 @@ function loadStories() {
 	require('../src/listing/listing-header.story');
 	require('../src/listing/post-list.story');
 	require('../src/player/play-pause.story');
+	require('../src/player/player-next.story');
 }
 
 const stories = [
@@ -22,7 +23,8 @@ const stories = [
 	'../src/lib/thumbnail.story',
 	'../src/listing/listing-header.story',
 	'../src/listing/post-list.story',
-	'../src/player/play-pause.story'
+	'../src/player/play-pause.story',
+	'../src/player/player-next.story'
 ];
 
 module.exports = {
