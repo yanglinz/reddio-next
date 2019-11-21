@@ -1,5 +1,3 @@
 import { style } from "treat";
 
-export const index = style({
-  padding: 40
-});
+export const index = style({ padding: 0 });
