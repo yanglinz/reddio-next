@@ -61,6 +61,7 @@
     "redux-logger": "3.0.6",
     "redux-observable": "1.2.0",
     "rxjs": "6.5.3",
+    "treat": "1.1.6",
     "use-media": "1.4.0"
   },
   "devDependencies": {
@@ -76,9 +77,11 @@
     "@types/lodash": "4.14.148",
     "@types/node": "12.12.8",
     "fast-check": "1.18.1",
+    "mini-css-extract-plugin": "0.8.0",
     "now": "16.5.2",
     "npm-run-all": "4.1.5",
     "prettier": "1.19.1",
+    "react-app-rewired": "2.1.5",
     "react-native-storybook-loader": "1.8.1",
     "react-scripts": "3.2.0",
     "typescript": "3.7.2"
