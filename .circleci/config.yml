@@ -54,6 +54,3 @@ workflows:
       - percy_upload:
           requires:
             - build
-          filters:
-            branches:
-              ignore: master
