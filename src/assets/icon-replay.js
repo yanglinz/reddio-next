@@ -4,7 +4,7 @@ function IconReplay(props) {
   const color = props.color || "#222";
   const defaultSize = 20;
   const size = props.size || defaultSize;
-  const scale = props.size / defaultSize;
+  const scale = size / defaultSize;
 
   return (
     <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>

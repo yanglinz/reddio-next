@@ -4,7 +4,7 @@ function IconQueue(props) {
   const color = props.color || "#222";
   const defaultSize = 19;
   const size = props.size || defaultSize;
-  const scale = props.size / defaultSize;
+  const scale = size / defaultSize;
   const width = size;
   const height = width * (14 / 19);
 
