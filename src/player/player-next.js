@@ -1,9 +1,15 @@
 import React from "react";
 
+import PlayPause from "./play-pause";
+
+import "./player-next.scss";
+
 function PlayerNext() {
   return (
     <div className="PlayerNext">
-      <h1>PlayerNext</h1>
+      <div className="PlayerNext-controls">
+        <PlayPause />
+      </div>
     </div>
   );
 }
