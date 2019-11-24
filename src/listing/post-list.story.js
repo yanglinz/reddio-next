@@ -33,8 +33,8 @@ storiesOf("PostList", module)
   ))
   .add("skeleton", () => (
     <Container>
-      <PostSkeleton />
-      <PostSkeleton />
-      <PostSkeleton />
+      <PostSkeleton titleWidth={100} descriptionWidth={250} />
+      <PostSkeleton titleWidth={100} descriptionWidth={250} />
+      <PostSkeleton titleWidth={100} descriptionWidth={250} />
     </Container>
   ));
