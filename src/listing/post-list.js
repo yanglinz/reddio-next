@@ -28,9 +28,9 @@ function getRandomWidth(min, max) {
   return w;
 }
 
-export function PostSkeleton() {
-  const titleWidth = getRandomWidth(100, 250);
-  const descriptionWidth = getRandomWidth(150, 350);
+export function PostSkeleton(props) {
+  const titleWidth = props.titleWidth || getRandomWidth(100, 250);
+  const descriptionWidth = props.descriptionWidth || getRandomWidth(150, 350);
   return (
     <View style={styles.post}>
       <View style={styles.thumbnail}>
