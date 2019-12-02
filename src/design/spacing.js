@@ -21,7 +21,9 @@ export function Inline(props) {
   return (
     <div className="Inline">
       {React.Children.map(props.children, (c, i) => (
-        <div style={{ marginLeft: i > 0 ? spacing : 0 }}>{c}</div>
+        <div style={{ display: "flex", marginLeft: i > 0 ? spacing : 0 }}>
+          {c}
+        </div>
       ))}
     </div>
   );
