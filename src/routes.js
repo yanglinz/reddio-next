@@ -2,7 +2,7 @@ import React, { Suspense, lazy, useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Header from "./brand/header";
+import Header from "./screens/header";
 import Loading from "./lib/loading";
 
 const Home = lazy(() => import("./screens/Home"));
