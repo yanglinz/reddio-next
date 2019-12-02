@@ -4,12 +4,10 @@ import { withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import ListingSummary, {
-  ListingSummarySkeleton
-} from "../components/ListingSummary";
-import ServiceError from "../components/ServiceError";
-import * as Layout from "../components/Layout";
-import * as design from "../design";
+import ListingSummary, { ListingSummarySkeleton } from "./ListingSummary";
+import ServiceError from "../../components/ServiceError";
+import * as Layout from "../../components/Layout";
+import * as design from "../../design";
 
 const HOME_QUERY = gql`
   query HomeQuery {

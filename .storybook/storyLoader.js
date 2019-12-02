@@ -5,11 +5,11 @@
 
 function loadStories() {
 	require('../src/assets/Icons.story');
-	require('../src/components/ListingSummary.story');
 	require('../src/components/Skeleton.story');
 	require('../src/components/Spacing.story');
 	require('../src/components/Thumbnail.story');
 	require('../src/screens/Header.story');
+	require('../src/screens/Home/ListingSummary.story');
 	require('../src/screens/Listing/ListingHeader.story');
 	require('../src/screens/Listing/PostList.story');
 	require('../src/screens/Player/PlayPause.story');
@@ -18,11 +18,11 @@ function loadStories() {
 
 const stories = [
 	'../src/assets/Icons.story',
-	'../src/components/ListingSummary.story',
 	'../src/components/Skeleton.story',
 	'../src/components/Spacing.story',
 	'../src/components/Thumbnail.story',
 	'../src/screens/Header.story',
+	'../src/screens/Home/ListingSummary.story',
 	'../src/screens/Listing/ListingHeader.story',
 	'../src/screens/Listing/PostList.story',
 	'../src/screens/Player/PlayPause.story',

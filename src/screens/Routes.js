@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./Header";
 import Loading from "../components/Loading";
 
-const Home = lazy(() => import("./Home"));
+const Home = lazy(() => import("./Home/Home"));
 const Explore = lazy(() => import("./Explore/Explore"));
 const ListingResolver = lazy(() => import("./Listing/Listing"));
 

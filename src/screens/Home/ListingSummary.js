@@ -5,9 +5,9 @@ import sortBy from "lodash/sortBy";
 import take from "lodash/take";
 import uniqBy from "lodash/uniqBy";
 
-import Thumbnail from "./Thumbnail";
-import Skeleton from "./Skeleton";
-import * as design from "../design";
+import Thumbnail from "../../components/Thumbnail";
+import Skeleton from "../../components/Skeleton";
+import * as design from "../../design";
 
 export function ListingSummarySkeleton() {
   return (
