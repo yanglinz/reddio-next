@@ -12,7 +12,7 @@ import { connect } from "react-redux";
 import Thumbnail from "../../components/Thumbnail";
 import Skeleton from "../../components/Skeleton";
 import * as reddit from "../../lib/reddit";
-import * as playerStore from "../Player/store";
+import * as playerStore from "../../store/player";
 import * as design from "../../design";
 
 function mapStateToProps(state) {

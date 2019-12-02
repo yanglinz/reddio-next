@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import noop from "lodash/noop";
 
 import PlayerControls from "./Controls";
-import * as playerStore from "./store";
+import * as playerStore from "../../store/player";
 
 function mapStateToProps(state) {
   return {
