@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
 
-import "./skeleton.css";
+import "./Skeleton.css";
 
 function Skeleton(props) {
   const { width, height, borderRadius } = props;

@@ -6,7 +6,7 @@ import find from "lodash/find";
 import findIndex from "lodash/findIndex";
 import isEmpty from "lodash/isEmpty";
 
-import * as reddit from "../lib/reddit";
+import * as reddit from "../../lib/reddit";
 
 /**
  * Action creators

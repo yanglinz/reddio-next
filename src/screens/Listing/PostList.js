@@ -9,10 +9,10 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 
-import Thumbnail from "../../lib/thumbnail";
-import Skeleton from "../../lib/skeleton";
+import Thumbnail from "../../components/Thumbnail";
+import Skeleton from "../../components/Skeleton";
 import * as reddit from "../../lib/reddit";
-import * as playerStore from "../../player/store";
+import * as playerStore from "../Player/store";
 import * as design from "../../design";
 
 function mapStateToProps(state) {
