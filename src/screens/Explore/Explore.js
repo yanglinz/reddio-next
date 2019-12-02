@@ -1,10 +1,10 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 
-import Summary from "./summary";
-import * as Layout from "../components/Layout";
+import Summary from "./Summary";
+import * as Layout from "../../components/Layout";
+import * as design from "../../design";
 import * as data from "./data";
-import * as design from "../design";
 
 function Explore() {
   const mq = Layout.useMediaQuery();

@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { withRouter } from "react-router-dom";
 
-import * as design from "../design";
+import * as design from "../../design";
 
 function Summary(props) {
   const { title, listings, history } = props;

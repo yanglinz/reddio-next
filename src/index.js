@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
 
 import AppRoutes from "./screens/Routes";
-import AppPlayer from "./player/player";
+import AppPlayer from "./screens/Player/Player";
 import store from "./store";
 
 import "./index.css";

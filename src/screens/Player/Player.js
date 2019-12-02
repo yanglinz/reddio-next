@@ -1,7 +1,7 @@
-import React from "./node_modules/react";
-import ReactPlayer from "./node_modules/react-player";
-import { connect } from "./node_modules/react-redux";
-import noop from "./node_modules/lodash/noop";
+import React from "react";
+import ReactPlayer from "react-player";
+import { connect } from "react-redux";
+import noop from "lodash/noop";
 
 import PlayerControls from "./Controls";
 import * as playerStore from "./store";

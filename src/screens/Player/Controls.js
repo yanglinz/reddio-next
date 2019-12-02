@@ -1,4 +1,4 @@
-import React from "./node_modules/react";
+import React from "react";
 import { View, Button, StyleSheet } from "react-native";
 
 import * as design from "../../design";

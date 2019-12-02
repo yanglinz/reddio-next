@@ -1,8 +1,8 @@
-import React from "./node_modules/react";
-import immer from "./node_modules/immer";
-import { Query } from "./node_modules/react-apollo";
-import gql from "./node_modules/graphql-tag";
-import uniqBy from "./node_modules/lodash/uniqBy";
+import React from "react";
+import immer from "immer";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import uniqBy from "lodash/uniqBy";
 
 const LISTING_QUERY = gql`
   query ListingQuery($pathname: String!, $after: String) {

@@ -5,12 +5,12 @@ import { withRouter } from "react-router";
 import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./ListingProvider";
-import ListingHeader from "./listing-header";
+import ListingHeader from "./ListingHeader";
 import PostListSort from "./PostSort";
 import PostList, { PostListSkeleton } from "./PostList";
-import ServiceError from "../../lib/service-error";
+import ServiceError from "../../components/ServiceError";
 import * as Layout from "../../components/Layout";
-import * as playerStore from "../../player/store";
+import * as playerStore from "../Player/store";
 import * as design from "../../design";
 
 function LoadError() {
