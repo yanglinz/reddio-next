@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import Skeleton from "../../lib/skeleton";
+import Skeleton from "../../components/Skeleton";
 import * as reddit from "../../lib/reddit";
 import * as design from "../../design";
 

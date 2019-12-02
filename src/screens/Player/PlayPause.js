@@ -1,8 +1,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import IconPlay from "../assets/IconPlay";
-import * as design from "../design";
+import IconPlay from "../../assets/IconPlay";
+import * as design from "../../design";
 
 function PlayPause(props) {
   const size = props.size || 70;

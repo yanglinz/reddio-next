@@ -3,7 +3,7 @@ import { View } from "react-native";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
-import { Post, PostSkeleton } from "./post-list";
+import { Post, PostSkeleton } from "./PostList";
 
 const fakePost = {
   author: "u123",

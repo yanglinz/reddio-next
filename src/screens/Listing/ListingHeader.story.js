@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react";
 
-import ListingHeader from "./listing-header";
+import ListingHeader from "./ListingHeader";
 
 function Container(props) {
   return (
