@@ -2,8 +2,8 @@ import { applyMiddleware, createStore, combineReducers } from "redux";
 import { combineEpics, createEpicMiddleware } from "redux-observable";
 import { createLogger } from "redux-logger";
 
-import playerReducer from "./screens/Player/store";
-import { playerEpic } from "./screens/Player/store";
+import playerReducer from "../screens/Player/store";
+import { playerEpic } from "../screens/Player/store";
 
 const rootEpic = combineEpics(playerEpic);
 

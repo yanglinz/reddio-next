@@ -6,7 +6,7 @@ import { ApolloProvider } from "react-apollo";
 
 import AppRoutes from "./screens/Routes";
 import AppPlayer from "./screens/Player/Player";
-import store from "./store";
+import store from "./store/store";
 
 import "./index.css";
 
