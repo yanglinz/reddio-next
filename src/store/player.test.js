@@ -1,6 +1,6 @@
 import * as fc from "fast-check";
 
-import * as store from "./store";
+import * as store from "./player";
 
 describe("player store generative test", () => {
   function postArb() {
