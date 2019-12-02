@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react";
 
-import Skeleton from "./skeleton";
+import Skeleton from "./Skeleton";
 
 storiesOf("Skeleton", module).add("default", () => (
   <View style={{ width: 300 }}>

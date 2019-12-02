@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react";
 
-import Thumbnail from "./thumbnail";
+import Thumbnail from "./Thumbnail";
 
 storiesOf("Thumbnail", module).add("default", () => (
   <View style={{ width: 100 }}>

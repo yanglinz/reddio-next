@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View } from "react-native";
 import isString from "lodash/isString";
 
-import * as random from "./random";
+import * as random from "../lib/random";
 
 const colors = [
   "#ef9a9a",

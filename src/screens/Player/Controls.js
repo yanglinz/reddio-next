@@ -1,7 +1,7 @@
-import React from "react";
+import React from "./node_modules/react";
 import { View, Button, StyleSheet } from "react-native";
 
-import * as design from "../design";
+import * as design from "../../design";
 
 function PlayerControls(props) {
   const {
