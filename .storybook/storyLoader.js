@@ -6,6 +6,7 @@
 function loadStories() {
 	require('../src/assets/icons.story');
 	require('../src/brand/header.story');
+	require('../src/design/spacing.story');
 	require('../src/home/listing-summary.story');
 	require('../src/lib/skeleton.story');
 	require('../src/lib/thumbnail.story');
@@ -18,6 +19,7 @@ function loadStories() {
 const stories = [
 	'../src/assets/icons.story',
 	'../src/brand/header.story',
+	'../src/design/spacing.story',
 	'../src/home/listing-summary.story',
 	'../src/lib/skeleton.story',
 	'../src/lib/thumbnail.story',
