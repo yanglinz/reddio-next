@@ -4,9 +4,9 @@ import ApolloClient from "apollo-boost";
 import { Provider } from "react-redux";
 import { ApolloProvider } from "react-apollo";
 
-import AppRoutes from "./routes";
-import AppPlayer from "./player/player";
-import store from "./store";
+import AppRoutes from "./screens/Routes";
+import AppPlayer from "./screens/Player/Player";
+import store from "./store/store";
 
 import "./index.css";
 
