@@ -9,7 +9,7 @@ import ListingHeader from "./listing-header";
 import PostListSort from "./post-sort";
 import PostList, { PostListSkeleton } from "./post-list";
 import ServiceError from "../lib/service-error";
-import * as Layout from "../layout";
+import * as Layout from "../components/Layout";
 import * as playerStore from "../player/store";
 import * as design from "../design";
 

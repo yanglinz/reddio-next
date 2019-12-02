@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 
 import Summary from "./summary";
-import * as Layout from "../layout";
+import * as Layout from "../components/Layout";
 import * as data from "./data";
 import * as design from "../design";
 

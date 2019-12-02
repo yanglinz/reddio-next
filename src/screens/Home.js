@@ -8,7 +8,7 @@ import ListingSummary, {
   ListingSummarySkeleton
 } from "../components/ListingSummary";
 import ServiceError from "../lib/service-error";
-import * as Layout from "../layout";
+import * as Layout from "../components/Layout";
 import * as design from "../design";
 
 const HOME_QUERY = gql`
