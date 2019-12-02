@@ -2,7 +2,7 @@ import React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react";
 
-import { ListingSummary, ListingSummarySkeleton } from "./listing-summary";
+import { ListingSummary, ListingSummarySkeleton } from "./ListingSummary";
 
 const posts = Array.from({ length: 10 }, (_, i) => ({
   title: "Example post",

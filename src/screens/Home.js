@@ -4,7 +4,9 @@ import { withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
-import ListingSummary, { ListingSummarySkeleton } from "./listing-summary";
+import ListingSummary, {
+  ListingSummarySkeleton
+} from "../components/ListingSummary";
 import ServiceError from "../lib/service-error";
 import * as Layout from "../layout";
 import * as design from "../design";
