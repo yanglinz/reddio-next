@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./spacing.scss";
+import "./Spacing.scss";
 
 export const Spacing = {
   XXS: 4,

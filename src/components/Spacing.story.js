@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import { Inline, Stack } from "./spacing";
+import { Inline, Stack } from "./Spacing";
 import * as design from "../design";
 
 function Container(props) {
