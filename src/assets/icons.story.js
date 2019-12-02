@@ -2,12 +2,12 @@ import React from "react";
 import { View } from "react-native";
 import { storiesOf } from "@storybook/react";
 
-import IconQueue from "./icon-queue";
-import IconReplay from "./icon-replay";
-import IconPause from "./icon-pause";
-import IconPlay from "./icon-play";
-import IconSkipNext from "./icon-skip-next";
-import IconSkipPrev from "./icon-skip-prev";
+import IconQueue from "./IconQueue";
+import IconReplay from "./IconReplay";
+import IconPause from "./IconPause";
+import IconPlay from "./IconPlay";
+import IconSkipNext from "./IconSkipNext";
+import IconSkipPrev from "./IconSkipPrev";
 
 storiesOf("Icons", module)
   .add("queue icon", () => (

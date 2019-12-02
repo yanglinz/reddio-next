@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import IconPlay from "../assets/icon-play";
+import IconPlay from "../assets/IconPlay";
 import * as design from "../design";
 
 function PlayPause(props) {

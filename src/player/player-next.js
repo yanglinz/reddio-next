@@ -1,8 +1,8 @@
 import React from "react";
 
 import PlayPause from "./play-pause";
-import IconSkipNext from "../assets/icon-skip-next";
-import IconSkipPrev from "../assets/icon-skip-prev";
+import IconSkipNext from "../assets/IconSkipNext";
+import IconSkipPrev from "../assets/IconSkipPrev";
 import { Inline, Spacing } from "../design/spacing";
 
 import "./player-next.scss";
