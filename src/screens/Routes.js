@@ -2,12 +2,12 @@ import React, { Suspense, lazy, useState, useEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-import Header from "./screens/header";
-import Loading from "./lib/loading";
+import Header from "./header";
+import Loading from "../lib/loading";
 
-const Home = lazy(() => import("./screens/Home"));
-const Explore = lazy(() => import("./explore/explore"));
-const ListingResolver = lazy(() => import("./listing/listing"));
+const Home = lazy(() => import("./Home"));
+const Explore = lazy(() => import("../explore/explore"));
+const ListingResolver = lazy(() => import("./Listing/listingg"));
 
 function Screen(props) {
   return (

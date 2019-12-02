@@ -1,9 +1,9 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-import Skeleton from "../lib/skeleton";
-import * as reddit from "../lib/reddit";
-import * as design from "../design";
+import Skeleton from "../../lib/skeleton";
+import * as reddit from "../../lib/reddit";
+import * as design from "../../design";
 
 function ListingHeader(props) {
   const { pathname, info } = props;

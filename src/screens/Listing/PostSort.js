@@ -1,9 +1,9 @@
-import React from "react";
+import React from "./node_modules/react";
 import { View, Picker, StyleSheet } from "react-native";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "./node_modules/react-router-dom";
 
-import * as reddit from "../lib/reddit";
-import * as design from "../design";
+import * as reddit from "../../lib/reddit";
+import * as design from "../../design";
 
 export function PostListSort(props) {
   const { location } = props;

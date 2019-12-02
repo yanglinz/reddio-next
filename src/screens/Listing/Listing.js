@@ -4,14 +4,14 @@ import { View, StyleSheet } from "react-native";
 import { withRouter } from "react-router";
 import isEmpty from "lodash/isEmpty";
 
-import ListingProvider from "./listing-provider";
+import ListingProvider from "./ListingProvider";
 import ListingHeader from "./listing-header";
-import PostListSort from "./post-sort";
-import PostList, { PostListSkeleton } from "./post-list";
-import ServiceError from "../lib/service-error";
-import * as Layout from "../components/Layout";
-import * as playerStore from "../player/store";
-import * as design from "../design";
+import PostListSort from "./PostSort";
+import PostList, { PostListSkeleton } from "./PostList";
+import ServiceError from "../../lib/service-error";
+import * as Layout from "../../components/Layout";
+import * as playerStore from "../../player/store";
+import * as design from "../../design";
 
 function LoadError() {
   return (
