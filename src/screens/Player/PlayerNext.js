@@ -1,5 +1,6 @@
 import React from "react";
 
+import Clickable from "../../components/Clickable";
 import PlayPause from "./PlayPause";
 import IconSkipNext from "../../assets/IconSkipNext";
 import IconSkipPrev from "../../assets/IconSkipPrev";
@@ -12,9 +13,15 @@ function PlayerNext() {
     <div className="PlayerNext">
       <div className="PlayerNext-controls">
         <Inline spacing={Spacing.L}>
-          <IconSkipPrev size={22} />
+          <Clickable onClick={() => {}}>
+            <IconSkipPrev size={22} />
+          </Clickable>
+
           <PlayPause />
-          <IconSkipNext size={22} />
+
+          <Clickable onClick={() => {}}>
+            <IconSkipNext size={22} />
+          </Clickable>
         </Inline>
       </div>
     </div>

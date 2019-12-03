@@ -5,6 +5,7 @@
 
 function loadStories() {
 	require('../src/assets/Icons.story');
+	require('../src/components/Clickable.story');
 	require('../src/components/Skeleton.story');
 	require('../src/components/Spacing.story');
 	require('../src/components/Thumbnail.story');
@@ -18,6 +19,7 @@ function loadStories() {
 
 const stories = [
 	'../src/assets/Icons.story',
+	'../src/components/Clickable.story',
 	'../src/components/Skeleton.story',
 	'../src/components/Spacing.story',
 	'../src/components/Thumbnail.story',
