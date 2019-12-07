@@ -1,12 +1,21 @@
 import React from "react";
+import classNames from "classnames";
 
 import "./Clickable.css";
 
 function Clickable(props) {
-  const { onClick } = props;
+  const { onClick, focusOnlyOnTab } = props;
+
+  const name = classNames("Clickable", {
+    "Clickable-focusOnlyOnTab": focusOnlyOnTab
+  });
   return (
-    <button className="Clickable" onClick={onClick}>
-      {React.Children.only(props.children)}
+    <button className={name} onClick={onClick}>
+      {focusOnlyOnTab ? (
+        <div tabIndex="-1">{React.Children.only(props.children)}</div>
+      ) : (
+        React.Children.only(props.children)
+      )}
     </button>
   );
 }

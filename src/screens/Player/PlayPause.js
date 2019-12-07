@@ -16,7 +16,7 @@ function PlayPause(props) {
   const { status, onClick } = props;
   const size = props.size || 70;
   return (
-    <Clickable onClick={onClick}>
+    <Clickable onClick={onClick} focusOnlyOnTab>
       <div
         className="PlayPause"
         style={{ position: "relative", width: size, height: size }}

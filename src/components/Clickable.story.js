@@ -18,8 +18,14 @@ function Box(props) {
   );
 }
 
-storiesOf("Clickable", module).add("default", () => (
-  <Clickable>
-    <Box />
-  </Clickable>
-));
+storiesOf("Clickable", module)
+  .add("default", () => (
+    <Clickable>
+      <Box />
+    </Clickable>
+  ))
+  .add("focus only on tab", () => (
+    <Clickable focusOnlyOnTab>
+      <Box />
+    </Clickable>
+  ));

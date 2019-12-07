@@ -13,13 +13,13 @@ function PlayerNext() {
     <div className="PlayerNext">
       <div className="PlayerNext-controls">
         <Inline spacing={Spacing.L}>
-          <Clickable onClick={() => {}}>
+          <Clickable onClick={() => {}} focusOnlyOnTab>
             <IconSkipPrev size={22} />
           </Clickable>
 
           <PlayPause />
 
-          <Clickable onClick={() => {}}>
+          <Clickable onClick={() => {}} focusOnlyOnTab>
             <IconSkipNext size={22} />
           </Clickable>
         </Inline>
