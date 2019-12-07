@@ -9,7 +9,10 @@ import { Inline, Spacing } from "../../components/Spacing";
 
 import "./PlayerNext.scss";
 
-function PlayerNext() {
+export { Status } from "./PlayPause";
+
+function PlayerNext(props) {
+  const { status } = props;
   return (
     <div className="PlayerNext">
       <div className="PlayerNext-controls">
@@ -25,7 +28,7 @@ function PlayerNext() {
             </motion.div>
           </Clickable>
 
-          <PlayPause />
+          <PlayPause status={status} />
 
           <Clickable onClick={() => {}} focusOnlyOnTab>
             <motion.div

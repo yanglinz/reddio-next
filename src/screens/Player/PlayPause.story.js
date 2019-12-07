@@ -16,8 +16,12 @@ function StateProvider(props) {
   });
 }
 
-storiesOf("PlayPause", module).add("default", () => (
-  <StateProvider>
-    {({ status, onClick }) => <PlayPause status={status} onClick={onClick} />}
-  </StateProvider>
-));
+storiesOf("PlayPause", module)
+  .add("default", () => (
+    <StateProvider>
+      {({ status, onClick }) => <PlayPause status={status} onClick={onClick} />}
+    </StateProvider>
+  ))
+  .add("disabled", () => (
+    <PlayPause status={Status.DISABLED} onClick={() => {}} />
+  ));
