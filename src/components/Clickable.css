@@ -1,0 +1,14 @@
+.Clickable {
+  border: none;
+  padding: 0;
+  background: none;
+}
+
+.Clickable:focus {
+  outline: 3px solid rgba(132, 197, 244, 0.4);
+  outline-offset: 3px;
+}
+
+.Clickable:active {
+  transform: scale(0.99);
+}
