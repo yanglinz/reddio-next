@@ -12,12 +12,12 @@ import "./PlayerNext.scss";
 export { Status } from "./PlayPause";
 
 function PlayerNext(props) {
-  const { status } = props;
+  const { status, onClickPlayPause, onClickPrev, onClickNext } = props;
   return (
     <div className="PlayerNext">
       <div className="PlayerNext-controls">
         <Inline spacing={Spacing.L}>
-          <Clickable onClick={() => {}} focusOnlyOnTab>
+          <Clickable onClick={onClickPrev} focusOnlyOnTab>
             <motion.div
               whileTap={{ opacity: 0.2 }}
               transition={{
@@ -28,9 +28,9 @@ function PlayerNext(props) {
             </motion.div>
           </Clickable>
 
-          <PlayPause status={status} />
+          <PlayPause status={status} onClick={onClickPlayPause} />
 
-          <Clickable onClick={() => {}} focusOnlyOnTab>
+          <Clickable onClick={onClickNext} focusOnlyOnTab>
             <motion.div
               whileTap={{ opacity: 0.2 }}
               transition={{
