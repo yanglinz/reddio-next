@@ -28,4 +28,9 @@ storiesOf("Clickable", module)
     <Clickable focusOnlyOnTab>
       <Box />
     </Clickable>
+  ))
+  .add("disabled", () => (
+    <Clickable isDisabled>
+      <Box />
+    </Clickable>
   ));
