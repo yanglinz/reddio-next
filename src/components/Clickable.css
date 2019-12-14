@@ -12,3 +12,7 @@
 .Clickable:active {
   transform: scale(0.99);
 }
+
+.Clickable-isDisabled:active {
+  transform: none;
+}
