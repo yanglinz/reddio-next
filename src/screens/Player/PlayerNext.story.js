@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import PlayerNext, { Status } from "./PlayerNext";
 
@@ -16,8 +17,6 @@ function StateProvider(props) {
   });
 }
 
-const noop = () => {};
-
 storiesOf("PlayerNext", module)
   .add("default", () => (
     <div style={{ width: "90%", margin: "0 auto" }}>
@@ -26,8 +25,8 @@ storiesOf("PlayerNext", module)
           <PlayerNext
             status={status}
             onClickPlayPause={onClick}
-            onClickPrev={noop}
-            onClickNext={noop}
+            onClickPrev={action("Previous")}
+            onClickNext={action("Next")}
           />
         )}
       </StateProvider>
@@ -37,9 +36,9 @@ storiesOf("PlayerNext", module)
     <div style={{ width: "90%", margin: "0 auto" }}>
       <PlayerNext
         status={Status.DISABLED}
-        onClickPlayPause={noop}
-        onClickPrev={noop}
-        onClickNext={noop}
+        onClickPlayPause={action("Play/Pause")}
+        onClickPrev={action("Previous")}
+        onClickNext={action("Previous")}
       />
     </div>
   ));
