@@ -3,8 +3,9 @@ import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 import noop from "lodash/noop";
 
-import PlayerControls from "./Controls";
+import PlayerNext from "./PlayerNext";
 import * as playerStore from "../../store/player";
+import * as enums from "../../enums";
 
 function mapStateToProps(state) {
   return {
@@ -68,13 +69,19 @@ function AppPlayer(props) {
           background: "#fff"
         }}
       >
-        <PlayerControls
-          status={status}
-          activePost={activePost}
-          handlePrev={() => dispatch(playerStore.controlPrev())}
-          handlePlay={() => dispatch(playerStore.controlPlay())}
-          handlePause={() => dispatch(playerStore.controlPause())}
-          handleSkip={() => dispatch(playerStore.controlSkip())}
+        <PlayerNext
+          status={status || enums.PlaybackStatus.INITIALIZED}
+          onClickPlayPause={() => {
+            if (status === enums.PlaybackStatus.INITIALIZED) {
+              // Do nothing
+            } else if (status === enums.PlaybackStatus.PAUSED) {
+              dispatch(playerStore.controlPlay());
+            } else if (status === enums.PlaybackStatus.PLAYING) {
+              dispatch(playerStore.controlPause());
+            }
+          }}
+          onClickPrev={() => dispatch(playerStore.controlPrev())}
+          onClickext={() => dispatch(playerStore.controlSkip())}
         />
       </div>
     </div>
