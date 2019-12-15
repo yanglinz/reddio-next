@@ -96,11 +96,12 @@ class ListingResolver extends React.Component {
 const styles = StyleSheet.create({
   listing: {},
   listingBg: {
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    marginBottom: design.spacing.larger2
   },
   listingBgMed: {
     marginTop: design.spacing.base,
-    marginBottom: design.spacing.base
+    marginBottom: design.spacing.larger2
   },
   header: {
     paddingTop: design.spacing.base,

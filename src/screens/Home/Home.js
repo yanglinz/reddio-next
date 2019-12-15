@@ -177,7 +177,8 @@ const styles = StyleSheet.create({
     display: "flex",
     alignItems: "center",
     backgroundColor: design.colors.neutral.c4,
-    padding: design.spacing.larger2
+    padding: design.spacing.larger2,
+    paddingBottom: design.spacing.larger3
   },
   exploreTitle: {
     fontSize: design.fontSize.large,

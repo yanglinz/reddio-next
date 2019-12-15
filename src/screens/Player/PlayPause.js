@@ -79,7 +79,7 @@ function ForegroundIcon(props) {
 
 function PlayPause(props) {
   const { status, onClick } = props;
-  const size = props.size || 70;
+  const size = props.size || 60;
   const isDisabled = status === enums.PlaybackStatus.INITIALIZED;
 
   return (

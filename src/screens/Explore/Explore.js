@@ -36,11 +36,11 @@ const styles = StyleSheet.create({
   exploreBg: {
     backgroundColor: "#fff",
     marginTop: design.spacing.base,
-    marginBottom: design.spacing.base
+    marginBottom: design.spacing.larger2
   },
   exploreBgMed: {
     marginTop: design.spacing.base,
-    marginBottom: design.spacing.base
+    marginBottom: design.spacing.larger2
   }
 });
 

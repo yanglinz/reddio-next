@@ -25,7 +25,7 @@ function AppPlayer(props) {
         style={{
           zIndex: 2,
           position: "fixed",
-          bottom: 90,
+          bottom: 120,
           right: 20
         }}
       >
@@ -66,7 +66,8 @@ function AppPlayer(props) {
           position: "fixed",
           bottom: 0,
           width: "100%",
-          background: "#fff"
+          background: "#fff",
+          boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 16px"
         }}
       >
         <PlayerNext
@@ -81,7 +82,7 @@ function AppPlayer(props) {
             }
           }}
           onClickPrev={() => dispatch(playerStore.controlPrev())}
-          onClickext={() => dispatch(playerStore.controlSkip())}
+          onClickNext={() => dispatch(playerStore.controlSkip())}
         />
       </div>
     </div>
