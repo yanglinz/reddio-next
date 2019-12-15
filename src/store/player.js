@@ -7,6 +7,7 @@ import findIndex from "lodash/findIndex";
 import isEmpty from "lodash/isEmpty";
 
 import * as reddit from "../lib/reddit";
+import * as enums from "../enums";
 
 /**
  * Action creators
@@ -91,12 +92,6 @@ export const playerEpic = combineEpics(skipPostEpic);
  * Reducer
  */
 
-export const mediaStatuses = {
-  INITIALIZED: "INITIALIZED",
-  PLAYING: "PLAYING",
-  PAUSED: "PAUSED"
-};
-
 export const initialState = {
   status: undefined,
   // Iframe is set to playing by default so that
@@ -110,17 +105,17 @@ export function playerReducer(state = initialState, action) {
   switch (action.type) {
     case "PLAYER/IFRAME_READY": {
       return immer(state, draftState => {
-        draftState.status = mediaStatuses.INITIALIZED;
+        draftState.status = enums.PlaybackStatus.INITIALIZED;
       });
     }
     case "PLAYER/IFRAME_PLAY": {
       return immer(state, draftState => {
-        draftState.status = mediaStatuses.PLAYING;
+        draftState.status = enums.PlaybackStatus.PLAYING;
       });
     }
     case "PLAYER/IFRAME_PAUSE": {
       return immer(state, draftState => {
-        draftState.status = mediaStatuses.PAUSED;
+        draftState.status = enums.PlaybackStatus.PAUSED;
       });
     }
     case "PLAYER/SET_POSTS": {

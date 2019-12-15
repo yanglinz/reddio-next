@@ -1,21 +1,20 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import Clickable from "../../components/Clickable";
-import PlayPause, { Status } from "./PlayPause";
+import PlayPause from "./PlayPause";
 import IconSkipNext from "../../assets/IconSkipNext";
 import IconSkipPrev from "../../assets/IconSkipPrev";
+import Clickable from "../../components/Clickable";
 import { Inline, Spacing } from "../../components/Spacing";
+import * as enums from "../../enums";
 import * as design from "../../design";
 
 import "./PlayerNext.scss";
 
-export { Status } from "./PlayPause";
-
 function InteractiveIcon(props) {
   const { status, onClick, children } = props;
 
-  const isDisabled = status === Status.DISABLED;
+  const isDisabled = status === enums.PlaybackStatus.INITIALIZED;
   const color = isDisabled ? design.colors.neutral.c9 : undefined;
   const icon = React.cloneElement(children, { color });
   return (

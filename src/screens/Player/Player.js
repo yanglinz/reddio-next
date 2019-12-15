@@ -3,8 +3,9 @@ import ReactPlayer from "react-player";
 import { connect } from "react-redux";
 import noop from "lodash/noop";
 
-import PlayerControls from "./Controls";
+import PlayerNext from "./PlayerNext";
 import * as playerStore from "../../store/player";
+import * as enums from "../../enums";
 
 function mapStateToProps(state) {
   return {
@@ -24,7 +25,7 @@ function AppPlayer(props) {
         style={{
           zIndex: 2,
           position: "fixed",
-          bottom: 90,
+          bottom: 120,
           right: 20
         }}
       >
@@ -65,16 +66,23 @@ function AppPlayer(props) {
           position: "fixed",
           bottom: 0,
           width: "100%",
-          background: "#fff"
+          background: "#fff",
+          boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 16px"
         }}
       >
-        <PlayerControls
-          status={status}
-          activePost={activePost}
-          handlePrev={() => dispatch(playerStore.controlPrev())}
-          handlePlay={() => dispatch(playerStore.controlPlay())}
-          handlePause={() => dispatch(playerStore.controlPause())}
-          handleSkip={() => dispatch(playerStore.controlSkip())}
+        <PlayerNext
+          status={status || enums.PlaybackStatus.INITIALIZED}
+          onClickPlayPause={() => {
+            if (status === enums.PlaybackStatus.INITIALIZED) {
+              // Do nothing
+            } else if (status === enums.PlaybackStatus.PAUSED) {
+              dispatch(playerStore.controlPlay());
+            } else if (status === enums.PlaybackStatus.PLAYING) {
+              dispatch(playerStore.controlPause());
+            }
+          }}
+          onClickPrev={() => dispatch(playerStore.controlPrev())}
+          onClickNext={() => dispatch(playerStore.controlSkip())}
         />
       </div>
     </div>

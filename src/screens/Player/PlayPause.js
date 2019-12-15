@@ -6,12 +6,7 @@ import Clickable from "../../components/Clickable";
 import IconPlay from "../../assets/IconPlay";
 import IconPause from "../../assets/IconPause";
 import * as design from "../../design";
-
-export const Status = {
-  DISABLED: "DISABLED",
-  PLAYING: "PLAYING",
-  PAUSED: "PAUSED"
-};
+import * as enums from "../../enums";
 
 function BackgroundCircle(props) {
   const { status, size } = props;
@@ -34,7 +29,7 @@ function BackgroundCircle(props) {
     </svg>
   );
 
-  return status === Status.DISABLED ? (
+  return status === enums.PlaybackStatus.INITIALIZED ? (
     circle
   ) : (
     <motion.div
@@ -52,9 +47,9 @@ function ForegroundIcon(props) {
   const { status, size } = props;
 
   let icon = null;
-  if (status === Status.DISABLED) {
+  if (status === enums.PlaybackStatus.INITIALIZED) {
     icon = <IconPlay size={size} color={design.colors.neutral.c9} />;
-  } else if (status === Status.PLAYING) {
+  } else if (status === enums.PlaybackStatus.PLAYING) {
     icon = <IconPause size={size} />;
   } else {
     icon = <IconPlay size={size} />;
@@ -84,8 +79,8 @@ function ForegroundIcon(props) {
 
 function PlayPause(props) {
   const { status, onClick } = props;
-  const size = props.size || 70;
-  const isDisabled = status === Status.DISABLED;
+  const size = props.size || 60;
+  const isDisabled = status === enums.PlaybackStatus.INITIALIZED;
 
   return (
     <Clickable onClick={onClick} focusOnlyOnTab isDisabled={isDisabled}>
