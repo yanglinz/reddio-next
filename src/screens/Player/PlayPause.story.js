@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 
-import PlayPause, { Status } from "./PlayPause";
+import PlayPause from "./PlayPause";
+import * as enums from "../../enums";
 
 const statusTransition = {
-  [Status.PAUSED]: Status.PLAYING,
-  [Status.PLAYING]: Status.PAUSED
+  [enums.PlaybackStatus.PAUSED]: enums.PlaybackStatus.PLAYING,
+  [enums.PlaybackStatus.PLAYING]: enums.PlaybackStatus.PAUSED
 };
 
 function StateProvider(props) {
-  const [status, setStatus] = useState(Status.PAUSED);
+  const [status, setStatus] = useState(enums.PlaybackStatus.PAUSED);
   return props.children({
     status,
     onClick: () => setStatus(statusTransition[status])
@@ -23,5 +24,5 @@ storiesOf("PlayPause", module)
     </StateProvider>
   ))
   .add("disabled", () => (
-    <PlayPause status={Status.DISABLED} onClick={() => {}} />
+    <PlayPause status={enums.PlaybackStatus.INITIALIZED} onClick={() => {}} />
   ));
