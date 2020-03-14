@@ -1,5 +1,4 @@
 import { ApolloServer, gql } from "apollo-server-micro";
-import DataLoader from "dataloader";
 
 import schema from "../../server/graphql/schema";
 import createDataLoaders from "../../server/graphql/data-loaders";
