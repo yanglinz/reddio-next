@@ -6,7 +6,7 @@ import createDataLoaders from "../../src/server/graphql/data-loaders";
 const apolloServer = new ApolloServer({
   schema: schema,
   context: () => {
-    return { dataloaders: createDataLoaders() };
+    return { dataLoaders: createDataLoaders() };
   }
 });
 
