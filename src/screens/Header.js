@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native-web";
-import { withRouter } from "react-router-dom";
 
 import * as design from "../design";
 
@@ -39,4 +38,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withRouter(Header);
+export default Header;

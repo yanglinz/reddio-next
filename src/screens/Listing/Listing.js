@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet } from "react-native-web";
-import { withRouter } from "react-router";
 import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./ListingProvider";
@@ -124,4 +123,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withRouter(ListingResolver);
+export default ListingResolver;
