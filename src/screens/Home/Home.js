@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Button, Text, StyleSheet } from "react-native-web";
+import Router from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -72,8 +73,6 @@ function HomeError() {
 
 class Home extends React.Component {
   render() {
-    const { history } = this.props;
-
     return (
       <Query query={HOME_QUERY}>
         {({ loading, error, data }) => {
@@ -115,7 +114,7 @@ class Home extends React.Component {
                 <Button
                   title="Explore"
                   color={design.colors.primary.c5}
-                  onPress={() => history.push("/explore")}
+                  onPress={() => Router.push("/explore")}
                 />
               </View>
             </View>

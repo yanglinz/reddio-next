@@ -1,14 +1,15 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native-web";
+import Router from "next/router";
 
 import * as design from "../design";
 
-export function Header(props) {
+export function Header() {
   return (
     <View style={styles.header}>
       <TouchableOpacity
         style={styles.branding}
-        onPress={() => props.history.push("/")}
+        onPress={() => Router.push("/")}
       >
         <Text style={styles.siteName}>Reddio</Text>
         <Text style={styles.siteNameAccent}> Player</Text>
