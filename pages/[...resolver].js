@@ -1,8 +1,14 @@
-import { useRouter } from "next/router";
+import Header from "../src/screens/Header";
+import AppWrapper from "../src/screens/AppWrapper";
+import ListingResolver from "../src/screens/Listing/Listing";
 
 function ResolverRoute() {
-  const router = useRouter();
-  return <div>Hello {router.asPath}!</div>;
+  return (
+    <AppWrapper>
+      <Header />
+      <ListingResolver />
+    </AppWrapper>
+  );
 }
 
 export default ResolverRoute;

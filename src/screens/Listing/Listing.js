@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { View, StyleSheet } from "react-native-web";
+import { useRouter } from "next/router";
 import isEmpty from "lodash/isEmpty";
 
 import ListingProvider from "./ListingProvider";
@@ -77,19 +78,16 @@ function ListingView(props) {
 
 const ListingViewConnected = connect()(ListingView);
 
-class ListingResolver extends React.Component {
-  render() {
-    const { location } = this.props;
-    const pathname = location.pathname + location.search;
-
-    return (
-      <ListingProvider pathname={pathname}>
-        {renderProps => (
-          <ListingViewConnected pathname={pathname} {...renderProps} />
-        )}
-      </ListingProvider>
-    );
-  }
+function ListingResolver() {
+  const router = useRouter();
+  const pathname = router.asPath;
+  return (
+    <ListingProvider pathname={pathname}>
+      {renderProps => (
+        <ListingViewConnected pathname={pathname} {...renderProps} />
+      )}
+    </ListingProvider>
+  );
 }
 
 const styles = StyleSheet.create({
