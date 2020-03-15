@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
+import Router from "next/router";
 import sortBy from "lodash/sortBy";
 import take from "lodash/take";
 import uniqBy from "lodash/uniqBy";
@@ -24,7 +25,7 @@ export function ListingSummarySkeleton() {
 }
 
 export function ListingSummary(props) {
-  const { pathname, posts, customInfo, history } = props;
+  const { pathname, posts, customInfo } = props;
   const { description } = customInfo;
 
   let thumbnailPosts = posts;
@@ -55,7 +56,7 @@ export function ListingSummary(props) {
         ))}
       </View>
       <View style={styles.content}>
-        <Text style={styles.title} onPress={() => history.push(pathname)}>
+        <Text style={styles.title} onPress={() => Router.push(pathname)}>
           {pathname}
         </Text>
         <Text style={styles.description}>{description}</Text>

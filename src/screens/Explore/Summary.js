@@ -1,10 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
+import Router from "next/router";
 
 import * as design from "../../design";
 
 function Summary(props) {
-  const { title, listings, history } = props;
+  const { title, listings } = props;
 
   return (
     <View style={styles.summary}>
@@ -13,7 +14,7 @@ function Summary(props) {
       </View>
       {listings.map(listing => (
         <View key={listing} style={styles.listing}>
-          <Text onPress={() => history.push(listing)}>{listing}</Text>
+          <Text onPress={() => Router.push(listing)}>{listing}</Text>
         </View>
       ))}
     </View>

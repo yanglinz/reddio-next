@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Picker, StyleSheet } from "react-native-web";
+import Router from "next/router";
 
 import * as reddit from "../../lib/reddit";
 import * as design from "../../design";
@@ -14,7 +15,7 @@ export function PostListSort(props) {
         selectedValue={currentSortType}
         onValueChange={sortType => {
           const nextPath = reddit.resolveSortTypePath(location, sortType);
-          props.history.push(nextPath);
+          Router.push(nextPath);
         }}
       >
         <Picker.Item label="Hot" value={reddit.sortTypes.hot} />
@@ -33,7 +34,7 @@ export function PostListSort(props) {
             selectedValue={reddit.getSortRange(location)}
             onValueChange={sortRange => {
               const nextPath = reddit.resolveSortRangePath(location, sortRange);
-              props.history.push(nextPath);
+              Router.push(nextPath);
             }}
           >
             <Picker.Item label="Hour" value={reddit.sortRanges.hour} />
