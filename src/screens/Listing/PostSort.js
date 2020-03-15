@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Picker, StyleSheet } from "react-native-web";
-import { withRouter } from "react-router-dom";
 
 import * as reddit from "../../lib/reddit";
 import * as design from "../../design";
@@ -62,4 +61,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withRouter(PostListSort);
+export default PostListSort;
