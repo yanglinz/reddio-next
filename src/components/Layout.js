@@ -20,7 +20,7 @@ export function useMediaQuery() {
 
 export function FullWidth(props) {
   return (
-    <div className="FullWidth">
+    <div className={styles.FullWidth}>
       <View>{props.children}</View>
     </div>
   );
@@ -28,7 +28,7 @@ export function FullWidth(props) {
 
 export function Wide(props) {
   return (
-    <div className="Wide">
+    <div className={styles.Wide}>
       <View>{props.children}</View>
     </div>
   );
@@ -36,7 +36,7 @@ export function Wide(props) {
 
 export function Standard(props) {
   return (
-    <div className="Standard">
+    <div className={styles.Standard}>
       <View>{props.children}</View>
     </div>
   );
