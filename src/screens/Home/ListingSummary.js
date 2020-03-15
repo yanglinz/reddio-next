@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native-web";
 import { withRouter } from "react-router-dom";
 import sortBy from "lodash/sortBy";
 import take from "lodash/take";

@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native-web";
 
 import Skeleton from "../../components/Skeleton";
 import * as reddit from "../../lib/reddit";

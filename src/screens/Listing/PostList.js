@@ -6,7 +6,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet
-} from "react-native";
+} from "react-native-web";
 import { connect } from "react-redux";
 
 import Thumbnail from "../../components/Thumbnail";

@@ -1,8 +1,8 @@
 import React from "react";
-import { View } from "react-native";
+import { View } from "react-native-web";
 import { useMediaLayout } from "use-media";
 
-import "./Layout.css";
+import styles from "./Layout.module.css";
 
 const layoutWidth = {
   small: 480,

@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Button, Text, StyleSheet } from "react-native";
-import { withRouter } from "react-router-dom";
+import { View, Button, Text, StyleSheet } from "react-native-web";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
@@ -187,4 +186,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default withRouter(Home);
+export default Home;

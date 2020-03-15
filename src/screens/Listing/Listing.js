@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native-web";
 import { withRouter } from "react-router";
 import isEmpty from "lodash/isEmpty";
 

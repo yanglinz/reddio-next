@@ -1,5 +1,5 @@
 import React, { Suspense, lazy, useState, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native-web";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import Header from "./Header";

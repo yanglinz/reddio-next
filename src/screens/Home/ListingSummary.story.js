@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View } from "react-native-web";
 import { storiesOf } from "@storybook/react";
 
 import { ListingSummary, ListingSummarySkeleton } from "./ListingSummary";

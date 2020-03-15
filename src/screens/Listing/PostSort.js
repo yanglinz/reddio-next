@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Picker, StyleSheet } from "react-native";
+import { View, Picker, StyleSheet } from "react-native-web";
 import { withRouter } from "react-router-dom";
 
 import * as reddit from "../../lib/reddit";
