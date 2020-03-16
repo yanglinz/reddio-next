@@ -59,7 +59,7 @@ function ListingView(props) {
           }
         >
           <ListingHeader pathname={pathname} info={info} />
-          <PostListSort />
+          <PostListSort pathname={pathname} />
           {isLoading ? (
             <PostListSkeleton />
           ) : (

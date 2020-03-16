@@ -6,15 +6,15 @@ import * as reddit from "../../lib/reddit";
 import * as design from "../../design";
 
 export function PostListSort(props) {
-  const { location } = props;
-  const currentSortType = reddit.getSortType(location);
+  const { pathname } = props;
+  const currentSortType = reddit.getSortType(pathname);
 
   return (
     <View style={styles.postListSort}>
       <Picker
         selectedValue={currentSortType}
         onValueChange={sortType => {
-          const nextPath = reddit.resolveSortTypePath(location, sortType);
+          const nextPath = reddit.resolveSortTypePath(pathname, sortType);
           Router.push(nextPath);
         }}
       >
@@ -31,9 +31,9 @@ export function PostListSort(props) {
       {currentSortType === reddit.sortTypes.top ? (
         <View style={styles.sortRange}>
           <Picker
-            selectedValue={reddit.getSortRange(location)}
+            selectedValue={reddit.getSortRange(pathname)}
             onValueChange={sortRange => {
-              const nextPath = reddit.resolveSortRangePath(location, sortRange);
+              const nextPath = reddit.resolveSortRangePath(pathname, sortRange);
               Router.push(nextPath);
             }}
           >

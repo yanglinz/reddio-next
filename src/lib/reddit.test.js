@@ -8,46 +8,46 @@ import {
 
 describe("getCleanedPathname", () => {
   it("should handle a subreddit", () => {
-    const pathname = "/r/listentothis";
-    const cleaned = getCleanedPathname(pathname);
+    const path = "/r/listentothis";
+    const cleaned = getCleanedPathname(path);
     expect(cleaned).toEqual("/r/listentothis");
   });
 
   it("should handle a subreddit with sortType", () => {
-    const pathname = "/r/listentothis/new";
-    const cleaned = getCleanedPathname(pathname);
+    const path = "/r/listentothis/new";
+    const cleaned = getCleanedPathname(path);
     expect(cleaned).toEqual("/r/listentothis");
   });
 
   it("should handle a subreddit with sortRange", () => {
-    const pathname = "/r/listentothis/top/?t=week";
-    const cleaned = getCleanedPathname(pathname);
+    const path = "/r/listentothis/top/?t=week";
+    const cleaned = getCleanedPathname(path);
     expect(cleaned).toEqual("/r/listentothis");
   });
 });
 
 describe("getSortType", () => {
   it("should handle root path", () => {
-    const location = { pathname: "/" };
-    const sortType = getSortType(location);
+    const path = "/";
+    const sortType = getSortType(path);
     expect(sortType).toEqual("hot");
   });
 
   it("should handle root path with sortType", () => {
-    const location = { pathname: "/top" };
-    const sortType = getSortType(location);
+    const path = "/top";
+    const sortType = getSortType(path);
     expect(sortType).toEqual("top");
   });
 
   it("should handle subreddit root", () => {
-    const location = { pathname: "/r/music" };
-    const sortType = getSortType(location);
+    const path = "/r/music";
+    const sortType = getSortType(path);
     expect(sortType).toEqual("hot");
   });
 
   it("should handle subreddit with sortType", () => {
-    const location = { pathname: "/r/music/top" };
-    const sortType = getSortType(location);
+    const path = "/r/music/top";
+    const sortType = getSortType(path);
     expect(sortType).toEqual("top");
   });
 
@@ -57,65 +57,65 @@ describe("getSortType", () => {
 
 describe("getSortRange", () => {
   it("should get default sortRange", () => {
-    const location = { pathname: "/", search: "" };
-    const sortRange = getSortRange(location);
+    const path = "/";
+    const sortRange = getSortRange(path);
     expect(sortRange).toEqual("day");
   });
 
   it("should get sortRange", () => {
-    const location = { pathname: "/", search: "?foo=bar&t=week" };
-    const sortRange = getSortRange(location);
+    const path = "/?foo=bar&t=week";
+    const sortRange = getSortRange(path);
     expect(sortRange).toEqual("week");
   });
 });
 
 describe("resolveSortTypePath", () => {
   it("should handle root path and new sortType hot", () => {
-    const location = { pathname: "/", search: "" };
-    const path = resolveSortTypePath(location, "hot");
-    expect(path).toEqual(location);
+    const path = "/";
+    const resolved = resolveSortTypePath(path, "hot");
+    expect(resolved).toEqual("/");
   });
 
   it("should handle root path and new sortType top", () => {
-    const location = { pathname: "/", search: "" };
-    const path = resolveSortTypePath(location, "top");
-    expect(path).toEqual({ pathname: "/top", search: "" });
+    const path = "";
+    const resolved = resolveSortTypePath(path, "top");
+    expect(resolved).toEqual("/top");
   });
 
   it("should handle root path with existing sortType and new sortType hot", () => {
-    const location = { pathname: "/hot", search: "" };
-    const path = resolveSortTypePath(location, "hot");
-    expect(path).toEqual({ pathname: "/hot", search: "" });
+    const path = "/hot";
+    const resolved = resolveSortTypePath(path, "hot");
+    expect(resolved).toEqual("/hot");
   });
 
   it("should handle root path with existing sortType and new sortType top", () => {
-    const location = { pathname: "/hot", search: "" };
-    const path = resolveSortTypePath(location, "top");
-    expect(path).toEqual({ pathname: "/top", search: "" });
+    const path = "/hot";
+    const resolved = resolveSortTypePath(path, "top");
+    expect(resolved).toEqual("/top");
   });
 
   it("should handle subreddit root and new sortType hot", () => {
-    const location = { pathname: "/r/music", search: "" };
-    const path = resolveSortTypePath(location, "hot");
-    expect(path).toEqual({ pathname: "/r/music", search: "" });
+    const path = "/r/music";
+    const resolved = resolveSortTypePath(path, "hot");
+    expect(resolved).toEqual("/r/music");
   });
 
   it("should handle subreddit root and new sortType top", () => {
-    const location = { pathname: "/r/music", search: "" };
-    const path = resolveSortTypePath(location, "top");
-    expect(path).toEqual({ pathname: "/r/music/top", search: "" });
+    const path = "/r/music";
+    const resolved = resolveSortTypePath(path, "top");
+    expect(resolved).toEqual("/r/music/top");
   });
 
   it("should handle subreddit with existing sortType and new sortType hot", () => {
-    const location = { pathname: "/r/music/hot", search: "" };
-    const path = resolveSortTypePath(location, "hot");
-    expect(path).toEqual({ pathname: "/r/music/hot", search: "" });
+    const path = "/r/music/hot";
+    const resolved = resolveSortTypePath(path, "hot");
+    expect(resolved).toEqual("/r/music/hot");
   });
 
   it("should handle subreddit with existing sortType and new sortType top", () => {
-    const location = { pathname: "/r/music/hot", search: "" };
-    const path = resolveSortTypePath(location, "top");
-    expect(path).toEqual({ pathname: "/r/music/top", search: "" });
+    const path = "/r/music/hot";
+    const resolved = resolveSortTypePath(path, "top");
+    expect(resolved).toEqual("/r/music/top");
   });
 
   // TODO: trailing slashes
@@ -124,14 +124,26 @@ describe("resolveSortTypePath", () => {
 
 describe("resolveSortRangePath", () => {
   it("should set new sortRange", () => {
-    const location = { pathname: "/", search: "" };
-    const path = resolveSortRangePath(location, "week");
-    expect(path).toEqual({ pathname: "/", search: "?t=week" });
+    const path = "/";
+    const resolved = resolveSortRangePath(path, "week");
+    expect(resolved).toEqual("/?t=week");
   });
 
   it("should override existing sortRange", () => {
-    const location = { pathname: "/", search: "?t=day" };
-    const path = resolveSortRangePath(location, "week");
-    expect(path).toEqual({ pathname: "/", search: "?t=week" });
+    const path = "/?t=day";
+    const resolved = resolveSortRangePath(path, "week");
+    expect(resolved).toEqual("/?t=week");
+  });
+
+  it("should set new subreddit sortRange", () => {
+    const path = "/r/listentothis";
+    const resolved = resolveSortRangePath(path, "week");
+    expect(resolved).toEqual("/r/listentothis?t=week");
+  });
+
+  it("should override subreddit existing sortRange", () => {
+    const path = "/r/listentothis/?t=day";
+    const resolved = resolveSortRangePath(path, "week");
+    expect(resolved).toEqual("/r/listentothis/?t=week");
   });
 });
