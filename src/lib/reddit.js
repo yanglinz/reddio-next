@@ -52,15 +52,29 @@ export const sortRanges = {
   all: "all"
 };
 
-export function getSortType(location) {
-  const { pathname } = location;
+function naiveUrlParser(path) {
+  let [pathname, search, ..._] = path.split("?");
+  search = search || "";
+  return { pathname, search };
+}
+
+function naiveUrlFormatter(parsed) {
+  const { pathname, search } = parsed;
+  if (search) {
+    return [pathname, search].join("?");
+  }
+  return pathname;
+}
+
+export function getSortType(path) {
+  const { pathname } = naiveUrlParser(path);
   if (pathname === "/") {
     return sortTypes.hot;
   }
 
   const pathParts = pathname.split("/");
-  const pathNamedParts = pathParts.filter(Boolean);
-  const lastPart = last(pathNamedParts);
+  const namedParts = pathParts.filter(Boolean);
+  const lastPart = last(namedParts);
 
   if (sortTypes[lastPart.toLowerCase()]) {
     return sortTypes[lastPart.toLowerCase()];
@@ -70,14 +84,15 @@ export function getSortType(location) {
   return sortTypes.hot;
 }
 
-export function getSortRange(location) {
-  const { search } = location;
-  const params = Qs.parse(search.replace("?", ""));
+export function getSortRange(path) {
+  const search = path.split("?")[1];
+  const params = Qs.parse(search);
   return params.t || sortRanges.day;
 }
 
-export function resolveSortTypePath(location, newSort) {
-  const { pathname, search } = location;
+// TODO: Test this function generatively
+export function resolveSortTypePath(path, newSort) {
+  const { pathname, search } = naiveUrlParser(path);
 
   // Depending on if we're on a subreddit or a multireddit
   // We could have differing number of parts in our path.
@@ -88,11 +103,11 @@ export function resolveSortTypePath(location, newSort) {
   const atRoot = pathNamedParts.length <= 1;
   if (atRoot) {
     if (pathname === "/" && newSort === "hot") {
-      return { pathname, search };
+      return naiveUrlFormatter({ pathname, search });
     }
 
     const newPathname = `/${newSort}`;
-    return { pathname: newPathname, search };
+    return naiveUrlFormatter({ pathname: newPathname, search });
   }
 
   // Handle subreddits and multireddits
@@ -101,7 +116,7 @@ export function resolveSortTypePath(location, newSort) {
   const atListingRoot =
     first(pathNamedParts) === "r" && pathNamedParts.length === 2;
   if (atListingRoot && newSort === "hot") {
-    return { pathname, search };
+    return naiveUrlFormatter({ pathname, search });
   }
 
   const hasSortType = sortTypes[last(pathNamedParts)];
@@ -112,13 +127,14 @@ export function resolveSortTypePath(location, newSort) {
     newParts = pathParts.concat(newSort);
   }
 
-  return { pathname: newParts.join("/"), search };
+  const newPathname = newParts.join("/");
+  return naiveUrlFormatter({ pathname: newPathname, search });
 }
 
-export function resolveSortRangePath(location, newRange) {
-  const { pathname, search } = location;
+export function resolveSortRangePath(path, newRange) {
+  const { pathname, search } = naiveUrlParser(path);
   const params = Qs.parse(search.replace("?", ""));
   params.t = newRange;
-  const newSearch = `?${Qs.stringify(params)}`;
-  return { pathname, search: newSearch };
+  const newSearch = `${Qs.stringify(params)}`;
+  return naiveUrlFormatter({ pathname, search: newSearch });
 }
