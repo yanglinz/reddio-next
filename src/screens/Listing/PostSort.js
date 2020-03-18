@@ -15,7 +15,7 @@ export function PostListSort(props) {
         selectedValue={currentSortType}
         onValueChange={sortType => {
           const nextPath = reddit.resolveSortTypePath(pathname, sortType);
-          Router.push(nextPath);
+          Router.replace(nextPath);
         }}
       >
         <Picker.Item label="Hot" value={reddit.sortTypes.hot} />
@@ -34,7 +34,7 @@ export function PostListSort(props) {
             selectedValue={reddit.getSortRange(pathname)}
             onValueChange={sortRange => {
               const nextPath = reddit.resolveSortRangePath(pathname, sortRange);
-              Router.push(nextPath);
+              Router.replace(nextPath);
             }}
           >
             <Picker.Item label="Hour" value={reddit.sortRanges.hour} />

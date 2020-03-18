@@ -1,12 +1,13 @@
 import React from "react";
 import classNames from "classnames";
 
-import "./Clickable.css";
+import styles from "./Clickable.module.css";
 
 function Clickable(props) {
   const { onClick, focusOnlyOnTab, isDisabled } = props;
 
-  const clsName = classNames("Clickable", {
+  // TODO: Fix conditional styles
+  const clsName = classNames(styles.Clickable, {
     "Clickable-focusOnlyOnTab": focusOnlyOnTab,
     "Clickable-isDisabled": isDisabled
   });
