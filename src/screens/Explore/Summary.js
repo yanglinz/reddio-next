@@ -14,7 +14,7 @@ function Summary(props) {
       </View>
       {listings.map(listing => (
         <View key={listing} style={styles.listing}>
-          <Text onPress={() => Router.push(listing)}>{listing}</Text>
+          <Text onPress={() => Router.replace(listing)}>{listing}</Text>
         </View>
       ))}
     </View>

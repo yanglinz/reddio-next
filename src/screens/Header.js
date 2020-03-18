@@ -9,7 +9,7 @@ export function Header() {
     <View style={styles.header}>
       <TouchableOpacity
         style={styles.branding}
-        onPress={() => Router.push("/")}
+        onPress={() => Router.replace("/")}
       >
         <Text style={styles.siteName}>Reddio</Text>
         <Text style={styles.siteNameAccent}> Player</Text>

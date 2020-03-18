@@ -1,9 +1,9 @@
-.PlayerNext {
+.Player {
   border-top: 1px solid #f0f4f8;
   padding: 20px 0;
 }
 
-.PlayerNext-controls {
+.Control {
   display: flex;
   align-items: center;
   justify-content: center;

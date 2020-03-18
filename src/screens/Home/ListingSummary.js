@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 import Router from "next/router";
+import Link from "next/link";
 import sortBy from "lodash/sortBy";
 import take from "lodash/take";
 import uniqBy from "lodash/uniqBy";
@@ -56,7 +57,7 @@ export function ListingSummary(props) {
         ))}
       </View>
       <View style={styles.content}>
-        <Text style={styles.title} onPress={() => Router.push(pathname)}>
+        <Text style={styles.title} onPress={() => Router.replace(pathname)}>
           {pathname}
         </Text>
         <Text style={styles.description}>{description}</Text>

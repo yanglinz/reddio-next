@@ -114,7 +114,7 @@ class Home extends React.Component {
                 <Button
                   title="Explore"
                   color={design.colors.primary.c5}
-                  onPress={() => Router.push("/explore")}
+                  onPress={() => Router.replace("/explore")}
                 />
               </View>
             </View>

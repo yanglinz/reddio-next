@@ -5,11 +5,11 @@ import PlayPause from "./PlayPause";
 import IconSkipNext from "../../assets/IconSkipNext";
 import IconSkipPrev from "../../assets/IconSkipPrev";
 import Clickable from "../../components/Clickable";
-import { Inline, Spacing } from "../../components/Spacing";
+import { Inline, Spacing } from "../../components/Spacing.js";
 import * as enums from "../../enums";
 import * as design from "../../design";
 
-import "./PlayerNext.scss";
+import styles from "./PlayerNext.module.css";
 
 function InteractiveIcon(props) {
   const { status, onClick, children } = props;
@@ -38,8 +38,8 @@ function InteractiveIcon(props) {
 function PlayerNext(props) {
   const { status, onClickPlayPause, onClickPrev, onClickNext } = props;
   return (
-    <div className="PlayerNext">
-      <div className="PlayerNext-controls">
+    <div className={styles.Player}>
+      <div className={styles.Control}>
         <Inline spacing={Spacing.L}>
           <InteractiveIcon status={status} onClick={onClickPrev}>
             <IconSkipPrev size={22} />

@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./Spacing.scss";
+import styles from "./Spacing.module.css";
 
 export const Spacing = {
   XXS: 4,
@@ -13,13 +13,13 @@ export const Spacing = {
 };
 
 export function Box(props) {
-  return <div className="Box">{props.children}</div>;
+  return <div className={styles.Box}>{props.children}</div>;
 }
 
 export function Inline(props) {
   const spacing = props.spacing || Spacing.M;
   return (
-    <div className="Inline">
+    <div className={styles.Inline}>
       {React.Children.map(props.children, (c, i) => (
         <div style={{ display: "flex", marginLeft: i > 0 ? spacing : 0 }}>
           {c}
@@ -32,7 +32,7 @@ export function Inline(props) {
 export function Stack(props) {
   const spacing = props.spacing || Spacing.M;
   return (
-    <div className="Stack">
+    <div className={styles.Stack}>
       {React.Children.map(props.children, (c, i) => (
         <div style={{ marginTop: i > 0 ? spacing : 0 }}>{c}</div>
       ))}
