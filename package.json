@@ -26,7 +26,7 @@
     "test": "run-s test:*",
     "build-disabled:cra": "react-scripts build",
     "build-disabled:tsc": "tsc --project ./server",
-    "build:placeholder": "true",
+    "build:next": "next build",
     "build": "run-s build:*",
     "dev-disabled:cra": "BROWSER=false react-scripts start",
     "dev-disabled:now": "now --local-config .zeit/now.dev.json dev --listen 4000",
