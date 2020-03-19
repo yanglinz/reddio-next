@@ -6,7 +6,7 @@ import fetch from "isomorphic-fetch";
 
 import store from "../store/store";
 
-const graphqlUri = "http://localhost:3000/api/graphql";
+const graphqlUri = "/api/graphql";
 const client = new ApolloClient({ uri: graphqlUri, fetch });
 
 function AppWrapper(props) {
