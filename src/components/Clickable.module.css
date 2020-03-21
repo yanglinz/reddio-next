@@ -13,6 +13,6 @@
   transform: scale(0.99);
 }
 
-.Clickable-isDisabled:active {
+.ClickableDisabled:active {
   transform: none;
 }
