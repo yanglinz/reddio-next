@@ -4,8 +4,5 @@ module.exports = async ({ config, mode }) => {
     loader: "file-loader"
   });
 
-  config.resolve.alias = config.resolve.alias || {};
-  config.resolve.alias["react-native$"] = "react-native-web";
-
   return config;
 };
