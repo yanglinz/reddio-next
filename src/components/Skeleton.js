@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native-web";
 
-import "./Skeleton.module.css";
+import styles from "./Skeleton.module.css";
 
 function Skeleton(props) {
   const { width, height, borderRadius } = props;
@@ -14,7 +14,7 @@ function Skeleton(props) {
         overflow: "hidden"
       }}
     >
-      <div className="rdtcl-skeleton" />
+      <div className={styles.SkeletonInner} />
     </View>
   );
 }
