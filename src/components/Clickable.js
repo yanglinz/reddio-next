@@ -6,8 +6,8 @@ import styles from "./Clickable.module.css";
 function Clickable(props) {
   const { focusOnlyOnTab, isDisabled, onClick } = props;
 
-  const clsName = classNames(styles.clickable, {
-    [styles.clickableDisabled]: isDisabled
+  const clsName = classNames(styles.Clickable, {
+    [styles.ClickableDisabled]: isDisabled
   });
   return (
     <button className={clsName} onClick={onClick} disabled={isDisabled}>
