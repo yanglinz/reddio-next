@@ -22,20 +22,13 @@
   "scripts": {
     "format": "prettier --write '**/**/*.{js,ts,css,scss,html,md,yaml,yml}'",
     "test:format": "prettier --check '**/**/*.{js,ts,css,scss,html,md,yaml,yml}'",
-    "test-disabled:cra": "react-scripts test",
     "test": "run-s test:*",
-    "build-disabled:cra": "react-scripts build",
-    "build-disabled:tsc": "tsc --project ./server",
     "build:next": "next build",
     "build": "run-s build:*",
-    "dev-disabled:cra": "BROWSER=false react-scripts start",
-    "dev-disabled:now": "now --local-config .zeit/now.dev.json dev --listen 4000",
     "dev-disabled:storybook": "rnstl && start-storybook -p 9009 -s public --ci",
     "dev:next": "next dev",
     "dev": "run-p dev:*",
-    "storybook": "rnstl && build-storybook -s public --quiet",
-    "deploy:preview": "now --local-config .zeit/now.prod.json dev --listen 4000",
-    "deploy": "now --local-config .zeit/now.prod.json"
+    "storybook": "rnstl && build-storybook -s public --quiet"
   },
   "dependencies": {
     "apollo-boost": "0.4.4",
@@ -85,7 +78,6 @@
     "npm-run-all": "4.1.5",
     "prettier": "1.19.1",
     "react-native-storybook-loader": "1.8.1",
-    "react-scripts": "3.2.0",
     "typescript": "3.7.2"
   },
   "volta": {
