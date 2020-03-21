@@ -7,17 +7,16 @@ import * as design from "../../design";
 import * as data from "./data";
 
 function Explore() {
-  const mq = Layout.useMediaQuery();
+  // TODO fix media query
+  const isMediumWidth = true;
+  const style = isMediumWidth
+    ? [styles.exploreBg, styles.exploreBgMed]
+    : styles.exploreBg;
+
   return (
     <View style={styles.explore}>
       <Layout.Standard>
-        <View
-          style={
-            mq.medium
-              ? [styles.exploreBg, styles.exploreBgMed]
-              : styles.exploreBg
-          }
-        >
+        <View style={style}>
           <Summary title="Electronic" listings={data.byGenre.electronic} />
           <Summary title="Rock / Alternative" listings={data.byGenre.rock} />
           <Summary title="Hip-Hop" listings={data.byGenre.hiphop} />
