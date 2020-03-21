@@ -1,7 +1,7 @@
 import { ApolloServer, gql } from "apollo-server-micro";
 
-import schema from "../../src/server/graphql/schema";
-import createDataLoaders from "../../src/server/graphql/data-loaders";
+import schema from "../../server/graphql/schema";
+import createDataLoaders from "../../server/graphql/data-loaders";
 
 const apolloServer = new ApolloServer({
   schema: schema,
