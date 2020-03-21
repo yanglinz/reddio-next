@@ -4,21 +4,6 @@
   "main": "index.js",
   "license": "MIT",
   "private": true,
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "config": {
-    "react-native-storybook-loader": {
-      "searchDir": [
-        "./src"
-      ],
-      "pattern": "**/*.story.js",
-      "outputFile": "./.storybook/storyLoader.js"
-    }
-  },
   "scripts": {
     "format": "prettier --write '**/**/*.{js,ts,css,scss,html,md,yaml,yml}'",
     "test:format": "prettier --check '**/**/*.{js,ts,css,scss,html,md,yaml,yml}'",
@@ -81,6 +66,21 @@
     "react-native-storybook-loader": "1.8.1",
     "react-scripts": "3.4.1",
     "typescript": "3.7.2"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "config": {
+    "react-native-storybook-loader": {
+      "searchDir": [
+        "./src"
+      ],
+      "pattern": "**/*.story.js",
+      "outputFile": "./.storybook/storyLoader.js"
+    }
   },
   "volta": {
     "node": "12.16.1",
