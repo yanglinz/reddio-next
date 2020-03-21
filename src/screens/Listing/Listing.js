@@ -39,7 +39,12 @@ function ListingView(props) {
   const hasError = isEmpty(posts) && error;
   const isLoading = isEmpty(posts) && loading && !isRefetching;
 
-  const mq = Layout.useMediaQuery();
+  // TODO fix media query
+  const isMediumWidth = true;
+  const style = isMediumWidth
+    ? [styles.listingBg, styles.listingBgMed]
+    : styles.listingBg;
+
   useEffect(() => {
     dispatch(playerStore.appendPosts(posts));
   }, [posts, dispatch]);
@@ -51,13 +56,7 @@ function ListingView(props) {
   return (
     <View style={styles.listing}>
       <Layout.Standard>
-        <View
-          style={
-            mq.medium
-              ? [styles.listingBg, styles.listingBgMed]
-              : styles.listingBg
-          }
-        >
+        <View style={style}>
           <ListingHeader pathname={pathname} info={info} />
           <PostListSort pathname={pathname} />
           {isLoading ? (
