@@ -28,11 +28,11 @@ export class SeededRandom {
     this.seed = sourceSeed;
   }
 
-  next = () => {
+  next() {
     return (this.seed = (this.seed * MIN_STD) % MAX_INT32);
-  };
+  }
 
-  nextFloat = () => {
+  nextFloat() {
     return (this.next() - 1) / (MAX_INT32 - 1);
-  };
+  }
 }
