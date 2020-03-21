@@ -24,8 +24,6 @@ jobs:
       - run:
           command: yarn test
       - run:
-          command: yarn run storybook
-      - run:
           command: yarn run build
 
       - persist_to_workspace:

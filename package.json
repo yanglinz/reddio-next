@@ -25,11 +25,11 @@
     "test:jest": "jest",
     "test": "run-s test:*",
     "build:next": "next build",
+    "build:storybook": "rnstl && build-storybook -s public --quiet",
     "build": "run-s build:*",
-    "dev-disabled:storybook": "rnstl && start-storybook -p 9009 -s public --ci",
+    "dev:storybook": "rnstl && start-storybook -p 9009 -s public --ci",
     "dev:next": "next dev",
-    "dev": "run-p dev:*",
-    "storybook": "rnstl && build-storybook -s public --quiet"
+    "dev": "run-p dev:*"
   },
   "dependencies": {
     "apollo-boost": "0.4.4",
