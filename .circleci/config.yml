@@ -49,6 +49,6 @@ workflows:
   main:
     jobs:
       - build
-      # - percy_upload:
-      # requires:
-      # - build
+      - percy_upload:
+          requires:
+            - build
