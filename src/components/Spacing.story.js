@@ -2,25 +2,12 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import { Inline, Stack } from "./Spacing";
+import Placeholder from "./Placeholder";
 import * as design from "../design";
 
 function Container(props) {
   return (
-    <div style={{ backgroundColor: design.colors.primary.c8 }}>
-      {props.children}
-    </div>
-  );
-}
-
-function Box(props) {
-  return (
-    <div
-      style={{
-        width: 75,
-        height: 75,
-        backgroundColor: design.colors.primary.c4
-      }}
-    >
+    <div style={{ backgroundColor: design.colors.neutral.c9 }}>
       {props.children}
     </div>
   );
@@ -30,48 +17,48 @@ storiesOf("Spacing", module)
   .add("inline single", () => (
     <Container>
       <Inline>
-        <Box />
+        <Placeholder width={120} height={60} />
       </Inline>
     </Container>
   ))
   .add("inline double", () => (
     <Container>
       <Inline>
-        <Box />
-        <Box />
+        <Placeholder width={120} height={60} />
+        <Placeholder width={120} height={60} />
       </Inline>
     </Container>
   ))
   .add("inline multiple", () => (
     <Container>
       <Inline>
-        <Box />
-        <Box />
-        <Box />
+        <Placeholder width={120} height={60} />
+        <Placeholder width={120} height={60} />
+        <Placeholder width={120} height={60} />
       </Inline>
     </Container>
   ))
   .add("stack single", () => (
     <Container>
       <Stack>
-        <Box />
+        <Placeholder width={120} height={60} />
       </Stack>
     </Container>
   ))
   .add("stack double", () => (
     <Container>
       <Stack>
-        <Box />
-        <Box />
+        <Placeholder width={120} height={60} />
+        <Placeholder width={120} height={60} />
       </Stack>
     </Container>
   ))
   .add("stack multiple", () => (
     <Container>
       <Stack>
-        <Box />
-        <Box />
-        <Box />
+        <Placeholder width={120} height={60} />
+        <Placeholder width={120} height={60} />
+        <Placeholder width={120} height={60} />
       </Stack>
     </Container>
   ));

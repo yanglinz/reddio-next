@@ -1,0 +1,9 @@
+.Placeholder {
+  align-items: center;
+  background: #dceefb;
+  border: 1px solid #b6e0fe;
+  color: #4098d7;
+  display: flex;
+  font-size: 14px;
+  justify-content: center;
+}
