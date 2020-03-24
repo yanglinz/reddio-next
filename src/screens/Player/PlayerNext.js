@@ -9,7 +9,7 @@ import { Inline, Spacing } from "../../components/Spacing.js";
 import * as enums from "../../enums";
 import * as design from "../../design";
 
-import styles from "./PlayerNext.module.css";
+import styles from "./PlayerNext.module.scss";
 
 function InteractiveIcon(props) {
   const { status, onClick, children } = props;

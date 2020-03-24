@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 
-import styles from "./Clickable.module.css";
+import styles from "./Clickable.module.scss";
 
 function Clickable(props) {
   const { focusOnlyOnTab, isDisabled, onClick } = props;
