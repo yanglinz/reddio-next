@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native-web";
 
-import styles from "./Layout.module.css";
+import styles from "./Layout.module.scss";
 
 const layoutWidth = {
   small: 480,

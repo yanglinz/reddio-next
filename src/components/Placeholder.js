@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./Placeholder.module.css";
+import styles from "./Placeholder.module.scss";
 
 function Placeholder(props) {
   const width = props.width || "100%";
