@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import { Inline, Stack } from "./Spacing";
+import { Box, Inline, Stack } from "./Spacing";
 import Placeholder from "./Placeholder";
 import * as design from "../design";
 
@@ -14,6 +14,20 @@ function Container(props) {
 }
 
 storiesOf("Spacing", module)
+  .add("box default", () => (
+    <Container>
+      <Box>
+        <Placeholder width={120} height={60} />
+      </Box>
+    </Container>
+  ))
+  .add("box large", () => (
+    <Container>
+      <Box spacing="l">
+        <Placeholder width={120} height={60} />
+      </Box>
+    </Container>
+  ))
   .add("inline single", () => (
     <Container>
       <Inline>
