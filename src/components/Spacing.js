@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 
 import styles from "./Spacing.module.scss";
 
@@ -13,7 +14,9 @@ export const Spacing = {
 };
 
 export function Box(props) {
-  return <div className={styles.Box}>{props.children}</div>;
+  const spacing = props.spacing || "s";
+  const clsName = classNames([styles.Box, styles[`Box-${spacing}`]]);
+  return <div className={clsName}>{props.children}</div>;
 }
 
 export function Inline(props) {

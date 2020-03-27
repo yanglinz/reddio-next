@@ -1,5 +1,21 @@
+$spacing: (
+  "xxs": 4px,
+  "xs": 6px,
+  "s": 10px,
+  "m": 16px,
+  "l": 26px,
+  "xl": 42px,
+  "xxl": 67px
+);
+
 .Box {
   display: inline-block;
+}
+
+@each $k, $v in $spacing {
+  .Box-#{$k} {
+    padding: $v;
+  }
 }
 
 .Inline {
