@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native-web";
+import Link from "next/link";
 import Router from "next/router";
 
 import { Box } from "../components/Spacing";
@@ -11,13 +12,13 @@ export function Header() {
   return (
     <div className={styles.Header}>
       <Box>
-        <TouchableOpacity
-          style={stylesLegacy.branding}
-          onPress={() => Router.replace("/")}
-        >
-          <Text style={stylesLegacy.siteName}>Reddio</Text>
-          <Text style={stylesLegacy.siteNameAccent}> Player</Text>
-        </TouchableOpacity>
+        <Link href="/">
+          <a className={styles.SiteTitle}>
+            <span className={styles.Accent1}>Reddio</span>
+            <span> </span>
+            <span className={styles.Accent2}>Player</span>
+          </a>
+        </Link>
       </Box>
     </div>
   );
