@@ -2,29 +2,28 @@ import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native-web";
 import Router from "next/router";
 
+import { Box } from "../components/Spacing";
 import * as design from "../design";
+
+import styles from "./Header.module.scss";
 
 export function Header() {
   return (
-    <View style={styles.header}>
-      <TouchableOpacity
-        style={styles.branding}
-        onPress={() => Router.replace("/")}
-      >
-        <Text style={styles.siteName}>Reddio</Text>
-        <Text style={styles.siteNameAccent}> Player</Text>
-      </TouchableOpacity>
-    </View>
+    <div className={styles.Header}>
+      <Box>
+        <TouchableOpacity
+          style={stylesLegacy.branding}
+          onPress={() => Router.replace("/")}
+        >
+          <Text style={stylesLegacy.siteName}>Reddio</Text>
+          <Text style={stylesLegacy.siteNameAccent}> Player</Text>
+        </TouchableOpacity>
+      </Box>
+    </div>
   );
 }
 
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: "#fefefe",
-    borderColor: design.colors.neutral.c9,
-    borderBottomWidth: 1,
-    padding: design.spacing.base
-  },
+const stylesLegacy = StyleSheet.create({
   branding: {
     flexDirection: "row",
     alignItems: "center"
