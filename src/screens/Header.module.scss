@@ -1,0 +1,24 @@
+@import "src/styles/colors";
+@import "src/styles/font";
+
+.Header {
+  background: #fefefe;
+  border-bottom: 1px solid $color-neutral9;
+}
+
+.SiteTitle {
+  font-size: $font-xxlarger;
+  text-decoration: none;
+}
+
+.SiteTitle:active {
+  opacity: 0.5;
+}
+
+.Accent1 {
+  color: $color-primary4;
+}
+
+.Accent2 {
+  color: $color-primary6;
+}

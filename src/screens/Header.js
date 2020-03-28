@@ -1,42 +1,24 @@
 import React from "react";
-import { View, Text, TouchableOpacity, StyleSheet } from "react-native-web";
-import Router from "next/router";
+import Link from "next/link";
 
-import * as design from "../design";
+import { Box } from "../components/Spacing";
+
+import styles from "./Header.module.scss";
 
 export function Header() {
   return (
-    <View style={styles.header}>
-      <TouchableOpacity
-        style={styles.branding}
-        onPress={() => Router.replace("/")}
-      >
-        <Text style={styles.siteName}>Reddio</Text>
-        <Text style={styles.siteNameAccent}> Player</Text>
-      </TouchableOpacity>
-    </View>
+    <div className={styles.Header}>
+      <Box spacing="m">
+        <Link href="/">
+          <a className={styles.SiteTitle}>
+            <span className={styles.Accent1}>Reddio</span>
+            <span> </span>
+            <span className={styles.Accent2}>Player</span>
+          </a>
+        </Link>
+      </Box>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: "#fefefe",
-    borderColor: design.colors.neutral.c9,
-    borderBottomWidth: 1,
-    padding: design.spacing.base
-  },
-  branding: {
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  siteName: {
-    color: design.colors.primary.c4,
-    fontSize: design.fontSize.larger2
-  },
-  siteNameAccent: {
-    color: design.colors.neutral.c5,
-    fontSize: design.fontSize.larger2
-  }
-});
 
 export default Header;
