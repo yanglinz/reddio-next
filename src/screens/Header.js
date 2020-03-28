@@ -8,7 +8,7 @@ import styles from "./Header.module.scss";
 export function Header() {
   return (
     <div className={styles.Header}>
-      <Box>
+      <Box spacing="m">
         <Link href="/">
           <a className={styles.SiteTitle}>
             <span className={styles.Accent1}>Reddio</span>
