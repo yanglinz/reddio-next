@@ -5,7 +5,7 @@ import Head from "next/head";
 import Player from "../src/screens/Player/Player";
 import store from "../src/store/store";
 
-import "../src/index.css";
+import "../src/styles/global.css";
 
 export default function Application({ Component, pageProps }) {
   return (
