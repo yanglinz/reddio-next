@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { View } from "react-native-web";
 import isString from "lodash/isString";
 
 import * as random from "../lib/random";
@@ -42,7 +41,7 @@ function Thumbnail(props) {
 
   const showImage = !errored && src;
   return (
-    <View
+    <div
       style={{
         width: width,
         height: height,
@@ -58,7 +57,7 @@ function Thumbnail(props) {
           onError={() => setErrored(true)}
         />
       ) : null}
-    </View>
+    </div>
   );
 }
 
