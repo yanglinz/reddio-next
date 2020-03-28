@@ -8,6 +8,7 @@ function loadStories() {
 	require('../src/components/Clickable.story');
 	require('../src/components/Skeleton.story');
 	require('../src/components/Spacing.story');
+	require('../src/components/Text.story');
 	require('../src/components/Thumbnail.story');
 	require('../src/screens/Header.story');
 	require('../src/screens/Home/ListingSummary.story');
@@ -22,6 +23,7 @@ const stories = [
 	'../src/components/Clickable.story',
 	'../src/components/Skeleton.story',
 	'../src/components/Spacing.story',
+	'../src/components/Text.story',
 	'../src/components/Thumbnail.story',
 	'../src/screens/Header.story',
 	'../src/screens/Home/ListingSummary.story',
