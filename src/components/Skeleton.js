@@ -6,7 +6,7 @@ import styles from "./Skeleton.module.scss";
 function Skeleton(props) {
   const { width, height, borderRadius } = props;
   return (
-    <View
+    <div
       style={{
         width,
         height,
@@ -15,7 +15,7 @@ function Skeleton(props) {
       }}
     >
       <div className={styles.SkeletonInner} />
-    </View>
+    </div>
   );
 }
 
