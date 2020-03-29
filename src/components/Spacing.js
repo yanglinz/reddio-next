@@ -20,11 +20,12 @@ export function Box(props) {
 }
 
 export function Inline(props) {
-  const spacing = props.spacing || Spacing.m;
+  const spacing = props.spacing || "m";
+  const margin = Spacing[spacing];
   return (
     <div className={styles.Inline}>
       {React.Children.map(props.children, (c, i) => (
-        <div style={{ display: "flex", marginLeft: i > 0 ? spacing : 0 }}>
+        <div style={{ display: "flex", marginLeft: i > 0 ? margin : 0 }}>
           {c}
         </div>
       ))}
@@ -33,11 +34,12 @@ export function Inline(props) {
 }
 
 export function Stack(props) {
-  const spacing = props.spacing || Spacing.m;
+  const spacing = props.spacing || "m";
+  const margin = Spacing[spacing];
   return (
     <div className={styles.Stack}>
       {React.Children.map(props.children, (c, i) => (
-        <div style={{ marginTop: i > 0 ? spacing : 0 }}>{c}</div>
+        <div style={{ marginTop: i > 0 ? margin : 0 }}>{c}</div>
       ))}
     </div>
   );
