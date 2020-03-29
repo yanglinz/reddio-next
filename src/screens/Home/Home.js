@@ -68,26 +68,52 @@ function HomeExplore() {
   );
 }
 
+function HomeFeatured(props) {
+  const { loading, data } = props;
+
+  let content;
+  if (loading) {
+    content = (
+      <View style={styles.featuredSummaryList}>
+        {Array.from({ length: 6 }).map((_, i) => (
+          <ListingSummarySkeleton key={i} />
+        ))}
+      </View>
+    );
+  } else {
+    const topListings = data.topSubreddits.listings || [];
+    content = (
+      <View style={styles.featuredSummaryList}>
+        {topListings.map(listingInfo => (
+          <ListingSummary
+            key={listingInfo.pathname}
+            pathname={listingInfo.pathname}
+            customInfo={listingInfo.customInfo}
+            posts={listingInfo.posts}
+          />
+        ))}
+      </View>
+    );
+  }
+
+  return (
+    <Layout.Wide>
+      <View style={styles.section}>
+        <Text style={styles.sectionTitle}>Featured Communities</Text>
+        <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
+        {content}
+      </View>
+    </Layout.Wide>
+  );
+}
+
 function HomeLoading() {
   return (
-    <View>
+    <div>
       <HomeIntro />
-
-      <Layout.Wide>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Featured Communities</Text>
-          <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
-
-          <View style={styles.featuredSummaryList}>
-            {Array.from({ length: 6 }).map((_, i) => (
-              <ListingSummarySkeleton key={i} />
-            ))}
-          </View>
-        </View>
-      </Layout.Wide>
-
+      <HomeFeatured loading={true} data={undefined} />
       <HomeExplore />
-    </View>
+    </div>
   );
 }
 
@@ -96,36 +122,6 @@ function HomeError() {
     <div>
       <ServiceError />
     </div>
-  );
-}
-
-function Home(props) {
-  const { data } = props;
-  const topListings = data.topSubreddits.listings || [];
-  return (
-    <View>
-      <HomeIntro />
-
-      <Layout.Wide>
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Featured Communities</Text>
-          <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
-
-          <View style={styles.featuredSummaryList}>
-            {topListings.map(listingInfo => (
-              <ListingSummary
-                key={listingInfo.pathname}
-                pathname={listingInfo.pathname}
-                customInfo={listingInfo.customInfo}
-                posts={listingInfo.posts}
-              />
-            ))}
-          </View>
-        </View>
-      </Layout.Wide>
-
-      <HomeExplore />
-    </View>
   );
 }
 
@@ -142,7 +138,13 @@ class HomeContainer extends React.Component {
             return <HomeError />;
           }
 
-          return <Home data={data} />;
+          return (
+            <div>
+              <HomeIntro />
+              <HomeFeatured loading={false} data={data} />
+              <HomeExplore />
+            </div>
+          );
         }}
       </Query>
     );
