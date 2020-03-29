@@ -1,52 +1,36 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native-web";
-import Router from "next/router";
+import Link from "next/link";
 
-import * as design from "../../design";
+import { Box } from "../../components/Spacing";
+import * as Text from "../../components/Text";
+
+import styles from "./Summary.module.scss";
 
 function Summary(props) {
   const { title, listings } = props;
 
   return (
-    <View style={styles.summary}>
-      <View style={styles.title}>
-        <Text style={styles.titleText}>{title}</Text>
-      </View>
+    <div className={styles.Summary}>
+      <div className={styles.Title}>
+        <Box spacing="m">
+          <Text.Text className={styles.TitleText} size="m">
+            {title}
+          </Text.Text>
+        </Box>
+      </div>
       {listings.map(listing => (
-        <View key={listing} style={styles.listing}>
-          <Text onPress={() => Router.replace(listing)}>{listing}</Text>
-        </View>
+        <div key={listing} className={styles.Listing}>
+          <Box spacing="m">
+            <Text.Text size="m">
+              <Link href={listing}>
+                <a>{listing}</a>
+              </Link>
+            </Text.Text>
+          </Box>
+        </div>
       ))}
-    </View>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  summary: {
-    marginBottom: design.spacing.large,
-    borderColor: "#ddd",
-    borderBottomWidth: 1
-  },
-  title: {
-    paddingTop: design.spacing.base,
-    paddingBottom: design.spacing.base,
-    paddingLeft: design.spacing.small,
-    paddingRight: design.spacing.small
-  },
-  titleText: {
-    fontSize: design.fontSize.small,
-    fontWeight: "900",
-    textTransform: "uppercase",
-    letterSpacing: 1
-  },
-  listing: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    borderColor: "#ddd",
-    borderTopWidth: 1,
-    padding: design.spacing.small
-  }
-});
 
 export default Summary;

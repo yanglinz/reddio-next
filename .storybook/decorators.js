@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../src/styles/global.css";
+
 export function centeredDecorator(renderStory) {
   return React.createElement(
     "div",
@@ -8,8 +10,7 @@ export function centeredDecorator(renderStory) {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
-        minHeight: "100vh",
-        fontFamily: `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`
+        minHeight: "100vh"
       }
     },
     renderStory()
