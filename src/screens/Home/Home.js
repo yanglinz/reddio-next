@@ -93,18 +93,48 @@ function HomeLoading() {
 
 function HomeError() {
   return (
-    <View>
+    <div>
       <ServiceError />
+    </div>
+  );
+}
+
+function Home(props) {
+  const { data } = props;
+  const topListings = data.topSubreddits.listings || [];
+  return (
+    <View>
+      <HomeIntro />
+
+      <Layout.Wide>
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Featured Communities</Text>
+          <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
+
+          <View style={styles.featuredSummaryList}>
+            {topListings.map(listingInfo => (
+              <ListingSummary
+                key={listingInfo.pathname}
+                pathname={listingInfo.pathname}
+                customInfo={listingInfo.customInfo}
+                posts={listingInfo.posts}
+              />
+            ))}
+          </View>
+        </View>
+      </Layout.Wide>
+
+      <HomeExplore />
     </View>
   );
 }
 
-class Home extends React.Component {
+class HomeContainer extends React.Component {
   render() {
     return (
       <Query query={HOME_QUERY}>
         {({ loading, error, data }) => {
-          if (loading || true) {
+          if (loading) {
             return <HomeLoading />;
           }
 
@@ -112,32 +142,7 @@ class Home extends React.Component {
             return <HomeError />;
           }
 
-          const topListings = data.topSubreddits.listings || [];
-          return (
-            <View>
-              <HomeIntro />
-
-              <Layout.Wide>
-                <View style={styles.section}>
-                  <Text style={styles.sectionTitle}>Featured Communities</Text>
-                  <Text style={styles.sectionSubtitleText}>Top subreddits</Text>
-
-                  <View style={styles.featuredSummaryList}>
-                    {topListings.map(listingInfo => (
-                      <ListingSummary
-                        key={listingInfo.pathname}
-                        pathname={listingInfo.pathname}
-                        customInfo={listingInfo.customInfo}
-                        posts={listingInfo.posts}
-                      />
-                    ))}
-                  </View>
-                </View>
-              </Layout.Wide>
-
-              <HomeExplore />
-            </View>
-          );
+          return <Home data={data} />;
         }}
       </Query>
     );
@@ -175,4 +180,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Home;
+export default HomeContainer;
