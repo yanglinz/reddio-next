@@ -50,16 +50,21 @@ function HomeIntro() {
 
 function HomeExplore() {
   return (
-    <View>
-      <View style={styles.explore}>
-        <Text style={styles.exploreTitle}>Explore more music communities</Text>
-        <Button
-          title="Explore"
-          color={design.colors.primary.c5}
-          onPress={() => Router.replace("/explore")}
-        />
-      </View>
-    </View>
+    <div className={sassStyles.Explore}>
+      <Stack>
+        <TextNext.Heading4 className={sassStyles.ExploreTitle} size="l">
+          Explore more music communities
+        </TextNext.Heading4>
+
+        <div style={{ width: 150, margin: "0 auto" }}>
+          <Button
+            title="Explore"
+            color={design.colors.primary.c5}
+            onPress={() => Router.replace("/explore")}
+          />
+        </div>
+      </Stack>
+    </div>
   );
 }
 
@@ -167,18 +172,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "space-around"
-  },
-  explore: {
-    display: "flex",
-    alignItems: "center",
-    backgroundColor: design.colors.neutral.c4,
-    padding: design.spacing.larger2,
-    paddingBottom: design.spacing.larger3
-  },
-  exploreTitle: {
-    fontSize: design.fontSize.large,
-    marginBottom: design.spacing.small,
-    color: design.colors.neutral.c10
   }
 });
 
