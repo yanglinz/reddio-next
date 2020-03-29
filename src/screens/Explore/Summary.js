@@ -22,7 +22,7 @@ function Summary(props) {
         <div key={listing} className={styles.Listing}>
           <Box spacing="m">
             <Text.Text size="m">
-              <Link href={listing}>
+              <Link href="[...resolver]" as={listing}>
                 <a>{listing}</a>
               </Link>
             </Text.Text>
