@@ -6,8 +6,12 @@ import gql from "graphql-tag";
 
 import ListingSummary, { ListingSummarySkeleton } from "./ListingSummary";
 import ServiceError from "../../components/ServiceError";
+import { Stack } from "../../components/Spacing";
+import * as TextNext from "../../components/Text";
 import * as Layout from "../../components/Layout";
 import * as design from "../../design";
+
+import sassStyles from "./Home.module.scss";
 
 const HOME_QUERY = gql`
   query HomeQuery {
@@ -29,16 +33,18 @@ const HOME_QUERY = gql`
 
 function HomeIntro() {
   return (
-    <View style={styles.intro}>
+    <div className={sassStyles.Intro}>
       <Layout.Wide>
-        <View style={styles.largeSection}>
-          <Text style={styles.introTitle}>Discover new songs</Text>
-          <Text style={styles.introTag}>
-            Powered by user curated content from reddit
-          </Text>
-        </View>
+        <Stack>
+          <TextNext.Heading2 className={sassStyles.IntroTitle} size="xl">
+            Discover new songs.
+          </TextNext.Heading2>
+          <TextNext.Heading3 className={sassStyles.IntroSubtitle} size="l">
+            Powered by user curated content from reddit.
+          </TextNext.Heading3>
+        </Stack>
       </Layout.Wide>
-    </View>
+    </div>
   );
 }
 
@@ -147,23 +153,6 @@ const styles = StyleSheet.create({
     fontSize: design.fontSize.base,
     marginBottom: design.spacing.large,
     color: design.colors.neutral.c6
-  },
-  intro: {
-    borderBottomColor: design.colors.neutral.c9,
-    borderBottomWidth: 1,
-    backgroundColor: "#fff"
-  },
-  introTitle: {
-    fontSize: design.fontSize.larger3,
-    marginBottom: design.spacing.small,
-    color: design.colors.primary.c3,
-    textAlign: "center"
-  },
-  introTag: {
-    fontSize: design.fontSize.larger1,
-    marginBottom: design.spacing.large,
-    color: design.colors.neutral.c6,
-    textAlign: "center"
   },
   featuredSummaryList: {
     display: "flex",

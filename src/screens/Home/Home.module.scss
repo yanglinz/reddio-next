@@ -1,0 +1,21 @@
+@import "src/styles/colors";
+@import "src/styles/spacing";
+
+.Intro {
+  align-items: "center";
+  background: #fff;
+  border-bottom: 1px solid $color-neutral9;
+  display: "flex";
+  padding-bottom: $spacing-xxxxlarge;
+  padding-top: $spacing-xxxxlarge;
+}
+
+.IntroTitle {
+  text-align: center;
+  color: $color-primary3;
+}
+
+.IntroSubtitle {
+  text-align: center;
+  color: $color-neutral6;
+}
