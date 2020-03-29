@@ -48,6 +48,21 @@ function HomeIntro() {
   );
 }
 
+function HomeExplore() {
+  return (
+    <View>
+      <View style={styles.explore}>
+        <Text style={styles.exploreTitle}>Explore more music communities</Text>
+        <Button
+          title="Explore"
+          color={design.colors.primary.c5}
+          onPress={() => Router.replace("/explore")}
+        />
+      </View>
+    </View>
+  );
+}
+
 function HomeLoading() {
   return (
     <View>
@@ -65,6 +80,8 @@ function HomeLoading() {
           </View>
         </View>
       </Layout.Wide>
+
+      <HomeExplore />
     </View>
   );
 }
@@ -82,7 +99,7 @@ class Home extends React.Component {
     return (
       <Query query={HOME_QUERY}>
         {({ loading, error, data }) => {
-          if (loading) {
+          if (loading || true) {
             return <HomeLoading />;
           }
 
@@ -113,16 +130,7 @@ class Home extends React.Component {
                 </View>
               </Layout.Wide>
 
-              <View style={styles.explore}>
-                <Text style={styles.exploreTitle}>
-                  Explore more music communities
-                </Text>
-                <Button
-                  title="Explore"
-                  color={design.colors.primary.c5}
-                  onPress={() => Router.replace("/explore")}
-                />
-              </View>
+              <HomeExplore />
             </View>
           );
         }}
