@@ -4,13 +4,13 @@ import classNames from "classnames";
 import styles from "./Spacing.module.scss";
 
 export const Spacing = {
-  XXS: 4,
-  XS: 6,
-  S: 10,
-  M: 16,
-  L: 26,
-  XL: 42,
-  XXL: 67
+  xxs: 4,
+  xs: 6,
+  s: 10,
+  m: 16,
+  l: 26,
+  xl: 42,
+  xxl: 67
 };
 
 export function Box(props) {
@@ -20,7 +20,7 @@ export function Box(props) {
 }
 
 export function Inline(props) {
-  const spacing = props.spacing || Spacing.M;
+  const spacing = props.spacing || Spacing.m;
   return (
     <div className={styles.Inline}>
       {React.Children.map(props.children, (c, i) => (
@@ -33,7 +33,7 @@ export function Inline(props) {
 }
 
 export function Stack(props) {
-  const spacing = props.spacing || Spacing.M;
+  const spacing = props.spacing || Spacing.m;
   return (
     <div className={styles.Stack}>
       {React.Children.map(props.children, (c, i) => (
