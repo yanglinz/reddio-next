@@ -6,6 +6,7 @@ import Player from "../src/screens/Player/Player";
 import store from "../src/store/store";
 
 import "../src/styles/global.css";
+import "../src/styles/player.css";
 
 export default function Application({ Component, pageProps }) {
   return (
