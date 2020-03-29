@@ -11,13 +11,37 @@
 }
 
 .IntroTitle {
-  text-align: center;
   color: $color-primary3;
+  text-align: center;
 }
 
 .IntroSubtitle {
-  text-align: center;
   color: $color-neutral6;
+  text-align: center;
+}
+
+.Featured {
+  align-items: "center";
+  display: "flex";
+  padding-bottom: $spacing-xxxlarge;
+  padding-top: $spacing-xxxlarge;
+}
+
+.FeatureSummary {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.FeaturedTitle {
+  color: $color-neutral3;
+  text-align: center;
+}
+
+.FeaturedSubtitle {
+  color: $color-neutral6;
+  text-align: center;
 }
 
 .Explore {
