@@ -1,0 +1,22 @@
+@import "src/styles/colors";
+@import "src/styles/spacing";
+
+.Summary {
+  margin-bottom: $spacing-large;
+}
+
+.Title {
+  border-bottom: 1px solid $color-neutral9;
+}
+
+.TitleText {
+  font-weight: 900;
+}
+
+.Listing {
+  border-bottom: 1px solid $color-neutral9;
+}
+
+.Listing a {
+  color: $color-primary4;
+}
