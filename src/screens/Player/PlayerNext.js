@@ -40,7 +40,7 @@ function PlayerNext(props) {
   return (
     <div className={styles.Player}>
       <div className={styles.Control}>
-        <Inline spacing={Spacing.L}>
+        <Inline spacing="l">
           <InteractiveIcon status={status} onClick={onClickPrev}>
             <IconSkipPrev size={22} />
           </InteractiveIcon>
