@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native-web";
 import { storiesOf } from "@storybook/react";
 
 import IconQueue from "./IconQueue";
@@ -11,44 +10,44 @@ import IconSkipPrev from "./IconSkipPrev";
 
 storiesOf("Icons", module)
   .add("queue icon", () => (
-    <View>
+    <div>
       <IconQueue size={24} />
       <IconQueue size={150} />
       <IconQueue size={250} />
-    </View>
+    </div>
   ))
   .add("replay icon", () => (
-    <View>
+    <div>
       <IconReplay size={24} />
       <IconReplay size={150} />
       <IconReplay size={250} />
-    </View>
+    </div>
   ))
   .add("play icon", () => (
-    <View>
+    <div>
       <IconPlay size={24} />
       <IconPlay size={150} />
       <IconPlay size={250} />
-    </View>
+    </div>
   ))
   .add("pause icon", () => (
-    <View>
+    <div>
       <IconPause size={24} />
       <IconPause size={150} />
       <IconPause size={250} />
-    </View>
+    </div>
   ))
   .add("skip next icon", () => (
-    <View>
+    <div>
       <IconSkipNext size={24} />
       <IconSkipNext size={150} />
       <IconSkipNext size={250} />
-    </View>
+    </div>
   ))
   .add("skip prev icon", () => (
-    <View>
+    <div>
       <IconSkipPrev size={24} />
       <IconSkipPrev size={150} />
       <IconSkipPrev size={250} />
-    </View>
+    </div>
   ));
