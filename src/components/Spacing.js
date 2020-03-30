@@ -4,6 +4,7 @@ import classNames from "classnames";
 import styles from "./Spacing.module.scss";
 
 export const Spacing = {
+  nil: 0,
   xxs: 4,
   xs: 6,
   s: 10,
@@ -43,4 +44,10 @@ export function Stack(props) {
       ))}
     </div>
   );
+}
+
+export function Empty(props) {
+  const spacing = props.spacing || "nil";
+  const height = Spacing[spacing];
+  return <div style={{ height }}></div>;
 }

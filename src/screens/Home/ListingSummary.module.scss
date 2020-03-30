@@ -1,0 +1,28 @@
+@import "src/styles/colors";
+@import "src/styles/spacing";
+
+.Summary {
+  margin-bottom: $spacing-large;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  width: 300px;
+}
+
+.Images {
+  display: flex;
+  flex-direction: row;
+}
+
+.TitleText a {
+  color: $color-primary2;
+}
+
+.TitleText a:active {
+  opacity: 0.5;
+}
+
+.DescriptionText {
+  color: $color-neutral6;
+}

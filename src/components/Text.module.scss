@@ -3,20 +3,35 @@ $fontSizes: (
   "xs": 11px,
   "s": 13px,
   "m": 16px,
-  "l": 26px,
-  "xl": 42px,
-  "xxl": 67px
+  "l": 21px,
+  "xl": 26px,
+  "xxl": 42px,
+  "xxxl": 67px
 );
 
 .Text {
   margin: 0;
   padding: 0;
-  line-height: 0.75;
+  line-height: 1.6;
   font-weight: normal;
 }
 
+// Adapted from Rethinking Design Practices
+// https://www.youtube.com/watch?v=jnV1u67_yVg
+
 @each $k, $v in $fontSizes {
+  $adjustmentX: floor($v * 0.03);
+  $adjustmentY: floor($v * 0.9);
+
   .Text-#{$k} {
+    transform: translate(-1 * $adjustmentX, $adjustmentY * 0.8);
     font-size: $v;
+  }
+
+  .Text-#{$k}::before {
+    content: "";
+    display: block;
+    height: 0;
+    margin-top: -1 * $adjustmentY;
   }
 }
