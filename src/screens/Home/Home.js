@@ -35,11 +35,11 @@ function HomeIntro() {
   return (
     <div className={styles.Intro}>
       <Layout.Wide>
-        <Stack>
-          <Text.Heading2 className={styles.IntroTitle} size="xl">
+        <Stack spacing="l">
+          <Text.Heading2 className={styles.IntroTitle} size="xxl">
             Discover new songs.
           </Text.Heading2>
-          <Text.Heading3 className={styles.IntroSubtitle} size="l">
+          <Text.Heading3 className={styles.IntroSubtitle} size="xl">
             Powered by user curated content from reddit.
           </Text.Heading3>
         </Stack>
@@ -51,7 +51,7 @@ function HomeIntro() {
 function HomeExplore() {
   return (
     <div className={styles.Explore}>
-      <Stack>
+      <Stack spacing="l">
         <Text.Heading4 className={styles.ExploreTitle} size="l">
           Explore more music communities
         </Text.Heading4>
@@ -100,7 +100,7 @@ function HomeFeatured(props) {
     <Layout.Wide>
       <div className={styles.Featured}>
         <Stack spacing="xl">
-          <Stack spacing="s">
+          <Stack spacing="m">
             <Text.Heading4 className={styles.FeaturedTitle} size="l">
               Featured Communities
             </Text.Heading4>

@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native-web";
 import { storiesOf } from "@storybook/react";
 
 import { ListingSummary, ListingSummarySkeleton } from "./ListingSummary";
@@ -13,7 +12,7 @@ const customInfo = {
 };
 
 function Container(props) {
-  return <View style={{ width: 300, height: 300 }}>{props.children}</View>;
+  return <div style={{ width: 300, height: 300 }}>{props.children}</div>;
 }
 
 storiesOf("ListingSummary", module)

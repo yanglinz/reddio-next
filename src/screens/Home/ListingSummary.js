@@ -1,26 +1,30 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native-web";
-import Router from "next/router";
+import Link from "next/link";
 import sortBy from "lodash/sortBy";
 import take from "lodash/take";
 import uniqBy from "lodash/uniqBy";
 
 import Thumbnail from "../../components/Thumbnail";
 import Skeleton from "../../components/Skeleton";
+import { Box, Stack, Empty } from "../../components/Spacing";
+import * as TextNext from "../../components/Text";
 import * as design from "../../design";
+
+import styles from "./ListingSummary.module.scss";
 
 export function ListingSummarySkeleton() {
   return (
-    <View style={styles.summary}>
+    <div className={styles.Summary}>
       <Skeleton width={300} height={60} />
 
-      <View style={styles.content}>
-        <View style={{ height: design.spacing.smaller1 }} />
-        <Skeleton width={140} height={design.fontSize.large} />
-        <View style={{ height: design.spacing.smaller1 }} />
-        <Skeleton width={220} height={design.fontSize.larger2} />
-      </View>
-    </View>
+      <Box spacing="m">
+        <Stack spacing="s">
+          <Skeleton width={140} height={design.fontSize.large} />
+          <Skeleton width={220} height={design.fontSize.larger2} />
+        </Stack>
+        <Empty spacing="m" />
+      </Box>
+    </div>
   );
 }
 
@@ -41,10 +45,10 @@ export function ListingSummary(props) {
   thumbnailPosts = take(thumbnailPosts, 5);
 
   return (
-    <View style={styles.summary}>
-      <View style={styles.imageList}>
+    <div className={styles.Summary}>
+      <div className={styles.Images}>
         {thumbnailPosts.map(p => (
-          <View key={p.name}>
+          <div key={p.name}>
             <Thumbnail
               title={p.title}
               width={60}
@@ -52,45 +56,26 @@ export function ListingSummary(props) {
               src={p.thumbnail}
               seed={p.name}
             />
-          </View>
+          </div>
         ))}
-      </View>
-      <View style={styles.content}>
-        <Text style={styles.title} onPress={() => Router.replace(pathname)}>
-          {pathname}
-        </Text>
-        <Text style={styles.description}>{description}</Text>
-      </View>
-    </View>
+      </div>
+
+      <Box spacing="m">
+        <Stack spacing="m">
+          <TextNext.Text className={styles.TitleText} size="l">
+            <Link href="[...resolver]" as={pathname}>
+              <a>{pathname}</a>
+            </Link>
+          </TextNext.Text>
+
+          <TextNext.Text className={styles.DescriptionText} size="s">
+            {description}
+          </TextNext.Text>
+        </Stack>
+        <Empty spacing="m" />
+      </Box>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  summary: {
-    width: 300,
-    paddingBottom: design.spacing.base,
-    marginBottom: design.spacing.base,
-    backgroundColor: "#fff",
-    borderRadius: 2,
-    overflow: "hidden",
-    boxShadow: `0 1px 10px rgba(0, 0, 0, 0.15)`
-  },
-  imageList: {
-    display: "flex",
-    flexDirection: "row"
-  },
-  content: {
-    padding: design.spacing.base
-  },
-  title: {
-    fontSize: design.fontSize.large,
-    marginBottom: design.spacing.smaller1,
-    color: design.colors.primary.c2
-  },
-  description: {
-    fontSize: design.fontSize.small,
-    color: design.colors.neutral.c6
-  }
-});
 
 export default ListingSummary;
