@@ -7,7 +7,7 @@ import findIndex from "lodash/findIndex";
 import isEmpty from "lodash/isEmpty";
 
 import * as reddit from "../lib/reddit";
-import * as enums from "../enums";
+import * as enums from "./enums";
 
 /**
  * Action creators

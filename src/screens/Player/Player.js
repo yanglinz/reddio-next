@@ -5,7 +5,7 @@ import noop from "lodash/noop";
 
 import PlayerNext from "./PlayerNext";
 import * as playerStore from "../../store/player";
-import * as enums from "../../enums";
+import * as enums from "../../store/enums";
 
 function mapStateToProps(state) {
   return {

@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
 import PlayerNext from "./PlayerNext";
-import * as enums from "../../enums";
+import * as enums from "../../store/enums";
 
 const statusTransition = {
   [enums.PlaybackStatus.PAUSED]: enums.PlaybackStatus.PLAYING,

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { storiesOf } from "@storybook/react";
 
 import PlayPause from "./PlayPause";
-import * as enums from "../../enums";
+import * as enums from "../../store/enums";
 
 const statusTransition = {
   [enums.PlaybackStatus.PAUSED]: enums.PlaybackStatus.PLAYING,
