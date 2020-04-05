@@ -6,7 +6,7 @@ import Clickable from "../../components/Clickable";
 import IconPlay from "../../assets/IconPlay";
 import IconPause from "../../assets/IconPause";
 import * as design from "../../design";
-import * as enums from "../../enums";
+import * as enums from "../../store/enums";
 
 function BackgroundCircle(props) {
   const { status, size } = props;
