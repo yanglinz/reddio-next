@@ -8,7 +8,7 @@ import Thumbnail from "../../components/Thumbnail";
 import Skeleton from "../../components/Skeleton";
 import { Box, Stack, Empty } from "../../components/Spacing";
 import * as TextNext from "../../components/Text";
-import * as design from "../../design";
+import * as design from "../../styles/design";
 
 import styles from "./ListingSummary.module.scss";
 

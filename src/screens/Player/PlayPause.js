@@ -5,7 +5,7 @@ import classNames from "classnames";
 import Clickable from "../../components/Clickable";
 import IconPlay from "../../assets/IconPlay";
 import IconPause from "../../assets/IconPause";
-import * as design from "../../design";
+import * as design from "../../styles/design";
 import * as enums from "../../store/enums";
 
 function BackgroundCircle(props) {

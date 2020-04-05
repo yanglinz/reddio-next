@@ -13,7 +13,7 @@ import Thumbnail from "../../components/Thumbnail";
 import Skeleton from "../../components/Skeleton";
 import * as reddit from "../../lib/reddit";
 import * as playerStore from "../../store/player";
-import * as design from "../../design";
+import * as design from "../../styles/design";
 
 function mapStateToProps(state) {
   return {

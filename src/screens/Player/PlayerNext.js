@@ -7,7 +7,7 @@ import IconSkipPrev from "../../assets/IconSkipPrev";
 import Clickable from "../../components/Clickable";
 import { Inline } from "../../components/Spacing.js";
 import * as enums from "../../store/enums";
-import * as design from "../../design";
+import * as design from "../../styles/design";
 
 import styles from "./PlayerNext.module.scss";
 

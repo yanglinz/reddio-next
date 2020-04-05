@@ -3,7 +3,7 @@ import { View, Picker, StyleSheet } from "react-native-web";
 import Router from "next/router";
 
 import * as reddit from "../../lib/reddit";
-import * as design from "../../design";
+import * as design from "../../styles/design";
 
 export function PostListSort(props) {
   const { pathname } = props;

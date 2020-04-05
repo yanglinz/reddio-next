@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native-web";
 
-import * as design from "../design";
+import * as design from "../styles/design";
 
 function ServiceError() {
   return (
