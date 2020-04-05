@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import { Box, Inline, Stack } from "./Spacing";
 import Placeholder from "./Placeholder";
-import * as design from "../design";
+import * as design from "../styles/design";
 
 function Container(props) {
   return (

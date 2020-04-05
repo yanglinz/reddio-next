@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native-web";
 
 import Skeleton from "../../components/Skeleton";
 import * as reddit from "../../lib/reddit";
-import * as design from "../../design";
+import * as design from "../../styles/design";
 
 function ListingHeader(props) {
   const { pathname, info } = props;

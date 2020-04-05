@@ -11,7 +11,7 @@ import PostList, { PostListSkeleton } from "./PostList";
 import ServiceError from "../../components/ServiceError";
 import * as Layout from "../../components/Layout";
 import * as playerStore from "../../store/player";
-import * as design from "../../design";
+import * as design from "../../styles/design";
 
 function LoadError() {
   return (

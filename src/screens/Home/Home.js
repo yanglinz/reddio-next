@@ -9,7 +9,7 @@ import ServiceError from "../../components/ServiceError";
 import { Stack } from "../../components/Spacing";
 import * as Text from "../../components/Text";
 import * as Layout from "../../components/Layout";
-import * as design from "../../design";
+import * as design from "../../styles/design";
 
 import styles from "./Home.module.scss";
 
