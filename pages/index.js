@@ -5,7 +5,7 @@ import Home from "../src/screens/Home/Home";
 function HomeRoute() {
   return (
     <AppWrapper>
-      <Header />
+      <Header fullSize />
       <Home />
     </AppWrapper>
   );

@@ -1,4 +1,5 @@
 @import "src/styles/colors";
+@import "src/styles/spacing";
 @import "src/styles/font";
 
 .Header {
@@ -6,19 +7,53 @@
   border-bottom: 1px solid $color-neutral9;
 }
 
-.SiteTitle {
-  font-size: $font-xxlarger;
-  text-decoration: none;
+.HeaderNavBrand {
+  display: flex;
+  align-items: center;
 }
 
-.SiteTitle:active {
+.HeaderNavBrand:active {
   opacity: 0.5;
 }
 
-.Accent1 {
-  color: $color-primary4;
+.HeaderNavDivider {
+  padding: 1px;
+  height: 16px;
+  border-right: 1px solid $color-neutral9;
 }
 
-.Accent2 {
+.HeaderNavTitle {
+  color: $color-primary5;
+  font-size: $font-large;
+}
+
+.Intro {
+  align-items: center;
+  display: flex;
+  padding-bottom: 230px;
+  padding-top: 200px;
+}
+
+.IntroSiteTitle {
+  font-style: italic;
+  text-align: center;
+  background: linear-gradient(
+    90deg,
+    $color-primary1 0%,
+    $color-primary6 50%,
+    $color-primary7 100%
+  );
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
   color: $color-primary6;
+}
+
+.IntroTitle {
+  color: $color-neutral4;
+  text-align: center;
+}
+
+.IntroSubtitle {
+  color: $color-neutral6;
+  text-align: center;
 }
