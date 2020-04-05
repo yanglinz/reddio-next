@@ -4,7 +4,7 @@ import ApolloClient from "apollo-boost";
 import { ApolloProvider } from "react-apollo";
 import fetch from "isomorphic-fetch";
 
-import store from "../store/store";
+import store from "../../store/store";
 
 const graphqlUri = "/api/graphql";
 const client = new ApolloClient({ uri: graphqlUri, fetch });
