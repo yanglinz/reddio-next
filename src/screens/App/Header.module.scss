@@ -30,8 +30,8 @@
 .Intro {
   align-items: center;
   display: flex;
-  padding-bottom: 230px;
-  padding-top: 200px;
+  height: calc(90vh - 150px);
+  min-height: 400px;
 }
 
 .IntroSiteTitle {
