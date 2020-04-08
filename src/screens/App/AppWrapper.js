@@ -6,13 +6,17 @@ import fetch from "isomorphic-fetch";
 
 import store from "../../store/store";
 
+import styles from "./AppWrapper.module.scss";
+
 const graphqlUri = "/api/graphql";
 const client = new ApolloClient({ uri: graphqlUri, fetch });
 
 function AppWrapper(props) {
   return (
     <Provider store={store}>
-      <ApolloProvider client={client}>{props.children}</ApolloProvider>
+      <ApolloProvider client={client}>
+        <div className={styles.AppWrapper}>{props.children}</div>
+      </ApolloProvider>
     </Provider>
   );
 }
