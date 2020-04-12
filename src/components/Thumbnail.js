@@ -25,10 +25,7 @@ const colors = [
   "#b0bec5"
 ];
 
-function Thumbnail(props) {
-  const { title, width, height, src, seed } = props;
-  const [errored, setErrored] = useState(false);
-
+function getRandomColor(seed) {
   // Choose a color randomly based on a seed
   let color = colors[0];
   try {
@@ -39,6 +36,13 @@ function Thumbnail(props) {
     // Do nothing
   }
 
+  return color;
+}
+
+function Thumbnail(props) {
+  const { title, width, height, src, seed } = props;
+  const [errored, setErrored] = useState(false);
+  const color = getRandomColor(seed);
   const showImage = !errored && src;
   return (
     <div
