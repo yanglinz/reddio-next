@@ -3,6 +3,8 @@ import isString from "lodash/isString";
 
 import * as random from "../lib/random";
 
+import styles from "./Thumbnail.module.scss";
+
 const colors = [
   "#ef9a9a",
   "#f48fb1",
@@ -39,84 +41,68 @@ function getRandomColor(seed) {
   return color;
 }
 
-export function ThumbnailLarge(props) {
-  const [errored, setErrored] = useState(false);
+function ThumbnailImage(props) {
+  const { width, height, src } = props;
+  const style = {
+    backgroundImage: `url(${src})`,
+    width,
+    height
+  };
+  return <div className={styles.ThumbnailImage} style={style} />;
+}
 
-  const { title, width, height, src, seed } = props;
-  const color = getRandomColor(seed);
-  const showImage = !errored && src;
+function ThumbnailSmall(props) {
+  const { width, height, src, seed } = props;
   return (
     <div
+      className={styles.ThumbnailSmall}
       style={{
         width: width,
         height: height,
-        backgroundColor: color
+        backgroundColor: getRandomColor(seed)
       }}
     >
-      {showImage ? (
-        <img
-          src={src}
-          width={width}
-          height={height}
-          alt={title}
-          onError={() => setErrored(true)}
-        />
-      ) : null}
+      <ThumbnailImage src={src} width={width} height={height} />
     </div>
   );
 }
 
-function ThumbnailSmall(props) {
-  const [errored, setErrored] = useState(false);
-
-  const { title, width, height, src, seed } = props;
-  const color = getRandomColor(seed);
-  const showImage = !errored && src;
+function ThumbnailLarge(props) {
+  const { width, height, src, seed } = props;
+  const foregroundRatio = 66 / 100;
   return (
     <div
+      className={styles.ThumbnailLarge}
       style={{
         width: width,
         height: height,
-        backgroundColor: color
+        backgroundColor: getRandomColor(seed)
       }}
     >
-      {showImage ? (
-        <img
+      <div className={styles.ThumbnailLargeForeground}>
+        <ThumbnailImage
           src={src}
-          width={width}
-          height={height}
-          alt={title}
-          onError={() => setErrored(true)}
+          width={width * foregroundRatio}
+          height={height * foregroundRatio}
         />
-      ) : null}
+      </div>
+      <div className={styles.ThumbnailLargeBackground}>
+        <ThumbnailImage src={src} width={width} height={height} />
+      </div>
     </div>
   );
 }
 
 function Thumbnail(props) {
-  const { title, width, height, src, seed } = props;
+  const { width, height, src, seed } = props;
 
   if (width > 75 && height > 75) {
     return (
-      <ThumbnailLarge
-        title={title}
-        width={width}
-        height={height}
-        src={src}
-        seed={seed}
-      />
+      <ThumbnailLarge width={width} height={height} src={src} seed={seed} />
     );
   }
 
-  return (
-    <ThumbnailSmall
-      title={title}
-      width={width}
-      height={height}
-      src={src}
-      seed={seed}
-    />
-  );
+  return <ThumbnailSmall width={width} height={height} src={src} seed={seed} />;
 }
 
 export default Thumbnail;
