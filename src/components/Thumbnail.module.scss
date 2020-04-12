@@ -1,0 +1,37 @@
+.ThumbnailImage {
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.35);
+}
+
+.ThumbnailSmall {
+  display: flex;
+  overflow: hidden;
+}
+
+.ThumbnailLarge {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.ThumbnailLargeForeground {
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  left: 17%;
+  overflow: hidden;
+  position: absolute;
+  top: 17%;
+  z-index: 1;
+}
+
+.ThumbnailLargeBackground {
+  filter: blur(20px);
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: scale(1.5);
+}
