@@ -21,16 +21,17 @@ function mapStateToProps(state) {
   };
 }
 
-function getRandomWidth(min, max) {
-  let w = Math.random() * Math.floor(max);
-  w = Math.max(min, w);
-  w = Math.min(max, w);
-  return w;
-}
+const randomPostDimensions = [
+  [120, 289],
+  [160, 202],
+  [140, 178],
+  [220, 370],
+  [180, 245]
+];
 
 export function PostSkeleton(props) {
-  const titleWidth = props.titleWidth || getRandomWidth(100, 250);
-  const descriptionWidth = props.descriptionWidth || getRandomWidth(150, 350);
+  const index = props.index % randomPostDimensions.length;
+  const [titleWidth, descriptionWidth] = randomPostDimensions[index] || [];
   return (
     <View style={styles.post}>
       <View style={styles.thumbnail}>
@@ -100,7 +101,7 @@ export function PostListSkeleton() {
   return (
     <View>
       {Array.from({ length: count }).map((_, i) => {
-        return <PostSkeleton key={i} />;
+        return <PostSkeleton key={i} index={i} />;
       })}
     </View>
   );
