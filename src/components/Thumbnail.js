@@ -39,9 +39,10 @@ function getRandomColor(seed) {
   return color;
 }
 
-function Thumbnail(props) {
-  const { title, width, height, src, seed } = props;
+export function ThumbnailLarge(props) {
   const [errored, setErrored] = useState(false);
+
+  const { title, width, height, src, seed } = props;
   const color = getRandomColor(seed);
   const showImage = !errored && src;
   return (
@@ -62,6 +63,59 @@ function Thumbnail(props) {
         />
       ) : null}
     </div>
+  );
+}
+
+function ThumbnailSmall(props) {
+  const [errored, setErrored] = useState(false);
+
+  const { title, width, height, src, seed } = props;
+  const color = getRandomColor(seed);
+  const showImage = !errored && src;
+  return (
+    <div
+      style={{
+        width: width,
+        height: height,
+        backgroundColor: color
+      }}
+    >
+      {showImage ? (
+        <img
+          src={src}
+          width={width}
+          height={height}
+          alt={title}
+          onError={() => setErrored(true)}
+        />
+      ) : null}
+    </div>
+  );
+}
+
+function Thumbnail(props) {
+  const { title, width, height, src, seed } = props;
+
+  if (width > 75 && height > 75) {
+    return (
+      <ThumbnailLarge
+        title={title}
+        width={width}
+        height={height}
+        src={src}
+        seed={seed}
+      />
+    );
+  }
+
+  return (
+    <ThumbnailSmall
+      title={title}
+      width={width}
+      height={height}
+      src={src}
+      seed={seed}
+    />
   );
 }
 
