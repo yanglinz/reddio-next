@@ -12,6 +12,7 @@ function loadStories() {
 	require('../src/components/Text.story');
 	require('../src/components/Thumbnail.story');
 	require('../src/screens/App/Header.story');
+	require('../src/screens/Home/ListingPost.story');
 	require('../src/screens/Home/ListingSummary.story');
 	require('../src/screens/Listing/ListingHeader.story');
 	require('../src/screens/Listing/PostList.story');
@@ -28,6 +29,7 @@ const stories = [
 	'../src/components/Text.story',
 	'../src/components/Thumbnail.story',
 	'../src/screens/App/Header.story',
+	'../src/screens/Home/ListingPost.story',
 	'../src/screens/Home/ListingSummary.story',
 	'../src/screens/Listing/ListingHeader.story',
 	'../src/screens/Listing/PostList.story',

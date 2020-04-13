@@ -1,7 +1,11 @@
 .Clickable {
-  border: none;
-  padding: 0;
   background: none;
+  border: none;
+  display: flex;
+  padding: 0;
+  text-align: left;
+  // This may be a questionable assumption
+  width: 100%;
 }
 
 .Clickable:focus {

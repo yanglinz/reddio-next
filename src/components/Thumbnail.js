@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import isString from "lodash/isString";
 
 import * as random from "../lib/random";
@@ -69,7 +69,7 @@ function ThumbnailSmall(props) {
 
 function ThumbnailLarge(props) {
   const { width, height, src, seed } = props;
-  const foregroundRatio = 66 / 100;
+  const foregroundRatio = 60 / 100;
   return (
     <div
       className={styles.ThumbnailLarge}
