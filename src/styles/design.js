@@ -38,6 +38,7 @@ export const colors = {
   }
 };
 
+// Legacy spacing enums
 export const spacing = {
   smaller2: 4,
   smaller1: 6,
@@ -48,6 +49,19 @@ export const spacing = {
   larger2: 67,
   larger3: 109,
   larger4: 178
+};
+
+// New spacing enums
+export const Space = {
+  x2s: 2,
+  xs: 4,
+  s: 6,
+  m: 10,
+  l: 16,
+  xl: 26,
+  x2l: 42,
+  x3l: 67,
+  x4l: 109
 };
 
 export const fontSize = {
