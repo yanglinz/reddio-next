@@ -80,7 +80,7 @@
       "searchDir": [
         "./src"
       ],
-      "pattern": "**/*.story.js",
+      "pattern": "**/*(assets|components|screens)/**/*.story.js",
       "outputFile": "./.storybook/storyLoader.js"
     }
   },

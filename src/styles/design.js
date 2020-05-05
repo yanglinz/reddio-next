@@ -52,7 +52,7 @@ export const spacing = {
 };
 
 // New spacing enums
-export const Space = {
+export const space = {
   x2s: 2,
   xs: 4,
   s: 6,
@@ -64,6 +64,7 @@ export const Space = {
   x4l: 109
 };
 
+// Legacy font size enums
 export const fontSize = {
   // https://type-scale.com/
   smaller1: 10,
@@ -73,4 +74,15 @@ export const fontSize = {
   larger1: 28,
   larger2: 37,
   larger3: 50
+};
+
+// New font size enums
+export const font = {
+  xs: 10,
+  s: 13,
+  m: 16,
+  l: 21,
+  xl: 28,
+  x2l: 37,
+  x3l: 50
 };
