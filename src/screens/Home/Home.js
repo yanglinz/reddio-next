@@ -46,23 +46,6 @@ const HOME_QUERY = gql`
   }
 `;
 
-function HomeIntro() {
-  return (
-    <div className={styles.Intro}>
-      <Layout.Wide>
-        <Stack spacing="l">
-          <Text.Heading2 className={styles.IntroTitle} size="xxl">
-            Discover new songs.
-          </Text.Heading2>
-          <Text.Heading3 className={styles.IntroSubtitle} size="xl">
-            Powered by user curated content from reddit.
-          </Text.Heading3>
-        </Stack>
-      </Layout.Wide>
-    </div>
-  );
-}
-
 function HomeExplore() {
   return (
     <div className={styles.Explore}>
@@ -191,7 +174,6 @@ function HomeFeatured(props) {
 function HomeLoading() {
   return (
     <div>
-      <HomeIntro />
       <HomeListenToThis loading={true} data={undefined} />
       <HomeFeatured loading={true} data={undefined} />
       <HomeExplore />
@@ -209,6 +191,7 @@ function HomeError() {
 
 class HomeContainer extends React.Component {
   render() {
+    console.log("HomeContainer");
     const { dispatch } = this.props;
     return (
       <Query query={HOME_QUERY}>
@@ -223,7 +206,6 @@ class HomeContainer extends React.Component {
 
           return (
             <div>
-              <HomeIntro />
               <HomeListenToThis
                 dispatch={dispatch}
                 loading={false}

@@ -1,16 +1,6 @@
 @import "src/styles/colors";
 @import "src/styles/spacing";
 
-.Intro {
-  display: none;
-  align-items: center;
-  background: #fff;
-  border-bottom: 1px solid $color-neutral9;
-  display: "flex";
-  padding-bottom: $spacing-xxxxlarge;
-  padding-top: $spacing-xxxxlarge;
-}
-
 .IntroTitle {
   color: $color-primary3;
   text-align: center;
