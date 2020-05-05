@@ -1,42 +1,28 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native-web";
 
-import * as design from "../styles/design";
+import { Box, Stack, Text } from "../vendor/ui-system";
+import { space as s, font as f } from "../styles/design";
+
+import styles from "./ServiceError.module.scss";
 
 function ServiceError() {
   return (
-    <View style={styles.error}>
-      <Text style={styles.icon}>:(</Text>
-      <Text style={styles.title}>Oops, something went wrong.</Text>
-      <Text style={styles.subtitle}>
-        Looks like we couldn't load your content
-      </Text>
-    </View>
+    <div className={styles.ServiceError}>
+      <Box padding={s.x3l}>
+        <Stack spacing={s.xl}>
+          <Text className={styles.TextGraphic} size={240}>
+            :(
+          </Text>
+          <Text className={styles.Text} size={f.xl}>
+            Oops, something went wrong.
+          </Text>
+          <Text className={styles.Text} size={f.l}>
+            Looks like we couldn't load your content.
+          </Text>
+        </Stack>
+      </Box>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  error: {
-    paddingTop: design.spacing.base,
-    paddingBottom: design.spacing.large
-  },
-  icon: {
-    color: design.colors.primary.c6,
-    fontSize: 240,
-    textAlign: "center"
-  },
-  title: {
-    color: design.colors.neutral.c4,
-    fontSize: design.fontSize.large,
-    marginTop: design.spacing.large,
-    textAlign: "center"
-  },
-  subtitle: {
-    color: design.colors.neutral.c7,
-    fontSize: design.fontSize.large,
-    marginTop: design.spacing.small,
-    textAlign: "center"
-  }
-});
 
 export default ServiceError;
