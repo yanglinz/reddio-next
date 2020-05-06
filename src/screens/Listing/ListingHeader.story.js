@@ -6,9 +6,9 @@ import ListingHeader from "./ListingHeader";
 
 function Container(props) {
   return (
-    <View width={400} height={300}>
+    <div width={400} height={300}>
       {props.children}
-    </View>
+    </div>
   );
 }
 
