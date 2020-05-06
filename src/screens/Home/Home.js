@@ -153,8 +153,8 @@ function HomeFeatured(props) {
   }
 
   return (
-    <Layout.Wide>
-      <div className={styles.Featured}>
+    <div className={styles.Featured}>
+      <Layout.Wide>
         <Stack spacing="xl">
           <Stack spacing="m">
             <Text.Heading4 className={styles.FeaturedTitle} size="l">
@@ -166,8 +166,8 @@ function HomeFeatured(props) {
           </Stack>
           {content}
         </Stack>
-      </div>
-    </Layout.Wide>
+      </Layout.Wide>
+    </div>
   );
 }
 
