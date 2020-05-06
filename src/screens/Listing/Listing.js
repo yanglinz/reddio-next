@@ -13,16 +13,6 @@ import * as Layout from "../../components/Layout";
 import * as playerStore from "../../store/player";
 import * as design from "../../styles/design";
 
-function LoadError() {
-  return (
-    <View style={styles.listing}>
-      <Layout.Standard>
-        <ServiceError />
-      </Layout.Standard>
-    </View>
-  );
-}
-
 function ListingView(props) {
   const {
     loading,
@@ -50,7 +40,7 @@ function ListingView(props) {
   }, [posts, dispatch]);
 
   if (hasError) {
-    return <LoadError />;
+    return <ServiceError />;
   }
 
   return (
@@ -90,7 +80,6 @@ function ListingResolver() {
 }
 
 const styles = StyleSheet.create({
-  listing: {},
   listingBg: {
     backgroundColor: "#fff",
     marginBottom: design.spacing.larger2
@@ -98,25 +87,6 @@ const styles = StyleSheet.create({
   listingBgMed: {
     marginTop: design.spacing.base,
     marginBottom: design.spacing.larger2
-  },
-  header: {
-    paddingTop: design.spacing.base,
-    paddingBottom: design.spacing.base,
-    paddingLeft: design.spacing.small,
-    paddingRight: design.spacing.small,
-    borderBottomColor: design.colors.neutral.c10,
-    borderBottomWidth: 1
-  },
-  title: {
-    fontSize: design.fontSize.small,
-    fontWeight: "900",
-    textTransform: "uppercase",
-    letterSpacing: 1
-  },
-  subtitle: {
-    marginTop: design.spacing.smaller1,
-    fontSize: design.fontSize.small,
-    color: design.colors.neutral.c5
   }
 });
 
