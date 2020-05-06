@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { View, StyleSheet } from "react-native-web";
 import { useRouter } from "next/router";
 import isEmpty from "lodash/isEmpty";
 
@@ -11,7 +10,8 @@ import PostList, { PostListSkeleton } from "./PostList";
 import ServiceError from "../../components/ServiceError";
 import * as Layout from "../../components/Layout";
 import * as playerStore from "../../store/player";
-import * as design from "../../styles/design";
+
+import styles from "./Listing.module.scss";
 
 function ListingView(props) {
   const {
@@ -29,12 +29,6 @@ function ListingView(props) {
   const hasError = isEmpty(posts) && error;
   const isLoading = isEmpty(posts) && loading && !isRefetching;
 
-  // TODO fix media query
-  const isMediumWidth = true;
-  const style = isMediumWidth
-    ? [styles.listingBg, styles.listingBgMed]
-    : styles.listingBg;
-
   useEffect(() => {
     dispatch(playerStore.appendPosts(posts));
   }, [posts, dispatch]);
@@ -44,9 +38,9 @@ function ListingView(props) {
   }
 
   return (
-    <View style={styles.listing}>
+    <div className={styles.Listing}>
       <Layout.Standard>
-        <View style={style}>
+        <div className={styles.ListingPosts}>
           <ListingHeader pathname={pathname} info={info} />
           <PostListSort pathname={pathname} />
           {isLoading ? (
@@ -59,9 +53,9 @@ function ListingView(props) {
               isRefetching={isRefetching}
             />
           )}
-        </View>
+        </div>
       </Layout.Standard>
-    </View>
+    </div>
   );
 }
 
@@ -78,16 +72,5 @@ function ListingResolver() {
     </ListingProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  listingBg: {
-    backgroundColor: "#fff",
-    marginBottom: design.spacing.larger2
-  },
-  listingBgMed: {
-    marginTop: design.spacing.base,
-    marginBottom: design.spacing.larger2
-  }
-});
 
 export default ListingResolver;
