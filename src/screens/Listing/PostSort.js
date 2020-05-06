@@ -1,6 +1,7 @@
 import React from "react";
-import { View, Picker, StyleSheet } from "react-native-web";
+import { View, StyleSheet } from "react-native-web";
 import Router from "next/router";
+import { Listbox, ListboxOption } from "@reach/listbox";
 
 import * as reddit from "../../lib/reddit";
 import * as design from "../../styles/design";
@@ -11,39 +12,38 @@ export function PostListSort(props) {
 
   return (
     <View style={styles.postListSort}>
-      <Picker
-        selectedValue={currentSortType}
-        onValueChange={sortType => {
+      <Listbox
+        value={currentSortType}
+        onChange={sortType => {
           const nextPath = reddit.resolveSortTypePath(pathname, sortType);
           Router.replace(nextPath);
         }}
       >
-        <Picker.Item label="Hot" value={reddit.sortTypes.hot} />
-        <Picker.Item label="New" value={reddit.sortTypes.new} />
-        <Picker.Item label="Top" value={reddit.sortTypes.top} />
-        <Picker.Item
-          label="Controversial"
-          value={reddit.sortTypes.controversial}
-        />
-        <Picker.Item label="Rising" value={reddit.sortTypes.rising} />
-      </Picker>
+        <ListboxOption value={reddit.sortTypes.hot}>Hot</ListboxOption>
+        <ListboxOption value={reddit.sortTypes.new}>New</ListboxOption>
+        <ListboxOption value={reddit.sortTypes.top}>Top</ListboxOption>
+        <ListboxOption value={reddit.sortTypes.controversial}>
+          Controversial
+        </ListboxOption>
+        <ListboxOption value={reddit.sortTypes.rising}>Rising</ListboxOption>
+      </Listbox>
 
       {currentSortType === reddit.sortTypes.top ? (
         <View style={styles.sortRange}>
-          <Picker
-            selectedValue={reddit.getSortRange(pathname)}
-            onValueChange={sortRange => {
+          <Listbox
+            value={reddit.getSortRange(pathname)}
+            onChange={sortRange => {
               const nextPath = reddit.resolveSortRangePath(pathname, sortRange);
               Router.replace(nextPath);
             }}
           >
-            <Picker.Item label="Hour" value={reddit.sortRanges.hour} />
-            <Picker.Item label="Day" value={reddit.sortRanges.day} />
-            <Picker.Item label="Week" value={reddit.sortRanges.week} />
-            <Picker.Item label="Month" value={reddit.sortRanges.month} />
-            <Picker.Item label="Year" value={reddit.sortRanges.year} />
-            <Picker.Item label="All" value={reddit.sortRanges.all} />
-          </Picker>
+            <ListboxOption value={reddit.sortRanges.hour}>Hour</ListboxOption>
+            <ListboxOption value={reddit.sortRanges.day}>Day</ListboxOption>
+            <ListboxOption value={reddit.sortRanges.week}>Week</ListboxOption>
+            <ListboxOption value={reddit.sortRanges.month}>Month</ListboxOption>
+            <ListboxOption value={reddit.sortRanges.year}>Year</ListboxOption>
+            <ListboxOption value={reddit.sortRanges.all}>All</ListboxOption>
+          </Listbox>
         </View>
       ) : null}
     </View>
