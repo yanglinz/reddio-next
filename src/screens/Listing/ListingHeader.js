@@ -1,9 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native-web";
 
+import { Box, Stack, Text } from "../../vendor/ui-system";
 import Skeleton from "../../components/Skeleton";
 import * as reddit from "../../lib/reddit";
-import * as design from "../../styles/design";
+import { space as s, font as f } from "../../styles/design";
+
+import styles from "./ListingHeader.module.scss";
 
 function ListingHeader(props) {
   const { pathname, info } = props;
@@ -19,45 +21,23 @@ function ListingHeader(props) {
   }
 
   return (
-    <View style={styles.header}>
-      <Text style={styles.titleText}>
-        {reddit.getCleanedPathname(pathname)}
-      </Text>
-      {subscribers ? (
-        <View style={styles.subtitle}>
-          <Text style={styles.subtitleText}>{subscribers}</Text>
-        </View>
-      ) : (
-        <View style={styles.subtitle}>
-          <Skeleton width={115} height={design.fontSize.base} />
-        </View>
-      )}
-    </View>
+    <div className={styles.ListingHeader}>
+      <Box padding={s.m}>
+        <Stack spacing={s.m}>
+          <Text className={styles.ListingName} size={f.s}>
+            {reddit.getCleanedPathname(pathname)}
+          </Text>
+          {subscribers ? (
+            <Text className={styles.ListingMeta} size={f.s}>
+              {subscribers}
+            </Text>
+          ) : (
+            <Skeleton width={115} height={f.s - 2} />
+          )}
+        </Stack>
+      </Box>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  header: {
-    paddingTop: design.spacing.base,
-    paddingBottom: design.spacing.base,
-    paddingLeft: design.spacing.small,
-    paddingRight: design.spacing.small,
-    borderBottomColor: design.colors.neutral.c10,
-    borderBottomWidth: 1
-  },
-  titleText: {
-    fontSize: design.fontSize.small,
-    fontWeight: "900",
-    textTransform: "uppercase",
-    letterSpacing: 1
-  },
-  subtitle: {
-    marginTop: design.spacing.smaller1
-  },
-  subtitleText: {
-    fontSize: design.fontSize.small,
-    color: design.colors.neutral.c5
-  }
-});
 
 export default ListingHeader;

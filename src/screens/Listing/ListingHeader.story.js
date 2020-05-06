@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native-web";
 import { storiesOf } from "@storybook/react";
 
 import ListingHeader from "./ListingHeader";
