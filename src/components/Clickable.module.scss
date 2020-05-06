@@ -1,6 +1,7 @@
 .Clickable {
   background: none;
   border: none;
+  cursor: pointer;
   display: flex;
   padding: 0;
   text-align: left;
@@ -14,7 +15,12 @@
 }
 
 .Clickable:active {
+  cursor: default;
   transform: scale(0.99);
+}
+
+.ClickableDisabled {
+  cursor: default;
 }
 
 .ClickableDisabled:active {
