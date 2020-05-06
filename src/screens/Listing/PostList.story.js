@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native-web";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 
@@ -17,9 +16,9 @@ const fakePost = {
 
 function Container(props) {
   return (
-    <View width={400} height={300}>
+    <div width={400} height={300}>
       {props.children}
-    </View>
+    </div>
   );
 }
 
