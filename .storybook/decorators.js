@@ -1,5 +1,6 @@
 import React from "react";
 
+import "@reach/listbox/styles.css";
 import "../src/styles/global.css";
 
 export function centeredDecorator(renderStory) {

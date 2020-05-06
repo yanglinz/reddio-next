@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@percy/storybook": "3.3.0",
+    "@reach/listbox": "0.10.1",
     "@storybook/addon-actions": "5.3.17",
     "@storybook/addon-links": "5.3.17",
     "@storybook/addons": "5.3.17",
