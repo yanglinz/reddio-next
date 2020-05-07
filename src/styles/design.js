@@ -78,8 +78,9 @@ export const fontSize = {
 
 // New font size enums
 export const font = {
-  xs: 10,
-  s: 13,
+  x2s: 10,
+  xs: 12,
+  s: 14,
   m: 16,
   l: 21,
   xl: 28,

@@ -1,0 +1,34 @@
+@import "src/styles/colors";
+@import "src/styles/spacing";
+
+.Post {
+  background: #fff;
+  border-top: 1px solid $color-neutral10;
+}
+
+.PostActive {
+  background: $color-secondary9;
+}
+
+.PostTitle {
+  color: $color-neutral2;
+}
+
+.PostDescription {
+  color: $color-neutral6;
+}
+
+.PostUnplayable {
+  .PostTitle {
+    color: $color-neutral8;
+  }
+
+  .PostDescription {
+    color: $color-neutral8;
+  }
+}
+
+.PostSkeleton {
+  background: #fff;
+  border-top: 1px solid $color-neutral10;
+}
