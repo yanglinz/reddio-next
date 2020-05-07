@@ -36,7 +36,7 @@ function ListingPost(props) {
           <Thumbnail src={thumbnail} width={110} height={110} seed={name} />
           <Spacing.Stack>
             <Text.Text className={styles.ListingPostTitle} size="l">
-              {title}
+              <div dangerouslySetInnerHTML={{ __html: title }} />
             </Text.Text>
             <Text.Text className={styles.ListingPostMeta} size="m">
               {`${score} point${score === 1 ? "" : "s"}`}
