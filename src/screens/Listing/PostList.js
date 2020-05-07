@@ -1,19 +1,18 @@
 import React from "react";
-import {
-  View,
-  FlatList,
-  Button,
-  Text,
-  TouchableOpacity,
-  StyleSheet
-} from "react-native-web";
+import { FlatList, Button } from "react-native-web";
 import { connect } from "react-redux";
+import classNames from "classnames";
 
+import { Box, Inline, Stack, Text } from "../../vendor/ui-system";
+import Clickable from "../../components/Clickable";
 import Thumbnail from "../../components/Thumbnail";
 import Skeleton from "../../components/Skeleton";
 import * as reddit from "../../lib/reddit";
 import * as playerStore from "../../store/player";
 import * as design from "../../styles/design";
+import { space as s, font as f } from "../../styles/design";
+
+import styles from "./PostList.module.scss";
 
 function mapStateToProps(state) {
   return {
@@ -33,16 +32,17 @@ export function PostSkeleton(props) {
   const index = props.index % randomPostDimensions.length;
   const [titleWidth, descriptionWidth] = randomPostDimensions[index] || [];
   return (
-    <View style={styles.post}>
-      <View style={styles.thumbnail}>
-        <Skeleton width={45} height={45} />
-      </View>
-      <View>
-        <Skeleton width={titleWidth} height={design.fontSize.base} />
-        <View style={{ height: 3 }} />
-        <Skeleton width={descriptionWidth} height={design.fontSize.base} />
-      </View>
-    </View>
+    <div className={styles.PostSkeleton}>
+      <Box padding={s.m}>
+        <Inline spacing={s.m} vcentered>
+          <Skeleton width={45} height={45} />
+          <Stack spacing={s.xs}>
+            <Skeleton width={titleWidth} height={design.fontSize.base} />
+            <Skeleton width={descriptionWidth} height={design.fontSize.base} />
+          </Stack>
+        </Inline>
+      </Box>
+    </div>
   );
 }
 
@@ -61,8 +61,8 @@ export function Post(props) {
   const isPlayable = reddit.isPostPlayable(url);
 
   const postBody = (
-    <React.Fragment>
-      <View style={styles.thumbnail}>
+    <Box padding={s.m}>
+      <Inline spacing={s.m} vcentered>
         <Thumbnail
           title={title}
           src={thumbnail}
@@ -70,40 +70,43 @@ export function Post(props) {
           height={45}
           seed={name}
         />
-      </View>
-      <View>
-        <Text
-          href={url}
-          style={isPlayable ? undefined : styles.titleUnplayable}
-        >
-          <span dangerouslySetInnerHTML={{ __html: formatTitle(title) }} />
-        </Text>
-        <Text style={styles.postMeta}>
-          {score} points | Posted by {author} | {numComments} comments
-        </Text>
-      </View>
-    </React.Fragment>
+        <Stack spacing={s.s}>
+          <Text size={f.s} className={styles.PostTitle}>
+            <div dangerouslySetInnerHTML={{ __html: formatTitle(title) }} />
+          </Text>
+          <Text size={f.s} className={styles.PostDescription}>
+            {score} points | Posted by {author} | {numComments} comments
+          </Text>
+        </Stack>
+      </Inline>
+    </Box>
   );
-  return isPlayable ? (
-    <TouchableOpacity
-      style={isActive ? [styles.post, styles.postActive] : styles.post}
-      onPress={() => props.onPress(props.post)}
-    >
-      {postBody}
-    </TouchableOpacity>
-  ) : (
-    <View style={styles.post}>{postBody}</View>
+
+  const clsName = classNames(styles.Post, {
+    [styles.PostActive]: isActive,
+    [styles.PostUnplayable]: !isPlayable
+  });
+  return (
+    <div className={clsName}>
+      {isPlayable ? (
+        <Clickable onClick={() => props.onPress(props.post)} focusOnlyOnTab>
+          {postBody}
+        </Clickable>
+      ) : (
+        postBody
+      )}
+    </div>
   );
 }
 
 export function PostListSkeleton() {
   const count = 25;
   return (
-    <View>
+    <div>
       {Array.from({ length: count }).map((_, i) => {
         return <PostSkeleton key={i} index={i} />;
       })}
-    </View>
+    </div>
   );
 }
 
@@ -120,7 +123,7 @@ export function PostList(props) {
   } = props;
 
   return (
-    <View>
+    <div>
       <FlatList
         data={posts}
         renderItem={({ item }) => (
@@ -149,31 +152,8 @@ export function PostList(props) {
           disabled={isRefetching}
         />
       ) : null}
-    </View>
+    </div>
   );
 }
-
-const styles = StyleSheet.create({
-  post: {
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    borderColor: design.colors.neutral.c10,
-    borderTopWidth: 1,
-    padding: design.spacing.small
-  },
-  thumbnail: {
-    marginRight: design.spacing.small
-  },
-  postActive: {
-    backgroundColor: design.colors.primaryAlt.c10
-  },
-  titleUnplayable: {
-    color: "#aaa"
-  },
-  postMeta: {
-    color: "#999"
-  }
-});
 
 export default connect(mapStateToProps)(PostList);
