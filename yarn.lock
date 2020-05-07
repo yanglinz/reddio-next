@@ -16081,7 +16081,7 @@ uglify-js@^3.5.1:
 
 "ui-system@https://github.com/yanglinz/ui-system.git#master":
   version "0.1.0"
-  resolved "https://github.com/yanglinz/ui-system.git#21567e1638ccde28ceb314717f11c992d4bf47e0"
+  resolved "https://github.com/yanglinz/ui-system.git#66ab5a4b56bf3be1dc256aa5586fea4116b767b6"
 
 unfetch@4.1.0, unfetch@^4.1.0:
   version "4.1.0"
