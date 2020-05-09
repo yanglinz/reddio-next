@@ -26,3 +26,7 @@
 .ClickableDisabled:active {
   transform: none;
 }
+
+.ClickableOnlyTab:focus {
+  outline: none;
+}

@@ -13,7 +13,9 @@ function Clickable(props) {
     <div>
       <button className={clsName} onClick={onClick} disabled={isDisabled}>
         {focusOnlyOnTab ? (
-          <div tabIndex="-1">{React.Children.only(props.children)}</div>
+          <div className={styles.ClickableOnlyTab} tabIndex="-1">
+            {React.Children.only(props.children)}
+          </div>
         ) : (
           React.Children.only(props.children)
         )}
