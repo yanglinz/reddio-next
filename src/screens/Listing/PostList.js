@@ -125,6 +125,7 @@ export function PostList(props) {
       <div className={styles.Posts}>
         {posts.map(post => (
           <Post
+            key={post.name}
             post={post}
             activePost={activePost}
             onPress={() => {
