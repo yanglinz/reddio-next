@@ -1,9 +1,10 @@
 import React from "react";
-import { FlatList, Button } from "react-native-web";
+import { FlatList } from "react-native-web";
 import { connect } from "react-redux";
 import classNames from "classnames";
 
 import { Box, Inline, Stack, Text } from "../../vendor/ui-system";
+import Button from "../../components/Button";
 import Clickable from "../../components/Clickable";
 import Thumbnail from "../../components/Thumbnail";
 import Skeleton from "../../components/Skeleton";
@@ -145,12 +146,13 @@ export function PostList(props) {
       />
 
       {pageInfo.hasNextPage ? (
-        <Button
-          color={design.colors.primary.c4}
-          onPress={loadNextPage}
-          title="Load More"
-          disabled={isRefetching}
-        />
+        <div className={styles.LoadMore}>
+          <Box padding={s.l}>
+            <Button onClick={loadNextPage} isDisabled={isRefetching}>
+              Load More
+            </Button>
+          </Box>
+        </div>
       ) : null}
     </div>
   );

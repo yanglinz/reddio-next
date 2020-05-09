@@ -6,6 +6,10 @@
   border-top: 1px solid $color-neutral10;
 }
 
+.Post:last-child {
+  border-bottom: 1px solid $color-neutral10;
+}
+
 .PostActive {
   background: $color-secondary9;
 }
@@ -31,4 +35,8 @@
 .PostSkeleton {
   background: #fff;
   border-top: 1px solid $color-neutral10;
+}
+
+.LoadMore {
+  text-align: center;
 }
