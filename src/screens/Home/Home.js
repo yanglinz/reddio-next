@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { Button } from "react-native-web";
 import Router from "next/router";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import take from "lodash/take";
 import { connect } from "react-redux";
 
+import Button from "../../components/Button";
 import ListingSummary, { ListingSummarySkeleton } from "./ListingSummary";
 import ListingPost, { ListingPostSkeleton } from "./ListingPost";
 import ServiceError from "../../components/ServiceError";
@@ -54,12 +54,10 @@ function HomeExplore() {
           Explore more music communities
         </Text.Heading4>
 
-        <div style={{ width: 150, margin: "0 auto" }}>
-          <Button
-            title="Explore"
-            color={design.colors.primary.c5}
-            onPress={() => Router.replace("/explore")}
-          />
+        <div className={styles.ExploreButton}>
+          <Button onClick={() => Router.replace("/explore")}>
+            Explore More
+          </Button>
         </div>
       </Stack>
     </div>

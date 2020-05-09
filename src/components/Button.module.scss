@@ -1,0 +1,43 @@
+@import "src/styles/spacing";
+@import "src/styles/colors";
+
+.Button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  display: inline-block;
+  padding: 0;
+  text-align: left;
+}
+
+.Button {
+  background: $color-secondary4;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  padding: $spacing-medium;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  text-transform: uppercase;
+}
+
+.Button:focus {
+  outline: 3px solid rgba(45, 51, 54, 0.4);
+  outline-offset: 3px;
+}
+
+.Button:active {
+  cursor: default;
+  transform: scale(0.99);
+}
+
+.ButtonDisabled {
+  cursor: default;
+}
+
+.ButtonDisabled:active {
+  transform: none;
+}
