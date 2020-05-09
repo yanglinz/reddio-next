@@ -1,13 +1,13 @@
 @import "src/styles/colors";
 @import "src/styles/spacing";
 
+.Posts {
+  border-bottom: 1px solid $color-neutral10;
+}
+
 .Post {
   background: #fff;
   border-top: 1px solid $color-neutral10;
-}
-
-.Post:last-child {
-  border-bottom: 1px solid $color-neutral10;
 }
 
 .PostActive {
@@ -37,6 +37,6 @@
   border-top: 1px solid $color-neutral10;
 }
 
-.LoadMore {
+.Pagination {
   text-align: center;
 }

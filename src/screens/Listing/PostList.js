@@ -1,5 +1,4 @@
 import React from "react";
-import { FlatList } from "react-native-web";
 import { connect } from "react-redux";
 import classNames from "classnames";
 
@@ -111,8 +110,6 @@ export function PostListSkeleton() {
   );
 }
 
-const flatListKeyExtractor = p => p.name;
-
 export function PostList(props) {
   const {
     posts,
@@ -125,28 +122,21 @@ export function PostList(props) {
 
   return (
     <div>
-      <FlatList
-        data={posts}
-        renderItem={({ item }) => (
+      <div className={styles.Posts}>
+        {posts.map(post => (
           <Post
-            post={item}
+            post={post}
             activePost={activePost}
             onPress={() => {
               dispatch(playerStore.setPosts(posts));
-              dispatch(playerStore.playPost(item.name));
+              dispatch(playerStore.playPost(post.name));
             }}
           />
-        )}
-        extraData={{
-          // Invalidate cache and re-render
-          itemCount: (posts && posts.length) || 0,
-          activePostName: activePost && activePost.name
-        }}
-        keyExtractor={flatListKeyExtractor}
-      />
+        ))}
+      </div>
 
       {pageInfo.hasNextPage ? (
-        <div className={styles.LoadMore}>
+        <div className={styles.Pagination}>
           <Box padding={s.l}>
             <Button onClick={loadNextPage} isDisabled={isRefetching}>
               Load More
