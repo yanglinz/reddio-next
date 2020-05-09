@@ -7,6 +7,8 @@ import PlayerNext from "./PlayerNext";
 import * as playerStore from "../../store/player";
 import * as enums from "../../store/enums";
 
+import styles from "./Player.module.scss";
+
 function mapStateToProps(state) {
   return {
     status: state.player.status,
@@ -20,15 +22,8 @@ function AppPlayer(props) {
   const { iframeEvents } = playerStore;
 
   return (
-    <div className="AppPlayer">
-      <div
-        style={{
-          zIndex: 2,
-          position: "fixed",
-          bottom: 120,
-          right: 20
-        }}
-      >
+    <div>
+      <div className={styles.IframePlayer}>
         {activePost ? (
           <ReactPlayer
             width={350}
@@ -60,16 +55,7 @@ function AppPlayer(props) {
         ) : null}
       </div>
 
-      <div
-        style={{
-          zIndex: 2,
-          position: "fixed",
-          bottom: 0,
-          width: "100%",
-          background: "#fff",
-          boxShadow: "rgba(0, 0, 0, 0.1) 0px 0px 16px"
-        }}
-      >
+      <div className={styles.Player}>
         <PlayerNext
           status={status || enums.PlaybackStatus.INITIALIZED}
           onClickPlayPause={() => {

@@ -1,0 +1,15 @@
+.Player {
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 16px;
+}
+
+.IframePlayer {
+  z-index: 2;
+  position: fixed;
+  bottom: 120px;
+  right: 20px;
+}
