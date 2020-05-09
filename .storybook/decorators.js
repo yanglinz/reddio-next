@@ -1,5 +1,6 @@
 import React from "react";
 
+import "normalize.css/normalize.css";
 import "@reach/listbox/styles.css";
 import "../src/styles/global.css";
 

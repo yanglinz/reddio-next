@@ -5,6 +5,7 @@ import Head from "next/head";
 import Player from "../src/screens/Player/Player";
 import store from "../src/store/store";
 
+import "normalize.css/normalize.css";
 import "@reach/listbox/styles.css";
 import "../src/styles/global.css";
 import "../src/styles/player.css";
