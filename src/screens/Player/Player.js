@@ -57,6 +57,7 @@ function AppPlayer(props) {
 
       <div className={styles.Player}>
         <PlayerNext
+          activePost={activePost}
           status={status || enums.PlaybackStatus.INITIALIZED}
           onClickPlayPause={() => {
             if (status === enums.PlaybackStatus.INITIALIZED) {

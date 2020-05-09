@@ -1,10 +1,23 @@
 .Player {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   border-top: 1px solid #f0f4f8;
   padding: 20px 0;
+}
+
+.ActiveInfo {
+  margin-left: 16px;
+  width: 60px;
 }
 
 .Control {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.Extra {
+  width: 76px;
 }

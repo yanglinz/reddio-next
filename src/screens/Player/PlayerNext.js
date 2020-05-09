@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import PlayPause from "./PlayPause";
 import IconSkipNext from "../../assets/IconSkipNext";
 import IconSkipPrev from "../../assets/IconSkipPrev";
+import Thumbnail from "../../components/Thumbnail";
 import Clickable from "../../components/Clickable";
 import { Inline } from "../../components/Spacing.js";
 import * as enums from "../../store/enums";
@@ -36,9 +37,27 @@ function InteractiveIcon(props) {
 }
 
 function PlayerNext(props) {
-  const { status, onClickPlayPause, onClickPrev, onClickNext } = props;
+  const {
+    activePost,
+    status,
+    onClickPlayPause,
+    onClickPrev,
+    onClickNext
+  } = props;
+
   return (
     <div className={styles.Player}>
+      <div className={styles.ActiveInfo}>
+        {activePost ? (
+          <Thumbnail
+            width={60}
+            height={60}
+            src={activePost.thumbnail}
+            seed={activePost.name}
+          />
+        ) : null}
+      </div>
+
       <div className={styles.Control}>
         <Inline spacing="l">
           <InteractiveIcon status={status} onClick={onClickPrev}>
@@ -52,6 +71,8 @@ function PlayerNext(props) {
           </InteractiveIcon>
         </Inline>
       </div>
+
+      <div className={styles.Extra}></div>
     </div>
   );
 }
