@@ -55,9 +55,7 @@ function HomeExplore() {
         </Text.Heading4>
 
         <div className={styles.ExploreButton}>
-          <Button onClick={() => Router.replace("/explore")}>
-            Explore
-          </Button>
+          <Button onClick={() => Router.replace("/explore")}>Explore</Button>
         </div>
       </Stack>
     </div>
