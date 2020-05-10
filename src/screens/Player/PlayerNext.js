@@ -1,12 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
 
+import { Inline } from "../../vendor/ui-system";
 import PlayPause from "./PlayPause";
 import IconSkipNext from "../../assets/IconSkipNext";
 import IconSkipPrev from "../../assets/IconSkipPrev";
 import Thumbnail from "../../components/Thumbnail";
 import Clickable from "../../components/Clickable";
-import { Inline } from "../../components/Spacing.js";
 import * as enums from "../../store/enums";
 import * as design from "../../styles/design";
 
@@ -59,7 +59,7 @@ function PlayerNext(props) {
       </div>
 
       <div className={styles.Control}>
-        <Inline spacing="l">
+        <Inline spacing={design.space.l} vcentered>
           <InteractiveIcon status={status} onClick={onClickPrev}>
             <IconSkipPrev size={22} />
           </InteractiveIcon>
