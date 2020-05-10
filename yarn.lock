@@ -15976,10 +15976,6 @@ uglify-js@^3.5.1:
     commander "~2.20.0"
     source-map "~0.6.1"
 
-"ui-system@https://github.com/yanglinz/ui-system.git#master":
-  version "0.1.0"
-  resolved "https://github.com/yanglinz/ui-system.git#c39744026a1902b4d9ec774c694cf3e6f1181d54"
-
 unfetch@4.1.0, unfetch@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-4.1.0.tgz#6ec2dd0de887e58a4dee83a050ded80ffc4137db"
