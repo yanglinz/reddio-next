@@ -5,15 +5,14 @@ import gql from "graphql-tag";
 import take from "lodash/take";
 import { connect } from "react-redux";
 
+import { Stack, Text } from "../../vendor/ui-system";
 import Button from "../../components/Button";
 import ListingSummary, { ListingSummarySkeleton } from "./ListingSummary";
 import ListingPost, { ListingPostSkeleton } from "./ListingPost";
 import ServiceError from "../../components/ServiceError";
-import { Stack } from "../../components/Spacing";
-import * as Text from "../../components/Text";
 import * as Layout from "../../components/Layout";
-import * as design from "../../styles/design";
 import * as playerStore from "../../store/player";
+import * as design from "../../styles/design";
 
 import styles from "./Home.module.scss";
 
@@ -49,10 +48,10 @@ const HOME_QUERY = gql`
 function HomeExplore() {
   return (
     <div className={styles.Explore}>
-      <Stack spacing="l">
-        <Text.Heading4 className={styles.ExploreTitle} size="l">
+      <Stack spacing={design.space.l}>
+        <Text className={styles.ExploreTitle} size={design.font.l}>
           Explore more music communities
-        </Text.Heading4>
+        </Text>
 
         <div className={styles.ExploreButton}>
           <Button onClick={() => Router.replace("/explore")}>Explore</Button>
@@ -104,14 +103,14 @@ function HomeListenToThis(props) {
   return (
     <div className={styles.ListenToThis}>
       <Layout.Wide>
-        <Stack spacing="xl">
-          <Stack spacing="m">
-            <Text.Heading4 className={styles.FeaturedTitle} size="l">
+        <Stack spacing={design.space.xl}>
+          <Stack spacing={design.space.m}>
+            <Text className={styles.FeaturedTitle} size={design.font.l}>
               Top Posts
-            </Text.Heading4>
-            <Text.Text className={styles.FeaturedSubtitle} size="m">
+            </Text>
+            <Text className={styles.FeaturedSubtitle} size={design.font.m}>
               Listen to this week's top posts
-            </Text.Text>
+            </Text>
           </Stack>
           {content}
         </Stack>
@@ -151,14 +150,14 @@ function HomeFeatured(props) {
   return (
     <div className={styles.Featured}>
       <Layout.Wide>
-        <Stack spacing="xl">
-          <Stack spacing="m">
-            <Text.Heading4 className={styles.FeaturedTitle} size="l">
+        <Stack spacing={design.space.xl}>
+          <Stack spacing={design.space.m}>
+            <Text className={styles.FeaturedTitle} size={design.font.l}>
               Featured Communities
-            </Text.Heading4>
-            <Text.Text className={styles.FeaturedSubtitle} size="m">
+            </Text>
+            <Text className={styles.FeaturedSubtitle} size={design.font.m}>
               Music from top subreddits
-            </Text.Text>
+            </Text>
           </Stack>
           {content}
         </Stack>
