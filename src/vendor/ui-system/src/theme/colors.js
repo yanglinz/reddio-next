@@ -8,7 +8,7 @@ export const PRIMARY_COLORS = {
   c7: "#62b0e8",
   c8: "#84c5f4",
   c9: "#b6e0fe",
-  c10: "#dceefb",
+  c10: "#dceefb"
 };
 
 export const NEUTRAL_COLORS = {
@@ -21,5 +21,5 @@ export const NEUTRAL_COLORS = {
   c7: "#9fb3c8",
   c8: "#bcccdc",
   c9: "#d9e2ec",
-  c10: "#f0f4f8",
+  c10: "#f0f4f8"
 };
