@@ -11,10 +11,6 @@ import { font as f, space as s } from "../../styles/design";
 
 import styles from "./ListingSummary.module.scss";
 
-function Empty() {
-  return <div style={{ height: 20 }}></div>;
-}
-
 export function ListingSummarySkeleton() {
   return (
     <div className={styles.Summary}>
@@ -25,8 +21,9 @@ export function ListingSummarySkeleton() {
           <Skeleton width={140} height={f.l} />
           <Skeleton width={220} height={f.xl} />
         </Stack>
-        <Empty />
       </Box>
+
+      <div />
     </div>
   );
 }
@@ -74,8 +71,9 @@ export function ListingSummary(props) {
           <Text className={styles.DescriptionText} size={f.s}>
             {description}
           </Text>
+
+          <div />
         </Stack>
-        <Empty />
       </Box>
     </div>
   );
