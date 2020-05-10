@@ -1,10 +1,10 @@
 import React from "react";
 
+import { Inline, Stack, Text } from "../../vendor/ui-system";
 import Clickable from "../../components/Clickable";
 import Skeleton from "../../components/Skeleton";
 import Thumbnail from "../../components/Thumbnail";
-import * as Spacing from "../../components/Spacing";
-import * as Text from "../../components/Text";
+import { font as f, space as s } from "../../styles/design";
 
 import styles from "./ListingPost.module.scss";
 
@@ -12,17 +12,17 @@ export function ListingPostSkeleton(props) {
   const { seed } = props;
   return (
     <div className={styles.ListingPost}>
-      <Spacing.Inline>
+      <Inline spacing={s.l} vcentered>
         <Thumbnail width={110} height={110} seed={seed} />
-        <Spacing.Stack spacing="s">
-          <Skeleton width={210} height={25} />
-          <Spacing.Inline spacing="s">
-            <Skeleton width={50} height={25} />
-            <Skeleton width={180} height={25} />
-            <Skeleton width={70} height={25} />
-          </Spacing.Inline>
-        </Spacing.Stack>
-      </Spacing.Inline>
+        <Stack spacing={s.m}>
+          <Skeleton width={210} height={f.l} />
+          <Inline spacing={s.m}>
+            <Skeleton width={50} height={f.l} />
+            <Skeleton width={180} height={f.l} />
+            <Skeleton width={70} height={f.l} />
+          </Inline>
+        </Stack>
+      </Inline>
     </div>
   );
 }
@@ -32,21 +32,21 @@ function ListingPost(props) {
   return (
     <div className={styles.ListingPost}>
       <Clickable focusOnlyOnTab onClick={onClick}>
-        <Spacing.Inline>
+        <Inline spacing={s.l} vcentered>
           <Thumbnail src={thumbnail} width={110} height={110} seed={name} />
-          <Spacing.Stack>
-            <Text.Text className={styles.ListingPostTitle} size="l">
+          <Stack spacing={s.m}>
+            <Text className={styles.ListingPostTitle} size={f.l}>
               <div dangerouslySetInnerHTML={{ __html: title }} />
-            </Text.Text>
-            <Text.Text className={styles.ListingPostMeta} size="m">
+            </Text>
+            <Text className={styles.ListingPostMeta} size={f.m}>
               {`${score} point${score === 1 ? "" : "s"}`}
               <span className={styles.ListingPostMetaDivider}> | </span>
               Posted by {author}
               <span className={styles.ListingPostMetaDivider}> | </span>
               {`${numComments} comment${numComments === 1 ? "" : "s"}`}
-            </Text.Text>
-          </Spacing.Stack>
-        </Spacing.Inline>
+            </Text>
+          </Stack>
+        </Inline>
       </Clickable>
     </div>
   );
