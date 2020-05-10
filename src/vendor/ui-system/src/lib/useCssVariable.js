@@ -1,4 +1,8 @@
-import { useLayoutEffect } from "react";
+import { useLayoutEffect as _useLayoutEffect } from "react";
+
+const isClient = typeof window !== "undefined";
+const noop = () => {};
+const useLayoutEffect = isClient ? _useLayoutEffect : noop;
 
 function formatValue(value) {
   let formatted = value;
