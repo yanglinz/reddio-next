@@ -187,7 +187,6 @@ function HomeError() {
 
 class HomeContainer extends React.Component {
   render() {
-    console.log("HomeContainer");
     const { dispatch } = this.props;
     return (
       <Query query={HOME_QUERY}>
