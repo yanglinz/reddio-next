@@ -1,0 +1,25 @@
+:root .Text {
+  --ui-system-text-size: 16px;
+}
+
+.Text {
+  font-size: var(--ui-system-text-size);
+  line-height: 1.6;
+  margin-left: calc(-1 * 0.05 * var(--ui-system-text-size));
+  transform: translateY(calc(0.3 * var(--ui-system-text-size)));
+}
+
+.Text::before {
+  content: "";
+  display: block;
+  height: 0;
+  margin-top: calc(-1 * 0.735 * var(--ui-system-text-size));
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  /* TODO */
+}
+
+@media (min-width: 1281px) {
+  /* TODO */
+}

@@ -1,0 +1,7 @@
+.Inline {
+  display: flex;
+}
+
+.InlineVcentered {
+  align-items: center;
+}
