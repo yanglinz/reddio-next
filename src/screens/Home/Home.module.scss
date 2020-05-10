@@ -1,24 +1,37 @@
 @import "src/styles/colors";
 @import "src/styles/spacing";
 
-.IntroTitle {
-  color: $color-primary3;
+.SectionTitle {
+  color: rgba(255, 255, 255, 1);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
-.IntroSubtitle {
-  color: $color-neutral6;
+.SectionSubtitle {
+  color: rgba(255, 255, 255, 0.85);
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .ListenToThis {
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 65%
+  );
   padding-bottom: $spacing-xxxlarge;
   padding-top: $spacing-xxxlarge;
 }
 
 .Featured {
   align-items: "center";
-  background: $color-neutral9;
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    0deg,
+    rgba(34, 193, 195, 0.5) 0%,
+    rgba(253, 187, 45, 0.5) 100%
+  );
   display: "flex";
   padding-bottom: $spacing-xxxlarge;
   padding-top: $spacing-xxxlarge;
@@ -29,16 +42,6 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
-}
-
-.FeaturedTitle {
-  color: $color-neutral3;
-  text-align: center;
-}
-
-.FeaturedSubtitle {
-  color: $color-neutral6;
-  text-align: center;
 }
 
 .Explore {

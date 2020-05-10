@@ -105,10 +105,10 @@ function HomeListenToThis(props) {
       <Layout.Wide>
         <Stack spacing={design.space.xl}>
           <Stack spacing={design.space.m}>
-            <Text className={styles.FeaturedTitle} size={design.font.l}>
+            <Text className={styles.SectionTitle} size={design.font.l}>
               Top Posts
             </Text>
-            <Text className={styles.FeaturedSubtitle} size={design.font.m}>
+            <Text className={styles.SectionSubtitle} size={design.font.m}>
               Listen to this week's top posts
             </Text>
           </Stack>
@@ -152,10 +152,10 @@ function HomeFeatured(props) {
       <Layout.Wide>
         <Stack spacing={design.space.xl}>
           <Stack spacing={design.space.m}>
-            <Text className={styles.FeaturedTitle} size={design.font.l}>
+            <Text className={styles.SectionTitle} size={design.font.l}>
               Featured Communities
             </Text>
-            <Text className={styles.FeaturedSubtitle} size={design.font.m}>
+            <Text className={styles.SectionSubtitle} size={design.font.m}>
               Music from top subreddits
             </Text>
           </Stack>
