@@ -1,18 +1,6 @@
 @import "src/styles/colors";
 @import "src/styles/spacing";
 
-.SectionTitle {
-  color: rgba(255, 255, 255, 1);
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
-.SectionSubtitle {
-  color: rgba(255, 255, 255, 0.85);
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
-
 .ListenToThis {
   background: rgb(238, 174, 202);
   background: radial-gradient(
@@ -22,19 +10,38 @@
   );
   padding-bottom: $spacing-xxxlarge;
   padding-top: $spacing-xxxlarge;
+
+  .SectionTitle {
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .SectionSubtitle {
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
 }
 
 .Featured {
   align-items: "center";
-  background: rgb(34, 193, 195);
-  background: linear-gradient(
-    0deg,
-    rgba(34, 193, 195, 0.5) 0%,
-    rgba(253, 187, 45, 0.5) 100%
-  );
+  background: $color-primary10;
   display: "flex";
   padding-bottom: $spacing-xxxlarge;
   padding-top: $spacing-xxxlarge;
+
+  .SectionTitle {
+    color: rgba(0, 0, 0, 0.6);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1);
+    text-align: center;
+  }
+
+  .SectionSubtitle {
+    color: rgba(0, 0, 0, 0.35);
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.1);
+    text-align: center;
+  }
 }
 
 .FeatureSummary {
